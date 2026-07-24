@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法考主观题记忆训练</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --border:#2a2f3a;
+    --text:#e6e9ef; --muted:#9aa3b2; --accent:#4f8cff; --accent2:#3b6fd4;
+    --good:#10b981; --easy:#22c55e; --hard:#f59e0b; --again:#ef4444;
+    --radius:14px; --shadow:0 6px 24px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f4f6fb; --panel:#ffffff; --panel2:#f0f3f9; --border:#e2e7f0;
+           --text:#1a2030; --muted:#5c6678; --shadow:0 6px 24px rgba(20,30,60,.08); }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:20px 18px 80px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+  h1{font-size:20px;margin:0;font-weight:700;letter-spacing:.5px}
+  .sub{color:var(--muted);font-size:13px}
+  button{font-family:inherit;cursor:pointer;border:none;border-radius:10px;font-size:14px;transition:.12s;color:var(--text)}
+  button:active{transform:translateY(1px)}
+  .ghost{background:var(--panel2);border:1px solid var(--border);padding:8px 14px}
+  .ghost:hover{background:var(--panel)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+  /* dashboard */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+  .stat{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center}
+  .stat b{display:block;font-size:26px;font-weight:800}
+  .stat span{color:var(--muted);font-size:12px}
+  .stat.due b{color:var(--accent)} .stat.newc b{color:var(--good)}
+
+  .decks{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .chip{display:flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--border);
+        padding:7px 12px;border-radius:999px;font-size:13px;cursor:pointer;user-select:none}
+  .chip .dot{width:9px;height:9px;border-radius:50%}
+  .chip.off{opacity:.4}
+  .chip .cnt{color:var(--muted);font-variant-numeric:tabular-nums}
+
+  .cta{display:block;width:100%;padding:16px;font-size:16px;font-weight:700;background:var(--accent);
+       color:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
+  .cta:hover{background:var(--accent2)}
+  .cta:disabled{opacity:.5;cursor:default;background:var(--panel2);color:var(--muted);box-shadow:none}
+
+  /* review card */
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+        box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px}
+  .card .meta{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;
+              border-bottom:1px solid var(--border);font-size:12px;color:var(--muted)}
+  .badge{padding:3px 9px;border-radius:999px;font-size:11px;font-weight:600;color:#fff}
+  .card .front{padding:24px 20px;font-size:18px;font-weight:600}
+  .card .back{padding:0 20px 20px;animation:fade .2s}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+  .sec-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px}
+  ul.points{margin:0;padding-left:4px;list-style:none}
+  ul.points li{padding:7px 12px;margin-bottom:7px;background:var(--panel2);border-left:3px solid var(--accent);
+               border-radius:8px;font-size:15px}
+  .note{background:var(--panel2);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--text)}
+  .laws{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .law{font-size:12px;background:var(--panel2);border:1px solid var(--border);padding:3px 9px;border-radius:7px;color:var(--muted)}
+  .tags{margin-top:14px;display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:11px;color:var(--muted)}
+  .source{margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);
+          font-size:12px;color:var(--muted)}
+
+  .reveal{display:block;width:100%;padding:14px;font-weight:700;background:var(--panel2);border:1px solid var(--border)}
+  .reveal:hover{background:var(--panel)}
+  .grades{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .grades button{padding:13px 6px;font-weight:700;color:#fff}
+  .g-again{background:var(--again)} .g-hard{background:var(--hard)}
+  .g-good{background:var(--good)} .g-easy{background:var(--easy)}
+  .grades small{display:block;font-weight:400;opacity:.85;font-size:11px}
+
+  .done{text-align:center;padding:50px 20px}
+  .done .big{font-size:46px}
+  .hint{color:var(--muted);font-size:12px;text-align:center;margin-top:10px}
+  .err{background:#3a1f24;border:1px solid #7a2e38;color:#ffd7dd;padding:16px;border-radius:var(--radius);font-size:14px}
+  @media (prefers-color-scheme: light){.err{background:#fdecee;border-color:#f3c0c7;color:#9b1c2b}}
+  code{background:var(--panel2);padding:2px 6px;border-radius:5px;font-size:13px}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>⚖️ 法考主观题记忆训练</h1>
+      <div class="sub" id="subtitle">间隔重复 · 数据由 Claude 维护</div>
+    </div>
+    <div class="row">
+      <button class="ghost" id="reloadBtn" title="Claude 修改数据后点此刷新">↻ 重新加载</button>
+      <button class="ghost" id="settingsBtn">⚙︎</button>
+    </div>
+  </header>
+
+  <div id="settings" class="card hide">
+    <div class="meta"><span>设置</span></div>
+    <div style="padding:16px 18px">
+      <label class="row" style="justify-content:space-between">
+        <span>每日新卡上限</span>
+        <input id="newPerDay" type="number" min="0" max="200" style="width:80px;padding:6px;border-radius:8px;border:1px solid var(--border);background:var(--panel2);color:var(--text)">
+      </label>
+      <div class="row" style="margin-top:14px;justify-content:space-between">
+        <button class="ghost" id="exportBtn">⬇︎ 导出学习进度</button>
+        <button class="ghost" id="resetBtn" style="color:var(--again)">清空学习进度</button>
+      </div>
+      <div class="hint" style="text-align:left;margin-top:10px">进度保存在本浏览器（localStorage），与卡片内容分离。Claude 增删改卡片不会丢失你的进度。</div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard">
+    <div class="stats">
+      <div class="stat due"><b id="s-due">0</b><span>待复习</span></div>
+      <div class="stat newc"><b id="s-new">0</b><span>新卡</span></div>
+      <div class="stat"><b id="s-learned">0</b><span>已学</span></div>
+      <div class="stat"><b id="s-total">0</b><span>卡片总数</span></div>
+    </div>
+    <div class="decks" id="deckChips"></div>
+    <button class="cta" id="startBtn">开始今日复习</button>
+    <div class="hint" id="dashHint"></div>
+  </div>
+
+  <!-- REVIEW -->
+  <div id="review" class="hide">
+    <div class="card">
+      <div class="meta">
+        <span><span class="badge" id="r-type"></span> <span id="r-topic"></span></span>
+        <span id="r-progress"></span>
+      </div>
+      <div class="front" id="r-front"></div>
+      <div class="back hide" id="r-back"></div>
+    </div>
+    <button class="reveal" id="revealBtn">显示答案 <span style="color:var(--muted)">(空格)</span></button>
+    <div class="grades hide" id="gradeBtns">
+      <button class="g-again" data-g="again">重来<small id="t-again"></small></button>
+      <button class="g-hard"  data-g="hard">困难<small id="t-hard"></small></button>
+      <button class="g-good"  data-g="good">良好<small id="t-good"></small></button>
+      <button class="g-easy"  data-g="easy">简单<small id="t-easy"></small></button>
+    </div>
+    <div class="hint">快捷键：空格 翻面 · 1/2/3/4 评分 · Esc 退出</div>
+  </div>
+
+  <div id="error" class="hide"></div>
+</div>
+
+<script>
+const DAY = 86400000;
+const LS_PROGRESS = 'fakao.progress.v1';
+const LS_SETTINGS = 'fakao.settings.v1';
+const LS_NEWLOG   = 'fakao.newlog.v1';
+
+let CARDS = [];          // all cards (flat), each gets ._deck and ._color
+let DECKS = [];          // manifest decks
+let progress = load(LS_PROGRESS, {});
+let settings = load(LS_SETTINGS, { newPerDay: 15 });
+let activeDecks = null;  // Set of enabled deck ids (null = all)
+let queue = [], cur = null, reviewedThisSession = 0, introducedToday = new Set();
+
+function load(k, d){ try{ return JSON.parse(localStorage.getItem(k)) ?? d; }catch{ return d; } }
+function save(k, v){ localStorage.setItem(k, JSON.stringify(v)); }
+function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+
+// ---------- new-card daily budget ----------
+function newLog(){
+  let l = load(LS_NEWLOG, {date:'', count:0});
+  if(l.date !== todayStr()) l = {date:todayStr(), count:0};
+  return l;
+}
+function newRemaining(){ return Math.max(0, (settings.newPerDay||0) - newLog().count); }
+function bumpNew(id){
+  if(introducedToday.has(id)) return;
+  introducedToday.add(id);
+  let l = newLog(); l.count++; save(LS_NEWLOG, l);
+}
+
+// ---------- data loading ----------
+async function loadData(){
+  try{
+    const man = await (await fetch('data/manifest.json?_='+Date.now())).json();
+    DECKS = man.decks;
+    document.getElementById('subtitle').textContent =
+      (man.title||'法考') + ' · ' + (man.stage||'') + ' · 数据由 Claude 维护';
+    const all = [];
+    for(const d of DECKS){
+      try{
+        const dj = await (await fetch('data/'+d.file+'?_='+Date.now())).json();
+        (dj.cards||[]).forEach(c => { c._deck=d.id; c._color=d.color; all.push(c); });
+      }catch(e){ console.warn('deck failed', d.file, e); }
+    }
+    CARDS = all;
+    if(activeDecks===null) activeDecks = new Set(DECKS.map(d=>d.id));
+    document.getElementById('error').classList.add('hide');
+    renderDashboard();
+  }catch(e){
+    showLoadError();
+  }
+}
+function showLoadError(){
+  const el = document.getElementById('error');
+  el.className='err';
+  el.innerHTML = `<b>无法加载卡片数据。</b><br>本应用需要通过本地服务器打开（不能直接双击 html）。<br><br>
+    在终端运行：<br><code>cd "$(pwd)"/fakao-trainer && python3 -m http.server 8000</code><br><br>
+    然后用 <b>Chrome</b> 打开 <code>http://localhost:8000</code> 。`;
+  document.getElementById('dashboard').classList.add('hide');
+}
+
+// ---------- scheduling (SM-2 variant) ----------
+function isDue(c){
+  const p = progress[c.id];
+  if(!p) return false;            // new handled separately
+  return p.due <= Date.now();
+}
+function isNew(c){ return !progress[c.id]; }
+
+function predict(c, grade){
+  // returns {ease,intervalDays,reps,lapses,state} WITHOUT saving
+  let p = progress[c.id] || { ease:2.5, intervalDays:0, reps:0, lapses:0, state:'new' };
+  p = {...p};
+  const fresh = (p.state==='new' || p.reps===0);
+  if(grade==='again'){
+    p.lapses = (p.lapses||0) + (fresh?0:1);
+    p.ease = Math.max(1.3, p.ease - 0.2);
+    p.intervalDays = 0; p.reps = 0; p.state = fresh ? 'new':'review';
+  } else if(grade==='hard'){
+    p.ease = Math.max(1.3, p.ease - 0.15);
+    p.intervalDays = fresh ? 1 : Math.max(1, Math.round(p.intervalDays*1.2));
+    p.reps++; p.state='review';
+  } else if(grade==='good'){
+    p.intervalDays = fresh ? 1 : Math.max(1, Math.round(p.intervalDays*p.ease));
+    p.reps++; p.state='review';
+  } else { // easy
+    p.ease = p.ease + 0.15;
+    p.intervalDays = fresh ? 3 : Math.max(1, Math.round(p.intervalDays*p.ease*1.3));
+    p.reps++; p.state='review';
+  }
+  return p;
+}
+function fmtInterval(days){
+  if(days<=0) return '<1分钟';
+  if(days===1) return '1天';
+  if(days<30) return days+'天';
+  if(days<365) return Math.round(days/30)+'个月';
+  return (days/365).toFixed(1)+'年';
+}
+
+// ---------- dashboard ----------
+function inActive(c){ return activeDecks.has(c._deck); }
+function renderDashboard(){
+  const due = CARDS.filter(c=>inActive(c) && isDue(c)).length;
+  const newAvail = Math.min(newRemaining(), CARDS.filter(c=>inActive(c) && isNew(c)).length);
+  const learned = CARDS.filter(c=>progress[c.id]).length;
+  document.getElementById('s-due').textContent = due;
+  document.getElementById('s-new').textContent = newAvail;
+  document.getElementById('s-learned').textContent = learned;
+  document.getElementById('s-total').textContent = CARDS.length;
+
+  const chips = document.getElementById('deckChips');
+  chips.innerHTML='';
+  for(const d of DECKS){
+    const total = CARDS.filter(c=>c._deck===d.id).length;
+    const dueN = CARDS.filter(c=>c._deck===d.id && isDue(c)).length;
+    const newN = CARDS.filter(c=>c._deck===d.id && isNew(c)).length;
+    const on = activeDecks.has(d.id);
+    const el = document.createElement('div');
+    el.className = 'chip'+(on?'':' off');
+    el.innerHTML = `<span class="dot" style="background:${d.color}"></span>${d.id}
+      <span class="cnt">${dueN}/${newN}/${total}</span>`;
+    el.title = '待复习/新卡/总数';
+    el.onclick = ()=>{ on?activeDecks.delete(d.id):activeDecks.add(d.id);
+      if(activeDecks.size===0) activeDecks.add(d.id); renderDashboard(); };
+    chips.appendChild(el);
+  }
+  const start = document.getElementById('startBtn');
+  const ready = due + newAvail;
+  start.disabled = ready===0;
+  start.textContent = ready>0 ? `开始复习（${ready} 张）` : '今日已无待复习卡片 🎉';
+  document.getElementById('dashHint').textContent =
+    `共 ${CARDS.length} 张卡片，覆盖 ${DECKS.length} 个学科 · 每日新卡上限 ${settings.newPerDay}`;
+}
+
+// ---------- review session ----------
+function buildQueue(){
+  const dueCards = CARDS.filter(c=>inActive(c) && isDue(c));
+  let newCards = CARDS.filter(c=>inActive(c) && isNew(c)).slice(0, newRemaining());
+  // interleave a little: due first, then new
+  queue = [...shuffle(dueCards), ...newCards].map(c=>c.id);
+  reviewedThisSession = 0; introducedToday = new Set();
+}
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const k=Math.floor(Math.random()*(i+1));[a[i],a[k]]=[a[k],a[i]];} return a; }
+
+function startReview(){
+  buildQueue();
+  if(queue.length===0){ renderDashboard(); return; }
+  document.getElementById('dashboard').classList.add('hide');
+  document.getElementById('settings').classList.add('hide');
+  document.getElementById('review').classList.remove('hide');
+  nextCard();
+}
+function nextCard(){
+  if(queue.length===0) return finishReview();
+  cur = CARDS.find(c=>c.id===queue[0]);
+  if(!cur){ queue.shift(); return nextCard(); }
+  // front
+  document.getElementById('r-back').classList.add('hide');
+  document.getElementById('gradeBtns').classList.add('hide');
+  document.getElementById('revealBtn').classList.remove('hide');
+  const typeMap={framework:'分析框架',essay:'论述要点',statute:'法条记忆',distinguish:'易混辨析',qa:'知识点',goldline:'必背金句'};
+  const t=document.getElementById('r-type');
+  t.textContent = typeMap[cur.type]||cur.type||'卡片';
+  t.style.background = cur._color || 'var(--accent)';
+  document.getElementById('r-topic').textContent = cur._deck + (cur.topic? ' · '+cur.topic : '');
+  document.getElementById('r-progress').textContent = '剩余 '+queue.length;
+  document.getElementById('r-front').textContent = cur.front || '';
+  renderBack();
+}
+function renderBack(){
+  const b=document.getElementById('r-back');
+  let h='';
+  if(cur.points && cur.points.length){
+    h+='<div class="sec-label">要点</div><ul class="points">';
+    cur.points.forEach(p=> h+='<li>'+escapeHtml(p)+'</li>');
+    h+='</ul>';
+  }
+  if(cur.back){ h+='<div class="sec-label">说明 / 易错</div><div class="note">'+escapeHtml(cur.back)+'</div>'; }
+  if(cur.law && cur.law.length){
+    h+='<div class="sec-label">法条</div><div class="laws">';
+    cur.law.forEach(l=> h+='<span class="law">'+escapeHtml(l)+'</span>');
+    h+='</div>';
+  }
+  if(cur.tags && cur.tags.length){
+    h+='<div class="tags">';
+    cur.tags.forEach(t=> h+='<span class="tag">#'+escapeHtml(t)+'</span>');
+    h+='</div>';
+  }
+  if(cur.source){
+    h+='<div class="source">📖 来源：'+escapeHtml(cur.source)+'</div>';
+  }
+  b.innerHTML = h || '<div class="note">（此卡暂无答案内容，可让 Claude 补充）</div>';
+}
+function reveal(){
+  document.getElementById('r-back').classList.remove('hide');
+  document.getElementById('revealBtn').classList.add('hide');
+  // interval previews
+  ['again','hard','good','easy'].forEach(g=>{
+    const p=predict(cur,g);
+    document.getElementById('t-'+g).textContent = fmtInterval(p.intervalDays);
+  });
+  document.getElementById('gradeBtns').classList.remove('hide');
+}
+function grade(g){
+  if(document.getElementById('gradeBtns').classList.contains('hide')) return;
+  const wasNew = isNew(cur);
+  const p = predict(cur, g);
+  p.due = p.intervalDays<=0 ? Date.now() : Date.now() + p.intervalDays*DAY;
+  progress[cur.id] = p; save(LS_PROGRESS, progress);
+  if(wasNew) bumpNew(cur.id);
+  reviewedThisSession++;
+  // requeue if again (relearn this session), else remove
+  if(g==='again'){ queue.push(queue.shift()); }
+  else { queue.shift(); }
+  nextCard();
+}
+function finishReview(){
+  document.getElementById('review').innerHTML =
+    `<div class="done"><div class="big">🎉</div>
+      <h2>本轮完成！</h2>
+      <p class="sub">本次复习 ${reviewedThisSession} 张卡片</p>
+      <button class="cta" style="max-width:240px;margin:18px auto 0" onclick="backToDash()">返回</button>
+    </div>`;
+}
+function backToDash(){ location.reload(); }
+
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+// ---------- wires ----------
+document.getElementById('startBtn').onclick = startReview;
+document.getElementById('revealBtn').onclick = reveal;
+document.getElementById('reloadBtn').onclick = loadData;
+document.getElementById('gradeBtns').onclick = e=>{ const b=e.target.closest('button'); if(b) grade(b.dataset.g); };
+document.getElementById('settingsBtn').onclick = ()=>{
+  const s=document.getElementById('settings'); s.classList.toggle('hide');
+  document.getElementById('newPerDay').value = settings.newPerDay;
+};
+document.getElementById('newPerDay').onchange = e=>{
+  settings.newPerDay = Math.max(0, parseInt(e.target.value)||0); save(LS_SETTINGS, settings); renderDashboard();
+};
+document.getElementById('resetBtn').onclick = ()=>{
+  if(confirm('确定清空所有学习进度？卡片内容不受影响。')){ progress={}; save(LS_PROGRESS,progress);
+    localStorage.removeItem(LS_NEWLOG); renderDashboard(); alert('已清空。'); }
+};
+document.getElementById('exportBtn').onclick = ()=>{
+  const blob=new Blob([JSON.stringify({progress,exported:todayStr()},null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='fakao-progress-'+todayStr()+'.json'; a.click();
+};
+document.addEventListener('keydown', e=>{
+  if(document.getElementById('review').classList.contains('hide')) return;
+  if(e.key===' '||e.key==='Enter'){ e.preventDefault();
+    if(!document.getElementById('revealBtn').classList.contains('hide')) reveal(); }
+  else if(['1','2','3','4'].includes(e.key)){ grade({'1':'again','2':'hard','3':'good','4':'easy'}[e.key]); }
+  else if(e.key==='Escape'){ backToDash(); }
+});
+
+loadData();
+</script>
+</body>
+</html>
