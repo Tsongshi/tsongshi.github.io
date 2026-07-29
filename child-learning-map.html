@@ -264,7 +264,8 @@ let selected = -1, hovered = -1, chain = null;
 function project(){
   const cy=Math.cos(rotY), sy=Math.sin(rotY), cx=Math.cos(rotX), sx=Math.sin(rotX);
   const cxc = camX, cyc = H*0.52;
-  const base = Math.min(W,H)/760;
+  // size the cloud to the width it actually gets, not the whole viewport
+  const base = Math.min(W > 820 ? W*0.56 : W*0.92, H*0.86) / 680;
   const s = base * zoom * 1.05;
   const FOV = 1250;
   for (let i=0;i<N;i++){
@@ -348,9 +349,10 @@ function draw(){
 }
 
 // camera pans left when the detail panel takes over the right side
+// 820 matches the CSS breakpoint where the title stops being a left column
 function camTarget(){
-  if (W <= 980) return W/2;
-  return panelOpen ? Math.max(W*0.30, (W - Math.min(430, W*0.92))/2) : W*0.63;
+  if (W <= 820) return W/2;
+  return panelOpen ? Math.max(W*0.30, (W - Math.min(430, W*0.92))/2) : W*0.64;
 }
 let camX = 0;
 
