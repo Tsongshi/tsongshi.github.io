@@ -5,5 +5,47 @@
     "category": "学习",
     "date": "2026-07-30",
     "description": "Marble Skill Taxonomy 中文版：1,590 个小学知识点、3,221 条前置依赖的三维知识图谱。名称与释义全部译为中文，点任意节点可回溯它的全部前置。"
+  },
+  {
+    "title": "法考主观题记忆训练",
+    "path": "fakao/",
+    "category": "法考",
+    "date": "2026-07-25",
+    "description": "间隔重复卡片，98 张覆盖 8 个学科。答题进度存在本机浏览器。"
+  },
+  {
+    "title": "刑法必背金句 · Session 1",
+    "path": "fakao/criminal-quotes-s1.html",
+    "category": "法考",
+    "date": "2026-07-29",
+    "description": "总论 1-10，带朗读音频的背诵练习。"
+  },
+  {
+    "title": "刑法金句小练 · 台阶式",
+    "path": "fakao/criminal-quotes-quiz.html",
+    "category": "法考",
+    "date": "2026-07-29",
+    "description": "逐级提示的默写练习，从读一读一路升到套案例应用。"
+  },
+  {
+    "title": "民诉金句小练 · 台阶式",
+    "path": "fakao/civpro-quotes-quiz.html",
+    "category": "法考",
+    "date": "2026-07-29",
+    "description": "逐级提示的默写练习，从读一读一路升到套案例应用。"
+  },
+  {
+    "title": "民法提升大案例 · 房屋租赁纠纷",
+    "path": "fakao/civil-lease-case.html",
+    "category": "法考",
+    "date": "2026-07-29",
+    "description": "2017 年房屋租赁纠纷，互动式分析练习，带朗读音频。"
+  },
+  {
+    "title": "民诉提升大案例 · 仲裁裁决司法审查",
+    "path": "fakao/civpro-arbitration-case.html",
+    "category": "法考",
+    "date": "2026-07-29",
+    "description": "大力公司仲裁裁决司法审查，互动式分析练习，带中英朗读音频。"
   }
 ]

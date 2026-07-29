@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刑法金句小练 · 台阶式</title>
+<style>
+  :root{
+    --bg:#f6f5f2; --card:#ffffff; --ink:#2b2a28; --sub:#78756e;
+    --accent:#8a6f4d; --accent2:#e07a5f; --line:#e7e3da;
+    --radius:20px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Hiragino Sans GB",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;}
+  .wrap{max-width:600px;margin:0 auto;padding:24px 16px 60px;}
+  h1{font-size:19px;margin:2px 0 4px;}
+  .sub{color:var(--sub);font-size:13px;margin-bottom:6px;}
+  .note{font-size:12px;color:var(--sub);margin-bottom:12px;}
+  .progress-outer{background:var(--line);border-radius:99px;height:8px;overflow:hidden;margin-bottom:18px;}
+  .progress-inner{background:var(--accent);height:100%;width:0%;transition:width .3s;}
+  .stage-strip{display:flex;gap:4px;margin-bottom:16px;}
+  .stage-dot{flex:1;height:5px;border-radius:99px;background:var(--line);}
+  .stage-dot.on{background:var(--accent);}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;min-height:220px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  .card .tag{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:6px;padding:2px 10px;margin:0 0 6px;align-self:flex-start;}
+  .card .stage-label{font-size:11.5px;color:var(--accent2);font-weight:700;margin-bottom:10px;}
+  .card .front-text{font-size:15.5px;font-weight:600;margin-bottom:10px;}
+  .card .back-text{font-size:14.5px;background:#faf9f6;border-radius:12px;padding:12px;margin-top:10px;}
+  .card .back-text.hidden{display:none;}
+  .card .cloze-text{font-size:14.5px;background:#faf9f6;border-radius:12px;padding:12px;}
+  .card .cloze-text .blank{color:var(--accent2);font-weight:700;}
+  .card .src{font-size:11.5px;color:var(--sub);margin-top:10px;text-align:right;}
+  textarea.recall{width:100%;min-height:80px;border-radius:12px;border:1px solid var(--line);padding:10px;font-size:14px;font-family:inherit;margin-top:10px;resize:vertical;}
+
+  .btnrow{display:flex;gap:10px;margin-top:16px;}
+  button.act{flex:1;border:none;border-radius:12px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;background:#eee;color:var(--ink);}
+  button.act.primary{background:var(--accent);color:#fff;}
+  button.act.ghost{background:#fff;border:1px solid var(--line);}
+
+  .done-screen{display:none;text-align:center;padding:40px 10px;}
+  .done-screen.show{display:block;}
+  .done-emoji{font-size:44px;margin-bottom:12px;}
+  .done-title{font-size:19px;font-weight:700;margin-bottom:6px;}
+  .done-sub{color:var(--sub);font-size:14px;margin-bottom:20px;}
+  .done-stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;}
+  .done-stat b{color:var(--accent);}
+  .legend{font-size:11.5px;color:var(--sub);margin-top:18px;line-height:1.8;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>刑法金句小练 · 台阶式</h1>
+  <div class="sub">同一批 8 条金句，混着来，每条从"读一读"慢慢升到"套案例应用"</div>
+  <div class="note">不问你背没背下来——每一步只是"做完了"就往前走，没有对错判断。想停随时停，下次接着来。</div>
+  <div class="progress-outer"><div class="progress-inner" id="progressBar"></div></div>
+
+  <div id="cardArea">
+    <div class="card" id="cardEl"></div>
+    <div id="actionArea"></div>
+  </div>
+
+  <div class="done-screen" id="doneScreen">
+    <div class="done-emoji">🎉</div>
+    <div class="done-title">8 条都练到"应用"这一步了</div>
+    <div class="done-sub">不用现在就全部滚瓜烂熟，隔几天回来再走一遍这个流程，印象会自然加深。</div>
+    <div class="done-stat" id="doneStat"></div>
+    <button class="act primary" id="restartBtn" style="width:100%;">全部重新开始一轮</button>
+  </div>
+
+  <div class="legend" id="legendArea"></div>
+</div>
+
+<script>
+const LSKEY = 'xingfa_jinju_v2';
+const STAGE_NAMES = ["初读", "朗读 / 默一遍", "挖空回忆", "试着默写", "套进小案例"];
+const NUM_STAGES = STAGE_NAMES.length; // 0..4, reaching 4 and completing it = graduated
+
+/* 8 条刑法答题理由背诵金句，引自《刑法考前必背金句》；
+   caseSrc 标"真题原题节选"的三条（自首/防卫过当/实行过限）来自《主观尊享私教-刑法基础小案例汇总》，
+   其余五条的小案例是 Claude 自编，用来练手，不是真题原文——已标注区分。 */
+const items = [
+  {
+    tag:"结果加重犯",
+    front:"行为人实施基本犯行为，又造成了基本犯以外更严重的结果（比如重伤、死亡），怎么定？",
+    back:"行为人的XX行为造成了基本犯以外的加重结果（重伤、死亡），由于XX行为与加重结果具有因果关系，故行为人构成XX罪的结果加重犯。",
+    clozeBlanked:"行为人的XX行为造成了基本犯以外的＿＿＿＿结果（重伤、死亡），由于XX行为与加重结果具有＿＿＿＿，故行为人构成XX罪的＿＿＿＿＿＿。",
+    caseQ:"甲将乙打成轻伤（故意伤害的基本犯是轻伤），乙在搏斗中摔倒磕破头部，感染后死亡，该行为与死亡结果之间具有因果关系。怎么定？",
+    caseA:"甲的故意伤害行为造成了基本犯（轻伤）以外的加重结果（死亡），由于故意伤害行为与死亡结果具有因果关系，故甲构成故意伤害罪的结果加重犯（故意伤害致人死亡）。",
+    caseSrc:"Claude 自编小案例（非真题原文），供练手用"
+  },
+  {
+    tag:"不作为犯罪",
+    front:"行为人负有某种义务、有能力履行却不履行，导致了危害结果，怎么定？",
+    back:"客观上行为人负有XX义务，有能力而不履行该义务，造成某某结果；主观上行为人对该结果具有故意（过失），故构成不作为形式的YY罪。",
+    clozeBlanked:"客观上行为人负有XX＿＿＿，有能力而不履行该义务，造成某某结果；主观上行为人对该结果具有＿＿＿＿（过失），故构成＿＿＿＿形式的YY罪。",
+    caseQ:"母亲甲明知刚出生的婴儿有生命危险却不喂养（甲有能力喂养），婴儿因此死亡。怎么定？",
+    caseA:"甲基于母亲身份负有法定的抚养义务，有能力履行而不履行，导致婴儿死亡；主观上对死亡结果至少具有放任的故意，构成不作为形式的故意杀人罪。",
+    caseSrc:"Claude 自编小案例（非真题原文），供练手用"
+  },
+  {
+    tag:"正当防卫·假想防卫",
+    front:"行为人误以为存在不法侵害而实施了“防卫”，实际上根本没有不法侵害，怎么处理？",
+    back:"假想防卫不构成故意犯罪。如果行为人有过失，按过失犯罪（过失致人死亡/过失致人重伤）处理；如果没有过失，按意外事件处理。",
+    clozeBlanked:"假想防卫不构成＿＿＿＿。如果行为人有过失，按＿＿＿＿（过失致人死亡/过失致人重伤）处理；如果没有过失，按＿＿＿＿处理。",
+    caseQ:"深夜，甲误以为跟在身后的路人乙要行凶，遂将乙打成重伤，实际上乙只是同路而已，没有任何不法侵害。怎么定？",
+    caseA:"甲的行为属于假想防卫，不构成故意犯罪。如果甲应当预见乙不是行凶者而没有预见（存在过失），构成过失致人重伤罪；如果甲已尽到注意义务、没有过失，按意外事件处理。",
+    caseSrc:"Claude 自编小案例（非真题原文），供练手用"
+  },
+  {
+    tag:"正当防卫·防卫过当",
+    front:"防卫行为明显超过必要限度、造成了重伤或死亡的过当结果，怎么定？",
+    back:"行为人的防卫行为明显超过了必要限度，且造成了过当结果（重伤/死亡），构成防卫过当，对过当结果至少有过失，应当认定为XX罪，但应当减轻或者免除处罚。",
+    clozeBlanked:"行为人的防卫行为明显超过了＿＿＿＿，且造成了过当结果（重伤/死亡），构成＿＿＿＿，对过当结果至少有＿＿＿＿，应当认定为XX罪，但应当减轻或者免除处罚。",
+    caseQ:"田某持砍刀砍向金某，金某夺刀反击，田某逃跑准备再找刀。金某持刀追赶，田某摔倒在地后，金某又砍了一刀致田某死亡，且经查无法确定致命一刀是田某倒地前还是倒地后所砍。金某的行为如何认定？",
+    caseA:"若致命一刀是倒地前所砍，金某的追砍仍属防卫适时（田某逃跑找刀，不法侵害危险尚未解除），且未过当，构成正当防卫；若致命一刀是倒地后所砍，此时田某已无凶器、丧失侵害能力，属于防卫过当。根据存疑时有利于被告人原则，应认定为第一种情形，金某构成正当防卫，而非防卫过当。",
+    caseSrc:"真题原题节选 ·《主观尊享私教-刑法基础小案例汇总》2026/4/8 金某案"
+  },
+  {
+    tag:"事实认识错误·对象错误",
+    front:"行为人误将A当作B实施了行为，这属于什么错误，怎么定罪？",
+    back:"行为人误将A当作B，属于对象错误，应当认定为XX罪既遂。",
+    clozeBlanked:"行为人误将A当作B，属于＿＿＿＿，应当认定为XX罪＿＿＿＿。",
+    caseQ:"甲误将熟睡的丙当作仇人乙实施杀害行为，致丙死亡。怎么定？",
+    caseA:"甲误将丙当作乙，属于对象错误，应当认定为故意杀人罪既遂。",
+    caseSrc:"Claude 自编小案例（非真题原文），供练手用"
+  },
+  {
+    tag:"事实认识错误·打击错误",
+    front:"行为人想打击甲，但因为行为偏差实际打到了乙，这属于什么错误？法定符合说怎么处理？",
+    back:"属于打击错误。根据法定符合说，行为人构成XX罪（对乙，既遂）与XX罪未遂（对甲），属于想象竞合，从一重罪处罚。",
+    clozeBlanked:"属于＿＿＿＿。根据法定符合说，行为人构成XX罪（对乙，既遂）与XX罪未遂（对甲），属于＿＿＿＿，从一重罪处罚。",
+    caseQ:"甲举枪射击仇人乙，因手抖导致子弹偏离，打死了旁边路过的丙。怎么定？",
+    caseA:"属于打击错误。根据法定符合说，甲构成故意杀人罪既遂（对丙）与故意杀人罪未遂（对乙），属于想象竞合，从一重罪处罚。",
+    caseSrc:"Claude 自编小案例（非真题原文），供练手用"
+  },
+  {
+    tag:"共同犯罪·实行过限",
+    front:"共同犯罪中，其中一人的行为超出了大家事先商量的范围，其他人要不要对超出的部分负责？",
+    back:"甲的XX行为超出了共同犯罪的范围，属于实行过限，乙对甲的XX行为造成的XX结果不负责任。",
+    clozeBlanked:"甲的XX行为超出了共同犯罪的范围，属于＿＿＿＿，乙对甲的XX行为造成的XX结果＿＿＿＿。",
+    caseQ:"孔某、陶某共谋伤害姜某。孔某临时起意强奸姜某，随后又产生灭口想法杀害姜某。陶某始终不知道孔某要杀人这件事。孔某的杀人行为，陶某要不要负责？",
+    caseA:"孔某构成故意杀人罪（未遂）。陶某对孔某的杀人行为不用负责，因为陶某并不知道孔某要杀人——孔某的杀人行为超出了二人事先共谋的伤害（及后续强奸、抢劫）范围，属于实行过限，对超出部分乙不负责任。",
+    caseSrc:"真题原题节选 ·《主观尊享私教-刑法基础小案例汇总》2026/4/10 孔某陶某案"
+  },
+  {
+    tag:"自首",
+    front:"行为人犯罪后主动投案，并如实交代自己的罪行，这是什么？处理上有什么优待？",
+    back:"行为人犯X罪后自动投案，如实供述自己所犯罪行，成立自首，可以从轻或者减轻处罚。",
+    clozeBlanked:"行为人犯X罪后＿＿＿＿，如实供述自己所犯罪行，成立＿＿＿＿，可以从轻或者减轻处罚。",
+    caseQ:"陈某勒死李某后逃至外地，几日后走投无路，向公安机关投案，如实交代了杀人事实。陈某是否成立自首？",
+    caseA:"成立自首。走投无路而投案的，仍然属于自动投案，不影响自首的成立；陈某如实供述了故意杀人的事实，成立自首，可以从轻或者减轻处罚。",
+    caseSrc:"真题原题节选 ·《主观尊享私教-刑法基础小案例汇总》2026/4/3 陈某案"
+  }
+];
+
+function loadState(){
+  try{ return JSON.parse(localStorage.getItem(LSKEY)) || {}; }catch(e){ return {}; }
+}
+function saveState(s){ localStorage.setItem(LSKEY, JSON.stringify(s)); }
+let state = loadState();
+if(!state.itemStage){ state.itemStage = items.map(()=>0); }
+if(state.itemStage.length !== items.length){ state.itemStage = items.map(()=>0); }
+
+let queue = [];
+let current = null; // {idx, stage}
+let recallShown = false;
+let clozeRevealed = false;
+let draftText = ''; // 暂存"试着默写/套案例"里正在打的字，翻答案时不能丢
+
+function totalSteps(){ return items.length * NUM_STAGES; }
+function doneSteps(){
+  return state.itemStage.reduce((sum, s)=> sum + Math.min(s, NUM_STAGES), 0);
+}
+function updateProgress(){
+  document.getElementById('progressBar').style.width = Math.round(doneSteps()/totalSteps()*100) + '%';
+}
+
+function buildQueue(){
+  const pending = [];
+  items.forEach((it, idx)=>{
+    if(state.itemStage[idx] < NUM_STAGES) pending.push(idx);
+  });
+  // 洗牌，尽量不让同一条连续出现
+  for(let i=pending.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [pending[i],pending[j]] = [pending[j],pending[i]];
+  }
+  queue = pending;
+}
+
+function nextCard(){
+  if(queue.length === 0) buildQueue();
+  if(queue.length === 0){
+    showDone();
+    return;
+  }
+  const idx = queue.shift();
+  const stage = state.itemStage[idx];
+  if(stage >= NUM_STAGES){ nextCard(); return; }
+  current = {idx, stage};
+  recallShown = false;
+  clozeRevealed = false;
+  draftText = '';
+  renderCard();
+}
+
+function stageStrip(stage){
+  let html = '<div class="stage-strip">';
+  for(let i=0;i<NUM_STAGES;i++){
+    html += `<div class="stage-dot ${i<=stage?'on':''}"></div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderCard(){
+  const it = items[current.idx];
+  const stage = current.stage;
+  const el = document.getElementById('cardEl');
+  const actionArea = document.getElementById('actionArea');
+  updateProgress();
+
+  let bodyHtml = stageStrip(stage);
+  bodyHtml += `<div class="tag">${it.tag}</div><div class="stage-label">第 ${stage+1} 步 · ${STAGE_NAMES[stage]}</div>`;
+
+  if(stage === 0){
+    bodyHtml += `<div class="front-text"><!-- TTS:it${current.idx}-front -->${it.front}</div>`;
+    bodyHtml += `<div class="back-text"><!-- TTS:it${current.idx}-back -->${it.back}</div>`;
+    el.innerHTML = bodyHtml;
+    actionArea.innerHTML = `<div class="btnrow"><button class="act primary" id="continueBtn">读完了，下一步 ›</button></div>`;
+  } else if(stage === 1){
+    bodyHtml += `<div class="front-text">${it.front}</div>`;
+    bodyHtml += `<div class="back-text">${it.back}</div>`;
+    bodyHtml += `<div class="note" style="margin-top:8px;">大声读三遍，或者读一遍后闭眼在心里默一遍——选一种，做完点下一步。</div>`;
+    el.innerHTML = bodyHtml;
+    actionArea.innerHTML = `<div class="btnrow"><button class="act primary" id="continueBtn">做完了，下一步 ›</button></div>`;
+  } else if(stage === 2){
+    bodyHtml += `<div class="front-text">${it.front}</div>`;
+    bodyHtml += `<div class="cloze-text" id="clozeBox">${clozeRevealed ? it.back : it.clozeBlanked}</div>`;
+    bodyHtml += `<div class="note" style="margin-top:8px;">先自己把空填上（心里想或说出来都行），点卡片看完整答案。</div>`;
+    el.innerHTML = bodyHtml;
+    el.onclick = ()=>{ clozeRevealed = !clozeRevealed; renderCard(); };
+    actionArea.innerHTML = `<div class="btnrow"><button class="act primary" id="continueBtn">想起来了，下一步 ›</button></div>`;
+  } else if(stage === 3){
+    bodyHtml += `<div class="front-text">${it.front}</div>`;
+    bodyHtml += `<textarea class="recall" id="recallInput" placeholder="试着把整句默写出来，写多写少都行……"></textarea>`;
+    if(recallShown){
+      bodyHtml += `<div class="back-text">原文对照：${it.back}</div>`;
+    }
+    el.innerHTML = bodyHtml;
+    el.onclick = null;
+    document.getElementById('recallInput').value = draftText;
+    document.getElementById('recallInput').addEventListener('input', (e)=>{ draftText = e.target.value; });
+    actionArea.innerHTML = recallShown
+      ? `<div class="btnrow"><button class="act primary" id="continueBtn">看完对比了，下一步 ›</button></div>`
+      : `<div class="btnrow"><button class="act ghost" id="revealBtn">对比一下原文</button></div>`;
+    if(!recallShown){
+      document.getElementById('revealBtn').addEventListener('click', ()=>{
+        draftText = document.getElementById('recallInput').value;
+        recallShown = true; renderCard();
+      });
+    }
+  } else if(stage === 4){
+    bodyHtml += `<div class="front-text">${it.caseQ}</div>`;
+    if(recallShown){
+      bodyHtml += `<div class="back-text">${it.caseA}<div class="src">${it.caseSrc}</div></div>`;
+    }
+    el.innerHTML = bodyHtml;
+    el.onclick = null;
+    actionArea.innerHTML = `
+      <textarea class="recall" id="recallInput" placeholder="套用这条金句的模板，自己写一版分析……"></textarea>
+      ${recallShown
+        ? `<div class="btnrow"><button class="act ghost" id="retryBtn">这条没吃透，退回重练</button><button class="act primary" id="continueBtn">这条练完了 ✓</button></div>`
+        : `<div class="btnrow"><button class="act ghost" id="revealBtn">看参考应用</button></div>`}
+    `;
+    document.getElementById('recallInput').value = draftText;
+    document.getElementById('recallInput').addEventListener('input', (e)=>{ draftText = e.target.value; });
+    if(!recallShown){
+      document.getElementById('revealBtn').addEventListener('click', ()=>{
+        draftText = document.getElementById('recallInput').value;
+        recallShown = true; renderCard();
+      });
+    } else {
+      document.getElementById('retryBtn').addEventListener('click', ()=>{
+        // 不是"错了"的记录，只是让这条从头再走一遍——常见于发现自己整个方向理解错了，不只是背得不熟
+        state.itemStage[current.idx] = 0;
+        saveState(state);
+        nextCard();
+      });
+    }
+  }
+
+  const cBtn = document.getElementById('continueBtn');
+  if(cBtn) cBtn.addEventListener('click', advance);
+}
+
+function advance(){
+  const idx = current.idx;
+  state.itemStage[idx] = state.itemStage[idx] + 1;
+  saveState(state);
+  nextCard();
+}
+
+function showDone(){
+  document.getElementById('cardArea').style.display = 'none';
+  document.getElementById('doneScreen').classList.add('show');
+  document.getElementById('doneStat').innerHTML = `全部 ${items.length} 条都走完了"套案例应用"这一步。`;
+}
+
+document.getElementById('restartBtn').addEventListener('click', ()=>{
+  state.itemStage = items.map(()=>0);
+  saveState(state);
+  document.getElementById('cardArea').style.display = '';
+  document.getElementById('doneScreen').classList.remove('show');
+  buildQueue();
+  nextCard();
+});
+
+document.getElementById('legendArea').innerHTML =
+  `5 个台阶：① 初读 → ② 朗读/默一遍 → ③ 挖空回忆 → ④ 试着默写 → ⑤ 套进小案例应用。8 条混着来，每完成一步该条就先歇会儿，轮到别的条目，不会连续磨同一条。`;
+
+buildQueue();
+nextCard();
+</script>
+
+<!-- progress-io:v1 -->
+<div style="max-width:820px;margin:36px auto 56px;padding:16px 18px 4px;border-top:1px solid currentColor;border-color:rgba(128,128,128,.28);text-align:center;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',Arial,sans-serif;font-size:13px;">
+  <div style="opacity:.6;margin-bottom:10px;">练习进度保存在本机浏览器。换设备或换网址前，可以导出带走。</div>
+  <button type="button" id="pioExport" style="font:inherit;cursor:pointer;background:transparent;color:inherit;border:1px solid currentColor;border-radius:8px;padding:6px 14px;margin:0 4px;opacity:.75;">导出进度</button>
+  <button type="button" id="pioImport" style="font:inherit;cursor:pointer;background:transparent;color:inherit;border:1px solid currentColor;border-radius:8px;padding:6px 14px;margin:0 4px;opacity:.75;">导入进度</button>
+  <input type="file" id="pioFile" accept="application/json,.json" style="display:none">
+  <div id="pioMsg" style="margin-top:10px;min-height:1.2em;opacity:.7;"></div>
+</div>
+<script>
+(function(){
+  var KEY = "xingfa_jinju_v2";
+  var msgEl = document.getElementById("pioMsg");
+  function msg(t){ msgEl.textContent = t; if(t) setTimeout(function(){ if(msgEl.textContent===t) msgEl.textContent=""; }, 4000); }
+
+  document.getElementById("pioExport").addEventListener("click", function(){
+    var raw = localStorage.getItem(KEY);
+    if(!raw){ msg("还没有进度可以导出"); return; }
+    var payload;
+    try{ payload = JSON.parse(raw); }catch(e){ msg("本机进度已损坏，无法导出"); return; }
+    var out = JSON.stringify({ key: KEY, savedAt: new Date().toISOString(), data: payload }, null, 2);
+    var blob = new Blob([out], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = KEY + "-" + new Date().toISOString().slice(0,10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    msg("已导出，文件在下载文件夹");
+  });
+
+  var fileEl = document.getElementById("pioFile");
+  document.getElementById("pioImport").addEventListener("click", function(){ fileEl.value=""; fileEl.click(); });
+
+  fileEl.addEventListener("change", function(){
+    var f = fileEl.files && fileEl.files[0];
+    if(!f) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      var parsed;
+      try{ parsed = JSON.parse(reader.result); }catch(e){ msg("读取失败：不是有效的进度文件"); return; }
+      if(!parsed || parsed.data === undefined){ msg("读取失败：文件格式不对"); return; }
+      if(parsed.key && parsed.key !== KEY){
+        if(!confirm("这份进度来自「" + parsed.key + "」，与当前练习不是同一个。仍要导入并覆盖当前进度吗？")) { msg("已取消"); return; }
+      } else if(localStorage.getItem(KEY)){
+        if(!confirm("将覆盖本机当前进度，确定吗？")) { msg("已取消"); return; }
+      }
+      try{ localStorage.setItem(KEY, JSON.stringify(parsed.data)); }
+      catch(e){ msg("写入失败：浏览器存储空间不足"); return; }
+      msg("导入成功，正在刷新…");
+      setTimeout(function(){ location.reload(); }, 700);
+    };
+    reader.onerror = function(){ msg("读取文件失败"); };
+    reader.readAsText(f);
+  });
+})();
+</script>
+
+</body>
+</html>
