@@ -8,33 +8,82 @@
   :root {
     color-scheme: light dark;
     --bg: #ffffff; --text: #1a1a1a; --muted: #6b7280; --accent: #2563eb;
+    --rule: #e7e9ee; --card: #fafbfc;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #0f1115; --text: #e6e9ef; --muted: #9aa3b2; --accent: #6ea8ff; }
+    :root { --bg: #0f1115; --text: #e6e9ef; --muted: #9aa3b2; --accent: #6ea8ff;
+            --rule: #232733; --card: #161923; }
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center; padding: 56px 0;
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
     line-height: 1.7; -webkit-font-smoothing: antialiased;
   }
-  .card { max-width: 420px; padding: 0 28px; }
+  .card { width: 100%; max-width: 480px; padding: 0 28px; }
   h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
-  p { color: var(--muted); margin: 0 0 1.75rem; font-size: 0.95rem; }
-  a {
+  .lede { color: var(--muted); margin: 0 0 1.75rem; font-size: 0.95rem; }
+  .enter {
     display: inline-block; color: var(--accent); text-decoration: none;
     border: 1px solid currentColor; border-radius: 9px;
     padding: 7px 18px; font-size: 0.9rem; transition: opacity 0.12s;
   }
-  a:hover { opacity: 0.7; }
+  .enter:hover { opacity: 0.7; }
+
+  h2 {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; color: var(--muted);
+    margin: 3rem 0 0.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule);
+  }
+  #works { list-style: none; margin: 0; padding: 0; }
+  #works li { border-bottom: 1px solid var(--rule); }
+  #works a {
+    display: block; padding: 15px 2px; text-decoration: none; color: inherit;
+    transition: background 0.12s;
+  }
+  #works a:hover { background: var(--card); }
+  .t { font-size: 0.95rem; font-weight: 600; display: flex; align-items: baseline; gap: 9px; }
+  .t .cat {
+    font-size: 0.66rem; font-weight: 500; letter-spacing: 0.08em; color: var(--muted);
+    border: 1px solid var(--rule); border-radius: 100px; padding: 1px 8px; flex: none;
+  }
+  .t .date { margin-left: auto; font-size: 0.72rem; color: var(--muted); font-weight: 400;
+             font-variant-numeric: tabular-nums; }
+  .d { font-size: 0.82rem; color: var(--muted); margin: 3px 0 0; line-height: 1.65; }
+  #empty { font-size: 0.85rem; color: var(--muted); padding: 15px 2px 0; }
 </style>
 </head>
 <body>
   <div class="card">
     <h1>Tsongshi</h1>
-    <p>这里主要放一些自用的东西，需要密码。</p>
-    <a href="private/">进入 →</a>
+    <p class="lede">这里主要放一些自用的东西，需要密码。</p>
+    <a class="enter" href="private/">进入 →</a>
+
+    <h2>公开</h2>
+    <ul id="works"></ul>
+    <p id="empty" hidden>暂无公开内容。</p>
   </div>
+
+<script>
+fetch("works.json", { cache: "no-cache" })
+  .then(r => r.ok ? r.json() : [])
+  .then(list => {
+    const ul = document.getElementById("works");
+    if (!Array.isArray(list) || !list.length) {
+      document.getElementById("empty").hidden = false;
+      return;
+    }
+    list.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    ul.innerHTML = list.map(w => {
+      const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      return `<li><a href="${esc(w.path)}">
+        <span class="t">${esc(w.title)}<span class="cat">${esc(w.category)}</span>
+          <span class="date">${esc(w.date)}</span></span>
+        <p class="d">${esc(w.description)}</p>
+      </a></li>`;
+    }).join("");
+  })
+  .catch(() => { document.getElementById("empty").hidden = false; });
+</script>
 </body>
 </html>
