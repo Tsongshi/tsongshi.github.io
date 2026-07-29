@@ -7,156 +7,34 @@
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #ffffff;
-    --text: #1a1a1a;
-    --muted: #6b7280;
-    --border: #e5e7eb;
-    --hover: #f9fafb;
-    --accent: #2563eb;
+    --bg: #ffffff; --text: #1a1a1a; --muted: #6b7280; --accent: #2563eb;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f1115;
-      --text: #e6e9ef;
-      --muted: #9aa3b2;
-      --border: #262b35;
-      --hover: #171a21;
-      --accent: #6ea8ff;
-    }
+    :root { --bg: #0f1115; --text: #e6e9ef; --muted: #9aa3b2; --accent: #6ea8ff; }
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
+    margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
+    display: flex; align-items: center; justify-content: center;
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
   }
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 12vh 24px 15vh;
+  .card { max-width: 420px; padding: 0 28px; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+  p { color: var(--muted); margin: 0 0 1.75rem; font-size: 0.95rem; }
+  a {
+    display: inline-block; color: var(--accent); text-decoration: none;
+    border: 1px solid currentColor; border-radius: 9px;
+    padding: 7px 18px; font-size: 0.9rem; transition: opacity 0.12s;
   }
-  header { margin-bottom: 3.5rem; }
-  h1 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0 0 0.4rem;
-    letter-spacing: -0.01em;
-  }
-  header p {
-    color: var(--muted);
-    margin: 0;
-    font-size: 0.95rem;
-  }
-  h2 {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 2.5rem 0 0.75rem;
-  }
-  h2:first-of-type { margin-top: 0; }
-  a.work {
-    display: block;
-    padding: 0.85rem 1rem;
-    margin: 0 -1rem;
-    border-radius: 10px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.12s;
-  }
-  a.work:hover { background: var(--hover); }
-  .work-title {
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  a.work:hover .work-title { color: var(--accent); }
-  .work-desc {
-    color: var(--muted);
-    font-size: 0.875rem;
-    margin-top: 0.15rem;
-  }
-  .work-date {
-    color: var(--muted);
-    font-size: 0.75rem;
-    font-variant-numeric: tabular-nums;
-    margin-top: 0.2rem;
-    opacity: 0.75;
-  }
-  .empty {
-    color: var(--muted);
-    font-size: 0.9rem;
-    padding: 1rem 0;
-  }
-  footer {
-    margin-top: 5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
+  a:hover { opacity: 0.7; }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Tsongshi</h1>
-      <p>一些做完了、值得留下来的东西。</p>
-    </header>
-
-    <main id="list">
-      <p class="empty">加载中…</p>
-    </main>
-
-    <footer id="footer"></footer>
+  <div class="card">
+    <h1>Tsongshi</h1>
+    <p>这里主要放一些自用的东西，需要密码。</p>
+    <a href="private/">进入 →</a>
   </div>
-
-<script>
-const CATEGORY_ORDER = ["学习", "研究", "工具", "其他"];
-
-fetch("works.json?_=" + Date.now())
-  .then(r => r.json())
-  .then(data => {
-    const works = data.works || [];
-    const list = document.getElementById("list");
-
-    if (!works.length) {
-      list.innerHTML = '<p class="empty">还没有发布任何内容。</p>';
-      return;
-    }
-
-    // 按分类归组，组内按日期倒序
-    const groups = {};
-    for (const w of works) {
-      const cat = w.category || "其他";
-      (groups[cat] ||= []).push(w);
-    }
-    const cats = Object.keys(groups).sort((a, b) => {
-      const ia = CATEGORY_ORDER.indexOf(a), ib = CATEGORY_ORDER.indexOf(b);
-      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
-    });
-
-    list.innerHTML = cats.map(cat => {
-      const items = groups[cat]
-        .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
-        .map(w => `
-          <a class="work" href="${w.path}">
-            <div class="work-title">${w.title}</div>
-            ${w.description ? `<div class="work-desc">${w.description}</div>` : ""}
-            ${w.date ? `<div class="work-date">${w.date}</div>` : ""}
-          </a>`).join("");
-      return `<h2>${cat}</h2>${items}`;
-    }).join("");
-
-    document.getElementById("footer").textContent = `共 ${works.length} 项`;
-  })
-  .catch(() => {
-    document.getElementById("list").innerHTML =
-      '<p class="empty">内容加载失败，请刷新重试。</p>';
-  });
-</script>
 </body>
 </html>
