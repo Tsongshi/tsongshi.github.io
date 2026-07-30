@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
 <title>法考闯关 · Session</title>
-<!-- PWA：加到 iPhone 主屏幕后全屏运行、离线可用。支撑文件在 ~/Code/site-public/
-     （fakao-session.webmanifest / sw.js / icons/），不由本脚本生成，别删。 -->
 <link rel="manifest" href="fakao-session.webmanifest">
 <link rel="apple-touch-icon" href="icons/fakao-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/fakao-192.png">
@@ -348,7 +346,7 @@ function render(){
   parts.push(`<h2 class="title">${esc(it.title)}</h2>`);
   if (phase === "prompt") parts.push(`<p class="hint">${esc(cfg.hint)}</p>`);
 
-  if (it.audio && showing.includes("answer")) parts.push(`<audio controls preload="none" style="width:100%;margin:0 0 14px" src="${esc(it.audio)}"></audio>`);
+  if (it.audio) parts.push(`<audio controls preload="none" style="width:100%;margin:0 0 14px" src="${esc(it.audio)}"></audio>`);
   if (it.hint && phase === "prompt") parts.push(`<p class="hint">💭 ${esc(it.hint)}</p>`);
   if (it.analogy && phase === "reveal") parts.push(`<p class="hint">🔗 ${esc(it.analogy)}</p>`);
   if (showing.includes("stem"))   parts.push(`<div class="body">${esc(stemOf(it))}</div>`);

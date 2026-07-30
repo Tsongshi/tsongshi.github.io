@@ -1,0 +1,15 @@
+{
+  "name": "法考闯关 · Session",
+  "short_name": "法考闯关",
+  "description": "法考主观题闯关练习:案例题与金句共用 L1→L5 阶梯",
+  "start_url": "/fakao-session.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0A0E14",
+  "theme_color": "#0A0E14",
+  "icons": [
+    { "src": "icons/fakao-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/fakao-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/fakao-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
