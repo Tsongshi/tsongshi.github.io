@@ -19,47 +19,5 @@
     "category": "法考",
     "date": "2026-07-30",
     "description": "一条主线混着刷：案例题与金句共用 L1→L5 阶梯，从只读题干到限时作答逐级升。每屏可随手写反馈，进度与反馈可导出，掌握度按考点回写到考点全景图。"
-  },
-  {
-    "title": "法考主观题记忆训练",
-    "path": "fakao/",
-    "category": "法考",
-    "date": "2026-07-25",
-    "description": "间隔重复卡片，98 张覆盖 8 个学科。答题进度存在本机浏览器。"
-  },
-  {
-    "title": "刑法必背金句 · Session 1",
-    "path": "fakao/criminal-quotes-s1.html",
-    "category": "法考",
-    "date": "2026-07-29",
-    "description": "总论 1-10，带朗读音频的背诵练习。"
-  },
-  {
-    "title": "刑法金句小练 · 台阶式",
-    "path": "fakao/criminal-quotes-quiz.html",
-    "category": "法考",
-    "date": "2026-07-29",
-    "description": "逐级提示的默写练习，从读一读一路升到套案例应用。"
-  },
-  {
-    "title": "民诉金句小练 · 台阶式",
-    "path": "fakao/civpro-quotes-quiz.html",
-    "category": "法考",
-    "date": "2026-07-29",
-    "description": "逐级提示的默写练习，从读一读一路升到套案例应用。"
-  },
-  {
-    "title": "民法提升大案例 · 房屋租赁纠纷",
-    "path": "fakao/civil-lease-case.html",
-    "category": "法考",
-    "date": "2026-07-29",
-    "description": "2017 年房屋租赁纠纷，互动式分析练习，带朗读音频。"
-  },
-  {
-    "title": "民诉提升大案例 · 仲裁裁决司法审查",
-    "path": "fakao/civpro-arbitration-case.html",
-    "category": "法考",
-    "date": "2026-07-29",
-    "description": "大力公司仲裁裁决司法审查，互动式分析练习，带中英朗读音频。"
   }
 ]
