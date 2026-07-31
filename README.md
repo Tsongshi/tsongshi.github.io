@@ -1,38 +1,78 @@
 # tsongshi.github.io
 
-公开展示区（面向朋友分享的小作品），静态 HTML，GitHub Pages 托管。
+Simon 的个人站，静态 HTML，GitHub Pages 托管。上线地址 https://tsongshi.github.io/
 
-## 目录约定（两层权限）
+## 两层结构
 
-| 层级 | 路径 | 说明 |
-|---|---|---|
-| 公开 | `/`、`/*.html` | 任何人凭链接可看，无密码 |
-| 特定人+密码 | `/shared/*.html` | StatiCrypt 加密页，需密码解密查看，链接和密码分开发送 |
+| 层级 | 路径 | 谁能看 | 索引 |
+|---|---|---|---|
+| 公开 | `/`、`/*.html` | 任何人 | `works.json`，首页自动渲染 |
+| 密码层（工作台） | `/private/*.html` | 有链接+密码的人 | 手动维护 `private-src/index.html` |
 
-（第三层「仅本人」在 `personal-site` 仓库的服务器登录墙里，不在本仓库）
+**密码层入口是隐藏的**：公开首页页脚是「Tsongshi · 2026」，中间那个 `·` 就是入口链接
+（`index.html` 里 `.foot .sep`）。做成标点是为了让只看公开层的人看不出还有隐藏内容；
+用负 margin 撑出约 40×40 的点击区，手机也点得到。
 
-- 不含任何工作/客户相关信息，不含真实姓名以外的身份信息
-- `index.html` 为首页，其余作品按主题放子目录，如 `/fakao/xxx.html`
+> ⚠️ 这只是**视觉隐藏**，不是安全措施。本仓库是 public，任何人都能在 GitHub 上直接浏览
+> `private/` 目录、下载加密文件离线爆破。真正的隔离要等服务器登录墙（备案后）。
+> 所以红线不变：**工作/客户相关内容不进本仓库任何一层。**
 
-## 发布方式
+## 返回导航（nav.js）
 
-**公开内容**：在 Cowork 里说"发布这个 HTML 到公开展示区"，直接提交到仓库对应路径并推送，几十秒内 https://tsongshi.github.io/ 生效。
+各页左上角的悬浮「← 首页 / ← 工作台」按钮由 `/nav.js` 统一注入。
 
-**特定人+密码内容**：说"发布到 shared，密码设成 XXX"。流程：
-1. 原始 HTML 写入 `shared-src/`（本地 gitignore，不进仓库，避免明文进 git 历史）
-2. 用 [StatiCrypt](https://github.com/robinmoisson/staticrypt) 加密：
+**为什么做成外挂脚本**：`fakao-session.html`、`fakao-knowledge-map.html` 是构建产物
+（`Session/build.py`、`知识图谱/build.mjs` 生成），直接改 HTML 会被下次构建冲掉。
+做成共享脚本后，页面只需引一行。
+
+行为：
+- `/xxx.html` → 「← 首页」回公开首页
+- `/private/xxx.html` → 「← 工作台」回密码层首页
+- 两个首页本身不显示（它们有自己的导航）
+- 普通滚动页会自动给 body 加 44px 顶部内边距，避免按钮压住标题；
+  全屏应用页（3D 图谱这类，高度锁一屏）不加，防止挤坏布局
+- 密码层页面解密后整个 document 会被 StatiCrypt 重写，`MutationObserver` 会把按钮补挂回来
+
+### 新增页面 / 重新构建后要做的事
+
+```bash
+python3 tools/inject_nav.py       # 幂等，重复跑无害
+```
+
+它会给页面末尾加 `<script src="/nav.js" defer></script>`。
+**每次重新构建 fakao-session / fakao-knowledge-map 后都要跑一次**，否则那页的返回按钮会丢。
+
+给构建模板维护者：如果在模板里直接带上这一行，本脚本对该页就变成空操作，
+以后不用再记得跑。推荐这么做。
+
+## 发布
+
+**公开内容**：文件放对位置 → `works.json` 加一条 → commit + push。
+
+**密码层内容**：
+1. 明文原稿放 `private-src/`（已 gitignore，不进仓库）
+2. `private-src/index.html` 的清单里加一条
+3. 加密：
+   ```bash
+   npx --yes staticrypt private-src/*.html -p "<密码>" -d private --short
    ```
-   npx --yes staticrypt shared-src/文件名.html -p "密码" -d shared --short
-   ```
-3. 提交 `shared/文件名.html`（加密产物）并推送
-4. 链接和密码分开发给对方（如：链接微信发，密码口头说），不要在同一条消息里
+   （改了任何一页都要整个目录重新加密，因为索引页也变了）
+4. 提交 `private/` 下的加密产物
 
-演示页：`shared/demo.html`，密码 `demo1234`，可作为模板参考。
+密码见 `Projects/Personal Website/分享记录.md`。
 
-## .nojekyll 说明
+## 不能删的文件
 
-仓库根目录的 `.nojekyll` 文件禁用了 GitHub Pages 默认的 Jekyll 预处理——加密页面内容可能偶然包含 `{{` 等字符，会被 Jekyll 误判为模板语法导致构建失败。这个文件不要删。
+| 文件 | 删了会怎样 |
+|---|---|
+| `.nojekyll` | 加密内容可能含 `{{`，被 Jekyll 误判为模板语法，构建直接失败 |
+| `.staticrypt.json` | 里面是 salt，删了所有已解锁设备的「记住我」全部失效 |
 
 ## 备案通过后
 
-`tsongshi.cn` 域名可通过 CNAME 指向本 Pages 站点（或迁移到腾讯云对象存储静态托管，二选一，见项目 `技术方案-V1.md`）。
+域名切到 `tsongshi.cn`（走腾讯云服务器，**不要** CNAME 到 GitHub Pages——
+解决不了微信外链拦截，还可能因「备案信息与实际接入不符」被注销备案）。
+细节见 `Projects/Personal Website/备案实操SOP-20260724-V1.md`。
+
+切换前提醒 Simon：各练习页的进度存在 localStorage，**按域名隔离**，
+换域名前要用页面底部的「导出进度」带走。
