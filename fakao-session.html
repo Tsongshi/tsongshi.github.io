@@ -182,6 +182,77 @@ textarea:focus{ border-color:var(--accent); }
 #skel .skl-t{ height:26px; width:64%; margin:16px 0 20px; }
 @keyframes shimmer{ 0%{ background-position:100% 50%; } 100%{ background-position:0 50%; } }
 @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } #skel .skl{ animation:none; } }
+
+/* ─── AI 批改模块样式（I 交付，源: ai-proxy-worker/frontend-module/ai-grade.css）─── */
+/* I 交付：AI 批改模块样式。class 全部带 ai-grade- 前缀，避免跟模板已有 class 撞名。
+   配色沿用模板的暗色主题变量假设（--line/--ink 等若模板里已定义会自动继承；
+   这里给了保守的深色兜底值，模板没有对应变量时也不会花掉）。 */
+
+.ai-grade-box { margin-top: 16px; }
+
+.ai-grade-hint {
+  font-size: 13px;
+  color: var(--ink-3, #888);
+  margin: 8px 0;
+}
+.ai-grade-hint.ai-grade-err { color: var(--danger, #d85a30); }
+
+.ai-grade-patterns,
+.ai-grade-variants {
+  margin: 14px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--panel-2, rgba(255,255,255,0.04));
+}
+.ai-grade-patterns h4,
+.ai-grade-variants h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+.ai-grade-patterns ul,
+.ai-grade-variants ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.ai-grade-tags {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.ai-grade-items { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+
+.ai-grade-item {
+  border: 1px solid var(--line, rgba(255,255,255,0.1));
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.ai-grade-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.ai-grade-suggest {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.ai-grade-suggest-again { background: rgba(216,90,48,0.18); color: #d85a30; }
+.ai-grade-suggest-hard  { background: rgba(186,117,23,0.18); color: #ba7517; }
+.ai-grade-suggest-good  { background: rgba(29,158,117,0.18); color: #1d9e75; }
+
+.ai-grade-points { list-style: none; margin: 0; padding: 0; font-size: 13px; line-height: 1.65; }
+.ai-grade-points li.hit  { color: var(--ink, inherit); }
+.ai-grade-points li.miss { color: var(--danger, #d85a30); }
+.ai-grade-points li.unranked { opacity: 0.55; }
+
+.ai-grade-confirm { margin-top: 8px; font-size: 12px; padding: 5px 10px; }
+.ai-grade-confirm:disabled { opacity: 0.5; }
 </style>
 
 <div id="bar">
@@ -598,8 +669,9 @@ function saveFeedback(){
 }
 
 /* ─────────── 评分与排程 ─────────── */
-function advance(grade){
-  const it = cur, s = st(it.id), lad = it.ladder || [1,2,3,4,5], lv = levelFor(it);
+/* 排程核心，从 advance() 抽出来：收工页确认 AI 建议时也要用（那会儿 cur 已是 null） */
+function applyGrade(it, grade){
+  const s = st(it.id), lad = it.ladder || [1,2,3,4,5], lv = levelFor(it);
   s.reps++; s.last = Date.now();
   let nlv = lv;
   if (grade === "again"){ s.lapses++; const i = lad.indexOf(lv); nlv = lad[Math.max(0, i-1)]; }
@@ -607,6 +679,25 @@ function advance(grade){
   s.lv = nlv;
   const days = grade === "again" ? 0 : INTERVAL_D[Math.min(nlv, INTERVAL_D.length-1)];
   s.due = Date.now() + (grade === "again" ? 10*60*1000 : days*86400*1000);
+}
+function applySuggestion(itemId, grade){
+  const it = ITEMS.find(x => x.id === itemId);
+  if (!it) return;
+  applyGrade(it, grade); save(); schedulePush();   /* 不调 next()——收工页没有下一题 */
+}
+
+/* 本 session 的作答留存（只在内存，不进 localStorage、不上同步——作答原文不上云；
+   批改结果那些 hit/miss 下标才回流）。收工页 AI 批改吃这个数组。 */
+let sessionLog = [];
+
+function advance(grade){
+  const it = cur, lv = levelFor(it), cfg = LADDER[trackOf(it)][lv];
+  if (cfg && cfg.act === "type" && lastAnswer)
+    sessionLog.push({ itemId: it.id, topicIds: it.topicIds || [], kind: trackOf(it),
+                      level: lv, answer: lastAnswer,
+                      target: trackOf(it) === "case" ? (it.points || []) : (it.answer || ""),
+                      selfGrade: grade });
+  applyGrade(it, grade);
   S.doneToday++; save(); stopTimer(); lastAnswer = "";
   schedulePush();
   next();
@@ -635,6 +726,7 @@ function renderDone(){
     </div>
     <div id="drop">把 progress.json 拖到这里合并另一台设备的进度<br>
       <span class="mono" style="font-size:11px">按 (条目, 级别) 逐键取较新的一条，不整份覆盖</span></div>
+    <div id="aiGrade"></div>
   </div>`;
   document.getElementById("expP").onclick = () => { save(); dl("progress.json", {
     v:1, device:S.device, exportedAt:Date.now(), items:S.items,
@@ -645,6 +737,12 @@ function renderDone(){
   document.getElementById("expF").onclick = () => dl("feedback.json", { v:1, device:S.device, feedback:S.feedback });
   document.getElementById("again").onclick = () => { QUEUE = buildQueue(); next(); };
   wireDrop();
+  /* AI 批改（I 交付的自包含模块）：整批提交本 session 作答，建议须人点确认才写进度 */
+  if (window.FakaoAIGrade)
+    FakaoAIGrade.mount(document.getElementById("aiGrade"), sessionLog, {
+      onConfirmSuggestion: (itemId, action) => applySuggestion(itemId, action),
+      onFeedback: (entries) => { S.feedback.push(...entries); save(); schedulePush(); },
+    });
 }
 
 /* 掌握度按考点聚合——全景图 P3 直接吃这个 */
@@ -821,6 +919,172 @@ window.addEventListener("error", e => {
 });
 boot();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
+
+/* ─── AI 批改模块（I 交付，源: ai-proxy-worker/frontend-module/ai-grade.js；改动请改源文件再重新内联）─── */
+/* ─────────── I 交付：AI 批改自包含模块 ───────────
+ * 依据 Session/prompts/I-AI批改与TTS.md 定稿。零依赖，纯 DOM。
+ * 接线说明见同目录 接线说明.md，这里只放实现。
+ *
+ * 用法（由主线在收工页调用）：
+ *   FakaoAIGrade.mount(containerEl, sessionLog, {
+ *     onConfirmSuggestion(itemId, action) {...},   // action: "again"|"hard"|"good"
+ *     onFeedback(entries) {...},                   // entries 见下方 buildFeedbackEntries
+ *   });
+ *
+ * sessionLog 每项：{ itemId, topicIds, kind, level, answer, target, selfGrade }
+ *   target = case 轨 it.points（数组）或 memo 轨 it.answer（字符串）
+ */
+(function (global) {
+  const WORKER_URL = "https://ai-proxy.congshi-jiang.workers.dev/v1/grade-session";
+  const TOKEN_KEY = "fakao-sync-token"; // 复用现有 sync token，不新增密码/开关
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
+
+  // 前端自己也做一遍下标范围校验（约定第2条）：越界的下标直接丢弃，不丢整条结果。
+  function sanitizeResult(r) {
+    const n = (r.pointsUsed || []).length;
+    const inRange = (i) => Number.isInteger(i) && i >= 0 && i < n;
+    return {
+      itemId: r.itemId,
+      pointsUsed: r.pointsUsed || [],
+      hit: (r.hit || []).filter(inRange),
+      miss: (r.miss || []).filter(inRange),
+      suggest: ["again", "hard", "good"].includes(r.suggest) ? r.suggest : "hard",
+    };
+  }
+
+  function buildFeedbackEntries(results, byId) {
+    const now = Date.now();
+    return results.map((r) => ({
+      itemId: r.itemId,
+      topicIds: (byId[r.itemId] && byId[r.itemId].topicIds) || [],
+      hit: r.hit,
+      miss: r.miss,
+      ts: now,
+      source: "ai-grade",
+    }));
+  }
+
+  function suggestLabel(s) {
+    return { again: "建议：忘了，降级", hard: "建议：有点吃力", good: "建议：会了，升级" }[s] || s;
+  }
+
+  async function requestGrading(items) {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (!token) throw new Error("NO_TOKEN");
+    const res = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+      body: JSON.stringify({ items }),
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok) throw new Error((data && data.error) || `HTTP ${res.status}`);
+    return data;
+  }
+
+  function mount(container, sessionLog, callbacks) {
+    callbacks = callbacks || {};
+    const log = (sessionLog || []).filter((x) => x && x.itemId && x.target);
+    const byId = Object.fromEntries(log.map((x) => [x.itemId, x]));
+
+    if (!log.length) {
+      container.innerHTML = `<p class="ai-grade-hint">这一轮没有可批改的作答（只读/自评类的级不计入）。</p>`;
+      return;
+    }
+
+    const hasToken = !!localStorage.getItem(TOKEN_KEY);
+    container.innerHTML = `
+      <div class="ai-grade-box">
+        <button class="btn primary" id="aiGradeGo" ${hasToken ? "" : "disabled"}>
+          AI 批改这一轮（${log.length} 条）
+        </button>
+        ${hasToken ? "" : `<p class="ai-grade-hint">先点 ⇅ 配置同步 token 才能用——批改鉴权复用同一个 token。</p>`}
+        <div id="aiGradeResult"></div>
+      </div>`;
+
+    const btn = container.querySelector("#aiGradeGo");
+    const resultBox = container.querySelector("#aiGradeResult");
+    if (!btn) return;
+
+    btn.onclick = async () => {
+      btn.disabled = true;
+      btn.textContent = "批改中…（一次看完这一轮，几秒到十几秒）";
+      try {
+        const items = log.map((x) => ({ itemId: x.itemId, topicIds: x.topicIds || [], target: x.target, answer: x.answer || "" }));
+        const data = await requestGrading(items);
+        const results = (data.results || []).map(sanitizeResult);
+        renderResults(resultBox, results, data.patterns || [], data.variantRequests || [], byId, callbacks);
+        if (typeof callbacks.onFeedback === "function" && results.length) {
+          callbacks.onFeedback(buildFeedbackEntries(results, byId));
+        }
+        btn.remove();
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = "AI 批改这一轮（重试）";
+        resultBox.innerHTML = `<p class="ai-grade-hint ai-grade-err">批改失败：${esc(e.message)}</p>`;
+      }
+    };
+  }
+
+  function renderResults(box, results, patterns, variantRequests, byId, callbacks) {
+    const parts = [];
+
+    if (patterns.length) {
+      parts.push(`<div class="ai-grade-patterns"><h4>跨题模式</h4><ul>`);
+      for (const p of patterns) {
+        parts.push(`<li>${esc(p.text)}${p.topicIds && p.topicIds.length ? ` <span class="ai-grade-tags">${p.topicIds.map(esc).join(" · ")}</span>` : ""}</li>`);
+      }
+      parts.push(`</ul></div>`);
+    }
+
+    parts.push(`<div class="ai-grade-items">`);
+    for (const r of results) {
+      const meta = byId[r.itemId] || {};
+      parts.push(`<div class="ai-grade-item" data-item="${esc(r.itemId)}">
+        <div class="ai-grade-item-head">
+          <span class="mono">${esc(r.itemId)}</span>
+          <span class="ai-grade-suggest ai-grade-suggest-${esc(r.suggest)}">${esc(suggestLabel(r.suggest))}</span>
+        </div>
+        <ul class="ai-grade-points">
+          ${r.pointsUsed.map((p, i) => `<li class="${r.hit.includes(i) ? "hit" : r.miss.includes(i) ? "miss" : "unranked"}">
+            ${r.hit.includes(i) ? "✓" : r.miss.includes(i) ? "✗" : "·"} ${esc(p)}
+          </li>`).join("")}
+        </ul>
+        <button class="btn ai-grade-confirm" data-action="${esc(r.suggest)}">确认，按此调整</button>
+      </div>`);
+    }
+    parts.push(`</div>`);
+
+    if (variantRequests.length) {
+      parts.push(`<div class="ai-grade-variants"><h4>建议出变式题（仅供主线参考，不会自动生成）</h4><ul>`);
+      for (const v of variantRequests) {
+        parts.push(`<li><span class="mono">${esc(v.itemId)}</span>：${esc(v.note)}</li>`);
+      }
+      parts.push(`</ul></div>`);
+    }
+
+    box.innerHTML = parts.join("");
+
+    box.querySelectorAll(".ai-grade-confirm").forEach((btn) => {
+      btn.onclick = () => {
+        const itemEl = btn.closest(".ai-grade-item");
+        const itemId = itemEl.getAttribute("data-item");
+        const action = btn.getAttribute("data-action");
+        if (typeof callbacks.onConfirmSuggestion === "function") {
+          callbacks.onConfirmSuggestion(itemId, action);
+        }
+        btn.disabled = true;
+        btn.textContent = "已应用";
+      };
+    });
+  }
+
+  global.FakaoAIGrade = { mount };
+})(window);
 </script>
 </body>
 </html>
