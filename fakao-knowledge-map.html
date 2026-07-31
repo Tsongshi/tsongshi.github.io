@@ -136,6 +136,25 @@ h1{
 }
 #hint .k{ color:var(--ink-2); }
 
+/* ── P3 掌握度条（左下，hint 上方）────── */
+#mastery{
+  position:fixed; left:18px; bottom:64px; z-index:6;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap; max-width:min(92vw,560px);
+  background:color-mix(in srgb,var(--panel) 82%,transparent);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid #ffffff10; border-radius:10px; padding:8px 12px;
+  font-size:12px; color:var(--ink-2);
+}
+#mastery .m-tip{ color:var(--ink-3); }
+#mastery .m-n{ font-variant-numeric:tabular-nums; white-space:nowrap; }
+#mastery .m-b{
+  font:inherit; font-size:11.5px; color:var(--ink-2); cursor:pointer;
+  background:none; border:1px solid #ffffff18; border-radius:100px; padding:3px 10px;
+}
+#mastery .m-b:hover{ color:var(--ink); border-color:#ffffff40; }
+#mastery .m-b[aria-pressed="true"]{ color:#F0748F; border-color:#F0748F88; }
+#mastery #mTog[aria-pressed="true"]{ color:var(--ink-2); border-color:#ffffff18; }
+
 /* ── 详情面板 ─────────────────────────── */
 #panel{
   position:fixed; right:0; top:0; bottom:0; width:min(430px,92vw); z-index:20;
@@ -290,6 +309,8 @@ h1{
   <button id="lvlAll" aria-pressed="true">全部</button>
 </div>
 
+<div id="mastery"></div>
+
 <div id="hint">
   <div><span class="k">拖动</span> 旋转 · <span class="k">滚轮</span> 缩放 · <span class="k">点击</span> 展开</div>
   <div>依据 2026 主观题攻略七科自建 · 备考自用</div>
@@ -310,6 +331,65 @@ const N = G.nodes.length;
 
 /* 节点字段：[名称, 板块, 专题, 层级, 重要度, x, y, z, 释义, 出处] */
 const NM=0, CA=1, DO=2, LV=3, WT=4, NX=5, NY=6, NZ=7, DE=8, SRC=9;
+
+/* ─────────── P3 · 掌握度回写（拖入闯关收工页导出的 progress.json）───────────
+   三档：绿 = 到 L4+ ；黄 = L2-3 ；红 = L1 以下或栽过 3 次以上；灰 = 还没刷过。
+   数据存本机 localStorage，不上传——想换设备看，把 progress.json 再拖一次即可。 */
+const M_KEY = "fakao-map-mastery";
+let mastery = null, masteryOn = true, weakOnly = false;
+try { mastery = JSON.parse(localStorage.getItem(M_KEY) || "null"); } catch(e){}
+const M_COL = { g:"#5FD0A0", y:"#F5B942", r:"#F0748F", none:"#2E3A47" };
+function mBand(tid){
+  if (!mastery) return null;
+  const s = mastery[tid];
+  if (!s) return "none";
+  if ((s.lapses|0) >= 3) return "r";
+  if ((s.lv|0) >= 4) return "g";
+  return (s.lv|0) >= 2 ? "y" : "r";
+}
+function applyMastery(obj){
+  const bt = obj && (obj.byTopic || obj);          // 兼容整份 progress.json 或裸 byTopic
+  if (!bt || typeof bt !== "object" || Array.isArray(bt)) return false;
+  const keys = Object.keys(bt).filter(k => /^[a-z]{2}\d{3}$/.test(k));
+  if (!keys.length) return false;
+  mastery = {}; for (const k of keys) mastery[k] = bt[k];
+  localStorage.setItem(M_KEY, JSON.stringify(mastery));
+  masteryOn = true; paintMasteryBar(); draw();
+  return true;
+}
+function paintMasteryBar(){
+  const el = document.getElementById("mastery");
+  if (!mastery){ el.innerHTML = `<span class="m-tip">🎯 把闯关收工页导出的 progress.json 拖到页面上，考点按掌握度上色</span>`; return; }
+  let g=0,y=0,r=0,none=0;
+  for (let i=0;i<G.nodes.length;i++){
+    const b = mBand(TID[i]);
+    if (b==="g") g++; else if (b==="y") y++; else if (b==="r") r++; else none++;
+  }
+  el.innerHTML =
+    `<span class="m-n" style="color:${M_COL.g}">●${g}</span>`+
+    `<span class="m-n" style="color:${M_COL.y}">●${y}</span>`+
+    `<span class="m-n" style="color:${M_COL.r}">●${r}</span>`+
+    `<span class="m-n" style="color:#5A6B7E">○${none} 未刷</span>`+
+    `<button class="m-b" id="mWeak" aria-pressed="${weakOnly}">只看薄弱</button>`+
+    `<button class="m-b" id="mTog" aria-pressed="${masteryOn}">${masteryOn?"掌握度着色":"原色"}</button>`+
+    `<button class="m-b" id="mClr" title="清除本机掌握度数据">✕</button>`;
+  document.getElementById("mWeak").onclick = () => { weakOnly = !weakOnly; if (weakOnly) masteryOn = true; paintMasteryBar(); draw(); };
+  document.getElementById("mTog").onclick  = () => { masteryOn = !masteryOn; if (!masteryOn) weakOnly = false; paintMasteryBar(); draw(); };
+  document.getElementById("mClr").onclick  = () => { mastery = null; weakOnly = false; localStorage.removeItem(M_KEY); paintMasteryBar(); draw(); };
+}
+addEventListener("dragover", e => e.preventDefault());
+addEventListener("drop", e => {
+  e.preventDefault();
+  const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+  if (!f) return;
+  f.text().then(t => {
+    let ok = false;
+    try { ok = applyMastery(JSON.parse(t)); } catch(err){}
+    if (!ok){ const el = document.getElementById("mastery");
+      el.innerHTML = `<span class="m-tip" style="color:${M_COL.r}">这份文件里没有 byTopic 掌握度数据——要闯关收工页「导出进度」那份 progress.json</span>`;
+      setTimeout(paintMasteryBar, 4200); }
+  });
+});
 /* SRC 是数组，每项 [类型, 引用, 定位, 置信度, 定位方式] */
 const SRC_T = { book:"教材", lecture:"网课实录", note:"笔记", law:"法条" };
 const SRC_C = { exact:"", range:"待核", none:"未定位" };
@@ -330,6 +410,7 @@ function visible(i){
   const n = G.nodes[i];
   if (!catOn[n[CA]]) return false;
   if (lvlFilter !== null && n[LV] !== lvlFilter) return false;
+  if (weakOnly && mBand(TID[i]) !== "r") return false;   // 只看薄弱：只留红档
   return true;
 }
 
@@ -409,7 +490,8 @@ function draw(){
     let alpha = 0.30 + dep*0.70;
     if (dim) alpha *= 0.13;
     ctx.globalAlpha = alpha;
-    ctx.fillStyle = COL[G.nodes[i][CA]];
+    const mb = masteryOn ? mBand(TID[i]) : null;
+    ctx.fillStyle = mb ? M_COL[mb] : COL[G.nodes[i][CA]];
     ctx.beginPath();
     ctx.arc(px[i], py[i], Math.max(0.6, pr[i]), 0, 6.2832);
     ctx.fill();
@@ -570,6 +652,9 @@ function open(i){
       <span class="chip${n[WT]>=5?" w5":""}">${stars(n[WT])}</span>
       <span class="chip">直接前置 ${pre[i].length}</span>
       <span class="chip">后续 ${down.length}</span>
+      ${mastery ? (mastery[TID[i]]
+        ? `<span class="chip" style="color:${M_COL[mBand(TID[i])]};border-color:${M_COL[mBand(TID[i])]}55">已练到 L${mastery[TID[i]].lv|0}${(mastery[TID[i]].lapses|0)?` · 栽过 ${mastery[TID[i]].lapses|0} 次`:""}</span>`
+        : `<span class="chip" style="color:#5A6B7E">还没刷过</span>`) : ""}
     </div>
 
     <div class="p-h"><span>此前必须先会</span><span class="c">${total} 项</span></div>
@@ -644,6 +729,8 @@ document.getElementById("legendRows").innerHTML = G.cats.map((c,i) =>
   `<button class="lg" data-c="${i}" aria-pressed="true" style="--c:${COL[i]}">
       <span class="dot"></span><span>${esc(c)}</span><span class="n">${counts[i]}</span>
     </button>`).join("");
+
+paintMasteryBar();   /* P3：本机存过掌握度就直接上色，没存过显示拖入提示 */
 
 document.getElementById("legendRows").addEventListener("click", e => {
   const b = e.target.closest(".lg"); if (!b) return;
