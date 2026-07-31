@@ -31,13 +31,7 @@
   }
   .card { width: 100%; max-width: 480px; padding: 0 28px; }
   h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
-  .lede { color: var(--muted); margin: 0 0 1.75rem; font-size: 0.95rem; }
-  .enter {
-    display: inline-block; color: var(--accent); text-decoration: none;
-    border: 1px solid currentColor; border-radius: 9px;
-    padding: 7px 18px; font-size: 0.9rem; transition: opacity 0.12s;
-  }
-  .enter:hover { opacity: 0.7; }
+  .lede { color: var(--muted); margin: 0 0 0.5rem; font-size: 0.95rem; }
 
   h2 {
     font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; color: var(--muted);
@@ -59,17 +53,38 @@
              font-variant-numeric: tabular-nums; }
   .d { font-size: 0.82rem; color: var(--muted); margin: 3px 0 0; line-height: 1.65; }
   #empty { font-size: 0.85rem; color: var(--muted); padding: 15px 2px 0; }
+
+  /* 页脚。中间那个「·」是密码层入口——看着是标点，点得进去。
+     不用文字/按钮是为了让只看公开层的人看不出还有隐藏内容。 */
+  .foot {
+    margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: 0.75rem;
+    display: flex; align-items: center; gap: 2px;
+  }
+  .foot .sep {
+    color: inherit; text-decoration: none;
+    /* 撑出手指够得着的点击区（约 40×40），负 margin 把视觉间距收回来，
+       所以看上去仍然只是「Tsongshi · 2026」里的一个标点 */
+    padding: 13px 16px; margin: -13px -14px;
+    line-height: 1; -webkit-tap-highlight-color: transparent;
+  }
+  .foot .sep:hover, .foot .sep:focus-visible { color: var(--text); outline: none; }
 </style>
 </head>
 <body>
   <div class="card">
     <h1>Tsongshi</h1>
-    <p class="lede">做完的一些小东西。自用的部分放在工作台里，需要密码。</p>
-    <a class="enter" href="private/">工作台 →</a>
+    <p class="lede">做完的一些小东西。</p>
 
     <h2>公开</h2>
     <ul id="works"></ul>
     <p id="empty" hidden>暂无公开内容。</p>
+
+    <div class="foot">
+      <span>Tsongshi</span>
+      <a class="sep" href="private/" aria-label="·" tabindex="-1">·</a>
+      <span>2026</span>
+    </div>
   </div>
 
 <script>
