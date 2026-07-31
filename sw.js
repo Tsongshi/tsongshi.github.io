@@ -17,8 +17,13 @@ self.addEventListener("fetch", (event) => {
   if (req.method !== "GET") return;
   if (new URL(req.url).origin !== self.location.origin) return;
 
+  /* GitHub Pages 发 cache-control: max-age=600——10 分钟内浏览器连请求都不发,
+     "网络优先"会静默命中这层 HTTP 缓存,发布的修复要等 10 分钟才看得到。
+     HTML 页面绕开它(no-store),音频等大文件保持默认缓存。 */
+  const isPage = req.mode === "navigate" || req.destination === "document";
+
   event.respondWith(
-    fetch(req)
+    fetch(req, isPage ? { cache: "no-store" } : undefined)
       .then((res) => {
         if (res.ok && res.type === "basic") {
           const copy = res.clone();
