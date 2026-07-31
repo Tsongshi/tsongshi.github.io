@@ -85,6 +85,16 @@ h2.title{ font-size:1.32rem; line-height:1.4; margin:0 0 16px; font-weight:700; 
 }
 .body.quiet{ color:var(--ink-2); }
 .hint{ font-size:13px; color:var(--ink-3); margin:0 0 16px; }
+/* 大案例背景：第二问起折叠，别让同一段读八遍 */
+.stemfold{ margin:0 0 14px; }
+.stemfold > summary{
+  cursor:pointer; font-size:13px; color:var(--ink-3);
+  padding:8px 12px; border:1px solid var(--rule-2); border-radius:8px; list-style:none;
+}
+.stemfold > summary::-webkit-details-marker{ display:none; }
+.stemfold > summary::before{ content:"▸ "; }
+.stemfold[open] > summary::before{ content:"▾ "; }
+.stemfold[open] > summary{ margin-bottom:8px; }
 .pts{ margin:0 0 18px; padding:0; list-style:none; }
 .pts li{
   display:grid; grid-template-columns:auto 1fr; gap:0 10px; align-items:baseline;
@@ -324,6 +334,22 @@ function clozeText(it){
   return a;
 }
 function stemOf(it){ return (it.prompt || "").split(/\n\s*问[：:]/)[0]; }
+/* 大案例：一段背景挂着好几问。背景只值得完整读一遍，之后各问要看的是「这一问问什么」。
+   分组键就用背景原文——同一大案例的各问，背景一字不差。本 session 内记住读过谁。 */
+function questionOf(it){
+  const m = (it.prompt || "").split(/\n\s*问[：:]/);
+  return m.length > 1 ? m.slice(1).join("问：").trim() : "";
+}
+const stemSeen = new Set();
+function stemBlock(it, forceOpen){
+  const s = stemOf(it); if (!s) return "";
+  const key = s.slice(0, 200);
+  const first = forceOpen || !stemSeen.has(key);
+  stemSeen.add(key);
+  if (first) return `<div class="body">${esc(s)}</div>`;
+  return `<details class="stemfold"><summary>案情背景（已读过，点开重看）</summary>
+          <div class="body quiet">${esc(s)}</div></details>`;
+}
 
 function next(){
   if (!QUEUE.length) return renderDone();
@@ -346,13 +372,28 @@ function render(){
   parts.push(`<span class="lvtag">L${lv} · ${esc(cfg.label)}</span>`);
   parts.push(`<p class="meta">${esc(subjOf(it))} · ${esc(it.deck)}${it.exam ? ` · ${it.exam.year}年真题` : ""}</p>`);
   parts.push(`<h2 class="title">${esc(it.title)}</h2>`);
-  if (phase === "prompt") parts.push(`<p class="hint">${esc(cfg.hint)}</p>`);
+  if (phase === "prompt"){
+    /* 同一大案例的第二问起，L1 的「只读事实」已经做过了，换成看设问 */
+    const reread = lv === 1 && track === "case" && stemSeen.has(stemOf(it).slice(0,200));
+    parts.push(`<p class="hint">${esc(reread ? "背景上一问读过了，这里只看清这一问问什么。" : cfg.hint)}</p>`);
+  }
 
   if (it.audio && showing.includes("answer")) parts.push(`<audio controls preload="none" style="width:100%;margin:0 0 14px" src="${esc(it.audio)}"></audio>`);
   if (it.hint && phase === "prompt") parts.push(`<p class="hint">💭 ${esc(it.hint)}</p>`);
   if (it.analogy && phase === "reveal") parts.push(`<p class="hint">🔗 ${esc(it.analogy)}</p>`);
-  if (showing.includes("stem"))   parts.push(`<div class="body">${esc(stemOf(it))}</div>`);
-  if (showing.includes("prompt")) parts.push(`<div class="body">${esc(it.prompt)}</div>`);
+  /* 背景一律走 stemBlock（首次展开、之后折叠）；设问单独拎出来，不再埋在背景末尾 */
+  if (showing.includes("stem")){
+    const wasFirst = !stemSeen.has(stemOf(it).slice(0,200));
+    parts.push(stemBlock(it));
+    /* 背景已经读过的，L1 就不是「再读一遍」，而是「看清这一问问什么」 */
+    if (!wasFirst && questionOf(it))
+      parts.push(`<p class="meta">这一问</p><div class="body">${esc(questionOf(it))}</div>`);
+  }
+  if (showing.includes("prompt")){
+    parts.push(stemBlock(it));
+    const q = questionOf(it);
+    if (q) parts.push(`<p class="meta">这一问</p><div class="body">${esc(q)}</div>`);
+  }
   if (showing.includes("cloze"))  parts.push(`<div class="body quiet">${esc(clozeText(it))}</div>`);
   if (showing.includes("title") && phase === "prompt")
     parts.push(`<div class="body quiet">（凭这个标题想出内容）</div>`);
