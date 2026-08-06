@@ -1,6 +1,6 @@
 /* Service Worker: 网络优先,失败回退缓存(离线可用)。
    无预缓存清单,访问过的页面自动进缓存,发布新版本无需改本文件。 */
-const RUNTIME = "runtime-v1";
+const RUNTIME = "runtime-v2-fakao-release-a-20260807";
 
 self.addEventListener("install", () => self.skipWaiting());
 
@@ -21,9 +21,10 @@ self.addEventListener("fetch", (event) => {
      "网络优先"会静默命中这层 HTTP 缓存,发布的修复要等 10 分钟才看得到。
      HTML 页面绕开它(no-store),音频等大文件保持默认缓存。 */
   const isPage = req.mode === "navigate" || req.destination === "document";
+  const isAudio = req.destination === "audio" || new URL(req.url).pathname.startsWith("/audio/");
 
   event.respondWith(
-    fetch(req, isPage ? { cache: "no-store" } : undefined)
+    fetch(req, isPage ? { cache: "no-store" } : isAudio ? { cache: "reload" } : undefined)
       .then((res) => {
         if (res.ok && res.type === "basic") {
           const copy = res.clone();
