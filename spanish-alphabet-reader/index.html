@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8ef">
+  <meta name="description" content="Tap Spanish letters to hear their Latin American pronunciation.">
+  <title>Spanish Alphabet Reader</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #29231f;
+      --muted: #736b63;
+      --paper: #fffaf3;
+      --cream: #f5ead9;
+      --orange: #ea6b3b;
+      --yellow: #f6bc35;
+      --green: #23594f;
+      --line: rgba(69, 51, 38, .14);
+      --shadow: 0 12px 30px rgba(79, 50, 29, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 5%, rgba(246, 188, 53, .23), transparent 24rem),
+        radial-gradient(circle at 92% 20%, rgba(234, 107, 59, .14), transparent 25rem),
+        var(--paper);
+      font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", Avenir, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, select { font: inherit; }
+
+    button { touch-action: manipulation; }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero { padding: 24px 0 34px; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 48px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      letter-spacing: -.02em;
+    }
+
+    .brand-badge {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      color: white;
+      background: var(--orange);
+      border-radius: 11px;
+      transform: rotate(-5deg);
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 38px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: .77rem;
+      font-weight: 850;
+      letter-spacing: .16em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3rem, 7vw, 6.6rem);
+      line-height: .92;
+      letter-spacing: -.072em;
+    }
+
+    h1 em {
+      color: var(--orange);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.65;
+    }
+
+    .controls {
+      display: grid;
+      min-width: 190px;
+      gap: 10px;
+      padding: 16px;
+      background: rgba(255, 255, 255, .74);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .control-button, select {
+      min-height: 46px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      cursor: pointer;
+    }
+
+    .control-button {
+      padding: 0 16px;
+      font-weight: 800;
+    }
+
+    .primary {
+      color: white;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .secondary { color: var(--ink); background: var(--cream); }
+
+    .speed-label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    select {
+      width: 100%;
+      padding: 0 12px;
+      color: var(--ink);
+      background: white;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .audio-status {
+      min-height: 20px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: center;
+    }
+
+    .alphabet {
+      padding: 30px 0 60px;
+      border-top: 1px solid var(--line);
+    }
+
+    .guide {
+      margin: 0 0 22px;
+      padding: 14px 18px;
+      color: #664b27;
+      background: rgba(246, 188, 53, .16);
+      border: 1px solid rgba(199, 137, 16, .18);
+      border-radius: 14px;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      position: relative;
+      display: grid;
+      min-height: 158px;
+      padding: 17px 14px 14px;
+      overflow: hidden;
+      text-align: left;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .76);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 5px 15px rgba(78, 52, 34, .05);
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      right: -22px;
+      bottom: -28px;
+      width: 72px;
+      height: 72px;
+      background: rgba(246, 188, 53, .17);
+      border-radius: 999px;
+      transition: transform .2s ease;
+    }
+
+    .card:hover {
+      z-index: 1;
+      border-color: rgba(234, 107, 59, .48);
+      box-shadow: 0 13px 26px rgba(78, 52, 34, .10);
+      transform: translateY(-3px);
+    }
+
+    .card:focus-visible, .control-button:focus-visible, select:focus-visible {
+      outline: 3px solid rgba(35, 89, 79, .28);
+      outline-offset: 3px;
+    }
+
+    .card.active {
+      color: white;
+      background: var(--orange);
+      border-color: var(--orange);
+      box-shadow: 0 15px 30px rgba(196, 73, 28, .25);
+      transform: translateY(-3px) rotate(-.5deg);
+    }
+
+    .card.active::after { background: rgba(255, 255, 255, .14); transform: scale(1.35); }
+
+    .speaker {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      color: var(--orange);
+      font-size: .75rem;
+    }
+
+    .active .speaker { color: white; }
+
+    .letter {
+      align-self: end;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .name {
+      margin-top: 9px;
+      font-size: .88rem;
+      font-weight: 850;
+    }
+
+    .example {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .active .example { color: rgba(255, 255, 255, .78); }
+
+    footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 28px 0 42px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: .78rem;
+      line-height: 1.55;
+    }
+
+    footer strong { color: var(--ink); }
+    footer p { max-width: 620px; margin: 0; }
+    footer a { color: var(--green); }
+
+    @media (max-width: 900px) {
+      nav { padding-bottom: 36px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .audio-status { grid-column: 1 / -1; }
+      .grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 22px, 1120px); }
+      .hero { padding-top: 15px; }
+      nav { padding-bottom: 30px; }
+      .count { font-size: .66rem; }
+      h1 { font-size: clamp(3.2rem, 17vw, 5rem); }
+      .subtitle { margin-top: 18px; }
+      .controls { grid-template-columns: 1fr 1fr; min-width: 0; }
+      .speed-label { grid-column: 1 / -1; }
+      .alphabet { padding-top: 22px; }
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+      .card { min-height: 140px; padding: 14px 12px 12px; border-radius: 15px; }
+      .letter { font-size: 2.55rem; }
+      footer { display: grid; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <nav aria-label="Site header">
+        <span class="brand"><span class="brand-badge" aria-hidden="true">¡</span> Hola Letras!</span>
+        <span class="count">27 letters + Ü</span>
+      </nav>
+
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">SPANISH · ALPHABET</p>
+          <h1>Tap a letter.<br><em>Hear Spanish.</em></h1>
+          <p class="subtitle">Tap any letter to hear its name in a real Latin American voice. The complete recording is prepared when the page opens, so every letter responds immediately.</p>
+        </div>
+
+        <div class="controls" aria-label="Playback controls">
+          <button class="control-button primary" id="play-all" type="button">▶&nbsp;&nbsp;Play all</button>
+          <button class="control-button secondary" id="stop" type="button">■&nbsp;&nbsp;Stop</button>
+          <label class="speed-label">Speed
+            <select id="speed" aria-label="Speed">
+              <option value="0.72">Slow</option>
+              <option value="1" selected>Normal</option>
+              <option value="1.2">Fast</option>
+            </select>
+          </label>
+          <p class="audio-status" id="audio-status" aria-live="polite">Preparing instant audio…</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="alphabet">
+    <div class="shell">
+      <p class="guide"><strong>Ü pronunciation guide:</strong> Ü is not a separate letter in the Spanish alphabet. The two dots show that the <em>u</em> is pronounced in words such as <em>pingüino</em>.</p>
+      <div class="grid" id="alphabet-grid" aria-label="Spanish alphabet"></div>
+    </div>
+  </main>
+
+  <footer class="shell">
+    <strong>Listen · Repeat · Remember</strong>
+    <p>Voice: Ahoraes, from <a href="https://commons.wikimedia.org/wiki/File:Es-alphabet-LatinAm.ogg" target="_blank" rel="noreferrer">Wikimedia Commons</a>. The recording was split, trimmed, resampled, and combined for instant playback. Audio derivative licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>.</p>
+  </footer>
+
+  <script>
+    const SAMPLE_RATE = 24000;
+    const SOURCE_CLIPS = [
+      ["a", 7240], ["b", 9780], ["c", 14167], ["d", 9103], ["e", 6046],
+      ["f", 10886], ["g", 8931], ["h", 11075], ["i", 7006], ["j", 11140],
+      ["k", 6677], ["l", 8279], ["m", 9099], ["n", 8150], ["enye", 10181],
+      ["o", 5812], ["p", 5920], ["q", 7518], ["r", 10086], ["s", 11072],
+      ["t", 6643], ["u", 7391], ["v", 8955], ["w", 17160], ["x", 13850],
+      ["y", 8003], ["z", 14308]
+    ];
+
+    const LETTERS = [
+      ["A", "a", "abeja", "a"], ["B", "be", "barco", "b"], ["C", "ce", "casa", "c"],
+      ["D", "de", "dado", "d"], ["E", "e", "elefante", "e"], ["F", "efe", "flor", "f"],
+      ["G", "ge", "gato", "g"], ["H", "hache", "hola", "h"], ["I", "i", "isla", "i"],
+      ["J", "jota", "jardín", "j"], ["K", "ka", "kilo", "k"], ["L", "ele", "luna", "l"],
+      ["M", "eme", "mano", "m"], ["N", "ene", "nube", "n"], ["Ñ", "eñe", "niño", "enye"],
+      ["O", "o", "oso", "o"], ["P", "pe", "pan", "p"], ["Q", "cu", "queso", "q"],
+      ["R", "erre", "rosa", "r"], ["S", "ese", "sol", "s"], ["T", "te", "taza", "t"],
+      ["U", "u", "uva", "u"], ["Ü", "u con diéresis", "pingüino", "u"],
+      ["V", "uve", "vaca", "v"], ["W", "uve doble", "wifi", "w"],
+      ["X", "equis", "xilófono", "x"], ["Y", "ye", "yoga", "y"], ["Z", "zeta", "zapato", "z"]
+    ];
+
+    const cues = new Map();
+    let sampleCursor = 0;
+    for (const [slug, samples] of SOURCE_CLIPS) {
+      cues.set(slug, { offset: sampleCursor / SAMPLE_RATE, duration: samples / SAMPLE_RATE });
+      sampleCursor += samples;
+    }
+
+    const grid = document.querySelector("#alphabet-grid");
+    const status = document.querySelector("#audio-status");
+    const playAllButton = document.querySelector("#play-all");
+    const speedSelect = document.querySelector("#speed");
+    const cardBySlug = new Map();
+
+    for (const [letter, name, example, slug] of LETTERS) {
+      const button = document.createElement("button");
+      button.className = "card";
+      button.type = "button";
+      button.dataset.slug = slug;
+      button.setAttribute("aria-label", `Play ${letter}, pronounced ${name}; example: ${example}`);
+      button.innerHTML = `<span class="speaker" aria-hidden="true">▶</span><strong class="letter">${letter}</strong><span class="name">${name}</span><span class="example">${example}</span>`;
+      button.addEventListener("click", () => playLetter(slug, button));
+      grid.append(button);
+      if (!cardBySlug.has(slug)) cardBySlug.set(slug, []);
+      cardBySlug.get(slug).push(button);
+    }
+
+    let audioContext;
+    let audioBuffer;
+    let bufferPromise;
+    let activeSources = new Set();
+    let activeCards = [];
+    let playToken = 0;
+
+    function getContext() {
+      if (!audioContext) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        try {
+          audioContext = new AudioContextClass({ latencyHint: "interactive" });
+        } catch (_) {
+          audioContext = new AudioContextClass();
+        }
+      }
+      return audioContext;
+    }
+
+    function loadBuffer() {
+      if (audioBuffer) return Promise.resolve(audioBuffer);
+      if (!bufferPromise) {
+        bufferPromise = (async () => {
+          const context = getContext();
+          const response = await fetch("alphabet.wav", { cache: "force-cache" });
+          if (!response.ok) throw new Error(`Audio request failed: ${response.status}`);
+          audioBuffer = await context.decodeAudioData(await response.arrayBuffer());
+          status.textContent = "Audio ready";
+          return audioBuffer;
+        })().catch((error) => {
+          bufferPromise = undefined;
+          status.textContent = "Audio could not load — tap a letter to retry";
+          throw error;
+        });
+      }
+      return bufferPromise;
+    }
+
+    async function readyAudio() {
+      const context = getContext();
+      const resumePromise = context.state === "suspended" ? context.resume() : Promise.resolve();
+      const [, buffer] = await Promise.all([resumePromise, loadBuffer()]);
+      return { context, buffer };
+    }
+
+    function clearActiveCards() {
+      for (const card of activeCards) {
+        card.classList.remove("active");
+        card.querySelector(".speaker").textContent = "▶";
+      }
+      activeCards = [];
+    }
+
+    function stopPlayback({ resetStatus = true } = {}) {
+      playToken += 1;
+      for (const source of activeSources) {
+        try { source.stop(); } catch (_) {}
+      }
+      activeSources.clear();
+      clearActiveCards();
+      playAllButton.textContent = "▶\u00a0\u00a0Play all";
+      if (resetStatus && audioBuffer) status.textContent = "Audio ready";
+    }
+
+    function makeSource(context, buffer, speed) {
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      source.playbackRate.value = speed;
+      source.connect(context.destination);
+      activeSources.add(source);
+      source.addEventListener("ended", () => activeSources.delete(source), { once: true });
+      return source;
+    }
+
+    async function playLetter(slug, button) {
+      stopPlayback({ resetStatus: false });
+      const token = playToken;
+      button.classList.add("active");
+      button.querySelector(".speaker").textContent = "◖))";
+      activeCards = [button];
+      if (!audioBuffer) status.textContent = "Preparing audio…";
+
+      try {
+        const { context, buffer } = await readyAudio();
+        if (token !== playToken) return;
+        const cue = cues.get(slug);
+        const source = makeSource(context, buffer, Number(speedSelect.value));
+        source.addEventListener("ended", () => {
+          if (token === playToken) {
+            clearActiveCards();
+            status.textContent = "Audio ready";
+          }
+        }, { once: true });
+        source.start(context.currentTime + .008, cue.offset, cue.duration);
+      } catch (_) {
+        clearActiveCards();
+      }
+    }
+
+    async function playAll() {
+      stopPlayback({ resetStatus: false });
+      const token = playToken;
+      playAllButton.textContent = "◖))\u00a0\u00a0Playing";
+      if (!audioBuffer) status.textContent = "Preparing audio…";
+
+      try {
+        const { context, buffer } = await readyAudio();
+        if (token !== playToken) return;
+        const speed = Number(speedSelect.value);
+        const gap = .14;
+        let when = context.currentTime + .035;
+
+        SOURCE_CLIPS.forEach(([slug], index) => {
+          const cue = cues.get(slug);
+          const source = makeSource(context, buffer, speed);
+          source.addEventListener("ended", () => {
+            for (const card of cardBySlug.get(slug) || []) {
+              card.classList.remove("active");
+              card.querySelector(".speaker").textContent = "▶";
+            }
+            if (index === SOURCE_CLIPS.length - 1 && token === playToken) {
+              activeCards = [];
+              playAllButton.textContent = "▶\u00a0\u00a0Play all";
+              status.textContent = "Audio ready";
+            }
+          }, { once: true });
+
+          const cards = cardBySlug.get(slug) || [];
+          window.setTimeout(() => {
+            if (token !== playToken) return;
+            clearActiveCards();
+            activeCards = cards;
+            for (const card of cards) {
+              card.classList.add("active");
+              card.querySelector(".speaker").textContent = "◖))";
+            }
+          }, Math.max(0, (when - context.currentTime) * 1000));
+
+          source.start(when, cue.offset, cue.duration);
+          when += cue.duration / speed + gap;
+        });
+      } catch (_) {
+        playAllButton.textContent = "▶\u00a0\u00a0Play all";
+      }
+    }
+
+    playAllButton.addEventListener("click", playAll);
+    document.querySelector("#stop").addEventListener("click", () => stopPlayback());
+    speedSelect.addEventListener("change", () => {
+      if (activeSources.size) stopPlayback();
+    });
+
+    window.addEventListener("pointerdown", () => {
+      if (audioContext?.state === "suspended") audioContext.resume();
+    }, { capture: true, passive: true });
+
+    loadBuffer().catch(() => {});
+  </script>
+</body>
+</html>
