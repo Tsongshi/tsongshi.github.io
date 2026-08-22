@@ -1,0 +1,16 @@
+Spanish alphabet audio attribution
+
+Original work: Es-alphabet-LatinAm.ogg
+Description: Spanish alphabet read by a Latin American speaker
+Author: Ahoraes
+Source: https://commons.wikimedia.org/wiki/File:Es-alphabet-LatinAm.ogg
+Original date: 4 November 2018
+License: Creative Commons Attribution-ShareAlike 4.0 International
+License URL: https://creativecommons.org/licenses/by-sa/4.0/
+
+Changes made for this website: the original recording was divided into
+individual letter names, leading silence was trimmed where detected, audio was
+resampled to 24 kHz mono PCM, and the clips were recombined into a cue-based
+WAV file for low-latency playback.
+
+The audio derivative in alphabet.wav is distributed under CC BY-SA 4.0.
