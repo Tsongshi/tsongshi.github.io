@@ -1,0 +1,10 @@
+Spanish Phonics audio
+=====================
+
+Generated on 2026-08-23 with Volcengine Doubao Speech Synthesis 2.0.
+Resource: seed-tts-2.0
+Voice: Vivi 2.0 (zh_female_vv_uranus_bigtts)
+Format: MP3, 24 kHz, mono, 64 kbps
+
+The exact synthesis inputs are listed in manifest.json. No credentials or
+runtime API calls are included in this public website.
