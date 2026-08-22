@@ -192,6 +192,20 @@
       line-height: 1.55;
     }
 
+    kbd {
+      display: inline-block;
+      min-width: 1.8em;
+      padding: .08em .38em;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .8);
+      border: 1px solid rgba(69, 51, 38, .2);
+      border-bottom-width: 2px;
+      border-radius: 6px;
+      font: 750 .82em/1.35 ui-monospace, "SFMono-Regular", Menlo, monospace;
+      text-align: center;
+      white-space: nowrap;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -336,12 +350,12 @@
         <div>
           <p class="eyebrow">SPANISH · ALPHABET</p>
           <h1>Tap a letter.<br><em>Hear Spanish.</em></h1>
-          <p class="subtitle">Tap any letter to hear its name in a real Latin American voice. The complete recording is prepared when the page opens, so every letter responds immediately.</p>
+          <p class="subtitle">Tap a letter—or press A–Z on your keyboard—to hear its name in a real Latin American voice. The complete recording is prepared when the page opens, so every letter responds immediately.</p>
         </div>
 
         <div class="controls" aria-label="Playback controls">
-          <button class="control-button primary" id="play-all" type="button">▶&nbsp;&nbsp;Play all</button>
-          <button class="control-button secondary" id="stop" type="button">■&nbsp;&nbsp;Stop</button>
+          <button class="control-button primary" id="play-all" type="button" aria-keyshortcuts="Space">▶&nbsp;&nbsp;Play all</button>
+          <button class="control-button secondary" id="stop" type="button" aria-keyshortcuts="Escape">■&nbsp;&nbsp;Stop</button>
           <label class="speed-label">Speed
             <select id="speed" aria-label="Speed">
               <option value="0.72">Slow</option>
@@ -357,7 +371,7 @@
 
   <main class="alphabet">
     <div class="shell">
-      <p class="guide"><strong>Ü pronunciation guide:</strong> Ü is not a separate letter in the Spanish alphabet. The two dots show that the <em>u</em> is pronounced in words such as <em>pingüino</em>.</p>
+      <p class="guide"><strong>Mac keyboard:</strong> Press <kbd>A–Z</kbd> to hear a letter, <kbd>⌥N</kbd> for Ñ, <kbd>⌥U</kbd> for Ü, <kbd>Space</kbd> to play all, and <kbd>Esc</kbd> to stop.<br><strong>Ü pronunciation guide:</strong> Ü is not a separate letter in the Spanish alphabet. The two dots show that the <em>u</em> is pronounced in words such as <em>pingüino</em>.</p>
       <div class="grid" id="alphabet-grid" aria-label="Spanish alphabet"></div>
     </div>
   </main>
@@ -403,6 +417,7 @@
     const playAllButton = document.querySelector("#play-all");
     const speedSelect = document.querySelector("#speed");
     const cardBySlug = new Map();
+    const cardByLetter = new Map();
 
     for (const [letter, name, example, slug] of LETTERS) {
       const button = document.createElement("button");
@@ -410,9 +425,11 @@
       button.type = "button";
       button.dataset.slug = slug;
       button.setAttribute("aria-label", `Play ${letter}, pronounced ${name}; example: ${example}`);
+      button.setAttribute("aria-keyshortcuts", letter === "Ñ" ? "Alt+N" : letter === "Ü" ? "Alt+U" : letter);
       button.innerHTML = `<span class="speaker" aria-hidden="true">▶</span><strong class="letter">${letter}</strong><span class="name">${name}</span><span class="example">${example}</span>`;
       button.addEventListener("click", () => playLetter(slug, button));
       grid.append(button);
+      cardByLetter.set(letter, button);
       if (!cardBySlug.has(slug)) cardBySlug.set(slug, []);
       cardBySlug.get(slug).push(button);
     }
@@ -567,6 +584,46 @@
     document.querySelector("#stop").addEventListener("click", () => stopPlayback());
     speedSelect.addEventListener("change", () => {
       if (activeSources.size) stopPlayback();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      const target = event.target;
+      if (event.defaultPrevented || event.repeat || event.isComposing) return;
+      if (target instanceof Element && target.closest("input, select, textarea, [contenteditable='true']")) return;
+      if (event.metaKey || event.ctrlKey) return;
+
+      if (!event.altKey && event.code === "Escape") {
+        event.preventDefault();
+        stopPlayback();
+        return;
+      }
+
+      if (!event.altKey && event.code === "Space") {
+        if (target instanceof Element && target.closest("button")) return;
+        event.preventDefault();
+        playAll();
+        return;
+      }
+
+      let letter;
+      if (event.altKey && event.code === "KeyN") {
+        letter = "Ñ";
+      } else if (event.altKey && event.code === "KeyU") {
+        letter = "Ü";
+      } else if (!event.altKey) {
+        const key = event.key.length === 1 ? event.key.toUpperCase() : "";
+        if (/^[A-Z]$/.test(key) || key === "Ñ" || key === "Ü") {
+          letter = key;
+        } else {
+          const codeMatch = /^Key([A-Z])$/.exec(event.code);
+          if (codeMatch) letter = codeMatch[1];
+        }
+      }
+
+      const card = cardByLetter.get(letter);
+      if (!card) return;
+      event.preventDefault();
+      playLetter(card.dataset.slug, card);
     });
 
     window.addEventListener("pointerdown", () => {
