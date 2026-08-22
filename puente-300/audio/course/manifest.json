@@ -1,0 +1,3504 @@
+{
+  "version": 3,
+  "resourceId": "seed-tts-2.0",
+  "speechRate": -20,
+  "voicePolicy": "short-items-and-minimal-pairs-marisol-v1",
+  "voices": {
+    "Marisol": "es_female_ht_mx_f6_uranus_bigtts",
+    "Dani": "es_male_dani_uranus_bigtts"
+  },
+  "canonicalVoices": {
+    "¿cómo está?": "Marisol",
+    "¿Cómo se dice cash flow en español?": "Dani",
+    "¿Cómo se dice...?": "Marisol",
+    "¿Cuándo necesita el informe?": "Dani",
+    "¿Me puede ayudar?": "Dani",
+    "¿Puede repetir, por favor?": "Marisol",
+    "¿Puede repetir?": "Marisol",
+    "¿Qué significa...?": "Marisol",
+    "¿Quién es responsable?": "Dani",
+    "a": "Marisol",
+    "a veces": "Marisol",
+    "abrir": "Marisol",
+    "acordar": "Marisol",
+    "Actualizamos el informe y escribimos una explicación corta. Antes de la reunión, pregunto: «Entonces, ¿el monto y la fecha están confirmados?». Natalia responde que sí y muestra la fuente. Ahora el mensaje para la dirección es simple y preciso.": "Dani",
+    "aeropuerto": "Marisol",
+    "agua": "Marisol",
+    "ahora": "Marisol",
+    "Al final digo: «Gracias. Esta semana voy a escuchar y hacer muchas preguntas».": "Marisol",
+    "Al final no tenemos una respuesta perfecta, pero sí un plan claro. Vamos a revisar los datos el lunes. Si el riesgo aumenta, usamos la opción más conservadora. Si el plazo de entrega mejora, evitamos un gasto innecesario.": "Dani",
+    "algo": "Marisol",
+    "alguien": "Marisol",
+    "almuerzo": "Marisol",
+    "amigo": "Marisol",
+    "ampliar": "Marisol",
+    "antes": "Marisol",
+    "año": "Marisol",
+    "apartamento": "Marisol",
+    "aprender": "Marisol",
+    "auditoría": "Marisol",
+    "ayer": "Marisol",
+    "Ayer llegó el cliente.": "Dani",
+    "ayudar": "Marisol",
+    "banco": "Marisol",
+    "baño": "Marisol",
+    "beber": "Marisol",
+    "bienvenido": "Marisol",
+    "bienvenido, bienvenida": "Marisol",
+    "Bogotá": "Marisol",
+    "breve": "Marisol",
+    "buenas noches": "Dani",
+    "buenas tardes": "Marisol",
+    "bueno": "Marisol",
+    "buenos días": "Dani",
+    "Buenos días.": "Marisol",
+    "buscar": "Marisol",
+    "café": "Marisol",
+    "cambiar": "Marisol",
+    "Camila explica que las ventas crecen, pero los costos de distribución también cambian. Jorge presenta dos opciones de presupuesto. La primera permite una campaña grande; la segunda conserva más efectivo para los próximos meses. Yo no elijo de inmediato. Quiero entender los supuestos y escuchar al equipo comercial.": "Marisol",
+    "caminar": "Marisol",
+    "caro": "Marisol",
+    "carro": "Marisol",
+    "casa": "Marisol",
+    "cena": "Marisol",
+    "cerca": "Marisol",
+    "cero": "Marisol",
+    "cerrar": "Marisol",
+    "chévere": "Marisol",
+    "cien": "Marisol",
+    "cierre": "Marisol",
+    "cinco": "Marisol",
+    "claro": "Marisol",
+    "cliente": "Marisol",
+    "clima": "Marisol",
+    "colega": "Marisol",
+    "comer": "Marisol",
+    "comida": "Marisol",
+    "cómo": "Marisol",
+    "comprar": "Marisol",
+    "computadora": "Marisol",
+    "con": "Marisol",
+    "con gusto": "Marisol",
+    "confirmar": "Marisol",
+    "conocer": "Marisol",
+    "conservador, conservadora": "Marisol",
+    "coro": "Marisol",
+    "correcto": "Marisol",
+    "correo": "Marisol",
+    "corro": "Marisol",
+    "costo": "Marisol",
+    "creer": "Marisol",
+    "cuál": "Marisol",
+    "cuándo": "Marisol",
+    "cuánto": "Marisol",
+    "cuatro": "Marisol",
+    "cuenta": "Marisol",
+    "dar": "Marisol",
+    "datos": "Marisol",
+    "de": "Marisol",
+    "de acuerdo": "Marisol",
+    "deber": "Marisol",
+    "decidir": "Marisol",
+    "decir": "Marisol",
+    "decisión": "Marisol",
+    "desayunar": "Marisol",
+    "desayuno": "Marisol",
+    "después": "Marisol",
+    "deuda": "Marisol",
+    "día": "Marisol",
+    "diez": "Marisol",
+    "diferente": "Marisol",
+    "difícil": "Marisol",
+    "dinero": "Marisol",
+    "dirección": "Marisol",
+    "Disculpe.": "Marisol",
+    "Divido el problema en tres partes. Primero, el equipo revisa qué información está confirmada y qué información es solo una estimación. Segundo, calculamos dos escenarios: una entrega con una semana de retraso y otra con tres semanas. Tercero, acordamos quién llama al proveedor, quién actualiza las ventas y quién revisa la caja.": "Dani",
+    "documento": "Marisol",
+    "domingo": "Marisol",
+    "dónde": "Marisol",
+    "dos": "Marisol",
+    "él": "Marisol",
+    "el café": "Marisol",
+    "el cierre mensual": "Marisol",
+    "el costo": "Marisol",
+    "el día, la mano": "Marisol",
+    "el efectivo": "Marisol",
+    "El equipo prepara el informe.": "Dani",
+    "el flujo de caja": "Marisol",
+    "El informe es para el viernes.": "Dani",
+    "El informe está listo.": "Dani",
+    "el líder, la líder": "Marisol",
+    "el margen": "Marisol",
+    "el mercado": "Marisol",
+    "el pago": "Marisol",
+    "el plazo": "Marisol",
+    "el presupuesto": "Marisol",
+    "el proveedor": "Marisol",
+    "el retraso": "Marisol",
+    "el riesgo": "Marisol",
+    "el supuesto": "Marisol",
+    "el tráfico": "Marisol",
+    "el, la": "Marisol",
+    "ella": "Marisol",
+    "ellos": "Marisol",
+    "emergencia": "Marisol",
+    "empezar": "Marisol",
+    "Empiezo con una presentación breve: «Buenos días. Soy Alex. Quiero aprender de ustedes y trabajar con claridad». Después, cada persona explica su función. No entiendo una palabra y pregunto: «¿Puede repetir más despacio, por favor?». La colega repite y yo tomo una nota.": "Marisol",
+    "empresa": "Marisol",
+    "en": "Marisol",
+    "En esta práctica ficticia, el equipo de una empresa de productos electrónicos prepara un plan financiero para varios mercados de América Latina. La conversación empieza con tres preguntas: ¿Qué necesita cada mercado? ¿Qué riesgos podemos controlar? ¿Qué información todavía falta?": "Marisol",
+    "En este escenario ficticio, soy un nuevo responsable de equipo en una empresa de tecnología. Mi primera reunión es con el equipo local. Hay seis personas en la sala y dos colegas participan por videollamada.": "Marisol",
+    "En la primera reunión hay opiniones diferentes. Ventas quiere comprar más unidades inmediatamente. Operaciones prefiere esperar una confirmación. Finanzas necesita entender el costo, el plazo y el impacto en el efectivo. Mi trabajo no es hablar más que todos; es organizar la conversación y hacer visibles las decisiones.": "Dani",
+    "En un escenario ficticio, coordino un equipo regional en América Latina. El viernes por la mañana recibimos una noticia difícil: un proveedor importante puede entregar tarde. El retraso quizá afecte el inventario de productos en dos mercados.": "Dani",
+    "encontrar": "Marisol",
+    "entender": "Marisol",
+    "entre": "Marisol",
+    "enviar": "Marisol",
+    "equipo": "Marisol",
+    "Es lunes. Estoy en Bogotá. La mañana está fresca y el cielo está gris.": "Marisol",
+    "Es martes y el equipo prepara el cierre mensual. Natalia revisa las ventas, Andrés confirma los pagos y yo comparo el presupuesto con los resultados. Los datos generales son correctos, pero hay una diferencia pequeña en una cuenta.": "Dani",
+    "Es un buen resultado.": "Marisol",
+    "Es una decisión importante.": "Marisol",
+    "escribir": "Marisol",
+    "escuchar": "Marisol",
+    "eso": "Marisol",
+    "esperar": "Marisol",
+    "esta": "Marisol",
+    "está": "Marisol",
+    "estar": "Marisol",
+    "esto": "Marisol",
+    "estrategia": "Marisol",
+    "explicar": "Marisol",
+    "fácil": "Marisol",
+    "factura": "Marisol",
+    "familia": "Marisol",
+    "farmacia": "Marisol",
+    "fecha": "Marisol",
+    "flujo de caja": "Dani",
+    "fresco, fresca": "Marisol",
+    "gasto": "Marisol",
+    "gracias": "Marisol",
+    "grande": "Marisol",
+    "haber": "Marisol",
+    "habitación": "Marisol",
+    "hablar": "Marisol",
+    "hacer": "Marisol",
+    "Hay una reunión a las nueve.": "Marisol",
+    "hola": "Marisol",
+    "hombre": "Marisol",
+    "hora": "Marisol",
+    "hotel": "Marisol",
+    "hoy": "Marisol",
+    "Hoy no camino porque llueve. Tomo un bus. No conozco bien la ruta y pregunto: «Disculpe, ¿este bus va al centro?». Una señora dice: «Sí, pero hay mucho tráfico». Llego a las ocho y veinte.": "Dani",
+    "idioma": "Marisol",
+    "igual": "Marisol",
+    "importante": "Marisol",
+    "impuesto": "Marisol",
+    "información": "Marisol",
+    "informe": "Marisol",
+    "ingreso": "Marisol",
+    "innecesario, innecesaria": "Marisol",
+    "internet": "Marisol",
+    "inversión": "Marisol",
+    "ir": "Marisol",
+    "jefe": "Marisol",
+    "jueves": "Marisol",
+    "la": "Marisol",
+    "la caja": "Marisol",
+    "la cuenta": "Marisol",
+    "la decisión": "Dani",
+    "La decisión es prudente: aprender primero y ampliar después si la evidencia es positiva.": "Marisol",
+    "la diferencia": "Marisol",
+    "la distribución": "Marisol",
+    "la estimación": "Marisol",
+    "la evidencia": "Dani",
+    "la fuente": "Marisol",
+    "la función": "Marisol",
+    "la mañana": "Marisol",
+    "la oficina": "Dani",
+    "La oficina está en Bogotá.": "Dani",
+    "la próxima acción": "Dani",
+    "La reunión es a las diez.": "Dani",
+    "la ruta": "Marisol",
+    "la sala": "Marisol",
+    "las": "Marisol",
+    "Las reuniones son cortas.": "Marisol",
+    "las ventas": "Marisol",
+    "le": "Marisol",
+    "Le envío el informe a Laura.": "Dani",
+    "leer": "Marisol",
+    "lejos": "Marisol",
+    "lento": "Marisol",
+    "les": "Marisol",
+    "libro": "Marisol",
+    "listo": "Marisol",
+    "llamar": "Marisol",
+    "llave": "Marisol",
+    "llegar": "Marisol",
+    "llevar": "Marisol",
+    "llover, llueve": "Marisol",
+    "llueve": "Marisol",
+    "lo": "Marisol",
+    "Lo reviso esta tarde.": "Dani",
+    "los": "Marisol",
+    "luego": "Marisol",
+    "lunes": "Marisol",
+    "malo": "Marisol",
+    "mañana": "Marisol",
+    "mapa": "Marisol",
+    "margen": "Marisol",
+    "martes": "Marisol",
+    "más": "Marisol",
+    "más despacio": "Marisol",
+    "Más despacio, por favor.": "Marisol",
+    "me": "Marisol",
+    "Me gusta caminar por Bogotá.": "Marisol",
+    "Me gustan las conversaciones directas.": "Marisol",
+    "médico": "Marisol",
+    "mejorar": "Marisol",
+    "menos": "Marisol",
+    "mensaje": "Marisol",
+    "mercado": "Marisol",
+    "mes": "Marisol",
+    "mesa": "Marisol",
+    "mi": "Marisol",
+    "miércoles": "Marisol",
+    "mil": "Marisol",
+    "minuto": "Marisol",
+    "mirar": "Marisol",
+    "misa": "Marisol",
+    "mismo": "Marisol",
+    "Muchas gracias.": "Marisol",
+    "mucho": "Marisol",
+    "mucho gusto": "Dani",
+    "mujer": "Marisol",
+    "muy": "Marisol",
+    "nada": "Marisol",
+    "nadie": "Marisol",
+    "necesario": "Marisol",
+    "Necesitamos datos correctos.": "Marisol",
+    "necesitar": "Marisol",
+    "Necesito un informe claro.": "Marisol",
+    "no": "Marisol",
+    "No buscamos una respuesta rápida sin evidencia. Primero preguntamos qué pasó y de dónde sale ese dato. Andrés encuentra un archivo nuevo. Me lo envía y lo reviso con Natalia. La diferencia no es un error de venta; es un pago registrado en otra fecha.": "Dani",
+    "No entiendo esta parte.": "Dani",
+    "No entiendo.": "Marisol",
+    "noche": "Marisol",
+    "nombre": "Marisol",
+    "nos": "Marisol",
+    "nosotros": "Marisol",
+    "nueve": "Marisol",
+    "nuevo": "Marisol",
+    "nunca": "Marisol",
+    "o": "Marisol",
+    "objetivo": "Marisol",
+    "ocho": "Marisol",
+    "oficina": "Marisol",
+    "olvidar": "Marisol",
+    "otro": "Marisol",
+    "pagar": "Marisol",
+    "pago": "Marisol",
+    "palabra": "Marisol",
+    "para": "Marisol",
+    "Para mí, liderar bien significa escuchar, verificar y explicar una decisión de manera sencilla.": "Dani",
+    "parce": "Marisol",
+    "parecer": "Marisol",
+    "pasaporte": "Marisol",
+    "pasar": "Marisol",
+    "pensar": "Marisol",
+    "pequeño": "Marisol",
+    "pérdida": "Marisol",
+    "perdón": "Marisol",
+    "permiso": "Marisol",
+    "pero": "Marisol",
+    "pero, perro": "Marisol",
+    "perro": "Marisol",
+    "persona": "Marisol",
+    "pesa": "Marisol",
+    "pisa": "Marisol",
+    "plan": "Marisol",
+    "plazo": "Marisol",
+    "poco": "Marisol",
+    "poder": "Marisol",
+    "policía": "Marisol",
+    "poner": "Marisol",
+    "por": "Marisol",
+    "por favor": "Marisol",
+    "por qué": "Marisol",
+    "porque": "Marisol",
+    "posible": "Marisol",
+    "practico": "Marisol",
+    "practicó": "Marisol",
+    "práctico": "Marisol",
+    "precio": "Marisol",
+    "preciso, precisa": "Marisol",
+    "Prefiero una reunión corta.": "Marisol",
+    "preguntar": "Marisol",
+    "Pregunto: «¿Qué resultado esperamos de la campaña? ¿Cuándo recibimos los datos nuevos? ¿Cómo cambia el flujo de caja?». Después de revisar las respuestas, proponemos una prueba pequeña en una ciudad. El equipo va a medir las ventas, el margen y el inventario durante cuatro semanas.": "Marisol",
+    "presupuesto": "Marisol",
+    "prioridad": "Marisol",
+    "proceso": "Marisol",
+    "producto": "Marisol",
+    "proveedor": "Marisol",
+    "proyecto": "Marisol",
+    "qué": "Marisol",
+    "qué pena": "Marisol",
+    "quedar": "Marisol",
+    "querer": "Marisol",
+    "quién": "Marisol",
+    "Quiero café.": "Marisol",
+    "Quiero entender el mercado.": "Marisol",
+    "rápido": "Marisol",
+    "recibir": "Marisol",
+    "recordar": "Marisol",
+    "responder": "Marisol",
+    "responsable": "Marisol",
+    "restaurante": "Marisol",
+    "resultado": "Marisol",
+    "reunión": "Marisol",
+    "revisar": "Marisol",
+    "Reviso los números cada mañana.": "Dani",
+    "riesgo": "Marisol",
+    "sábado": "Marisol",
+    "saber": "Marisol",
+    "saldo": "Marisol",
+    "salir": "Marisol",
+    "salud": "Marisol",
+    "se": "Marisol",
+    "seguir": "Marisol",
+    "seguridad": "Marisol",
+    "seguro": "Marisol",
+    "seis": "Marisol",
+    "semana": "Marisol",
+    "sentir": "Marisol",
+    "ser": "Marisol",
+    "servicio": "Marisol",
+    "si": "Marisol",
+    "sí, claro": "Marisol",
+    "siempre": "Marisol",
+    "siete": "Marisol",
+    "sin": "Marisol",
+    "sistema": "Marisol",
+    "solución": "Marisol",
+    "Soy responsable de finanzas.": "Dani",
+    "su": "Marisol",
+    "supermercado": "Marisol",
+    "también": "Marisol",
+    "tampoco": "Marisol",
+    "tarde": "Marisol",
+    "tarea": "Marisol",
+    "tarjeta": "Marisol",
+    "taxi": "Marisol",
+    "te": "Marisol",
+    "teléfono": "Marisol",
+    "temprano": "Marisol",
+    "Tenemos dos opciones.": "Marisol",
+    "tener": "Marisol",
+    "Tengo café, agua y un mapa. La oficina está cerca. Camino diez minutos. Digo: «Buenos días». Una colega responde: «Buenos días, bienvenido».": "Marisol",
+    "Tengo que revisar el presupuesto.": "Marisol",
+    "terminar": "Marisol",
+    "tienda": "Marisol",
+    "tinto": "Marisol",
+    "todo": "Marisol",
+    "tomar": "Marisol",
+    "trabajar": "Marisol",
+    "Trabajo con el equipo local.": "Dani",
+    "traer": "Marisol",
+    "tranquilo": "Marisol",
+    "transporte": "Marisol",
+    "tres": "Marisol",
+    "tú": "Marisol",
+    "tu, tus": "Marisol",
+    "un, una": "Marisol",
+    "uno": "Marisol",
+    "usar": "Marisol",
+    "usted": "Marisol",
+    "Usted trabaja con ventas.": "Dani",
+    "ustedes": "Marisol",
+    "utilidad": "Marisol",
+    "venir": "Marisol",
+    "venta": "Marisol",
+    "ver": "Marisol",
+    "verificar": "Marisol",
+    "viernes": "Marisol",
+    "Vivimos cerca de la oficina.": "Dani",
+    "vivir": "Marisol",
+    "Vivo en un apartamento pequeño en Bogotá. A las siete, desayuno arepa, huevo y café. Después salgo para la oficina.": "Dani",
+    "volver": "Marisol",
+    "Voy a llamar al proveedor.": "Marisol",
+    "vuelo": "Marisol",
+    "y": "Marisol",
+    "ya": "Marisol",
+    "yo": "Marisol"
+  },
+  "clipCount": 438,
+  "characterCount": 7484,
+  "clips": [
+    {
+      "id": "minimal-mp-pero-perro-a",
+      "text": "pero",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-pero-perro-a.mp3"
+    },
+    {
+      "id": "minimal-mp-pero-perro-b",
+      "text": "perro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-pero-perro-b.mp3"
+    },
+    {
+      "id": "minimal-mp-caro-carro-a",
+      "text": "caro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-caro-carro-a.mp3"
+    },
+    {
+      "id": "minimal-mp-caro-carro-b",
+      "text": "carro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-caro-carro-b.mp3"
+    },
+    {
+      "id": "minimal-mp-coro-corro-a",
+      "text": "coro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-coro-corro-a.mp3"
+    },
+    {
+      "id": "minimal-mp-coro-corro-b",
+      "text": "corro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-coro-corro-b.mp3"
+    },
+    {
+      "id": "minimal-mp-pesa-pisa-a",
+      "text": "pesa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-pesa-pisa-a.mp3"
+    },
+    {
+      "id": "minimal-mp-pesa-pisa-b",
+      "text": "pisa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-pesa-pisa-b.mp3"
+    },
+    {
+      "id": "minimal-mp-mesa-misa-a",
+      "text": "mesa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-mesa-misa-a.mp3"
+    },
+    {
+      "id": "minimal-mp-mesa-misa-b",
+      "text": "misa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-mesa-misa-b.mp3"
+    },
+    {
+      "id": "minimal-mp-practico-stress-a",
+      "text": "práctico",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-practico-stress-a.mp3"
+    },
+    {
+      "id": "minimal-mp-practico-stress-b",
+      "text": "practico",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-practico-stress-b.mp3"
+    },
+    {
+      "id": "minimal-mp-practico-past-a",
+      "text": "practico",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-practico-past-a.mp3"
+    },
+    {
+      "id": "minimal-mp-practico-past-b",
+      "text": "practicó",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-practico-past-b.mp3"
+    },
+    {
+      "id": "minimal-mp-esta-esta-a",
+      "text": "esta",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-esta-esta-a.mp3"
+    },
+    {
+      "id": "minimal-mp-esta-esta-b",
+      "text": "está",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "minimal-mp-esta-esta-b.mp3"
+    },
+    {
+      "id": "word-v001",
+      "text": "yo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v001.mp3"
+    },
+    {
+      "id": "word-v002",
+      "text": "tú",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v002.mp3"
+    },
+    {
+      "id": "word-v003",
+      "text": "usted",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v003.mp3"
+    },
+    {
+      "id": "word-v004",
+      "text": "él",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v004.mp3"
+    },
+    {
+      "id": "word-v005",
+      "text": "ella",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v005.mp3"
+    },
+    {
+      "id": "word-v006",
+      "text": "nosotros",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v006.mp3"
+    },
+    {
+      "id": "word-v007",
+      "text": "ustedes",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v007.mp3"
+    },
+    {
+      "id": "word-v008",
+      "text": "ellos",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v008.mp3"
+    },
+    {
+      "id": "word-v009",
+      "text": "me",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v009.mp3"
+    },
+    {
+      "id": "word-v010",
+      "text": "te",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v010.mp3"
+    },
+    {
+      "id": "word-v011",
+      "text": "lo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v011.mp3"
+    },
+    {
+      "id": "word-v012",
+      "text": "la",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v012.mp3"
+    },
+    {
+      "id": "word-v013",
+      "text": "le",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v013.mp3"
+    },
+    {
+      "id": "word-v014",
+      "text": "nos",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v014.mp3"
+    },
+    {
+      "id": "word-v015",
+      "text": "los",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v015.mp3"
+    },
+    {
+      "id": "word-v016",
+      "text": "las",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v016.mp3"
+    },
+    {
+      "id": "word-v017",
+      "text": "les",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v017.mp3"
+    },
+    {
+      "id": "word-v018",
+      "text": "se",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v018.mp3"
+    },
+    {
+      "id": "word-v019",
+      "text": "esto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v019.mp3"
+    },
+    {
+      "id": "word-v020",
+      "text": "eso",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v020.mp3"
+    },
+    {
+      "id": "word-v021",
+      "text": "algo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v021.mp3"
+    },
+    {
+      "id": "word-v022",
+      "text": "nada",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v022.mp3"
+    },
+    {
+      "id": "word-v023",
+      "text": "alguien",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v023.mp3"
+    },
+    {
+      "id": "word-v024",
+      "text": "nadie",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v024.mp3"
+    },
+    {
+      "id": "word-v025",
+      "text": "todo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v025.mp3"
+    },
+    {
+      "id": "word-v026",
+      "text": "otro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v026.mp3"
+    },
+    {
+      "id": "word-v027",
+      "text": "mismo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v027.mp3"
+    },
+    {
+      "id": "word-v028",
+      "text": "el, la",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v028.mp3"
+    },
+    {
+      "id": "word-v029",
+      "text": "un, una",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v029.mp3"
+    },
+    {
+      "id": "word-v030",
+      "text": "mi",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v030.mp3"
+    },
+    {
+      "id": "word-v031",
+      "text": "tu, tus",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v031.mp3"
+    },
+    {
+      "id": "word-v032",
+      "text": "su",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v032.mp3"
+    },
+    {
+      "id": "word-v033",
+      "text": "qué",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v033.mp3"
+    },
+    {
+      "id": "word-v034",
+      "text": "quién",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v034.mp3"
+    },
+    {
+      "id": "word-v035",
+      "text": "cuál",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v035.mp3"
+    },
+    {
+      "id": "word-v036",
+      "text": "cuánto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v036.mp3"
+    },
+    {
+      "id": "word-v037",
+      "text": "dónde",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v037.mp3"
+    },
+    {
+      "id": "word-v038",
+      "text": "cuándo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v038.mp3"
+    },
+    {
+      "id": "word-v039",
+      "text": "cómo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v039.mp3"
+    },
+    {
+      "id": "word-v040",
+      "text": "por qué",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v040.mp3"
+    },
+    {
+      "id": "word-v041",
+      "text": "sí, claro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v041.mp3"
+    },
+    {
+      "id": "word-v042",
+      "text": "no",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v042.mp3"
+    },
+    {
+      "id": "word-v043",
+      "text": "y",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v043.mp3"
+    },
+    {
+      "id": "word-v044",
+      "text": "o",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v044.mp3"
+    },
+    {
+      "id": "word-v045",
+      "text": "pero",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v045.mp3"
+    },
+    {
+      "id": "word-v046",
+      "text": "porque",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v046.mp3"
+    },
+    {
+      "id": "word-v047",
+      "text": "si",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v047.mp3"
+    },
+    {
+      "id": "word-v048",
+      "text": "también",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v048.mp3"
+    },
+    {
+      "id": "word-v049",
+      "text": "tampoco",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v049.mp3"
+    },
+    {
+      "id": "word-v050",
+      "text": "muy",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v050.mp3"
+    },
+    {
+      "id": "word-v051",
+      "text": "más",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v051.mp3"
+    },
+    {
+      "id": "word-v052",
+      "text": "menos",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v052.mp3"
+    },
+    {
+      "id": "word-v053",
+      "text": "a",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v053.mp3"
+    },
+    {
+      "id": "word-v054",
+      "text": "en",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v054.mp3"
+    },
+    {
+      "id": "word-v055",
+      "text": "de",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v055.mp3"
+    },
+    {
+      "id": "word-v056",
+      "text": "con",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v056.mp3"
+    },
+    {
+      "id": "word-v057",
+      "text": "sin",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v057.mp3"
+    },
+    {
+      "id": "word-v058",
+      "text": "para",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v058.mp3"
+    },
+    {
+      "id": "word-v059",
+      "text": "por",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v059.mp3"
+    },
+    {
+      "id": "word-v060",
+      "text": "entre",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v060.mp3"
+    },
+    {
+      "id": "word-v061",
+      "text": "ser",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v061.mp3"
+    },
+    {
+      "id": "word-v062",
+      "text": "estar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v062.mp3"
+    },
+    {
+      "id": "word-v063",
+      "text": "haber",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v063.mp3"
+    },
+    {
+      "id": "word-v064",
+      "text": "tener",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v064.mp3"
+    },
+    {
+      "id": "word-v065",
+      "text": "hacer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v065.mp3"
+    },
+    {
+      "id": "word-v066",
+      "text": "poder",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v066.mp3"
+    },
+    {
+      "id": "word-v067",
+      "text": "querer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v067.mp3"
+    },
+    {
+      "id": "word-v068",
+      "text": "necesitar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v068.mp3"
+    },
+    {
+      "id": "word-v069",
+      "text": "ir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v069.mp3"
+    },
+    {
+      "id": "word-v070",
+      "text": "venir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v070.mp3"
+    },
+    {
+      "id": "word-v071",
+      "text": "llegar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v071.mp3"
+    },
+    {
+      "id": "word-v072",
+      "text": "salir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v072.mp3"
+    },
+    {
+      "id": "word-v073",
+      "text": "dar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v073.mp3"
+    },
+    {
+      "id": "word-v074",
+      "text": "tomar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v074.mp3"
+    },
+    {
+      "id": "word-v075",
+      "text": "poner",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v075.mp3"
+    },
+    {
+      "id": "word-v076",
+      "text": "traer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v076.mp3"
+    },
+    {
+      "id": "word-v077",
+      "text": "llevar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v077.mp3"
+    },
+    {
+      "id": "word-v078",
+      "text": "decir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v078.mp3"
+    },
+    {
+      "id": "word-v079",
+      "text": "hablar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v079.mp3"
+    },
+    {
+      "id": "word-v080",
+      "text": "preguntar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v080.mp3"
+    },
+    {
+      "id": "word-v081",
+      "text": "responder",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v081.mp3"
+    },
+    {
+      "id": "word-v082",
+      "text": "saber",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v082.mp3"
+    },
+    {
+      "id": "word-v083",
+      "text": "conocer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v083.mp3"
+    },
+    {
+      "id": "word-v084",
+      "text": "entender",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v084.mp3"
+    },
+    {
+      "id": "word-v085",
+      "text": "aprender",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v085.mp3"
+    },
+    {
+      "id": "word-v086",
+      "text": "recordar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v086.mp3"
+    },
+    {
+      "id": "word-v087",
+      "text": "olvidar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v087.mp3"
+    },
+    {
+      "id": "word-v088",
+      "text": "ver",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v088.mp3"
+    },
+    {
+      "id": "word-v089",
+      "text": "mirar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v089.mp3"
+    },
+    {
+      "id": "word-v090",
+      "text": "escuchar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v090.mp3"
+    },
+    {
+      "id": "word-v091",
+      "text": "leer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v091.mp3"
+    },
+    {
+      "id": "word-v092",
+      "text": "escribir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v092.mp3"
+    },
+    {
+      "id": "word-v093",
+      "text": "trabajar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v093.mp3"
+    },
+    {
+      "id": "word-v094",
+      "text": "vivir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v094.mp3"
+    },
+    {
+      "id": "word-v095",
+      "text": "comer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v095.mp3"
+    },
+    {
+      "id": "word-v096",
+      "text": "beber",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v096.mp3"
+    },
+    {
+      "id": "word-v097",
+      "text": "comprar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v097.mp3"
+    },
+    {
+      "id": "word-v098",
+      "text": "pagar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v098.mp3"
+    },
+    {
+      "id": "word-v099",
+      "text": "usar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v099.mp3"
+    },
+    {
+      "id": "word-v100",
+      "text": "abrir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v100.mp3"
+    },
+    {
+      "id": "word-v101",
+      "text": "cerrar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v101.mp3"
+    },
+    {
+      "id": "word-v102",
+      "text": "empezar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v102.mp3"
+    },
+    {
+      "id": "word-v103",
+      "text": "terminar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v103.mp3"
+    },
+    {
+      "id": "word-v104",
+      "text": "seguir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v104.mp3"
+    },
+    {
+      "id": "word-v105",
+      "text": "cambiar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v105.mp3"
+    },
+    {
+      "id": "word-v106",
+      "text": "buscar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v106.mp3"
+    },
+    {
+      "id": "word-v107",
+      "text": "encontrar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v107.mp3"
+    },
+    {
+      "id": "word-v108",
+      "text": "ayudar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v108.mp3"
+    },
+    {
+      "id": "word-v109",
+      "text": "llamar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v109.mp3"
+    },
+    {
+      "id": "word-v110",
+      "text": "enviar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v110.mp3"
+    },
+    {
+      "id": "word-v111",
+      "text": "recibir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v111.mp3"
+    },
+    {
+      "id": "word-v112",
+      "text": "esperar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v112.mp3"
+    },
+    {
+      "id": "word-v113",
+      "text": "pensar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v113.mp3"
+    },
+    {
+      "id": "word-v114",
+      "text": "creer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v114.mp3"
+    },
+    {
+      "id": "word-v115",
+      "text": "sentir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v115.mp3"
+    },
+    {
+      "id": "word-v116",
+      "text": "parecer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v116.mp3"
+    },
+    {
+      "id": "word-v117",
+      "text": "quedar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v117.mp3"
+    },
+    {
+      "id": "word-v118",
+      "text": "pasar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v118.mp3"
+    },
+    {
+      "id": "word-v119",
+      "text": "volver",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v119.mp3"
+    },
+    {
+      "id": "word-v120",
+      "text": "deber",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v120.mp3"
+    },
+    {
+      "id": "word-v121",
+      "text": "revisar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v121.mp3"
+    },
+    {
+      "id": "word-v122",
+      "text": "confirmar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v122.mp3"
+    },
+    {
+      "id": "word-v123",
+      "text": "decidir",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v123.mp3"
+    },
+    {
+      "id": "word-v124",
+      "text": "explicar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v124.mp3"
+    },
+    {
+      "id": "word-v125",
+      "text": "mejorar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v125.mp3"
+    },
+    {
+      "id": "word-v126",
+      "text": "cero",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v126.mp3"
+    },
+    {
+      "id": "word-v127",
+      "text": "uno",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v127.mp3"
+    },
+    {
+      "id": "word-v128",
+      "text": "dos",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v128.mp3"
+    },
+    {
+      "id": "word-v129",
+      "text": "tres",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v129.mp3"
+    },
+    {
+      "id": "word-v130",
+      "text": "cuatro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v130.mp3"
+    },
+    {
+      "id": "word-v131",
+      "text": "cinco",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v131.mp3"
+    },
+    {
+      "id": "word-v132",
+      "text": "seis",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v132.mp3"
+    },
+    {
+      "id": "word-v133",
+      "text": "siete",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v133.mp3"
+    },
+    {
+      "id": "word-v134",
+      "text": "ocho",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v134.mp3"
+    },
+    {
+      "id": "word-v135",
+      "text": "nueve",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v135.mp3"
+    },
+    {
+      "id": "word-v136",
+      "text": "diez",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v136.mp3"
+    },
+    {
+      "id": "word-v137",
+      "text": "cien",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v137.mp3"
+    },
+    {
+      "id": "word-v138",
+      "text": "mil",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v138.mp3"
+    },
+    {
+      "id": "word-v139",
+      "text": "hoy",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v139.mp3"
+    },
+    {
+      "id": "word-v140",
+      "text": "ayer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v140.mp3"
+    },
+    {
+      "id": "word-v141",
+      "text": "mañana",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v141.mp3"
+    },
+    {
+      "id": "word-v142",
+      "text": "ahora",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v142.mp3"
+    },
+    {
+      "id": "word-v143",
+      "text": "luego",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v143.mp3"
+    },
+    {
+      "id": "word-v144",
+      "text": "temprano",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v144.mp3"
+    },
+    {
+      "id": "word-v145",
+      "text": "tarde",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v145.mp3"
+    },
+    {
+      "id": "word-v146",
+      "text": "noche",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v146.mp3"
+    },
+    {
+      "id": "word-v147",
+      "text": "día",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v147.mp3"
+    },
+    {
+      "id": "word-v148",
+      "text": "semana",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v148.mp3"
+    },
+    {
+      "id": "word-v149",
+      "text": "mes",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v149.mp3"
+    },
+    {
+      "id": "word-v150",
+      "text": "año",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v150.mp3"
+    },
+    {
+      "id": "word-v151",
+      "text": "hora",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v151.mp3"
+    },
+    {
+      "id": "word-v152",
+      "text": "minuto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v152.mp3"
+    },
+    {
+      "id": "word-v153",
+      "text": "lunes",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v153.mp3"
+    },
+    {
+      "id": "word-v154",
+      "text": "martes",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v154.mp3"
+    },
+    {
+      "id": "word-v155",
+      "text": "miércoles",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v155.mp3"
+    },
+    {
+      "id": "word-v156",
+      "text": "jueves",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v156.mp3"
+    },
+    {
+      "id": "word-v157",
+      "text": "viernes",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v157.mp3"
+    },
+    {
+      "id": "word-v158",
+      "text": "sábado",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v158.mp3"
+    },
+    {
+      "id": "word-v159",
+      "text": "domingo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v159.mp3"
+    },
+    {
+      "id": "word-v160",
+      "text": "siempre",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v160.mp3"
+    },
+    {
+      "id": "word-v161",
+      "text": "nunca",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v161.mp3"
+    },
+    {
+      "id": "word-v162",
+      "text": "a veces",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v162.mp3"
+    },
+    {
+      "id": "word-v163",
+      "text": "ya",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v163.mp3"
+    },
+    {
+      "id": "word-v164",
+      "text": "antes",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v164.mp3"
+    },
+    {
+      "id": "word-v165",
+      "text": "después",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v165.mp3"
+    },
+    {
+      "id": "word-v166",
+      "text": "bueno",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v166.mp3"
+    },
+    {
+      "id": "word-v167",
+      "text": "malo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v167.mp3"
+    },
+    {
+      "id": "word-v168",
+      "text": "grande",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v168.mp3"
+    },
+    {
+      "id": "word-v169",
+      "text": "pequeño",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v169.mp3"
+    },
+    {
+      "id": "word-v170",
+      "text": "nuevo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v170.mp3"
+    },
+    {
+      "id": "word-v171",
+      "text": "importante",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v171.mp3"
+    },
+    {
+      "id": "word-v172",
+      "text": "diferente",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v172.mp3"
+    },
+    {
+      "id": "word-v173",
+      "text": "igual",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v173.mp3"
+    },
+    {
+      "id": "word-v174",
+      "text": "posible",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v174.mp3"
+    },
+    {
+      "id": "word-v175",
+      "text": "necesario",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v175.mp3"
+    },
+    {
+      "id": "word-v176",
+      "text": "fácil",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v176.mp3"
+    },
+    {
+      "id": "word-v177",
+      "text": "difícil",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v177.mp3"
+    },
+    {
+      "id": "word-v178",
+      "text": "correcto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v178.mp3"
+    },
+    {
+      "id": "word-v179",
+      "text": "seguro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v179.mp3"
+    },
+    {
+      "id": "word-v180",
+      "text": "rápido",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v180.mp3"
+    },
+    {
+      "id": "word-v181",
+      "text": "lento",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v181.mp3"
+    },
+    {
+      "id": "word-v182",
+      "text": "cerca",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v182.mp3"
+    },
+    {
+      "id": "word-v183",
+      "text": "lejos",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v183.mp3"
+    },
+    {
+      "id": "word-v184",
+      "text": "mucho",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v184.mp3"
+    },
+    {
+      "id": "word-v185",
+      "text": "poco",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v185.mp3"
+    },
+    {
+      "id": "word-v186",
+      "text": "persona",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v186.mp3"
+    },
+    {
+      "id": "word-v187",
+      "text": "hombre",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v187.mp3"
+    },
+    {
+      "id": "word-v188",
+      "text": "mujer",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v188.mp3"
+    },
+    {
+      "id": "word-v189",
+      "text": "familia",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v189.mp3"
+    },
+    {
+      "id": "word-v190",
+      "text": "amigo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v190.mp3"
+    },
+    {
+      "id": "word-v191",
+      "text": "casa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v191.mp3"
+    },
+    {
+      "id": "word-v192",
+      "text": "apartamento",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v192.mp3"
+    },
+    {
+      "id": "word-v193",
+      "text": "habitación",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v193.mp3"
+    },
+    {
+      "id": "word-v194",
+      "text": "baño",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v194.mp3"
+    },
+    {
+      "id": "word-v195",
+      "text": "agua",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v195.mp3"
+    },
+    {
+      "id": "word-v196",
+      "text": "comida",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v196.mp3"
+    },
+    {
+      "id": "word-v197",
+      "text": "café",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v197.mp3"
+    },
+    {
+      "id": "word-v198",
+      "text": "desayuno",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v198.mp3"
+    },
+    {
+      "id": "word-v199",
+      "text": "almuerzo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v199.mp3"
+    },
+    {
+      "id": "word-v200",
+      "text": "cena",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v200.mp3"
+    },
+    {
+      "id": "word-v201",
+      "text": "restaurante",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v201.mp3"
+    },
+    {
+      "id": "word-v202",
+      "text": "tienda",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v202.mp3"
+    },
+    {
+      "id": "word-v203",
+      "text": "supermercado",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v203.mp3"
+    },
+    {
+      "id": "word-v204",
+      "text": "dinero",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v204.mp3"
+    },
+    {
+      "id": "word-v205",
+      "text": "tarjeta",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v205.mp3"
+    },
+    {
+      "id": "word-v206",
+      "text": "teléfono",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v206.mp3"
+    },
+    {
+      "id": "word-v207",
+      "text": "computadora",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v207.mp3"
+    },
+    {
+      "id": "word-v208",
+      "text": "internet",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v208.mp3"
+    },
+    {
+      "id": "word-v209",
+      "text": "mensaje",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v209.mp3"
+    },
+    {
+      "id": "word-v210",
+      "text": "correo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v210.mp3"
+    },
+    {
+      "id": "word-v211",
+      "text": "libro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v211.mp3"
+    },
+    {
+      "id": "word-v212",
+      "text": "palabra",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v212.mp3"
+    },
+    {
+      "id": "word-v213",
+      "text": "idioma",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v213.mp3"
+    },
+    {
+      "id": "word-v214",
+      "text": "nombre",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v214.mp3"
+    },
+    {
+      "id": "word-v215",
+      "text": "dirección",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v215.mp3"
+    },
+    {
+      "id": "word-v216",
+      "text": "clima",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v216.mp3"
+    },
+    {
+      "id": "word-v217",
+      "text": "salud",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v217.mp3"
+    },
+    {
+      "id": "word-v218",
+      "text": "médico",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v218.mp3"
+    },
+    {
+      "id": "word-v219",
+      "text": "farmacia",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v219.mp3"
+    },
+    {
+      "id": "word-v220",
+      "text": "llave",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v220.mp3"
+    },
+    {
+      "id": "word-v221",
+      "text": "hola",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v221.mp3"
+    },
+    {
+      "id": "word-v222",
+      "text": "buenos días",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "word-v222.mp3"
+    },
+    {
+      "id": "word-v223",
+      "text": "buenas tardes",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v223.mp3"
+    },
+    {
+      "id": "word-v224",
+      "text": "buenas noches",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "word-v224.mp3"
+    },
+    {
+      "id": "word-v225",
+      "text": "por favor",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v225.mp3"
+    },
+    {
+      "id": "word-v226",
+      "text": "gracias",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v226.mp3"
+    },
+    {
+      "id": "word-v227",
+      "text": "con gusto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v227.mp3"
+    },
+    {
+      "id": "word-v228",
+      "text": "perdón",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v228.mp3"
+    },
+    {
+      "id": "word-v229",
+      "text": "permiso",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v229.mp3"
+    },
+    {
+      "id": "word-v230",
+      "text": "mucho gusto",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "word-v230.mp3"
+    },
+    {
+      "id": "word-v231",
+      "text": "¿cómo está?",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v231.mp3"
+    },
+    {
+      "id": "word-v232",
+      "text": "bienvenido",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v232.mp3"
+    },
+    {
+      "id": "word-v233",
+      "text": "listo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v233.mp3"
+    },
+    {
+      "id": "word-v234",
+      "text": "chévere",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v234.mp3"
+    },
+    {
+      "id": "word-v235",
+      "text": "tranquilo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v235.mp3"
+    },
+    {
+      "id": "word-v236",
+      "text": "claro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v236.mp3"
+    },
+    {
+      "id": "word-v237",
+      "text": "de acuerdo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v237.mp3"
+    },
+    {
+      "id": "word-v238",
+      "text": "qué pena",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v238.mp3"
+    },
+    {
+      "id": "word-v239",
+      "text": "tinto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v239.mp3"
+    },
+    {
+      "id": "word-v240",
+      "text": "parce",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v240.mp3"
+    },
+    {
+      "id": "word-v241",
+      "text": "empresa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v241.mp3"
+    },
+    {
+      "id": "word-v242",
+      "text": "equipo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v242.mp3"
+    },
+    {
+      "id": "word-v243",
+      "text": "colega",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v243.mp3"
+    },
+    {
+      "id": "word-v244",
+      "text": "jefe",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v244.mp3"
+    },
+    {
+      "id": "word-v245",
+      "text": "cliente",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v245.mp3"
+    },
+    {
+      "id": "word-v246",
+      "text": "proveedor",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v246.mp3"
+    },
+    {
+      "id": "word-v247",
+      "text": "oficina",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v247.mp3"
+    },
+    {
+      "id": "word-v248",
+      "text": "reunión",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v248.mp3"
+    },
+    {
+      "id": "word-v249",
+      "text": "proyecto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v249.mp3"
+    },
+    {
+      "id": "word-v250",
+      "text": "tarea",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v250.mp3"
+    },
+    {
+      "id": "word-v251",
+      "text": "objetivo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v251.mp3"
+    },
+    {
+      "id": "word-v252",
+      "text": "resultado",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v252.mp3"
+    },
+    {
+      "id": "word-v253",
+      "text": "plan",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v253.mp3"
+    },
+    {
+      "id": "word-v254",
+      "text": "estrategia",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v254.mp3"
+    },
+    {
+      "id": "word-v255",
+      "text": "prioridad",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v255.mp3"
+    },
+    {
+      "id": "word-v256",
+      "text": "plazo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v256.mp3"
+    },
+    {
+      "id": "word-v257",
+      "text": "fecha",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v257.mp3"
+    },
+    {
+      "id": "word-v258",
+      "text": "información",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v258.mp3"
+    },
+    {
+      "id": "word-v259",
+      "text": "documento",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v259.mp3"
+    },
+    {
+      "id": "word-v260",
+      "text": "informe",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v260.mp3"
+    },
+    {
+      "id": "word-v261",
+      "text": "datos",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v261.mp3"
+    },
+    {
+      "id": "word-v262",
+      "text": "sistema",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v262.mp3"
+    },
+    {
+      "id": "word-v263",
+      "text": "proceso",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v263.mp3"
+    },
+    {
+      "id": "word-v264",
+      "text": "riesgo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v264.mp3"
+    },
+    {
+      "id": "word-v265",
+      "text": "decisión",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v265.mp3"
+    },
+    {
+      "id": "word-v266",
+      "text": "producto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v266.mp3"
+    },
+    {
+      "id": "word-v267",
+      "text": "mercado",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v267.mp3"
+    },
+    {
+      "id": "word-v268",
+      "text": "servicio",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v268.mp3"
+    },
+    {
+      "id": "word-v269",
+      "text": "solución",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v269.mp3"
+    },
+    {
+      "id": "word-v270",
+      "text": "responsable",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v270.mp3"
+    },
+    {
+      "id": "word-v271",
+      "text": "presupuesto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v271.mp3"
+    },
+    {
+      "id": "word-v272",
+      "text": "ingreso",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v272.mp3"
+    },
+    {
+      "id": "word-v273",
+      "text": "gasto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v273.mp3"
+    },
+    {
+      "id": "word-v274",
+      "text": "flujo de caja",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "word-v274.mp3"
+    },
+    {
+      "id": "word-v275",
+      "text": "factura",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v275.mp3"
+    },
+    {
+      "id": "word-v276",
+      "text": "pago",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v276.mp3"
+    },
+    {
+      "id": "word-v277",
+      "text": "impuesto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v277.mp3"
+    },
+    {
+      "id": "word-v278",
+      "text": "cuenta",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v278.mp3"
+    },
+    {
+      "id": "word-v279",
+      "text": "banco",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v279.mp3"
+    },
+    {
+      "id": "word-v280",
+      "text": "saldo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v280.mp3"
+    },
+    {
+      "id": "word-v281",
+      "text": "deuda",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v281.mp3"
+    },
+    {
+      "id": "word-v282",
+      "text": "inversión",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v282.mp3"
+    },
+    {
+      "id": "word-v283",
+      "text": "utilidad",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v283.mp3"
+    },
+    {
+      "id": "word-v284",
+      "text": "pérdida",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v284.mp3"
+    },
+    {
+      "id": "word-v285",
+      "text": "margen",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v285.mp3"
+    },
+    {
+      "id": "word-v286",
+      "text": "costo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v286.mp3"
+    },
+    {
+      "id": "word-v287",
+      "text": "precio",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v287.mp3"
+    },
+    {
+      "id": "word-v288",
+      "text": "venta",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v288.mp3"
+    },
+    {
+      "id": "word-v289",
+      "text": "auditoría",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v289.mp3"
+    },
+    {
+      "id": "word-v290",
+      "text": "cierre",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v290.mp3"
+    },
+    {
+      "id": "word-v291",
+      "text": "aeropuerto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v291.mp3"
+    },
+    {
+      "id": "word-v292",
+      "text": "vuelo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v292.mp3"
+    },
+    {
+      "id": "word-v293",
+      "text": "pasaporte",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v293.mp3"
+    },
+    {
+      "id": "word-v294",
+      "text": "hotel",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v294.mp3"
+    },
+    {
+      "id": "word-v295",
+      "text": "taxi",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v295.mp3"
+    },
+    {
+      "id": "word-v296",
+      "text": "transporte",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v296.mp3"
+    },
+    {
+      "id": "word-v297",
+      "text": "mapa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v297.mp3"
+    },
+    {
+      "id": "word-v298",
+      "text": "policía",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v298.mp3"
+    },
+    {
+      "id": "word-v299",
+      "text": "emergencia",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v299.mp3"
+    },
+    {
+      "id": "word-v300",
+      "text": "seguridad",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "word-v300.mp3"
+    },
+    {
+      "id": "grammar-g01-sound-spelling-01",
+      "text": "Bogotá",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g01-sound-spelling-01.mp3"
+    },
+    {
+      "id": "grammar-g01-sound-spelling-02",
+      "text": "pero, perro",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g01-sound-spelling-02.mp3"
+    },
+    {
+      "id": "grammar-g01-sound-spelling-03",
+      "text": "Quiero café.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g01-sound-spelling-03.mp3"
+    },
+    {
+      "id": "grammar-g02-core-sentence-01",
+      "text": "Trabajo con el equipo local.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g02-core-sentence-01.mp3"
+    },
+    {
+      "id": "grammar-g02-core-sentence-02",
+      "text": "El equipo prepara el informe.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g02-core-sentence-02.mp3"
+    },
+    {
+      "id": "grammar-g03-gender-articles-01",
+      "text": "Necesito un informe claro.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g03-gender-articles-01.mp3"
+    },
+    {
+      "id": "grammar-g03-gender-articles-02",
+      "text": "Las reuniones son cortas.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g03-gender-articles-02.mp3"
+    },
+    {
+      "id": "grammar-g03-gender-articles-03",
+      "text": "el día, la mano",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g03-gender-articles-03.mp3"
+    },
+    {
+      "id": "grammar-g04-ser-estar-01",
+      "text": "Soy responsable de finanzas.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g04-ser-estar-01.mp3"
+    },
+    {
+      "id": "grammar-g04-ser-estar-02",
+      "text": "La oficina está en Bogotá.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g04-ser-estar-02.mp3"
+    },
+    {
+      "id": "grammar-g04-ser-estar-03",
+      "text": "El informe está listo.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g04-ser-estar-03.mp3"
+    },
+    {
+      "id": "grammar-g05-hay-tener-01",
+      "text": "Hay una reunión a las nueve.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g05-hay-tener-01.mp3"
+    },
+    {
+      "id": "grammar-g05-hay-tener-02",
+      "text": "Tenemos dos opciones.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g05-hay-tener-02.mp3"
+    },
+    {
+      "id": "grammar-g05-hay-tener-03",
+      "text": "Tengo que revisar el presupuesto.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g05-hay-tener-03.mp3"
+    },
+    {
+      "id": "grammar-g06-present-regular-01",
+      "text": "Reviso los números cada mañana.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g06-present-regular-01.mp3"
+    },
+    {
+      "id": "grammar-g06-present-regular-02",
+      "text": "Usted trabaja con ventas.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g06-present-regular-02.mp3"
+    },
+    {
+      "id": "grammar-g06-present-regular-03",
+      "text": "Vivimos cerca de la oficina.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g06-present-regular-03.mp3"
+    },
+    {
+      "id": "grammar-g07-core-irregulars-01",
+      "text": "Quiero entender el mercado.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g07-core-irregulars-01.mp3"
+    },
+    {
+      "id": "grammar-g07-core-irregulars-02",
+      "text": "¿Puede repetir, por favor?",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g07-core-irregulars-02.mp3"
+    },
+    {
+      "id": "grammar-g07-core-irregulars-03",
+      "text": "Voy a llamar al proveedor.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g07-core-irregulars-03.mp3"
+    },
+    {
+      "id": "grammar-g08-negation-questions-01",
+      "text": "No entiendo esta parte.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g08-negation-questions-01.mp3"
+    },
+    {
+      "id": "grammar-g08-negation-questions-02",
+      "text": "¿Cuándo necesita el informe?",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g08-negation-questions-02.mp3"
+    },
+    {
+      "id": "grammar-g08-negation-questions-03",
+      "text": "¿Cómo se dice cash flow en español?",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g08-negation-questions-03.mp3"
+    },
+    {
+      "id": "grammar-g09-agreement-01",
+      "text": "Es una decisión importante.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g09-agreement-01.mp3"
+    },
+    {
+      "id": "grammar-g09-agreement-02",
+      "text": "Necesitamos datos correctos.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g09-agreement-02.mp3"
+    },
+    {
+      "id": "grammar-g09-agreement-03",
+      "text": "Es un buen resultado.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g09-agreement-03.mp3"
+    },
+    {
+      "id": "grammar-g10-object-pronouns-01",
+      "text": "Lo reviso esta tarde.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g10-object-pronouns-01.mp3"
+    },
+    {
+      "id": "grammar-g10-object-pronouns-02",
+      "text": "Le envío el informe a Laura.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g10-object-pronouns-02.mp3"
+    },
+    {
+      "id": "grammar-g10-object-pronouns-03",
+      "text": "¿Me puede ayudar?",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g10-object-pronouns-03.mp3"
+    },
+    {
+      "id": "grammar-g11-gustar-01",
+      "text": "Me gusta caminar por Bogotá.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g11-gustar-01.mp3"
+    },
+    {
+      "id": "grammar-g11-gustar-02",
+      "text": "Me gustan las conversaciones directas.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g11-gustar-02.mp3"
+    },
+    {
+      "id": "grammar-g11-gustar-03",
+      "text": "Prefiero una reunión corta.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "grammar-g11-gustar-03.mp3"
+    },
+    {
+      "id": "grammar-g12-time-direction-01",
+      "text": "La reunión es a las diez.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g12-time-direction-01.mp3"
+    },
+    {
+      "id": "grammar-g12-time-direction-02",
+      "text": "El informe es para el viernes.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g12-time-direction-02.mp3"
+    },
+    {
+      "id": "grammar-g12-time-direction-03",
+      "text": "Ayer llegó el cliente.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "grammar-g12-time-direction-03.mp3"
+    },
+    {
+      "id": "reading-r01-morning-bogota-part-01",
+      "text": "Es lunes. Estoy en Bogotá. La mañana está fresca y el cielo está gris.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r01-morning-bogota-part-01.mp3"
+    },
+    {
+      "id": "reading-r01-morning-bogota-part-02",
+      "text": "Tengo café, agua y un mapa. La oficina está cerca. Camino diez minutos. Digo: «Buenos días». Una colega responde: «Buenos días, bienvenido».",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r01-morning-bogota-part-02.mp3"
+    },
+    {
+      "id": "reading-r01-morning-bogota-focus-01",
+      "text": "la mañana",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r01-morning-bogota-focus-01.mp3"
+    },
+    {
+      "id": "reading-r01-morning-bogota-focus-02",
+      "text": "fresco, fresca",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r01-morning-bogota-focus-02.mp3"
+    },
+    {
+      "id": "reading-r01-morning-bogota-focus-03",
+      "text": "cerca",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r01-morning-bogota-focus-03.mp3"
+    },
+    {
+      "id": "reading-r01-morning-bogota-focus-04",
+      "text": "caminar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r01-morning-bogota-focus-04.mp3"
+    },
+    {
+      "id": "reading-r01-morning-bogota-focus-05",
+      "text": "bienvenido, bienvenida",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r01-morning-bogota-focus-05.mp3"
+    },
+    {
+      "id": "reading-r02-route-to-office-part-01",
+      "text": "Vivo en un apartamento pequeño en Bogotá. A las siete, desayuno arepa, huevo y café. Después salgo para la oficina.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r02-route-to-office-part-01.mp3"
+    },
+    {
+      "id": "reading-r02-route-to-office-part-02",
+      "text": "Hoy no camino porque llueve. Tomo un bus. No conozco bien la ruta y pregunto: «Disculpe, ¿este bus va al centro?». Una señora dice: «Sí, pero hay mucho tráfico». Llego a las ocho y veinte.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r02-route-to-office-part-02.mp3"
+    },
+    {
+      "id": "reading-r02-route-to-office-focus-01",
+      "text": "desayunar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r02-route-to-office-focus-01.mp3"
+    },
+    {
+      "id": "reading-r02-route-to-office-focus-02",
+      "text": "llover, llueve",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r02-route-to-office-focus-02.mp3"
+    },
+    {
+      "id": "reading-r02-route-to-office-focus-03",
+      "text": "la ruta",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r02-route-to-office-focus-03.mp3"
+    },
+    {
+      "id": "reading-r02-route-to-office-focus-04",
+      "text": "el tráfico",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r02-route-to-office-focus-04.mp3"
+    },
+    {
+      "id": "reading-r02-route-to-office-focus-05",
+      "text": "llegar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r02-route-to-office-focus-05.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-part-01",
+      "text": "En este escenario ficticio, soy un nuevo responsable de equipo en una empresa de tecnología. Mi primera reunión es con el equipo local. Hay seis personas en la sala y dos colegas participan por videollamada.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-part-01.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-part-02",
+      "text": "Empiezo con una presentación breve: «Buenos días. Soy Alex. Quiero aprender de ustedes y trabajar con claridad». Después, cada persona explica su función. No entiendo una palabra y pregunto: «¿Puede repetir más despacio, por favor?». La colega repite y yo tomo una nota.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-part-02.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-part-03",
+      "text": "Al final digo: «Gracias. Esta semana voy a escuchar y hacer muchas preguntas».",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-part-03.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-focus-01",
+      "text": "el líder, la líder",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-focus-01.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-focus-02",
+      "text": "la sala",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-focus-02.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-focus-03",
+      "text": "breve",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-focus-03.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-focus-04",
+      "text": "la función",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-focus-04.mp3"
+    },
+    {
+      "id": "reading-r03-first-team-meeting-focus-05",
+      "text": "más despacio",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r03-first-team-meeting-focus-05.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-part-01",
+      "text": "Es martes y el equipo prepara el cierre mensual. Natalia revisa las ventas, Andrés confirma los pagos y yo comparo el presupuesto con los resultados. Los datos generales son correctos, pero hay una diferencia pequeña en una cuenta.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r04-monthly-close-part-01.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-part-02",
+      "text": "No buscamos una respuesta rápida sin evidencia. Primero preguntamos qué pasó y de dónde sale ese dato. Andrés encuentra un archivo nuevo. Me lo envía y lo reviso con Natalia. La diferencia no es un error de venta; es un pago registrado en otra fecha.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r04-monthly-close-part-02.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-part-03",
+      "text": "Actualizamos el informe y escribimos una explicación corta. Antes de la reunión, pregunto: «Entonces, ¿el monto y la fecha están confirmados?». Natalia responde que sí y muestra la fuente. Ahora el mensaje para la dirección es simple y preciso.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r04-monthly-close-part-03.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-focus-01",
+      "text": "el cierre mensual",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r04-monthly-close-focus-01.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-focus-02",
+      "text": "el presupuesto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r04-monthly-close-focus-02.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-focus-03",
+      "text": "la diferencia",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r04-monthly-close-focus-03.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-focus-04",
+      "text": "la cuenta",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r04-monthly-close-focus-04.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-focus-05",
+      "text": "la fuente",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r04-monthly-close-focus-05.mp3"
+    },
+    {
+      "id": "reading-r04-monthly-close-focus-06",
+      "text": "preciso, precisa",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r04-monthly-close-focus-06.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-part-01",
+      "text": "En esta práctica ficticia, el equipo de una empresa de productos electrónicos prepara un plan financiero para varios mercados de América Latina. La conversación empieza con tres preguntas: ¿Qué necesita cada mercado? ¿Qué riesgos podemos controlar? ¿Qué información todavía falta?",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-part-01.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-part-02",
+      "text": "Camila explica que las ventas crecen, pero los costos de distribución también cambian. Jorge presenta dos opciones de presupuesto. La primera permite una campaña grande; la segunda conserva más efectivo para los próximos meses. Yo no elijo de inmediato. Quiero entender los supuestos y escuchar al equipo comercial.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-part-02.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-part-03",
+      "text": "Pregunto: «¿Qué resultado esperamos de la campaña? ¿Cuándo recibimos los datos nuevos? ¿Cómo cambia el flujo de caja?». Después de revisar las respuestas, proponemos una prueba pequeña en una ciudad. El equipo va a medir las ventas, el margen y el inventario durante cuatro semanas.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-part-03.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-part-04",
+      "text": "La decisión es prudente: aprender primero y ampliar después si la evidencia es positiva.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-part-04.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-focus-01",
+      "text": "el mercado",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-focus-01.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-focus-02",
+      "text": "la distribución",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-focus-02.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-focus-03",
+      "text": "el efectivo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-focus-03.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-focus-04",
+      "text": "el supuesto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-focus-04.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-focus-05",
+      "text": "el flujo de caja",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-focus-05.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-focus-06",
+      "text": "el margen",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-focus-06.mp3"
+    },
+    {
+      "id": "reading-r05-planning-latin-america-focus-07",
+      "text": "ampliar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r05-planning-latin-america-focus-07.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-part-01",
+      "text": "En un escenario ficticio, coordino un equipo regional en América Latina. El viernes por la mañana recibimos una noticia difícil: un proveedor importante puede entregar tarde. El retraso quizá afecte el inventario de productos en dos mercados.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-part-01.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-part-02",
+      "text": "En la primera reunión hay opiniones diferentes. Ventas quiere comprar más unidades inmediatamente. Operaciones prefiere esperar una confirmación. Finanzas necesita entender el costo, el plazo y el impacto en el efectivo. Mi trabajo no es hablar más que todos; es organizar la conversación y hacer visibles las decisiones.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-part-02.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-part-03",
+      "text": "Divido el problema en tres partes. Primero, el equipo revisa qué información está confirmada y qué información es solo una estimación. Segundo, calculamos dos escenarios: una entrega con una semana de retraso y otra con tres semanas. Tercero, acordamos quién llama al proveedor, quién actualiza las ventas y quién revisa la caja.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-part-03.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-part-04",
+      "text": "Al final no tenemos una respuesta perfecta, pero sí un plan claro. Vamos a revisar los datos el lunes. Si el riesgo aumenta, usamos la opción más conservadora. Si el plazo de entrega mejora, evitamos un gasto innecesario.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-part-04.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-part-05",
+      "text": "Para mí, liderar bien significa escuchar, verificar y explicar una decisión de manera sencilla.",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-part-05.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-01",
+      "text": "el proveedor",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-01.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-02",
+      "text": "el retraso",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-02.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-03",
+      "text": "el plazo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-03.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-04",
+      "text": "la estimación",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-04.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-05",
+      "text": "acordar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-05.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-06",
+      "text": "la caja",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-06.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-07",
+      "text": "conservador, conservadora",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-07.mp3"
+    },
+    {
+      "id": "reading-r06-calm-leadership-focus-08",
+      "text": "innecesario, innecesaria",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "reading-r06-calm-leadership-focus-08.mp3"
+    },
+    {
+      "id": "memory-md-survival-01",
+      "text": "Buenos días.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-01.mp3"
+    },
+    {
+      "id": "memory-md-survival-02",
+      "text": "Muchas gracias.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-02.mp3"
+    },
+    {
+      "id": "memory-md-survival-03",
+      "text": "Disculpe.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-03.mp3"
+    },
+    {
+      "id": "memory-md-survival-04",
+      "text": "No entiendo.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-04.mp3"
+    },
+    {
+      "id": "memory-md-survival-05",
+      "text": "¿Puede repetir?",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-05.mp3"
+    },
+    {
+      "id": "memory-md-survival-06",
+      "text": "Más despacio, por favor.",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-06.mp3"
+    },
+    {
+      "id": "memory-md-survival-07",
+      "text": "¿Cómo se dice...?",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-07.mp3"
+    },
+    {
+      "id": "memory-md-survival-08",
+      "text": "¿Qué significa...?",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-survival-08.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-01",
+      "text": "la mañana",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-bogota-life-01.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-02",
+      "text": "el café",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-bogota-life-02.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-03",
+      "text": "la oficina",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "memory-md-bogota-life-03.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-04",
+      "text": "la ruta",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-bogota-life-04.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-05",
+      "text": "el tráfico",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-bogota-life-05.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-06",
+      "text": "llueve",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-bogota-life-06.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-07",
+      "text": "cerca",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-bogota-life-07.mp3"
+    },
+    {
+      "id": "memory-md-bogota-life-08",
+      "text": "llegar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-bogota-life-08.mp3"
+    },
+    {
+      "id": "memory-md-finance-01",
+      "text": "el presupuesto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-01.mp3"
+    },
+    {
+      "id": "memory-md-finance-02",
+      "text": "las ventas",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-02.mp3"
+    },
+    {
+      "id": "memory-md-finance-03",
+      "text": "el costo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-03.mp3"
+    },
+    {
+      "id": "memory-md-finance-04",
+      "text": "el efectivo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-04.mp3"
+    },
+    {
+      "id": "memory-md-finance-05",
+      "text": "el pago",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-05.mp3"
+    },
+    {
+      "id": "memory-md-finance-06",
+      "text": "el flujo de caja",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-06.mp3"
+    },
+    {
+      "id": "memory-md-finance-07",
+      "text": "el margen",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-07.mp3"
+    },
+    {
+      "id": "memory-md-finance-08",
+      "text": "el riesgo",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-finance-08.mp3"
+    },
+    {
+      "id": "memory-md-leadership-01",
+      "text": "escuchar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-leadership-01.mp3"
+    },
+    {
+      "id": "memory-md-leadership-02",
+      "text": "verificar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-leadership-02.mp3"
+    },
+    {
+      "id": "memory-md-leadership-03",
+      "text": "explicar",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-leadership-03.mp3"
+    },
+    {
+      "id": "memory-md-leadership-04",
+      "text": "la decisión",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "memory-md-leadership-04.mp3"
+    },
+    {
+      "id": "memory-md-leadership-05",
+      "text": "la evidencia",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "memory-md-leadership-05.mp3"
+    },
+    {
+      "id": "memory-md-leadership-06",
+      "text": "el supuesto",
+      "voice": "Marisol",
+      "voiceType": "es_female_ht_mx_f6_uranus_bigtts",
+      "file": "memory-md-leadership-06.mp3"
+    },
+    {
+      "id": "memory-md-leadership-07",
+      "text": "la próxima acción",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "memory-md-leadership-07.mp3"
+    },
+    {
+      "id": "memory-md-leadership-08",
+      "text": "¿Quién es responsable?",
+      "voice": "Dani",
+      "voiceType": "es_male_dani_uranus_bigtts",
+      "file": "memory-md-leadership-08.mp3"
+    }
+  ]
+}
