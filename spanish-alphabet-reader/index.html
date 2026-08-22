@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff8ef">
-  <meta name="description" content="Tap Spanish letters to hear their Latin American pronunciation.">
-  <title>Spanish Alphabet Reader</title>
+  <meta name="description" content="Hear Spanish letter names, then learn Latin American Spanish phonics through vowels, syllables, spelling rules, and stress.">
+  <title>Spanish Alphabet & Phonics</title>
   <style>
     :root {
       color-scheme: light;
@@ -116,6 +116,16 @@
       color: var(--muted);
       font-size: clamp(1rem, 2vw, 1.18rem);
       line-height: 1.65;
+    }
+
+    .phonics-jump {
+      display: inline-flex;
+      margin-top: 18px;
+      color: var(--green);
+      font-size: .84rem;
+      font-weight: 850;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(35, 89, 79, .35);
     }
 
     .controls {
@@ -247,7 +257,7 @@
       transform: translateY(-3px);
     }
 
-    .card:focus-visible, .control-button:focus-visible, select:focus-visible {
+    .card:focus-visible, .control-button:focus-visible, .phonics-say:focus-visible, .phonics-jump:focus-visible, select:focus-visible {
       outline: 3px solid rgba(35, 89, 79, .28);
       outline-offset: 3px;
     }
@@ -293,6 +303,258 @@
 
     .active .example { color: rgba(255, 255, 255, .78); }
 
+    .phonics {
+      padding: 72px 0 76px;
+      color: white;
+      background:
+        radial-gradient(circle at 85% 12%, rgba(246, 188, 53, .19), transparent 24rem),
+        radial-gradient(circle at 6% 88%, rgba(234, 107, 59, .18), transparent 22rem),
+        var(--green);
+    }
+
+    .phonics-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 410px);
+      align-items: end;
+      gap: 34px;
+      margin-bottom: 28px;
+    }
+
+    .phonics-kicker {
+      margin: 0 0 10px;
+      color: var(--yellow);
+      font-size: .76rem;
+      font-weight: 850;
+      letter-spacing: .16em;
+    }
+
+    .phonics h2 {
+      max-width: 700px;
+      margin: 0;
+      font-size: clamp(2.7rem, 6vw, 5.4rem);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+
+    .phonics h2 em {
+      color: var(--yellow);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+    }
+
+    .phonics-intro {
+      margin: 0;
+      color: rgba(255, 255, 255, .74);
+      line-height: 1.65;
+    }
+
+    .baseline-pill {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      color: #173f38;
+      background: var(--yellow);
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .phonics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .lesson-card {
+      padding: 24px;
+      color: var(--ink);
+      background: rgba(255, 250, 243, .97);
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 22px;
+      box-shadow: 0 18px 34px rgba(5, 29, 25, .18);
+    }
+
+    .lesson-number {
+      display: inline-grid;
+      width: 30px;
+      height: 30px;
+      margin-bottom: 14px;
+      place-items: center;
+      color: white;
+      background: var(--orange);
+      border-radius: 10px;
+      font-size: .77rem;
+      font-weight: 900;
+      transform: rotate(-3deg);
+    }
+
+    .lesson-card h3 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      letter-spacing: -.035em;
+    }
+
+    .lesson-copy {
+      margin: 8px 0 18px;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
+    }
+
+    .sound-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sound-button, .syllable-button, .rule-button, .word-button {
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+
+    .sound-button:hover, .syllable-button:hover, .rule-button:hover, .word-button:hover {
+      border-color: rgba(234, 107, 59, .5);
+      box-shadow: 0 8px 18px rgba(78, 52, 34, .09);
+      transform: translateY(-2px);
+    }
+
+    .phonics-say.active {
+      color: white;
+      background: var(--orange);
+      border-color: var(--orange);
+      box-shadow: 0 10px 22px rgba(196, 73, 28, .22);
+      transform: translateY(-2px);
+    }
+
+    .sound-button {
+      display: grid;
+      min-width: 92px;
+      padding: 12px 14px;
+      gap: 3px;
+      border-radius: 13px;
+      text-align: left;
+    }
+
+    .sound-main {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.3rem;
+      font-weight: 750;
+    }
+
+    .sound-example {
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .phonics-say.active .sound-example, .phonics-say.active .rule-detail, .phonics-say.active .play-hint {
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .syllable-block {
+      display: grid;
+      gap: 10px;
+    }
+
+    .syllable-row {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+    }
+
+    .syllable-label {
+      color: var(--orange);
+      font: 800 1.15rem/1 Georgia, "Times New Roman", serif;
+      text-align: center;
+    }
+
+    .syllable-buttons {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .syllable-button {
+      min-height: 42px;
+      padding: 7px 5px;
+      border-radius: 10px;
+      font-weight: 850;
+    }
+
+    .rule-stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .rule-button {
+      display: grid;
+      grid-template-columns: minmax(76px, auto) minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 13px;
+      text-align: left;
+    }
+
+    .rule-symbol {
+      color: var(--orange);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .rule-detail {
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.4;
+    }
+
+    .play-hint {
+      color: var(--green);
+      font-size: .69rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    .stress-rule {
+      margin: 0 0 13px;
+      padding: 12px 14px;
+      color: #664b27;
+      background: rgba(246, 188, 53, .15);
+      border: 1px solid rgba(199, 137, 16, .18);
+      border-radius: 12px;
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+
+    .word-button {
+      display: grid;
+      min-width: 110px;
+      padding: 11px 13px;
+      gap: 2px;
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .word-button strong { font-size: .95rem; }
+    .word-button small { color: var(--muted); font-size: .69rem; }
+    .phonics-say.active small { color: rgba(255, 255, 255, .8); }
+
+    .phonics-status {
+      min-height: 22px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, .72);
+      font-size: .78rem;
+      text-align: center;
+    }
+
     footer {
       display: flex;
       align-items: flex-start;
@@ -315,6 +577,8 @@
       .controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .audio-status { grid-column: 1 / -1; }
       .grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .phonics-heading { grid-template-columns: 1fr; }
+      .phonics-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
@@ -330,6 +594,12 @@
       .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
       .card { min-height: 140px; padding: 14px 12px 12px; border-radius: 15px; }
       .letter { font-size: 2.55rem; }
+      .phonics { padding: 54px 0 58px; }
+      .phonics-heading { gap: 20px; }
+      .lesson-card { padding: 19px 16px; border-radius: 18px; }
+      .rule-button { grid-template-columns: 70px minmax(0, 1fr); }
+      .play-hint { display: none; }
+      .sound-button { min-width: calc(50% - 4px); }
       footer { display: grid; }
     }
 
@@ -351,6 +621,7 @@
           <p class="eyebrow">SPANISH · ALPHABET</p>
           <h1>Tap a letter.<br><em>Hear Spanish.</em></h1>
           <p class="subtitle">Tap a letter—or press A–Z on your keyboard—to hear its name in a real Latin American voice. The complete recording is prepared when the page opens, so every letter responds immediately.</p>
+          <a class="phonics-jump" href="#phonics">Continue to Spanish Phonics ↓</a>
         </div>
 
         <div class="controls" aria-label="Playback controls">
@@ -369,16 +640,99 @@
     </div>
   </header>
 
-  <main class="alphabet">
+  <main class="alphabet" id="alphabet">
     <div class="shell">
       <p class="guide"><strong>Mac keyboard:</strong> Press <kbd>A–Z</kbd> to hear a letter, <kbd>⌥N</kbd> for Ñ, <kbd>⌥U</kbd> for Ü, <kbd>Space</kbd> to play all, and <kbd>Esc</kbd> to stop.<br><strong>Ü pronunciation guide:</strong> Ü is not a separate letter in the Spanish alphabet. The two dots show that the <em>u</em> is pronounced in words such as <em>pingüino</em>.</p>
       <div class="grid" id="alphabet-grid" aria-label="Spanish alphabet"></div>
     </div>
   </main>
 
+  <section class="phonics" id="phonics" aria-labelledby="phonics-title">
+    <div class="shell">
+      <header class="phonics-heading">
+        <div>
+          <p class="phonics-kicker">SPANISH · PHONICS</p>
+          <h2 id="phonics-title">Read what<br><em>you see.</em></h2>
+        </div>
+        <div>
+          <span class="baseline-pill">Latin American baseline</span>
+          <p class="phonics-intro">Spanish spelling is highly regular. Start with five steady vowels, combine them into syllables, then learn the small set of letters that change with context. Tap any example to hear your device’s Spanish voice.</p>
+        </div>
+      </header>
+
+      <div class="phonics-grid">
+        <article class="lesson-card">
+          <span class="lesson-number">01</span>
+          <h3>Five steady vowels</h3>
+          <p class="lesson-copy">The vowel sound stays clear and short. Unlike English, one written vowel does not keep changing its identity.</p>
+          <div class="sound-list">
+            <button class="sound-button phonics-say" type="button" data-say="a. casa" aria-label="Hear A sound in casa"><span class="sound-main" lang="es">A /a/</span><span class="sound-example" lang="es">casa</span></button>
+            <button class="sound-button phonics-say" type="button" data-say="e. mesa" aria-label="Hear E sound in mesa"><span class="sound-main" lang="es">E /e/</span><span class="sound-example" lang="es">mesa</span></button>
+            <button class="sound-button phonics-say" type="button" data-say="i. vino" aria-label="Hear I sound in vino"><span class="sound-main" lang="es">I /i/</span><span class="sound-example" lang="es">vino</span></button>
+            <button class="sound-button phonics-say" type="button" data-say="o. sol" aria-label="Hear O sound in sol"><span class="sound-main" lang="es">O /o/</span><span class="sound-example" lang="es">sol</span></button>
+            <button class="sound-button phonics-say" type="button" data-say="u. luna" aria-label="Hear U sound in luna"><span class="sound-main" lang="es">U /u/</span><span class="sound-example" lang="es">luna</span></button>
+          </div>
+        </article>
+
+        <article class="lesson-card">
+          <span class="lesson-number">02</span>
+          <h3>Build clean syllables</h3>
+          <p class="lesson-copy">Join one consonant to each vowel. Keep every beat even: consonant + vowel, without adding an English-style extra sound.</p>
+          <div class="syllable-block" aria-label="Spanish syllable practice">
+            <div class="syllable-row"><span class="syllable-label">M</span><div class="syllable-buttons">
+              <button class="syllable-button phonics-say" type="button" data-say="ma" lang="es">ma</button><button class="syllable-button phonics-say" type="button" data-say="me" lang="es">me</button><button class="syllable-button phonics-say" type="button" data-say="mi" lang="es">mi</button><button class="syllable-button phonics-say" type="button" data-say="mo" lang="es">mo</button><button class="syllable-button phonics-say" type="button" data-say="mu" lang="es">mu</button>
+            </div></div>
+            <div class="syllable-row"><span class="syllable-label">P</span><div class="syllable-buttons">
+              <button class="syllable-button phonics-say" type="button" data-say="pa" lang="es">pa</button><button class="syllable-button phonics-say" type="button" data-say="pe" lang="es">pe</button><button class="syllable-button phonics-say" type="button" data-say="pi" lang="es">pi</button><button class="syllable-button phonics-say" type="button" data-say="po" lang="es">po</button><button class="syllable-button phonics-say" type="button" data-say="pu" lang="es">pu</button>
+            </div></div>
+            <div class="syllable-row"><span class="syllable-label">L</span><div class="syllable-buttons">
+              <button class="syllable-button phonics-say" type="button" data-say="la" lang="es">la</button><button class="syllable-button phonics-say" type="button" data-say="le" lang="es">le</button><button class="syllable-button phonics-say" type="button" data-say="li" lang="es">li</button><button class="syllable-button phonics-say" type="button" data-say="lo" lang="es">lo</button><button class="syllable-button phonics-say" type="button" data-say="lu" lang="es">lu</button>
+            </div></div>
+            <div class="syllable-row"><span class="syllable-label">S</span><div class="syllable-buttons">
+              <button class="syllable-button phonics-say" type="button" data-say="sa" lang="es">sa</button><button class="syllable-button phonics-say" type="button" data-say="se" lang="es">se</button><button class="syllable-button phonics-say" type="button" data-say="si" lang="es">si</button><button class="syllable-button phonics-say" type="button" data-say="so" lang="es">so</button><button class="syllable-button phonics-say" type="button" data-say="su" lang="es">su</button>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="lesson-card">
+          <span class="lesson-number">03</span>
+          <h3>Letters that change</h3>
+          <p class="lesson-copy">These spellings depend on the vowel beside them. The rules below use the common Latin American pronunciation.</p>
+          <div class="rule-stack">
+            <button class="rule-button phonics-say" type="button" data-say="ca, ce, ci, co, cu. zapato"><span class="rule-symbol" lang="es">C · Z</span><span class="rule-detail"><strong>ca/co/cu</strong> = /k/ · <strong>ce/ci/z</strong> = /s/</span><span class="play-hint">▶ HEAR</span></button>
+            <button class="rule-button phonics-say" type="button" data-say="ga, ge, gi, go, gu"><span class="rule-symbol" lang="es">G</span><span class="rule-detail"><strong>ga/go/gu</strong> = /g/ · <strong>ge/gi</strong> = /x/</span><span class="play-hint">▶ HEAR</span></button>
+            <button class="rule-button phonics-say" type="button" data-say="que, qui. guerra, guitarra"><span class="rule-symbol" lang="es">QU · GU</span><span class="rule-detail">In <strong>que/qui/gue/gui</strong>, the written u is silent</span><span class="play-hint">▶ HEAR</span></button>
+            <button class="rule-button phonics-say" type="button" data-say="pingüino. vergüenza"><span class="rule-symbol" lang="es">GÜ</span><span class="rule-detail">The dots make the u audible: <strong>güe/güi</strong> = /gw/</span><span class="play-hint">▶ HEAR</span></button>
+            <button class="rule-button phonics-say" type="button" data-say="ja, je, ji, jo, ju"><span class="rule-symbol" lang="es">J</span><span class="rule-detail"><strong>ja/je/ji/jo/ju</strong> use the strong /x/ sound</span><span class="play-hint">▶ HEAR</span></button>
+          </div>
+        </article>
+
+        <article class="lesson-card">
+          <span class="lesson-number">04</span>
+          <h3>Special sounds & stress</h3>
+          <p class="lesson-copy">A few contrasts carry meaning. Regional accents may vary, but the spelling rules remain useful everywhere.</p>
+          <div class="rule-stack">
+            <button class="rule-button phonics-say" type="button" data-say="hola. ahora"><span class="rule-symbol" lang="es">H</span><span class="rule-detail">Normally silent in standard Spanish: <strong>hola · ahora</strong></span><span class="play-hint">▶ HEAR</span></button>
+            <button class="rule-button phonics-say" type="button" data-say="niño. mañana"><span class="rule-symbol" lang="es">Ñ /ɲ/</span><span class="rule-detail">One sound, like the middle of “canyon”</span><span class="play-hint">▶ HEAR</span></button>
+            <button class="rule-button phonics-say" type="button" data-say="pero. perro. caro. carro"><span class="rule-symbol" lang="es">R · RR</span><span class="rule-detail"><strong>pero</strong> uses /ɾ/ · <strong>perro</strong> uses trilled /r/</span><span class="play-hint">▶ HEAR</span></button>
+            <button class="rule-button phonics-say" type="button" data-say="baca. vaca. llave. yo"><span class="rule-symbol" lang="es">B/V · LL/Y</span><span class="rule-detail">B/V share one phoneme; LL/Y pronunciation varies by region</span><span class="play-hint">▶ HEAR</span></button>
+          </div>
+          <p class="stress-rule"><strong>Default stress:</strong> words ending in a vowel, <em>n</em>, or <em>s</em> stress the next-to-last syllable. Other endings stress the last. A written accent overrides the default.</p>
+          <div class="sound-list">
+            <button class="word-button phonics-say" type="button" data-say="casa"><strong lang="es">CA-sa</strong><small>vowel ending</small></button>
+            <button class="word-button phonics-say" type="button" data-say="hotel"><strong lang="es">ho-TEL</strong><small>other consonant</small></button>
+            <button class="word-button phonics-say" type="button" data-say="teléfono"><strong lang="es">te-LÉ-fo-no</strong><small>accent overrides</small></button>
+          </div>
+        </article>
+      </div>
+
+      <p class="phonics-status" id="phonics-status" aria-live="polite">Tap a syllable or word. Phonics audio uses your device’s Spanish system voice.</p>
+    </div>
+  </section>
+
   <footer class="shell">
     <strong>Listen · Repeat · Remember</strong>
-    <p>Voice: Ahoraes, from <a href="https://commons.wikimedia.org/wiki/File:Es-alphabet-LatinAm.ogg" target="_blank" rel="noreferrer">Wikimedia Commons</a>. The recording was split, trimmed, resampled, and combined for instant playback. Audio derivative licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>.</p>
+    <p>Alphabet voice: Ahoraes, from <a href="https://commons.wikimedia.org/wiki/File:Es-alphabet-LatinAm.ogg" target="_blank" rel="noreferrer">Wikimedia Commons</a>. The recording was split, trimmed, resampled, and combined for instant playback; the derivative is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>. Phonics examples use the Spanish speech voice installed on your device and are not part of the Ahoraes recording. Phonics references: <a href="https://www.rae.es/buen-uso-espa%C3%B1ol/el-seseo-y-el-ceceo" target="_blank" rel="noreferrer">RAE–ASALE</a> and the <a href="https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/03_pronunciacion_inventario_a1-a2.htm" target="_blank" rel="noreferrer">Instituto Cervantes A1–A2 inventory</a>.</p>
   </footer>
 
   <script>
@@ -416,6 +770,8 @@
     const status = document.querySelector("#audio-status");
     const playAllButton = document.querySelector("#play-all");
     const speedSelect = document.querySelector("#speed");
+    const phonicsStatus = document.querySelector("#phonics-status");
+    const phonicsButtons = [...document.querySelectorAll(".phonics-say")];
     const cardBySlug = new Map();
     const cardByLetter = new Map();
 
@@ -439,6 +795,7 @@
     let bufferPromise;
     let activeSources = new Set();
     let activeCards = [];
+    let activePhonicsButton;
     let playToken = 0;
 
     function getContext() {
@@ -487,15 +844,26 @@
       activeCards = [];
     }
 
+    function clearActivePhonics() {
+      activePhonicsButton?.classList.remove("active");
+      activePhonicsButton = undefined;
+    }
+
     function stopPlayback({ resetStatus = true } = {}) {
       playToken += 1;
+      const hadPhonics = Boolean(activePhonicsButton);
+      window.speechSynthesis?.cancel();
       for (const source of activeSources) {
         try { source.stop(); } catch (_) {}
       }
       activeSources.clear();
       clearActiveCards();
+      clearActivePhonics();
       playAllButton.textContent = "▶\u00a0\u00a0Play all";
       if (resetStatus && audioBuffer) status.textContent = "Audio ready";
+      if (phonicsStatus && (resetStatus || hadPhonics)) {
+        phonicsStatus.textContent = "Tap a syllable or word. Phonics audio uses your device’s Spanish system voice.";
+      }
     }
 
     function makeSource(context, buffer, speed) {
@@ -580,10 +948,59 @@
       }
     }
 
+    function getSpanishVoice() {
+      const voices = window.speechSynthesis?.getVoices() || [];
+      const preferredTags = ["es-MX", "es-US", "es-CO", "es-AR", "es-CL", "es-PE", "es-419"];
+      for (const tag of preferredTags) {
+        const match = voices.find((voice) => voice.lang.replace("_", "-").toLowerCase() === tag.toLowerCase());
+        if (match) return match;
+      }
+      return voices.find((voice) => voice.lang.toLowerCase().startsWith("es"));
+    }
+
+    function speakPhonics(button) {
+      const synth = window.speechSynthesis;
+      if (!synth || !window.SpeechSynthesisUtterance) {
+        phonicsStatus.textContent = "Spanish system speech is not available in this browser.";
+        return;
+      }
+
+      stopPlayback({ resetStatus: false });
+      const token = playToken;
+      const text = button.dataset.say;
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voice = getSpanishVoice();
+      if (voice) utterance.voice = voice;
+      utterance.lang = voice?.lang || "es-MX";
+      utterance.rate = Number(speedSelect.value);
+      activePhonicsButton = button;
+      button.classList.add("active");
+      phonicsStatus.textContent = `Speaking: ${text}`;
+
+      utterance.addEventListener("end", () => {
+        if (token !== playToken) return;
+        clearActivePhonics();
+        phonicsStatus.textContent = "Ready — choose another syllable or word.";
+      }, { once: true });
+
+      utterance.addEventListener("error", (event) => {
+        if (token !== playToken) return;
+        clearActivePhonics();
+        if (event.error !== "canceled" && event.error !== "interrupted") {
+          phonicsStatus.textContent = "That example could not play — tap to try again.";
+        }
+      }, { once: true });
+
+      synth.speak(utterance);
+    }
+
     playAllButton.addEventListener("click", playAll);
     document.querySelector("#stop").addEventListener("click", () => stopPlayback());
+    for (const button of phonicsButtons) {
+      button.addEventListener("click", () => speakPhonics(button));
+    }
     speedSelect.addEventListener("change", () => {
-      if (activeSources.size) stopPlayback();
+      if (activeSources.size || activePhonicsButton) stopPlayback();
     });
 
     window.addEventListener("keydown", (event) => {
