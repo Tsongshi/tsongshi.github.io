@@ -3,8 +3,10 @@ Spanish Phonics audio
 
 Generated on 2026-08-23 with Volcengine Doubao Speech Synthesis 2.0.
 Resource: seed-tts-2.0
-Voice: Vivi 2.0 (zh_female_vv_uranus_bigtts)
+Voice: Marisol, Mexican Spanish 2.0 (es_female_ht_mx_f6_uranus_bigtts)
+Speech rate: -20
 Format: MP3, 24 kHz, mono, 64 kbps
 
-The exact synthesis inputs are listed in manifest.json. No credentials or
-runtime API calls are included in this public website.
+The exact synthesis inputs are listed in manifest.json. Short syllables include
+terminal punctuation to keep the voice in Spanish. No credentials or runtime
+API calls are included in this public website.
