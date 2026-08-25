@@ -24,6 +24,9 @@
     "title": "西班牙语字母点读",
     "path": "spanish-alphabet-reader/",
     "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 1,
+    "seriesStage": "发音基础",
     "date": "2026-08-12",
     "description": "点击字母即可听拉美真人发音。音频预加载并在内存中解码，支持逐字母点读、连续播放和三档语速。"
   },
@@ -31,6 +34,9 @@
     "title": "Paso a Paso · 逐句语言练习",
     "path": "paso-a-paso-spanish/",
     "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 3,
+    "seriesStage": "逐句练习",
     "date": "2026-08-23",
     "description": "把西语或其他语言句子拆成小块，逐段听读、跟读、录音，再从头重组；历史与录音只保留在当前设备。"
   },
@@ -38,6 +44,9 @@
     "title": "Puente 300 · 西班牙语启动台",
     "path": "puente-300/",
     "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 2,
+    "seriesStage": "14 天启动",
     "date": "2026-08-23",
     "description": "14 天建立 300 个实用西班牙语词与短语，配合最低限度语法、AI 对话、早期阅读和四类语言能力练习；进度保存在当前浏览器。"
   }

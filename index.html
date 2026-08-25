@@ -225,14 +225,209 @@
     letter-spacing: 0.04em;
   }
 
-  #works {
+  #collections { margin-top: 24px; }
+
+  .spanish-panel {
+    overflow: hidden;
+    padding: 28px 26px 10px;
+    border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line));
+    border-radius: 22px;
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--accent-soft) 88%, transparent), transparent 45%),
+      color-mix(in srgb, var(--card) 94%, transparent);
+  }
+
+  .collection-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 22px;
+  }
+
+  .collection-copy { min-width: 0; }
+
+  .collection-label {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.61rem;
+    font-weight: 760;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .collection-title {
+    margin: 7px 0 0;
+    font-family: "Iowan Old Style", "Songti SC", "STSong", Georgia, serif;
+    font-size: clamp(1.55rem, 2.5vw, 2rem);
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+
+  .collection-description {
+    max-width: 34rem;
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.76rem;
+    line-height: 1.7;
+  }
+
+  .collection-count {
+    color: var(--accent);
+    font-family: "Iowan Old Style", "Songti SC", "STSong", Georgia, serif;
+    font-size: 2.75rem;
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.07em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .series-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+  }
+
+  .series-item + .series-item {
+    border-top: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+  }
+
+  .series-link {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+    margin: 0 -10px;
+    padding: 18px 10px;
+    border-radius: 14px;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 180ms ease, transform 180ms ease;
+  }
+
+  .series-link:hover {
+    transform: translateX(3px);
+    background: color-mix(in srgb, var(--accent-soft) 72%, transparent);
+  }
+
+  .series-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .series-number {
+    align-self: start;
+    padding-top: 4px;
+    color: var(--accent);
+    font-size: 0.62rem;
+    font-weight: 720;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .series-main { min-width: 0; }
+
+  .series-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .series-stage {
+    border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+    border-radius: 999px;
+    padding: 2px 7px 1px;
+    color: var(--accent);
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .series-title {
+    margin: 0;
+    font-size: 1.03rem;
+    font-weight: 680;
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+  }
+
+  .series-description {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    line-height: 1.62;
+  }
+
+  .series-side {
+    display: flex;
+    min-width: 72px;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .series-date {
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .series-arrow {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+    border-radius: 999px;
+    font-size: 0.84rem;
+    transition: transform 180ms ease, color 180ms ease, background-color 180ms ease;
+  }
+
+  .series-link:hover .series-arrow {
+    transform: translate(2px, -2px);
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .other-section { margin-top: 38px; }
+
+  .other-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    margin: 0 2px 16px;
+  }
+
+  .other-title {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .other-count {
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .works-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
     list-style: none;
-    margin: 24px 0 0;
+    margin: 0;
     padding: 0;
   }
+
+  .works-grid--other .work-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .works-grid--other .work-item:last-child:nth-child(odd) .work-card { min-height: 235px; }
+  .works-grid--other .work-item:last-child:nth-child(odd) .work-description { max-width: 42rem; }
 
   .work-item { min-width: 0; }
 
@@ -383,13 +578,21 @@
   }
 
   .skeleton {
-    min-height: 285px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: linear-gradient(100deg, transparent 25%, var(--accent-soft) 50%, transparent 75%) var(--card);
     background-size: 220% 100%;
     animation: shimmer 1.4s ease-in-out infinite;
   }
+
+  .skeleton-panel { min-height: 320px; }
+  .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 38px;
+  }
+  .skeleton-card { min-height: 260px; }
 
   @keyframes shimmer {
     from { background-position: 110% 0; }
@@ -456,7 +659,14 @@
     .tagline { margin-top: 38px; font-size: 1.7rem; }
     .catalog-head { min-height: 0; align-items: flex-start; }
     .catalog-updated { padding-top: 4px; }
-    #works { grid-template-columns: 1fr; gap: 14px; }
+    .spanish-panel { padding: 22px 18px 6px; }
+    .collection-head { gap: 16px; padding-bottom: 18px; }
+    .collection-count { font-size: 2.35rem; }
+    .series-link { grid-template-columns: 24px minmax(0, 1fr) 30px; gap: 10px; }
+    .series-side { min-width: 30px; }
+    .series-date { display: none; }
+    .works-grid, .skeleton-grid { grid-template-columns: 1fr; gap: 14px; }
+    .works-grid--other .work-item:last-child:nth-child(odd) { grid-column: auto; }
     .work-card { min-height: 260px; padding: 20px; }
     .work-title { margin-top: 28px; font-size: 1.25rem; }
     .foot { flex-wrap: wrap; row-gap: 12px; }
@@ -508,12 +718,14 @@
           <p class="catalog-updated">最近更新<time id="latest-date">—</time></p>
         </div>
 
-        <ul id="works" aria-busy="true">
-          <li class="skeleton" aria-hidden="true"></li>
-          <li class="skeleton" aria-hidden="true"></li>
-          <li class="skeleton" aria-hidden="true"></li>
-          <li class="skeleton" aria-hidden="true"></li>
-        </ul>
+        <div id="collections" aria-busy="true">
+          <div class="skeleton skeleton-panel" aria-hidden="true"></div>
+          <div class="skeleton-grid" aria-hidden="true">
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+          </div>
+        </div>
         <p id="empty" role="status" hidden>作品列表暂时没有载入，请刷新后重试。</p>
       </section>
     </main>
@@ -528,7 +740,7 @@
   </div>
 
 <script>
-const worksEl = document.getElementById("works");
+const collectionsEl = document.getElementById("collections");
 const emptyEl = document.getElementById("empty");
 
 const text = (tag, className, value) => {
@@ -540,64 +752,143 @@ const text = (tag, className, value) => {
 
 const displayDate = (value) => String(value ?? "").replaceAll("-", ".");
 
+const createTime = (value, className) => {
+  const date = text("time", className, displayDate(value));
+  date.dateTime = String(value ?? "");
+  return date;
+};
+
+const createWorkCard = (work, index, latestDate) => {
+  const item = document.createElement("li");
+  item.className = "work-item";
+
+  const link = document.createElement("a");
+  link.className = "work-card";
+  link.href = String(work.path ?? "#");
+  link.setAttribute("aria-label", `打开作品：${String(work.title ?? "未命名作品")}`);
+
+  const meta = document.createElement("div");
+  meta.className = "work-meta";
+  meta.append(text("span", "work-number", String(index + 1).padStart(2, "0")));
+  meta.append(text("span", "work-category", work.category ?? "其他"));
+  if (String(work.date) === latestDate) meta.append(text("span", "latest", "NEW"));
+  meta.append(createTime(work.date, "work-date"));
+
+  const title = text("h4", "work-title", work.title ?? "未命名作品");
+  const description = text("p", "work-description", work.description ?? "");
+  const open = document.createElement("span");
+  open.className = "work-open";
+  open.append(text("span", "", "查看作品"));
+  open.append(text("span", "work-arrow", "↗"));
+
+  link.append(meta, title, description, open);
+  item.append(link);
+  return item;
+};
+
+const createSeriesItem = (work, latestDate) => {
+  const item = document.createElement("li");
+  item.className = "series-item";
+
+  const link = document.createElement("a");
+  link.className = "series-link";
+  link.href = String(work.path ?? "#");
+  link.setAttribute("aria-label", `打开西班牙语系列作品：${String(work.title ?? "未命名作品")}`);
+  link.append(text("span", "series-number", String(work.seriesOrder ?? "").padStart(2, "0")));
+
+  const main = document.createElement("div");
+  main.className = "series-main";
+  const titleRow = document.createElement("div");
+  titleRow.className = "series-title-row";
+  titleRow.append(text("h4", "series-title", work.title ?? "未命名作品"));
+  titleRow.append(text("span", "series-stage", work.seriesStage ?? "系列作品"));
+  if (String(work.date) === latestDate) titleRow.append(text("span", "latest", "NEW"));
+  main.append(titleRow, text("p", "series-description", work.description ?? ""));
+
+  const side = document.createElement("span");
+  side.className = "series-side";
+  side.append(createTime(work.date, "series-date"));
+  side.append(text("span", "series-arrow", "↗"));
+
+  link.append(main, side);
+  item.append(link);
+  return item;
+};
+
 const renderWorks = (list) => {
   const sorted = [...list].sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const latestDate = String(sorted[0]?.date ?? "");
-  const categories = new Set(sorted.map((work) => String(work.category ?? "其他")));
+  const spanishWorks = sorted
+    .filter((work) => work.series === "spanish")
+    .sort((a, b) => Number(a.seriesOrder ?? 99) - Number(b.seriesOrder ?? 99));
+  const otherWorks = sorted.filter((work) => work.series !== "spanish");
+  const sectionCount = Number(spanishWorks.length > 0) + Number(otherWorks.length > 0);
 
   document.getElementById("work-count").textContent = String(sorted.length).padStart(2, "0");
-  document.getElementById("category-count").textContent = `${categories.size} 个主题 · 持续更新`;
+  document.getElementById("category-count").textContent = `${sectionCount} 个板块 · 持续更新`;
   const latestEl = document.getElementById("latest-date");
   latestEl.textContent = displayDate(latestDate);
   latestEl.dateTime = latestDate;
 
-  worksEl.replaceChildren();
-  sorted.forEach((work, index) => {
-    const item = document.createElement("li");
-    item.className = "work-item";
+  const fragments = [];
 
-    const link = document.createElement("a");
-    link.className = "work-card";
-    link.href = String(work.path ?? "#");
-    link.setAttribute("aria-label", `打开作品：${String(work.title ?? "未命名作品")}`);
+  if (spanishWorks.length) {
+    const section = document.createElement("section");
+    section.className = "spanish-panel";
+    section.setAttribute("aria-labelledby", "spanish-series-title");
 
-    const meta = document.createElement("div");
-    meta.className = "work-meta";
-    meta.append(text("span", "work-number", String(index + 1).padStart(2, "0")));
-    meta.append(text("span", "work-category", work.category ?? "其他"));
-    if (String(work.date) === latestDate) meta.append(text("span", "latest", "NEW"));
-    const date = text("time", "work-date", displayDate(work.date));
-    date.dateTime = String(work.date ?? "");
-    meta.append(date);
+    const head = document.createElement("div");
+    head.className = "collection-head";
+    const copy = document.createElement("div");
+    copy.className = "collection-copy";
+    copy.append(text("p", "collection-label", "Spanish series"));
+    const heading = text("h3", "collection-title", "西班牙语系列");
+    heading.id = "spanish-series-title";
+    copy.append(heading);
+    copy.append(text("p", "collection-description", "从字母与发音出发，经过 14 天词汇启动，再进入逐句听读、跟读与重组。"));
+    head.append(copy, text("span", "collection-count", String(spanishWorks.length).padStart(2, "0")));
 
-    const title = text("h3", "work-title", work.title ?? "未命名作品");
-    const description = text("p", "work-description", work.description ?? "");
-    const open = document.createElement("span");
-    open.className = "work-open";
-    open.append(text("span", "", "查看作品"));
-    open.append(text("span", "work-arrow", "↗"));
+    const seriesList = document.createElement("ol");
+    seriesList.className = "series-list";
+    spanishWorks.forEach((work) => seriesList.append(createSeriesItem(work, latestDate)));
+    section.append(head, seriesList);
+    fragments.push(section);
+  }
 
-    link.append(meta, title, description, open);
-    item.append(link);
-    worksEl.append(item);
-  });
-  worksEl.setAttribute("aria-busy", "false");
+  if (otherWorks.length) {
+    const section = document.createElement("section");
+    section.className = "other-section";
+    section.setAttribute("aria-labelledby", "other-works-title");
+    const head = document.createElement("div");
+    head.className = "other-head";
+    const heading = text("h3", "other-title", "其他作品");
+    heading.id = "other-works-title";
+    head.append(heading, text("span", "other-count", `${String(otherWorks.length).padStart(2, "0")} ITEMS`));
+    const grid = document.createElement("ul");
+    grid.className = "works-grid works-grid--other";
+    otherWorks.forEach((work, index) => grid.append(createWorkCard(work, index, latestDate)));
+    section.append(head, grid);
+    fragments.push(section);
+  }
+
+  collectionsEl.replaceChildren(...fragments);
+  collectionsEl.setAttribute("aria-busy", "false");
 };
 
 fetch("works.json", { cache: "no-cache" })
   .then((response) => response.ok ? response.json() : [])
   .then((list) => {
     if (!Array.isArray(list) || !list.length) {
-      worksEl.replaceChildren();
-      worksEl.setAttribute("aria-busy", "false");
+      collectionsEl.replaceChildren();
+      collectionsEl.setAttribute("aria-busy", "false");
       emptyEl.hidden = false;
       return;
     }
     renderWorks(list);
   })
   .catch(() => {
-    worksEl.replaceChildren();
-    worksEl.setAttribute("aria-busy", "false");
+    collectionsEl.replaceChildren();
+    collectionsEl.setAttribute("aria-busy", "false");
     emptyEl.hidden = false;
   });
 
