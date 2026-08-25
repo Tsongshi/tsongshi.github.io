@@ -3,109 +3,603 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tsongshi</title>
+<title>Tsongshi · 作品入口</title>
+<meta name="description" content="Tsongshi 的个人作品索引：学习工具、语言练习与知识图谱。">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/site-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/site-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tsongshi">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1115">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f1ea">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101310">
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #ffffff; --text: #1a1a1a; --muted: #6b7280; --accent: #2563eb;
-    --rule: #e7e9ee; --card: #fafbfc;
+    --bg: #f3f1ea;
+    --card: #fbfaf7;
+    --card-hover: #ffffff;
+    --text: #171914;
+    --muted: #687066;
+    --soft: #858d83;
+    --line: #d8ddd5;
+    --accent: #3557d4;
+    --accent-soft: #e7ebfb;
+    --shadow: 0 20px 60px rgba(35, 42, 32, 0.08);
+    --page-pad: clamp(22px, 4.5vw, 68px);
   }
+
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #0f1115; --text: #e6e9ef; --muted: #9aa3b2; --accent: #6ea8ff;
-            --rule: #232733; --card: #161923; }
+    :root {
+      --bg: #101310;
+      --card: #171b17;
+      --card-hover: #1b211b;
+      --text: #f0f2ec;
+      --muted: #a2aaa0;
+      --soft: #7f887e;
+      --line: #30362f;
+      --accent: #8ea8ff;
+      --accent-soft: rgba(142, 168, 255, 0.12);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+    }
   }
+
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
-    display: flex; align-items: center; justify-content: center; padding: 56px 0;
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.7; -webkit-font-smoothing: antialiased;
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
+      "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .card { width: 100%; max-width: 480px; padding: 0 28px; }
-  h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
-  .lede { color: var(--muted); margin: 0 0 0.5rem; font-size: 0.95rem; }
+
+  body::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 14% 9%, var(--accent-soft), transparent 26rem),
+      linear-gradient(90deg, transparent 49.94%, color-mix(in srgb, var(--line) 34%, transparent) 50%, transparent 50.06%);
+    background-size: auto, 88px 100%;
+    opacity: 0.58;
+  }
+
+  a { color: inherit; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  [hidden] { display: none !important; }
+
+  .page {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+    padding: clamp(34px, 6vw, 88px) var(--page-pad) 42px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(270px, 0.78fr) minmax(0, 1.78fr);
+    gap: clamp(52px, 7vw, 108px);
+    align-items: start;
+  }
+
+  .intro {
+    position: sticky;
+    top: clamp(28px, 6vw, 88px);
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft);
+    flex: none;
+  }
+
+  h1 {
+    margin: clamp(26px, 4vw, 50px) 0 0;
+    font-family: "Iowan Old Style", "Palatino Linotype", "Songti SC", "STSong", Georgia, serif;
+    font-size: clamp(4.1rem, 7.7vw, 6.9rem);
+    font-weight: 500;
+    line-height: 0.83;
+    letter-spacing: -0.072em;
+  }
+
+  h1 .dot { color: var(--accent); }
+
+  .tagline {
+    max-width: 12em;
+    margin: clamp(34px, 5vw, 62px) 0 0;
+    font-family: "Iowan Old Style", "Songti SC", "STSong", Georgia, serif;
+    font-size: clamp(1.55rem, 2.2vw, 1.95rem);
+    line-height: 1.38;
+    letter-spacing: -0.03em;
+  }
+
+  .tagline span { display: block; }
+
+  .lede {
+    max-width: 30rem;
+    margin: 20px 0 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.82;
+  }
+
+  .intro-stats {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: end;
+    margin-top: clamp(38px, 6vw, 74px);
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+
+  .stat-count {
+    min-width: 2ch;
+    font-size: 3.4rem;
+    font-weight: 450;
+    letter-spacing: -0.07em;
+    line-height: 0.85;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .stat-copy strong {
+    color: var(--text);
+    font-size: 0.76rem;
+    font-weight: 650;
+  }
+
+  .catalog-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 105px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .catalog-label {
+    margin: 0 0 7px;
+    color: var(--muted);
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
 
   h2 {
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; color: var(--muted);
-    margin: 3rem 0 0.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule);
+    margin: 0;
+    font-family: "Iowan Old Style", "Songti SC", "STSong", Georgia, serif;
+    font-size: clamp(1.85rem, 3vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
   }
-  #works { list-style: none; margin: 0; padding: 0; }
-  #works li { border-bottom: 1px solid var(--rule); }
-  #works a {
-    display: block; padding: 15px 2px; text-decoration: none; color: inherit;
-    transition: background 0.12s;
+
+  .catalog-updated {
+    margin: 0 0 4px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
-  #works a:hover { background: var(--card); }
-  .t { font-size: 0.95rem; font-weight: 600; display: flex; align-items: baseline; gap: 9px; }
-  .t .cat {
-    font-size: 0.66rem; font-weight: 500; letter-spacing: 0.08em; color: var(--muted);
-    border: 1px solid var(--rule); border-radius: 100px; padding: 1px 8px; flex: none;
+
+  .catalog-updated time {
+    display: block;
+    color: var(--text);
+    font-size: 0.78rem;
+    font-weight: 620;
+    letter-spacing: 0.04em;
   }
-  .t .date { margin-left: auto; font-size: 0.72rem; color: var(--muted); font-weight: 400;
-             font-variant-numeric: tabular-nums; }
-  .d { font-size: 0.82rem; color: var(--muted); margin: 3px 0 0; line-height: 1.65; }
-  #empty { font-size: 0.85rem; color: var(--muted); padding: 15px 2px 0; }
+
+  #works {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+  }
+
+  .work-item { min-width: 0; }
+
+  .work-card {
+    position: relative;
+    display: flex;
+    min-height: 285px;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 22px 22px 20px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--card) 93%, transparent);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 180ms ease, border-color 180ms ease,
+      background-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .work-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(145deg, var(--accent-soft), transparent 42%);
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .work-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--accent) 66%, var(--line));
+    background: var(--card-hover);
+    box-shadow: var(--shadow);
+  }
+
+  .work-card:hover::before { opacity: 0.72; }
+
+  .work-card:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .work-meta {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 26px;
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .work-number {
+    min-width: 2.1em;
+    color: var(--soft);
+    font-size: 0.64rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+  }
+
+  .work-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 620;
+    letter-spacing: 0.06em;
+  }
+
+  .work-category::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+
+  .latest {
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+    border-radius: 999px;
+    padding: 2px 6px 1px;
+    color: var(--accent);
+    font-size: 0.55rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+  }
+
+  .work-date { margin-left: auto; }
+
+  .work-title {
+    position: relative;
+    z-index: 1;
+    margin: 32px 0 0;
+    font-size: clamp(1.18rem, 1.8vw, 1.42rem);
+    font-weight: 680;
+    line-height: 1.42;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .work-description {
+    position: relative;
+    z-index: 1;
+    margin: 11px 0 26px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.72;
+  }
+
+  .work-open {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 620;
+    letter-spacing: 0.06em;
+  }
+
+  .work-arrow {
+    display: grid;
+    width: 31px;
+    height: 31px;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--text);
+    font-size: 0.88rem;
+    transition: transform 180ms ease, border-color 180ms ease,
+      color 180ms ease, background-color 180ms ease;
+  }
+
+  .work-card:hover .work-arrow {
+    transform: translate(2px, -2px);
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .skeleton {
+    min-height: 285px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: linear-gradient(100deg, transparent 25%, var(--accent-soft) 50%, transparent 75%) var(--card);
+    background-size: 220% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    from { background-position: 110% 0; }
+    to { background-position: -110% 0; }
+  }
+
+  #empty {
+    margin: 24px 0 0;
+    padding: 26px;
+    border: 1px dashed var(--line);
+    border-radius: 18px;
+    color: var(--muted);
+    font-size: 0.84rem;
+  }
 
   .foot {
-    margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
-    color: var(--muted); font-size: 0.75rem;
-    display: flex; align-items: center; gap: 2px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-top: clamp(64px, 9vw, 120px);
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.035em;
   }
+
   .foot .sep {
-    color: inherit; text-decoration: none;
-    padding: 13px 16px; margin: -13px -14px;
-    line-height: 1; -webkit-tap-highlight-color: transparent;
+    color: inherit;
+    text-decoration: none;
+    padding: 14px 17px;
+    margin: -14px -15px;
+    line-height: 1;
   }
-  .foot .sep:hover, .foot .sep:focus-visible { color: var(--text); outline: none; }
-  .foot .icp { color: inherit; text-decoration: none; margin-left: auto; }
-  .foot .icp:hover, .foot .icp:focus-visible { color: var(--text); outline: none; }
+
+  .foot .sep:hover, .foot .sep:focus-visible,
+  .foot .icp:hover, .foot .icp:focus-visible { color: var(--text); }
+  .foot .sep:focus-visible, .foot .icp:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .foot-note { margin-left: 28px; }
+  .foot .icp {
+    margin-left: auto;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (max-width: 920px) {
+    body::before { background-size: auto, 64px 100%; }
+    .layout { grid-template-columns: 1fr; gap: 70px; }
+    .intro { position: static; }
+    h1 { font-size: clamp(4.5rem, 15vw, 7rem); }
+    .tagline { max-width: 16em; }
+    .lede { max-width: 42rem; }
+    .intro-stats { max-width: 330px; margin-top: 48px; }
+  }
+
+  @media (max-width: 620px) {
+    .page { padding-top: 28px; }
+    .layout { gap: 58px; }
+    h1 { margin-top: 34px; font-size: clamp(4.15rem, 21vw, 6rem); }
+    .tagline { margin-top: 38px; font-size: 1.7rem; }
+    .catalog-head { min-height: 0; align-items: flex-start; }
+    .catalog-updated { padding-top: 4px; }
+    #works { grid-template-columns: 1fr; gap: 14px; }
+    .work-card { min-height: 260px; padding: 20px; }
+    .work-title { margin-top: 28px; font-size: 1.25rem; }
+    .foot { flex-wrap: wrap; row-gap: 12px; }
+    .foot-note { order: 3; width: 100%; margin: 4px 0 0; }
+    .foot .icp { margin-left: auto; }
+  }
+
+  @media (max-width: 390px) {
+    .catalog-head { display: block; }
+    .catalog-updated { margin-top: 14px; text-align: left; }
+    .catalog-updated time { display: inline; margin-left: 6px; }
+    .work-date { font-size: 0.62rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Tsongshi</h1>
-    <p class="lede">做完的一些小东西。</p>
+  <div class="page">
+    <main class="layout">
+      <header class="intro">
+        <p class="eyebrow">Personal work index · 2026</p>
+        <h1>Tsongshi<span class="dot">.</span></h1>
+        <p class="tagline"><span>把好奇心，</span><span>做成可以打开的东西。</span></p>
+        <p class="lede">这里收着我做完、也仍在继续打磨的学习工具、语言练习与知识图谱。不是展示柜——每一个都可以直接进去用。</p>
 
-    <h2>公开</h2>
-    <ul id="works"></ul>
-    <p id="empty" hidden>暂无公开内容。</p>
+        <div class="intro-stats" aria-live="polite">
+          <strong class="stat-count" id="work-count">—</strong>
+          <span class="stat-copy">
+            <strong>Public works</strong>
+            <span id="category-count">正在读取作品</span>
+          </span>
+        </div>
+      </header>
 
-    <div class="foot">
+      <section class="catalog" aria-labelledby="catalog-title">
+        <div class="catalog-head">
+          <div>
+            <p class="catalog-label">Open the collection</p>
+            <h2 id="catalog-title">做完的一些小东西。</h2>
+          </div>
+          <p class="catalog-updated">最近更新<time id="latest-date">—</time></p>
+        </div>
+
+        <ul id="works" aria-busy="true">
+          <li class="skeleton" aria-hidden="true"></li>
+          <li class="skeleton" aria-hidden="true"></li>
+          <li class="skeleton" aria-hidden="true"></li>
+          <li class="skeleton" aria-hidden="true"></li>
+        </ul>
+        <p id="empty" role="status" hidden>作品列表暂时没有载入，请刷新后重试。</p>
+      </section>
+    </main>
+
+    <footer class="foot">
       <span>Tsongshi</span>
       <a class="sep" href="private/" aria-label="·" tabindex="-1">·</a>
       <span>2026</span>
+      <span class="foot-note">Built slowly. Used often.</span>
       <a class="icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">沪ICP备2026037648号</a>
-    </div>
+    </footer>
   </div>
 
 <script>
+const worksEl = document.getElementById("works");
+const emptyEl = document.getElementById("empty");
+
+const text = (tag, className, value) => {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  node.textContent = String(value ?? "");
+  return node;
+};
+
+const displayDate = (value) => String(value ?? "").replaceAll("-", ".");
+
+const renderWorks = (list) => {
+  const sorted = [...list].sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  const latestDate = String(sorted[0]?.date ?? "");
+  const categories = new Set(sorted.map((work) => String(work.category ?? "其他")));
+
+  document.getElementById("work-count").textContent = String(sorted.length).padStart(2, "0");
+  document.getElementById("category-count").textContent = `${categories.size} 个主题 · 持续更新`;
+  const latestEl = document.getElementById("latest-date");
+  latestEl.textContent = displayDate(latestDate);
+  latestEl.dateTime = latestDate;
+
+  worksEl.replaceChildren();
+  sorted.forEach((work, index) => {
+    const item = document.createElement("li");
+    item.className = "work-item";
+
+    const link = document.createElement("a");
+    link.className = "work-card";
+    link.href = String(work.path ?? "#");
+    link.setAttribute("aria-label", `打开作品：${String(work.title ?? "未命名作品")}`);
+
+    const meta = document.createElement("div");
+    meta.className = "work-meta";
+    meta.append(text("span", "work-number", String(index + 1).padStart(2, "0")));
+    meta.append(text("span", "work-category", work.category ?? "其他"));
+    if (String(work.date) === latestDate) meta.append(text("span", "latest", "NEW"));
+    const date = text("time", "work-date", displayDate(work.date));
+    date.dateTime = String(work.date ?? "");
+    meta.append(date);
+
+    const title = text("h3", "work-title", work.title ?? "未命名作品");
+    const description = text("p", "work-description", work.description ?? "");
+    const open = document.createElement("span");
+    open.className = "work-open";
+    open.append(text("span", "", "查看作品"));
+    open.append(text("span", "work-arrow", "↗"));
+
+    link.append(meta, title, description, open);
+    item.append(link);
+    worksEl.append(item);
+  });
+  worksEl.setAttribute("aria-busy", "false");
+};
+
 fetch("works.json", { cache: "no-cache" })
-  .then(r => r.ok ? r.json() : [])
-  .then(list => {
-    const ul = document.getElementById("works");
+  .then((response) => response.ok ? response.json() : [])
+  .then((list) => {
     if (!Array.isArray(list) || !list.length) {
-      document.getElementById("empty").hidden = false;
+      worksEl.replaceChildren();
+      worksEl.setAttribute("aria-busy", "false");
+      emptyEl.hidden = false;
       return;
     }
-    list.sort((a, b) => String(b.date).localeCompare(String(a.date)));
-    ul.innerHTML = list.map(w => {
-      const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      return `<li><a href="${esc(w.path)}">
-        <span class="t">${esc(w.title)}<span class="cat">${esc(w.category)}</span>
-          <span class="date">${esc(w.date)}</span></span>
-        <p class="d">${esc(w.description)}</p>
-      </a></li>`;
-    }).join("");
+    renderWorks(list);
   })
-  .catch(() => { document.getElementById("empty").hidden = false; });
+  .catch(() => {
+    worksEl.replaceChildren();
+    worksEl.setAttribute("aria-busy", "false");
+    emptyEl.hidden = false;
+  });
 
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
 </script>
