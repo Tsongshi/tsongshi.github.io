@@ -1,5 +1,12 @@
 [
   {
+    "title": "家庭大屏终端 · DIY Family Home Hub",
+    "path": "family-home-hub.html",
+    "category": "数字生活",
+    "date": "2026-08-27",
+    "description": "利用家中现有电视 + Mini PC 搭建老人友好的家庭终端：一键视频通话、远程内容推送、独立 PTZ 看护、自动开屏与远程维护，并给出三档设备方案和两套部署预算。"
+  },
+  {
     "title": "一个孩子要学的一切",
     "path": "child-learning-map.html",
     "category": "学习",
