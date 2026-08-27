@@ -1,19 +1,21 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ts-page="map-law">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="color-scheme" content="dark" />
+<meta name="color-scheme" content="light" />
+<meta name="theme-color" content="#f1f7f2" />
+<link rel="stylesheet" href="/fresh-theme.css" />
 <title>法考主观题要学的一切 · 七科考点全景</title>
 <meta name="description" content="法考主观题知识图谱：7 科 887 个考点、973 条前置依赖、118 个专题的三维依赖图。" />
 </head>
 <body>
 <style>
 :root{
-  --bg:#070A0F; --panel:#0D1219; --panel-2:#131A24;
-  --ink:#E8EDF2; --ink-2:#9FB0C0; --ink-3:#65778A;
-  --rule:#1B2530; --rule-2:#26333F;
-  --accent:#4FD8E8;
+  --bg:#F1F7F2; --panel:#FBFDF9; --panel-2:#EAF4ED;
+  --ink:#24372F; --ink-2:#4F6459; --ink-3:#60736A;
+  --rule:#D5E3D9; --rule-2:#BFD3C6;
+  --accent:#2E7D67;
 }
 *{box-sizing:border-box;}
 html,body{height:100%;}
@@ -326,7 +328,7 @@ const G = {"cats":["民法","刑法","民诉","刑诉","行政法","商法","理
 
 /* 民诉 = 冷色 8 档，刑诉 = 暖色 6 档 */
 /* 七科七色 */
-const COL = ["#6B95F0","#F0748F","#4FD8E8","#E2A253","#9BCB5C","#A98AF0","#F5DC72"];
+const COL = ["#6D88A8","#AD6876","#568D98","#B98450","#799857","#8879A3","#AA994D"];
 const N = G.nodes.length;
 
 /* 节点字段：[名称, 板块, 专题, 层级, 重要度, x, y, z, 释义, 出处] */
@@ -338,7 +340,7 @@ const NM=0, CA=1, DO=2, LV=3, WT=4, NX=5, NY=6, NZ=7, DE=8, SRC=9;
 const M_KEY = "fakao-map-mastery";
 let mastery = null, masteryOn = true, weakOnly = false;
 try { mastery = JSON.parse(localStorage.getItem(M_KEY) || "null"); } catch(e){}
-const M_COL = { g:"#5FD0A0", y:"#F5B942", r:"#F0748F", none:"#2E3A47" };
+const M_COL = { g:"#4C856C", y:"#AD7D31", r:"#AD6876", none:"#A8B9AF" };
 function mBand(tid){
   if (!mastery) return null;
   const s = mastery[tid];
@@ -369,7 +371,7 @@ function paintMasteryBar(){
     `<span class="m-n" style="color:${M_COL.g}">●${g}</span>`+
     `<span class="m-n" style="color:${M_COL.y}">●${y}</span>`+
     `<span class="m-n" style="color:${M_COL.r}">●${r}</span>`+
-    `<span class="m-n" style="color:#5A6B7E">○${none} 未刷</span>`+
+    `<span class="m-n" style="color:#60736A">○${none} 未刷</span>`+
     `<button class="m-b" id="mWeak" aria-pressed="${weakOnly}">只看薄弱</button>`+
     `<button class="m-b" id="mTog" aria-pressed="${masteryOn}">${masteryOn?"掌握度着色":"原色"}</button>`+
     `<button class="m-b" id="mClr" title="清除本机掌握度数据">✕</button>`;
@@ -417,6 +419,18 @@ function visible(i){
 /* ─────────── 渲染 ─────────── */
 const cv = document.getElementById("stage");
 const ctx = cv.getContext("2d", { alpha:false });
+const themeColor = (name, fallback) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+const canvasTheme = {
+  bg: themeColor("--bg", "#F1F7F2"),
+  edge: themeColor("--canvas-edge", "rgba(77,112,96,0.15)"),
+  edgeSoft: themeColor("--canvas-edge-soft", "rgba(77,112,96,0.07)"),
+  accent: themeColor("--canvas-accent", "rgba(46,125,103,0.58)"),
+  focus: themeColor("--accent", "#2E7D67"),
+  hover: themeColor("--canvas-hover", "#526E62"),
+  tipBg: themeColor("--canvas-tip-bg", "rgba(255,253,248,0.95)"),
+  tipInk: themeColor("--canvas-tip-ink", "#24372F"),
+};
 let W=0, H=0, DPR=1;
 function resize(){
   DPR = Math.min(devicePixelRatio || 1, 2);
@@ -452,12 +466,12 @@ function project(){
 }
 
 function draw(){
-  ctx.fillStyle = "#070A0F";
+  ctx.fillStyle = canvasTheme.bg;
   ctx.fillRect(0,0,W,H);
 
   const hi = chain;
   ctx.lineWidth = 0.55;
-  ctx.strokeStyle = hi ? "rgba(150,175,200,0.045)" : "rgba(150,175,200,0.10)";
+  ctx.strokeStyle = hi ? canvasTheme.edgeSoft : canvasTheme.edge;
   ctx.beginPath();
   for (let e=0;e<G.edges.length;e++){
     const a=G.edges[e][0], b=G.edges[e][1];
@@ -469,7 +483,7 @@ function draw(){
 
   if (hi){
     ctx.lineWidth = 1.15;
-    ctx.strokeStyle = "rgba(79,216,232,0.5)";
+    ctx.strokeStyle = canvasTheme.accent;
     ctx.beginPath();
     for (const e of hi.edge){
       const a=G.edges[e][0], b=G.edges[e][1];
@@ -498,7 +512,7 @@ function draw(){
   }
   ctx.globalAlpha = 1;
 
-  for (const [i,c] of [[selected,"#4FD8E8"],[hovered,"#FFFFFF"]]){
+  for (const [i,c] of [[selected,canvasTheme.focus],[hovered,canvasTheme.hover]]){
     if (i < 0 || !visible(i)) continue;
     ctx.strokeStyle = c; ctx.lineWidth = 1.3;
     ctx.beginPath(); ctx.arc(px[i],py[i], Math.max(pr[i],3)+6, 0, 6.2832); ctx.stroke();
@@ -509,9 +523,9 @@ function draw(){
     const t = n[NM], w = ctx.measureText(t).width;
     let lx = px[hovered]+14; const ly = py[hovered]+4;
     if (lx + w > W-16) lx = px[hovered]-14-w;
-    ctx.fillStyle = "rgba(7,10,15,0.82)";
+    ctx.fillStyle = canvasTheme.tipBg;
     ctx.fillRect(lx-7, ly-15, w+14, 22);
-    ctx.fillStyle = "#E8EDF2";
+    ctx.fillStyle = canvasTheme.tipInk;
     ctx.fillText(t, lx, ly);
   }
 }
@@ -654,7 +668,7 @@ function open(i){
       <span class="chip">后续 ${down.length}</span>
       ${mastery ? (mastery[TID[i]]
         ? `<span class="chip" style="color:${M_COL[mBand(TID[i])]};border-color:${M_COL[mBand(TID[i])]}55">已练到 L${mastery[TID[i]].lv|0}${(mastery[TID[i]].lapses|0)?` · 栽过 ${mastery[TID[i]].lapses|0} 次`:""}</span>`
-        : `<span class="chip" style="color:#5A6B7E">还没刷过</span>`) : ""}
+        : `<span class="chip" style="color:#60736A">还没刷过</span>`) : ""}
     </div>
 
     <div class="p-h"><span>此前必须先会</span><span class="c">${total} 项</span></div>

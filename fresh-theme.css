@@ -1,0 +1,219 @@
+/* Tsongshi public layer · fresh, low-glare visual system
+ *
+ * This stylesheet is intentionally limited to the public pages that link it.
+ * Legacy /private pages do not load it.
+ */
+
+:root {
+  color-scheme: light !important;
+
+  /* Shared foundations */
+  --bg: #f1f7f2 !important;
+  --paper: #f1f7f2 !important;
+  --paper-strong: #fffdf8 !important;
+  --card: #fffdf8 !important;
+  --card-2: #eaf4ed !important;
+  --card-hover: #ffffff !important;
+  --cream: #fffaf0 !important;
+  --white: #fffdf8 !important;
+  --panel: #fbfdf9 !important;
+  --panel-2: #eaf4ed !important;
+
+  /* Text and structure */
+  --ink: #24372f !important;
+  --ink-2: #4f6459 !important;
+  --ink-3: #60736a !important;
+  --text: #24372f !important;
+  --muted: #566a60 !important;
+  --soft: #6b7d73 !important;
+  --line: #d5e3d9 !important;
+  --rule: #d5e3d9 !important;
+  --rule-2: #bfd3c6 !important;
+
+  /* Accents */
+  --accent: #2e7d67 !important;
+  --accent-soft: #dceee5 !important;
+  --green: #2f705d !important;
+  --green-soft: #e0efe7 !important;
+  --blue: #3b7088 !important;
+  --blue-soft: #dfedf1 !important;
+  --navy: #2f5f56 !important;
+  --yellow: #d6ad4d !important;
+  --ochre: #d2a64a !important;
+  --amber: #8a5a18 !important;
+  --amber-soft: #f5ead6 !important;
+  --orange: #a64f43 !important;
+  --coral: #a64f43 !important;
+  --rose: #965266 !important;
+  --rose-soft: #f3e3e8 !important;
+  --purple: #64558f !important;
+  --purple-soft: #ece8f5 !important;
+  --sage: #bdd8c7 !important;
+  --good: #357b61 !important;
+  --hard: #a97120 !important;
+  --again: #b75f73 !important;
+
+  /* Depth and canvas colours */
+  --shadow: 0 18px 54px rgba(44, 78, 62, 0.10) !important;
+  --canvas-edge: rgba(77, 112, 96, 0.15);
+  --canvas-edge-soft: rgba(77, 112, 96, 0.07);
+  --canvas-accent: rgba(46, 125, 103, 0.58);
+  --canvas-hover: #1f4f42;
+  --canvas-tip-bg: rgba(255, 253, 248, 0.95);
+  --canvas-tip-ink: #24372f;
+}
+
+html {
+  background: #f1f7f2;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  color: #1c352b;
+  background: #cde7d9;
+}
+
+/* One calm, consistent way back across public tools. */
+#site-nav-back {
+  background: rgba(250, 253, 249, 0.90) !important;
+  color: #285f50 !important;
+  border-color: rgba(46, 125, 103, 0.24) !important;
+  box-shadow: 0 5px 18px rgba(38, 78, 61, 0.12) !important;
+  opacity: 0.82 !important;
+}
+
+#site-nav-back:hover,
+#site-nav-back:focus-visible {
+  opacity: 1 !important;
+}
+
+/* The two full-screen graph tools. */
+#legend,
+#lvl,
+#q,
+#hits,
+#mastery,
+#panel {
+  box-shadow: 0 14px 38px rgba(44, 78, 62, 0.10);
+}
+
+.lg:hover,
+.hit:hover {
+  background: rgba(46, 125, 103, 0.08) !important;
+}
+
+#mastery {
+  border-color: rgba(46, 125, 103, 0.15) !important;
+}
+
+#mastery .m-b,
+#mastery #mTog[aria-pressed="true"] {
+  border-color: rgba(46, 125, 103, 0.24) !important;
+}
+
+#mastery .m-b:hover {
+  border-color: rgba(46, 125, 103, 0.52) !important;
+}
+
+#q {
+  min-height: 42px;
+}
+
+.lg {
+  min-height: 40px;
+}
+
+/* Law-exam Session: keep focus, remove the dark-room feel. */
+[data-ts-page="session"] body {
+  background-image:
+    radial-gradient(circle at 8% 2%, rgba(46, 125, 103, 0.10), transparent 28rem),
+    radial-gradient(circle at 94% 18%, rgba(63, 120, 148, 0.08), transparent 30rem);
+  background-attachment: fixed;
+}
+
+[data-ts-page="session"] #bar {
+  box-shadow: 0 8px 28px rgba(44, 78, 62, 0.07);
+}
+
+[data-ts-page="session"] .body,
+[data-ts-page="session"] textarea {
+  box-shadow: 0 10px 30px rgba(44, 78, 62, 0.06);
+}
+
+[data-ts-page="session"] .btn.primary {
+  color: #ffffff !important;
+}
+
+[data-ts-page="session"] .iconbtn {
+  min-height: 38px;
+}
+
+/* Family hub: replace the remaining near-black showcase blocks. */
+[data-ts-page="family"] .hero {
+  background: linear-gradient(135deg, #e5f3e9, #e7f1f5) !important;
+}
+
+[data-ts-page="family"] .nav {
+  background: rgba(241, 247, 242, 0.92) !important;
+}
+
+[data-ts-page="family"] .diagram,
+[data-ts-page="family"] .persona,
+[data-ts-page="family"] .voice {
+  color: #28473c !important;
+  background: linear-gradient(145deg, #e4f0e8, #edf5f1) !important;
+  border: 1px solid #c8ddd0;
+  box-shadow: 0 14px 38px rgba(44, 78, 62, 0.08);
+}
+
+[data-ts-page="family"] .voice .say {
+  color: #28473c !important;
+  background: #fffdf8 !important;
+  border: 1px solid #d5e3d9;
+}
+
+[data-ts-page="family"] table,
+[data-ts-page="family"] th {
+  background: #fffdf8 !important;
+}
+
+[data-ts-page="family"] .pick {
+  background: #f3fbf5 !important;
+  outline-color: #91c4a4 !important;
+}
+
+/* The language tools retain their own personalities inside the same palette. */
+[data-ts-page="alphabet"] body {
+  background:
+    radial-gradient(circle at 8% 5%, rgba(214, 173, 77, 0.18), transparent 24rem),
+    radial-gradient(circle at 92% 20%, rgba(63, 120, 148, 0.12), transparent 25rem),
+    var(--paper) !important;
+}
+
+[data-ts-page="paso"] body,
+[data-ts-page="puente"] body {
+  background-color: var(--paper) !important;
+}
+
+[data-ts-page="bogota"] .filter-button,
+[data-ts-page="bogota"] .link-pill {
+  min-height: 40px;
+}
+
+@media (max-width: 820px) {
+  /* Keep the map search clear of the shared back button. */
+  #search {
+    left: 104px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}

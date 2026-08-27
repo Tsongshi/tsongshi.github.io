@@ -17,13 +17,17 @@ Simon 的个人站，静态 HTML，GitHub Pages 托管。上线地址 https://ts
 > `private/` 目录、下载加密文件离线爆破。真正的隔离要等服务器登录墙（备案后）。
 > 所以红线不变：**工作/客户相关内容不进本仓库任何一层。**
 
-## 返回导航（nav.js）
+## 公开主题与返回导航（fresh-theme.css + nav.js）
+
+公开页面统一加载 `/fresh-theme.css`：雾薄荷底色、暖白表面、深绿灰正文，以及
+鼠尾草绿 / 柔和天蓝点缀。该样式只用于公开层；Legacy `private/` 与
+`private-src/` 不加载它。
 
 各页左上角的悬浮「← 首页 / ← 工作台」按钮由 `/nav.js` 统一注入。
 
-**为什么做成外挂脚本**：`fakao-session.html`、`fakao-knowledge-map.html` 是构建产物
-（`Session/build.py`、`知识图谱/build.mjs` 生成），直接改 HTML 会被下次构建冲掉。
-做成共享脚本后，页面只需引一行。
+**为什么保留注入脚本**：`fakao-session.html`、`fakao-knowledge-map.html` 是构建产物
+（`Session/build.py`、`知识图谱/build.mjs` 生成）。它们的权威模板已同步浅色主题与
+Canvas 配色；本脚本仍作为新增页面或旧构建产物的幂等补漏工具。
 
 行为：
 - `/xxx.html` → 「← 首页」回公开首页
@@ -39,11 +43,9 @@ Simon 的个人站，静态 HTML，GitHub Pages 托管。上线地址 https://ts
 python3 tools/inject_nav.py       # 幂等，重复跑无害
 ```
 
-它会给页面末尾加 `<script src="/nav.js" defer></script>`。
-**每次重新构建 fakao-session / fakao-knowledge-map 后都要跑一次**，否则那页的返回按钮会丢。
-
-给构建模板维护者：如果在模板里直接带上这一行，本脚本对该页就变成空操作，
-以后不用再记得跑。推荐这么做。
+它会给默认公开页补上 `/fresh-theme.css`，并在页面末尾补上
+`<script src="/nav.js" defer></script>`。Legacy private-src 不在默认处理范围；如确需
+维护，必须显式传入精确文件。权威模板已有这些引用时，本脚本会直接跳过。
 
 ## 发布
 

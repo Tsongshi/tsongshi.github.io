@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ts-page="home">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,40 +8,25 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/site-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/site-192.png">
+<link rel="stylesheet" href="/fresh-theme.css">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tsongshi">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f1ea">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101310">
+<meta name="theme-color" content="#f1f7f2">
 <style>
   :root {
-    color-scheme: light dark;
-    --bg: #f3f1ea;
-    --card: #fbfaf7;
+    color-scheme: light;
+    --bg: #f1f7f2;
+    --card: #fffdf8;
     --card-hover: #ffffff;
-    --text: #171914;
-    --muted: #687066;
-    --soft: #858d83;
-    --line: #d8ddd5;
-    --accent: #3557d4;
-    --accent-soft: #e7ebfb;
-    --shadow: 0 20px 60px rgba(35, 42, 32, 0.08);
+    --text: #24372f;
+    --muted: #566a60;
+    --soft: #6b7d73;
+    --line: #d5e3d9;
+    --accent: #2e7d67;
+    --accent-soft: #dceee5;
+    --shadow: 0 20px 60px rgba(44, 78, 62, 0.10);
     --page-pad: clamp(22px, 4.5vw, 68px);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #101310;
-      --card: #171b17;
-      --card-hover: #1b211b;
-      --text: #f0f2ec;
-      --muted: #a2aaa0;
-      --soft: #7f887e;
-      --line: #30362f;
-      --accent: #8ea8ff;
-      --accent-soft: rgba(142, 168, 255, 0.12);
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
-    }
   }
 
   * { box-sizing: border-box; }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""给站点各页注入 <script src="/nav.js" defer></script>（返回导航）。
+"""给站点公开页注入统一主题与返回导航。
 
 为什么需要这个脚本：
     fakao-session.html / fakao-knowledge-map.html 是构建产物（Session/build.py、
@@ -9,7 +9,8 @@
     长期更省事的做法是让各构建模板自己带上这一行（见 README 里给模板维护者的说明），
     模板带了之后本脚本对那些页面就变成空操作，留着也无害。
 
-幂等：已注入过的文件会跳过，可以随便重复跑。
+幂等：已注入过的标签会跳过，可以随便重复跑。Legacy private-src 只注入导航，
+不加载公开层 fresh-theme.css。
 
 用法：
     python3 tools/inject_nav.py            # 处理默认页面
@@ -20,6 +21,8 @@ import sys
 from pathlib import Path
 
 TAG = '<script src="/nav.js" defer></script>'
+THEME_TAG = '<link rel="stylesheet" href="/fresh-theme.css">'
+THEME_HREF = 'href="/fresh-theme.css"'
 ROOT = Path(__file__).resolve().parent.parent
 
 # 公开层需要导航的页面（首页自己有页脚导航，不在此列）
@@ -27,6 +30,7 @@ DEFAULT_TARGETS = [
     "child-learning-map.html",
     "fakao-knowledge-map.html",
     "fakao-session.html",
+    "spanish-alphabet-reader/index.html",
 ]
 
 # 密码层：注入到明文源，注入后需要重新跑 staticrypt 才会进加密产物
@@ -41,18 +45,32 @@ def inject(path: Path) -> str:
     if not path.exists():
         return "缺失"
     text = path.read_text(encoding="utf-8")
-    if TAG in text:
+    changes = []
+
+    is_private = any(part in {"private", "private-src"} for part in path.parts)
+    if not is_private and THEME_HREF not in text:
+        head_idx = text.rfind("</head>")
+        if head_idx == -1:
+            return "⚠ 没有 </head>，跳过"
+        text = text[:head_idx] + THEME_TAG + "\n" + text[head_idx:]
+        changes.append("主题")
+
+    if TAG not in text:
+        body_idx = text.rfind("</body>")
+        if body_idx == -1:
+            return "⚠ 没有 </body>，跳过"
+        text = text[:body_idx] + "  " + TAG + "\n" + text[body_idx:]
+        changes.append("导航")
+
+    if not changes:
         return "已有，跳过"
-    idx = text.rfind("</body>")
-    if idx == -1:
-        return "⚠ 没有 </body>，跳过"
-    path.write_text(text[:idx] + "  " + TAG + "\n" + text[idx:], encoding="utf-8")
-    return "已注入"
+    path.write_text(text, encoding="utf-8")
+    return "已注入" + "+".join(changes)
 
 
 def main() -> int:
     args = sys.argv[1:]
-    targets = args if args else (DEFAULT_TARGETS + PRIVATE_SRC_TARGETS)
+    targets = args if args else DEFAULT_TARGETS
 
     worst = 0
     for rel in targets:
@@ -63,8 +81,7 @@ def main() -> int:
             worst = 1
 
     if not args:
-        print("\n提醒：密码层的明文源改动后，要重新加密才会生效：")
-        print('  npx --yes staticrypt private-src/*.html -p "<密码>" -d private --short')
+        print("\nLegacy private-src 不在默认范围；如确需维护，请显式传入精确文件。")
     return worst
 
 
