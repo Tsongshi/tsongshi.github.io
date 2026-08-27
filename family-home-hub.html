@@ -1,65 +1,617 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>家庭通信与看护中枢｜DIY Family Home Hub</title>
-<meta name="description" content="利用现有电视搭建可逐步升级的家庭通信、内容推送与远程看护系统。">
-<style>
-:root{--bg:#f5f7fb;--card:#fff;--ink:#17191f;--muted:#687080;--line:#e5e7eb;--green:#166534;--soft:#ecfdf3;--blue:#1d4ed8;--amber:#b45309;--shadow:0 12px 34px rgba(20,25,35,.07)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.68 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:var(--blue);text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:0 22px}.hero{padding:62px 0 38px;background:linear-gradient(135deg,#effdf4,#eef5ff)}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--green)}h1{font-size:clamp(34px,5.3vw,64px);line-height:1.06;margin:.35em 0 .3em;letter-spacing:-.045em}.lead{max-width:900px;font-size:20px;color:#424957}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.chip{background:#fff;border:1px solid #dfe5e2;border-radius:999px;padding:8px 12px;font-size:14px}.nav{position:sticky;top:0;z-index:10;background:rgba(245,247,251,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav .wrap{display:flex;gap:18px;overflow:auto;padding-top:11px;padding-bottom:11px;white-space:nowrap;font-size:14px}.section{padding:46px 0}.section h2{font-size:30px;letter-spacing:-.02em;margin:0 0 8px}.sub{color:var(--muted);margin-top:0}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.span3{grid-column:span 3}.span4{grid-column:span 4}.span6{grid-column:span 6}.span12{grid-column:span 12}.tag{display:inline-block;border-radius:8px;background:#eef2ff;color:#3730a3;padding:3px 8px;font-size:12px;font-weight:800}.green{background:var(--soft);color:var(--green)}.orange{background:#fff7ed;color:var(--amber)}.kpi{font-size:33px;font-weight:900;letter-spacing:-.03em}.small{font-size:13px;color:var(--muted)}.pick{outline:2px solid #86efac;background:#f8fff9}.check{display:flex;gap:9px;margin:8px 0}.check:before{content:"✓";color:var(--green);font-weight:900}.diagram{background:#111827;color:#f9fafb;border-radius:22px;padding:24px;overflow:auto}.diagram pre{margin:0;font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;min-width:760px}table{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line)}th,td{text-align:left;padding:14px 13px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:13px;background:#f8fafc;color:#4b5563}tr:last-child td{border-bottom:0}.tablewrap{overflow:auto}.price{font-weight:850;white-space:nowrap}.callout{border-left:4px solid var(--green);background:var(--soft);padding:16px 18px;border-radius:0 14px 14px 0}.warn{border-left-color:#f59e0b;background:#fffbeb}.tier{position:relative}.tier .num{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.08em}.tier h3{margin:.25em 0}.arrowline{font-weight:900;color:#9ca3af}.persona{background:#111827;color:#fff;border-radius:18px;padding:20px}.persona b{font-size:20px}.voice{background:linear-gradient(145deg,#1f2937,#111827);color:white}.voice .say{background:#fff;color:#111827;border-radius:15px;padding:11px 14px;margin:9px 0}.foot{padding:36px 0 60px;color:var(--muted);font-size:13px}@media(max-width:850px){.span3,.span4,.span6{grid-column:span 12}.diagram pre{min-width:700px}.hero{padding-top:45px}table{font-size:14px}}
-</style></head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>家庭大屏终端落地指南｜DIY Family Home Hub</title>
+  <meta name="description" content="基于中国大陆现售设备和通话平台核验的家庭大屏终端落地指南：一键视频、独立 PTZ、电视控制、权限分层、预算和 Prototype 验收门槛。">
+  <style>
+    :root {
+      --bg: #f3f5f8;
+      --paper: #ffffff;
+      --ink: #17201d;
+      --muted: #5f6965;
+      --line: #dce3df;
+      --forest: #155b43;
+      --forest-2: #0d4431;
+      --mint: #e7f4ed;
+      --blue: #2457a6;
+      --blue-soft: #eaf1fb;
+      --amber: #8b5409;
+      --amber-soft: #fff4dc;
+      --red: #9b2c2c;
+      --red-soft: #fff0ed;
+      --slate: #202b27;
+      --shadow: 0 16px 42px rgba(25, 40, 34, .07);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    a { color: var(--blue); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, button:focus-visible, .table-wrap:focus-visible { outline: 3px solid #f0a52f; outline-offset: 3px; border-radius: 4px; }
+    .skip-link {
+      position: fixed; left: 12px; top: -80px; z-index: 100;
+      padding: 10px 14px; background: var(--slate); color: #fff; border-radius: 8px;
+    }
+    .skip-link:focus { top: 12px; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .hero {
+      padding: 26px 0 54px;
+      background:
+        radial-gradient(circle at 85% 18%, rgba(255,255,255,.8) 0 9%, transparent 30%),
+        linear-gradient(135deg, #dff3e8 0%, #edf4fb 58%, #f8f3e7 100%);
+      border-bottom: 1px solid rgba(21,91,67,.12);
+    }
+    .topline { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 42px; }
+    .home-link { color: var(--forest-2); font-weight: 750; text-decoration: none; }
+    .verified { font-size: 13px; color: var(--forest-2); background: rgba(255,255,255,.72); border: 1px solid rgba(21,91,67,.2); padding: 5px 10px; border-radius: 999px; }
+    .eyebrow { color: var(--forest); font-size: 13px; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
+    h1 { max-width: 930px; margin: .28em 0 .28em; font-size: clamp(38px, 6vw, 69px); line-height: 1.04; letter-spacing: -.05em; }
+    .lead { max-width: 900px; margin: 0; font-size: clamp(18px, 2vw, 22px); color: #35443e; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .chip { padding: 7px 11px; border: 1px solid rgba(21,91,67,.19); border-radius: 999px; background: rgba(255,255,255,.78); color: #284239; font-size: 14px; }
+    .nav { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: rgba(243,245,248,.94); backdrop-filter: blur(12px); }
+    .nav .wrap { display: flex; gap: 19px; padding-top: 11px; padding-bottom: 11px; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
+    .nav a { color: #34413c; font-size: 14px; font-weight: 700; text-decoration: none; }
+    .nav a:hover { color: var(--forest); }
+    main { display: block; }
+    section { padding: 50px 0; scroll-margin-top: 56px; }
+    section + section { border-top: 1px solid rgba(220,227,223,.75); }
+    h2 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 38px); line-height: 1.18; letter-spacing: -.025em; }
+    h3 { margin: .2em 0 .42em; font-size: 20px; line-height: 1.3; }
+    p { margin: .5em 0 1em; }
+    .sub { max-width: 850px; margin-top: 0; color: var(--muted); }
+    .small { color: var(--muted); font-size: 13px; }
+    .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    .card { padding: 22px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .card > :last-child { margin-bottom: 0; }
+    .pick { border-color: #7bb497; box-shadow: 0 16px 42px rgba(21,91,67,.11); }
+    .dark { background: var(--slate); color: #f4f7f5; border-color: var(--slate); }
+    .dark .small, .dark .muted { color: #c7d2cd; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; background: var(--blue-soft); color: #274c83; font-size: 12px; font-weight: 850; }
+    .tag.green { background: var(--mint); color: var(--forest); }
+    .tag.amber { background: var(--amber-soft); color: var(--amber); }
+    .tag.red { background: var(--red-soft); color: var(--red); }
+    .price { font-size: 30px; line-height: 1.15; font-weight: 900; letter-spacing: -.035em; }
+    .price-note { color: var(--muted); font-size: 13px; }
+    .checklist, .plain-list { margin: 12px 0 0; padding: 0; list-style: none; }
+    .checklist li { position: relative; margin: 8px 0; padding-left: 25px; }
+    .checklist li::before { content: "✓"; position: absolute; left: 0; color: var(--forest); font-weight: 900; }
+    .dark .checklist li::before { color: #7ce0ad; }
+    .plain-list li { margin: 8px 0; }
+    .callout { margin-top: 18px; padding: 17px 18px; border-left: 4px solid var(--forest); border-radius: 0 13px 13px 0; background: var(--mint); }
+    .callout.warn { border-color: #d88a17; background: var(--amber-soft); }
+    .callout.red { border-color: var(--red); background: var(--red-soft); }
+    .answer { padding: 26px; border: 1px solid #77b496; border-radius: 24px; background: linear-gradient(145deg, #f7fffa, #eef8f3); box-shadow: var(--shadow); }
+    .answer strong.big { display: block; margin: 7px 0 3px; color: var(--forest-2); font-size: clamp(24px, 3vw, 35px); line-height: 1.2; }
+    .status-grid { margin-top: 20px; }
+    .status-card { min-height: 100%; border-top: 5px solid; }
+    .status-card.green { border-top-color: #2f855a; }
+    .status-card.amber { border-top-color: #d88a17; }
+    .status-card.red { border-top-color: #b84040; }
+    .architecture { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: stretch; }
+    .node { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+    .node-title { font-size: 21px; font-weight: 850; }
+    .bridge { align-self: center; padding: 8px 12px; border-radius: 999px; background: var(--slate); color: #fff; font-size: 13px; font-weight: 800; text-align: center; }
+    .permission-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+    .permission { padding: 14px; border-radius: 14px; background: #eef1f0; text-align: center; font-size: 14px; font-weight: 800; }
+    .table-wrap { width: 100%; overflow-x: auto; border-radius: 18px; border: 1px solid var(--line); background: var(--paper); }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    caption { padding: 13px 15px; color: var(--muted); font-size: 13px; text-align: left; caption-side: bottom; }
+    th, td { padding: 14px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #eef2f0; color: #38453f; font-size: 13px; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #fafcfb; }
+    .rating { white-space: nowrap; font-weight: 850; }
+    .level { position: relative; }
+    .level-no { color: var(--muted); font-size: 12px; font-weight: 900; letter-spacing: .08em; }
+    .step { display: grid; grid-template-columns: 78px 1fr 190px; gap: 18px; align-items: start; padding: 19px 0; border-bottom: 1px solid var(--line); }
+    .step:last-child { border-bottom: 0; }
+    .step-id { color: var(--forest); font-size: 13px; font-weight: 900; letter-spacing: .05em; }
+    .gate { padding: 9px 11px; border-radius: 10px; background: var(--mint); color: var(--forest-2); font-size: 13px; font-weight: 800; }
+    .source-list { columns: 2; column-gap: 34px; padding-left: 20px; }
+    .source-list li { margin: 0 0 10px; break-inside: avoid; }
+    .footer { padding: 40px 0 62px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .footer strong { color: var(--ink); }
+    @media (max-width: 880px) {
+      .span-3, .span-4 { grid-column: span 6; }
+      .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+      .architecture { grid-template-columns: 1fr; }
+      .bridge { justify-self: center; }
+      .step { grid-template-columns: 62px 1fr; }
+      .step .gate { grid-column: 2; }
+    }
+    @media (max-width: 590px) {
+      .wrap { width: min(100% - 28px, 1120px); }
+      .hero { padding-top: 20px; }
+      .topline { align-items: flex-start; margin-bottom: 34px; }
+      .verified { max-width: 160px; text-align: right; }
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 12; }
+      section { padding: 40px 0; }
+      .permission-row { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; gap: 6px; }
+      .step .gate { grid-column: 1; }
+      .source-list { columns: 1; }
+      .card { padding: 19px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
 <body>
-<header class="hero"><div class="wrap"><div class="eyebrow">DIY FAMILY HOME HUB · V2</div><h1>把两台家里的电视，升级成<br>一个家庭通信网络</h1><p class="lead">不是单独做“智能屏”，而是做一套可以从简单版本逐步升级的家庭系统：<b>老人一键/一句话发起视频、全家手机互联、远程推送内容、独立 PTZ 看护、电视自动唤醒、远程维护</b>。先跑一套，再复制第二套。</p><div class="chips"><span class="chip">父母家电视节点</span><span class="chip">爷爷奶奶家电视节点</span><span class="chip">家庭成员手机</span><span class="chip">智能音箱</span><span class="chip">实体大按钮</span><span class="chip">PTZ 看护</span></div></div></header>
-<nav class="nav"><div class="wrap"><a href="#roadmap">升级路线</a><a href="#network">家庭网络</a><a href="#voice">语音入口</a><a href="#devices">设备</a><a href="#budget">预算</a><a href="#experience">老人体验</a><a href="#deploy">部署</a></div></nav>
-<main>
-<section id="roadmap" class="section"><div class="wrap"><h2>从简到繁：4 个版本</h2><p class="sub">每一级都能独立使用，不需要一开始把全部设备买齐。</p><div class="grid">
-<div class="card span3 tier"><div class="num">LEVEL 1</div><span class="tag">最低可用</span><h3>大屏一键视频</h3><p>电视 + Mini PC + 摄像头 + 一个实体按钮。</p><div class="check">按键呼叫 Simon</div><div class="check">电视自动切到视频</div><div class="check">远程维护主机</div><p class="price">约 ¥1,500–2,300 / 套</p></div>
-<div class="card span3 tier pick"><div class="num">LEVEL 2</div><span class="tag green">推荐起点</span><h3>视频 + 看护</h3><p>增加独立 PTZ 摄像头和更好的会议音视频设备。</p><div class="check">远程云台查看</div><div class="check">夜视 / 双向语音</div><div class="check">Mini PC 挂了也能看护</div><p class="price">约 ¥2,500–3,400 / 套</p></div>
-<div class="card span3 tier"><div class="num">LEVEL 3</div><span class="tag">家庭互联</span><h3>全家手机 + 语音</h3><p>加入智能音箱，并把家庭成员手机纳入统一通信入口。</p><div class="check">“给 Simon 打电话”</div><div class="check">“给梦雨打电话”</div><div class="check">手机 ↔ 两个电视节点</div><p class="price">约 ¥2,800–3,900 / 套</p></div>
-<div class="card span3 tier"><div class="num">LEVEL 4</div><span class="tag orange">完整版</span><h3>家庭内容中枢</h3><p>加入内容队列、照片屏保、家庭广播和高级自动化。</p><div class="check">远程推视频/照片</div><div class="check">家庭呼叫：谁先接谁接</div><div class="check">电视/音量/页面远程接管</div><p class="price">硬件增量很小，主要是软件配置</p></div>
-</div></div></section>
-<section id="network" class="section"><div class="wrap"><h2>最终形态：家庭通信网络</h2><p class="sub">老人面对的是“人”，不是 App、账号和会议号。</p><div class="diagram"><pre>                           家庭通信层
-                              │
-       ┌──────────┬───────────┼───────────┬──────────┐
-       ▼          ▼           ▼           ▼          ▼
-   Simon 手机   爸爸手机    妈妈手机     梦雨手机   其他授权家人
-       │          │           │           │
-       └──────────┴──────┬────┴───────────┘
-                         │
-                ┌────────┴────────┐
-                ▼                 ▼
-          父母家电视节点       爷奶家电视节点
-          Mini PC + 相机       Mini PC + 相机
-          实体按钮 + 音箱      实体按钮 + 音箱
-                │                 │
-                ▼                 ▼
-          独立 PTZ 看护       独立 PTZ 看护
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="hero">
+    <div class="wrap">
+      <div class="topline">
+        <a class="home-link" href="/">← 返回首页</a>
+        <span class="verified">V3 · 2026-08-27 研究快照</span>
+      </div>
+      <div class="eyebrow">DIY Family Home Hub</div>
+      <h1>把现有电视，变成老人真正会用的家庭终端</h1>
+      <p class="lead">先做一个可恢复的 Prototype：实体键发起视频、独立 PTZ 看护、异地维护。连续稳定后再复制第二套；语音直呼、多人同时响铃和内容推送按软件项目逐级加入。</p>
+      <div class="chips" role="list" aria-label="方案关键词">
+        <span class="chip" role="listitem">复用现有电视</span>
+        <span class="chip" role="listitem">一套先试</span>
+        <span class="chip" role="listitem">实体键兜底</span>
+        <span class="chip" role="listitem">通话与看护解耦</span>
+        <span class="chip" role="listitem">权限分层</span>
+        <span class="chip" role="listitem">失败可远程恢复</span>
+      </div>
+    </div>
+  </header>
 
-权限分离：
-视频通话权限 ≠ 看护摄像头权限 ≠ 远程维护权限</pre></div>
-<div class="grid" style="margin-top:18px"><div class="card span4"><h3>电视节点 → 手机</h3><p>爷爷奶奶可以按实体键或说“联系 Simon”，系统直接呼叫你的手机；也可以呼叫梦雨、爸爸、妈妈。</p></div><div class="card span4"><h3>手机 → 电视节点</h3><p>你或家人可以直接呼叫“父母家客厅”或“爷爷奶奶家”，把电视作为固定家庭视频终端。</p></div><div class="card span4"><h3>家庭呼叫</h3><p>高级版可以把“联系孩子们”设成同时呼叫多个授权成员，谁先接谁接，适合高龄老人。</p></div></div></div></section>
-<section id="voice" class="section"><div class="wrap"><h2>智能音箱 = 语音入口</h2><p class="sub">实体按钮保留作最可靠的兜底；语音负责更自然的日常使用。</p><div class="grid"><div class="card span6 voice"><h3>老人只需要说自然语言</h3><div class="say">“给 Simon 打电话。”</div><div class="say">“给梦雨打电话。”</div><div class="say">“播放 Simon 发来的视频。”</div><div class="say">“播放音乐。”</div><div class="say">“声音大一点。”</div></div><div class="card span6"><h3>语音背后发生什么</h3><p><b>智能音箱 → 家庭中控 → Mini PC / 电视 / 通话系统</b></p><div class="check">触发电视开机与切 HDMI</div><div class="check">启动指定联系人的视频呼叫</div><div class="check">控制音乐、音量和内容播放</div><div class="check">未来可扩展家庭提醒、天气、留言</div><div class="callout warn" style="margin-top:15px"><b>不要取消实体按钮。</b> 老人口音、方言和环境噪音都可能导致语音识别失败；物理按键是必须保留的可靠入口。</div></div></div></div></section>
-<section id="devices" class="section"><div class="wrap"><h2>硬件选项</h2><p class="sub">下面是预算区间和定位，不是实时成交价；购买前仍需按当天电商/二手市场复核。</p><div class="tablewrap"><table><thead><tr><th>模块</th><th>推荐方向</th><th>预算</th><th>说明</th></tr></thead><tbody>
-<tr><td>主机</td><td><b>N100 / N150 Mini PC，16GB + 512GB</b></td><td class="price">¥800–1,200</td><td>首选。两套复制成本低；没必要为了这个项目单独上 Mac mini。</td></tr>
-<tr><td>省钱通话</td><td>Logitech C920 / C930e + 麦克风/音箱</td><td class="price">¥400–800</td><td>画面够用，组件分散但便宜。</td></tr>
-<tr><td>推荐通话</td><td><b>Logitech BCC950</b></td><td class="price">约 ¥1,300–1,800 新品</td><td>一体化相机 + 麦克风 + 扬声器 + 电动平移/俯仰，老人端布线简单。</td></tr>
-<tr><td>高配通话</td><td>Logitech MeetUp</td><td class="price">新品明显更贵</td><td>大客厅、超广角、会议级音频；更适合淘高性价比二手，不建议两套直接买新品。</td></tr>
-<tr><td>PTZ 看护</td><td>2K/4K 云台摄像头</td><td class="price">¥200–500</td><td>独立供电和联网。优先考虑可远程云台、夜视、双向语音、开放接入能力较好的型号。</td></tr>
-<tr><td>智能音箱</td><td>中文语音生态成熟的音箱</td><td class="price">¥200–500</td><td>优先老人识别效果与自动化可接入性。具体品牌要与最终控制方案一起定。</td></tr>
-<tr><td>实体按钮</td><td>大号 USB HID / Macro Key</td><td class="price">¥50–150</td><td>V1 只保留“联系 Simon”；高级版最多再加一个红色挂断键。</td></tr>
-<tr><td>电视控制</td><td>HDMI-CEC；不稳定则 IR Blaster</td><td class="price">¥0–150</td><td>目标是老人不碰遥控器：自动开机、切输入源、调音量。</td></tr>
-<tr><td>维护后门</td><td>无线迷你键鼠</td><td class="price">¥80–150</td><td>平时收起来，只在现场故障排查时使用。</td></tr>
-</tbody></table></div></div></section>
-<section id="budget" class="section"><div class="wrap"><h2>预算怎么控制</h2><div class="grid"><div class="card span4"><span class="tag">低成本</span><h3>Level 1</h3><div class="kpi">¥1,500–2,300</div><p>先验证最重要的“一键开屏视频”。两套约 ¥3,000–4,600。</p></div><div class="card span4 pick"><span class="tag green">最推荐</span><h3>Level 2 + 语音预留</h3><div class="kpi">¥2,500–3,400</div><p>Mini PC + 较好通话设备 + PTZ + 按钮 + 电视控制。两套约 ¥5,000–6,800。</p></div><div class="card span4"><span class="tag orange">完整版</span><h3>Level 3 / 4</h3><div class="kpi">¥2,800–3,900+</div><p>再加智能音箱与家庭通信/内容推送软件层。硬件增量不大，价值主要来自系统整合。</p></div></div><div class="callout warn" style="margin-top:18px"><b>采购原则：</b>先只做父母家 Prototype。稳定 2–4 周后，再复制爷爷奶奶家。不要一次性买两套未经验证的会议设备和 CEC 配件。</div></div></section>
-<section id="experience" class="section"><div class="wrap"><h2>老人端：尽量只有两种操作</h2><div class="grid"><div class="card span6"><div class="persona"><b>方式 1：按一下</b><p>绿色实体键写着“给 Simon 打电话”。按下后：电视自动亮 → 切到 Mini PC → 自动呼叫 → 全屏视频。</p></div></div><div class="card span6"><div class="persona"><b>方式 2：说一句</b><p>“给 Simon 打电话。” 或 “播放 Simon 发来的视频。” 其他后台流程全部隐藏。</p></div></div></div><div class="callout" style="margin-top:18px"><b>核心验收标准：</b>如果老人还需要找电视遥控器、选择 HDMI、登录 App、输入会议号或处理更新弹窗，就说明系统还没有做完。</div></div></section>
-<section id="deploy" class="section"><div class="wrap"><h2>实施路线</h2><div class="tablewrap"><table><thead><tr><th>阶段</th><th>内容</th><th>验收标准</th></tr></thead><tbody>
-<tr><td><b>Phase 0</b></td><td>确认两台电视品牌/型号、HDMI-CEC 能力、Wi‑Fi 条件。</td><td>知道能否自动开机/切源，决定是否需要 IR。</td></tr>
-<tr><td><b>Phase 1</b></td><td>父母家桌面 Prototype：Mini PC + 通话相机 + 远程桌面。</td><td>异地可以维护；重启后自动恢复。</td></tr>
-<tr><td><b>Phase 2</b></td><td>实体按钮 + 电视自动化 + 独立 PTZ。</td><td>老人只按一次就能发起视频。</td></tr>
-<tr><td><b>Phase 3</b></td><td>加入智能音箱，把“联系人”映射为语音命令。</td><td>“给 Simon 打电话”可稳定触发。</td></tr>
-<tr><td><b>Phase 4</b></td><td>把爸妈、梦雨等家庭成员手机加入通信层。</td><td>手机 ↔ 两个电视节点可直接互联。</td></tr>
-<tr><td><b>Phase 5</b></td><td>内容推送、相册、家庭广播、家庭呼叫。</td><td>Simon 可选择目标家庭节点远程推送内容。</td></tr>
-<tr><td><b>Phase 6</b></td><td>复制爷爷奶奶家第二套。</td><td>第二套只改节点名和账号，不重新设计。</td></tr>
-</tbody></table></div></div></section>
-<section class="section"><div class="wrap"><h2>软件层的原则</h2><div class="grid"><div class="card span4"><h3>通话</h3><p>最终选型要以“一键/语音能否稳定发起指定联系人”为第一标准，而不是单看某个视频 App 是否流行。</p></div><div class="card span4"><h3>中控</h3><p>Home Assistant 可作为自动化中枢；Mini PC 负责大屏和本地控制；远程维护可通过安全的私网工具完成。</p></div><div class="card span4"><h3>权限</h3><p><b>能打视频 ≠ 能看 PTZ ≠ 能远程控制主机。</b> 家庭成员权限应分开授权，尤其看护摄像头。</p></div></div></div></section>
-</main><footer class="foot"><div class="wrap">公开分享方案 · V2 · 2026-08-27<br>设计原则：老人最少操作、先简单后复杂、远程可恢复、监控与通话解耦、权限分离、先验证一套再复制。<br><br>下一步需要：两台电视的品牌与具体型号；确认后才能把 HDMI-CEC/红外方案和最终采购型号锁死。</div></footer><script src="/nav.js" defer></script>
-</body></html>
+  <nav class="nav" aria-label="页面目录">
+    <div class="wrap">
+      <a href="#answer">结论</a>
+      <a href="#boundaries">能力边界</a>
+      <a href="#architecture">架构</a>
+      <a href="#roadmap">升级路线</a>
+      <a href="#calling">通话路线</a>
+      <a href="#hardware">设备</a>
+      <a href="#budget">预算</a>
+      <a href="#privacy">隐私</a>
+      <a href="#validation">验收</a>
+      <a href="#sources">来源</a>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+    <section id="answer">
+      <div class="wrap">
+        <h2>直接结论</h2>
+        <div class="answer">
+          <span class="tag green">当前推荐 Prototype</span>
+          <strong class="big">N150 Mini PC + BCC950 + TL-IPC44AW + USB HID 大按钮 + RM4 mini</strong>
+          <p>这套优先解决老人端音视频、独立看护和红外控制，硬件约 <b>¥3,300–4,100 / 套</b>。智能音箱和 USB-CEC 暂不首购；把预先约定的固定会议房作为回退候选，同时将微信“一键呼叫指定家人”列为 Prototype 实验项。</p>
+          <p class="small">不含现有电视、智能音箱、USB-CEC、定制通话平台订阅和上门施工。价格是 2026-08-27 的研究预算带，不是报价单；动态成交价、运费和税费须在下单前复核。</p>
+        </div>
+        <div class="grid status-grid">
+          <article class="card span-4 status-card green">
+            <span class="tag green">可以买前验证</span>
+            <h3>硬件方向已收敛</h3>
+            <p>N150 足够；BCC950 把麦克风、扬声器和电动云台整合在一台设备中（仍需 USB 数据线和独立电源）；看护相机独立联网。</p>
+          </article>
+          <article class="card span-4 status-card amber">
+            <span class="tag amber">必须实测</span>
+            <h3>电视控制与一键呼叫</h3>
+            <p>CEC、红外状态、微信界面自动化和 BCC950 按键行为，都依赖具体电视、软件版本与现场网络。</p>
+          </article>
+          <article class="card span-4 status-card red">
+            <span class="tag red">尚未交付</span>
+            <h3>自然语音与家庭通信网</h3>
+            <p>“叫某个人就让其手机响”、锁屏推送和多人呼叫属于需要开发、账号配置与持续维护的软件能力。</p>
+          </article>
+        </div>
+        <div class="callout warn"><b>采购门槛：</b>先拿到实际电视型号、HDMI 端口照片和家中网络信息。没有这些信息，不一次买两套，也不先买 CEC 适配器。</div>
+      </div>
+    </section>
+
+    <section id="boundaries">
+      <div class="wrap">
+        <h2>把“能做”拆成三种状态</h2>
+        <p class="sub">一张产品页面容易把自动化愿景写成现成功能。下面明确哪些可以直接配置，哪些只能由实机证明，哪些需要真正开发。</p>
+        <div class="grid">
+          <article class="card span-4 status-card green">
+            <span class="tag green">绿色 · 直接落地</span>
+            <ul class="checklist">
+              <li>Mini PC 开机自动登录并进入全屏家庭界面</li>
+              <li>USB HID 按钮触发本地脚本或固定快捷键</li>
+              <li>独立 PTZ 在电视或 Mini PC 故障时继续工作</li>
+              <li>通过加密私网维护 Mini PC</li>
+              <li>本地预置的家庭相册与待机主页</li>
+            </ul>
+          </article>
+          <article class="card span-4 status-card amber">
+            <span class="tag amber">黄色 · Prototype 证明</span>
+            <ul class="plain-list">
+              <li>电视能否被 HDMI-CEC 唤醒并稳定切源</li>
+              <li>红外开关是否会因状态未知而反向操作</li>
+              <li>微信更新、弹窗和掉登录后的恢复路径</li>
+              <li>远端网络下的清晰度、回声与延迟</li>
+              <li>断电、重启、拔插 USB 后能否自动恢复</li>
+            </ul>
+          </article>
+          <article class="card span-4 status-card red">
+            <span class="tag red">红色 · 需软件开发</span>
+            <ul class="plain-list">
+              <li>按“人”呼叫且家人手机可靠锁屏响铃</li>
+              <li>多人家庭呼叫与“谁先接谁接”</li>
+              <li>中文音箱一句话触发指定联系人视频</li>
+              <li>有授权、可撤回的远程内容投递</li>
+              <li>可靠的状态上报、日志与自动故障恢复</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="wrap">
+        <h2>两套节点，一个家庭入口</h2>
+        <p class="sub">公开版只使用“家庭节点 A / B”和“指定家人”等泛化称呼。实际联系人、家庭关系和按钮标签留在私有配置中。</p>
+        <div class="architecture" role="group" aria-label="两个家庭节点通过家庭通信层与授权家人手机连接">
+          <article class="node">
+            <div class="node-title">家庭节点 A · 先做</div>
+            <ul class="checklist">
+              <li>现有电视 + Mini PC</li>
+              <li>会议音视频设备 + 实体键</li>
+              <li>独立 PTZ 看护</li>
+              <li>CEC 或红外控制</li>
+            </ul>
+          </article>
+          <div class="bridge">家庭通信层</div>
+          <article class="node">
+            <div class="node-title">家庭节点 B · 后复制</div>
+            <ul class="checklist">
+              <li>沿用已验证 BOM 和系统镜像</li>
+              <li>只替换节点名与授权账号</li>
+              <li>保留独立 PTZ 和本地退出方式</li>
+              <li>不在第二套重新试错</li>
+            </ul>
+          </article>
+        </div>
+        <div class="permission-row" role="group" aria-label="三种权限必须相互独立">
+          <div class="permission">普通语音 / 视频通话</div>
+          <div class="permission">PTZ 看护与回看</div>
+          <div class="permission">管理员远程维护</div>
+        </div>
+        <div class="callout"><b>核心架构：</b>通话摄像头面向电视；看护 PTZ 独立供电、独立联网。即使 Mini PC、电视或视频 App 卡住，看护链路仍不应一起失效。</div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="wrap">
+        <h2>从简到繁的 4 个 Level</h2>
+        <p class="sub">每一级都要先成为可用系统，再进入下一级；Level 2 是推荐交付点，Level 3/4 主要增加软件复杂度。</p>
+        <div class="grid">
+          <article class="card span-3 level">
+            <div class="level-no">LEVEL 1</div>
+            <span class="tag">基础视频</span>
+            <h3>大屏 + 实体键</h3>
+            <p>Mini PC、通话设备和一个按钮，先跑通固定房间或一键呼叫实验。</p>
+            <ul class="checklist"><li>重启自恢复</li><li>本地可挂断</li><li>远程可维护</li></ul>
+          </article>
+          <article class="card span-3 level pick">
+            <div class="level-no">LEVEL 2</div>
+            <span class="tag green">推荐交付</span>
+            <h3>通话 + 独立看护</h3>
+            <p>加入独立 PTZ、电视控制，并验证断电与网络异常后的恢复路径。</p>
+            <ul class="checklist"><li>看护解耦</li><li>一次操作</li><li>2–4 周试运行</li></ul>
+          </article>
+          <article class="card span-3 level">
+            <div class="level-no">LEVEL 3</div>
+            <span class="tag amber">家庭互联</span>
+            <h3>手机推送 + 语音入口</h3>
+            <p>选择平台后再加入联系人映射、锁屏响铃和智能音箱自动化。</p>
+            <ul class="checklist"><li>账号治理</li><li>推送测试</li><li>按钮仍保留</li></ul>
+          </article>
+          <article class="card span-3 level">
+            <div class="level-no">LEVEL 4</div>
+            <span class="tag red">定制软件</span>
+            <h3>完整 Family Hub</h3>
+            <p>私有内容队列、家庭相册、广播、多人呼叫和设备状态面板。</p>
+            <ul class="checklist"><li>细粒度授权</li><li>审计与撤回</li><li>持续运维</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calling">
+      <div class="wrap">
+        <h2>通话软件：现实可行的三层路线</h2>
+        <p class="sub">没有一个现成中国大陆 App 同时提供“老人一键按人呼叫、手机锁屏响铃、电视全屏、公开自动化接口和低成本”。推荐保留一条预先约定的回退候选，再小步测试自动化。</p>
+        <div class="grid">
+          <article class="card span-4">
+            <span class="tag amber">实验主路径</span>
+            <h3>微信 Windows + 受控界面自动化</h3>
+            <p>家人熟悉、手机会响；但公开资料未提供个人视频通话的 Windows 深链、命令行或自动接听 API。按钮只能驱动受控界面流程，软件更新和登录状态会破坏它。</p>
+            <p><b>定位：</b>在 Prototype 中验证，不作为无条件承诺。</p>
+          </article>
+          <article class="card span-4 pick">
+            <span class="tag green">预先约定的回退候选</span>
+            <h3>腾讯会议固定会议号</h3>
+            <p>跨端成熟，可使用固定个人会议号；按钮能打开固定链接，另用电话或消息通知家人。但身份验证和再次点击“加入会议”可能仍会出现，必须在目标账号与设备上实测。它是“进入房间”，不是“呼叫某个人”。</p>
+            <p><b>定位：</b>V1 兜底和家庭多人会话。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag red">小型技术验证</span>
+            <h3>TRTC / TUICallKit 定制</h3>
+            <p>最接近真正的联系人、1 对 1 / 多人通话和手机离线推送；同时需要 Web/移动端、UserSig 后端、厂商推送配置和持续费用。</p>
+            <p><b>定位：</b>只做小 POC，先验证锁屏来电和总成本。</p>
+          </article>
+        </div>
+
+        <div class="table-wrap" style="margin-top:18px" role="region" aria-label="通话软件路线对比表，可横向滚动" tabindex="0">
+          <table>
+            <caption>结论基于 2026-08-27 可见的官方能力；个人账号限制和客户端行为仍要用当前版本实测。</caption>
+            <thead>
+              <tr><th scope="col">路线</th><th scope="col">手机像来电一样响</th><th scope="col">实体键指定家人</th><th scope="col">多人</th><th scope="col">主要风险</th><th scope="col">建议</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>微信</b></td><td class="rating">通常可，依赖手机通知权限和后台策略</td><td>只能靠脆弱的界面自动化</td><td>可群聊，但自动化更复杂</td><td>登录、弹窗、更新、无公开调用接口</td><td>Prototype 实测</td></tr>
+              <tr><td><b>腾讯会议</b></td><td>不是联系人来电</td><td>可一键打开固定链接；入会可能仍需操作</td><td class="rating">成熟</td><td>仍需通知对方；可能有身份验证与加入确认</td><td>回退候选</td></tr>
+              <tr><td><b>Jitsi / WebRTC</b></td><td>需自建推送</td><td>可定制</td><td>可定制</td><td>信令、TURN、移动端和运维都要做</td><td>不作为首版</td></tr>
+              <tr><td><b>SIP / MicroSIP</b></td><td>取决于手机软电话</td><td class="rating">强</td><td>多人视频弱</td><td>NAT、后台保活、移动推送</td><td>技术备选</td></tr>
+              <tr><td><b>TRTC / TUICallKit</b></td><td class="rating">可开发</td><td class="rating">可开发</td><td class="rating">可开发</td><td>开发量、推送适配和月费</td><td>限定范围 POC</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout red"><b>成本闸门：</b>腾讯云 2026-08-27 价格计算器显示，通话能力组件的 1 对 1 档约 <b>¥625/月</b>、群组档约 <b>¥1,875/月</b>；TUICallKit 还必须配套 IM。官方推荐组合示例分别约为 <b>¥2,124/月</b>（¥625 + IM ¥1,499）和 <b>¥4,874/月</b>（¥1,875 + IM ¥2,999），另有超量音视频与开发维护成本。对两户家庭很可能过重，除非 POC 证明体验价值足够高。</div>
+      </div>
+    </section>
+
+    <section id="hardware">
+      <div class="wrap">
+        <h2>大陆可买设备：推荐与闸门</h2>
+        <p class="sub">型号要精确到 SKU。同品牌相似型号的开放协议、固件和售后地区可能完全不同。</p>
+        <div class="grid">
+          <article class="card span-6 pick">
+            <span class="tag green">主机</span>
+            <h3>Beelink EQ14 N150 / GMKtec G3 Plus N150</h3>
+            <div class="price">¥900–1,300</div>
+            <p>16GB + 500/512GB 足够跑全屏界面、通话和远程维护。N100 若便宜 ¥150–200 也可。</p>
+            <p class="small"><b>购买前：</b>让卖家确认来电自启 BIOS 选项；收到后验证断电恢复、自动登录、USB 重识别、网卡唤醒和 Windows 授权。</p>
+          </article>
+          <article class="card span-6 pick">
+            <span class="tag green">推荐通话</span>
+            <h3>Logitech BCC950</h3>
+            <div class="price">约 ¥1,850–1,999</div>
+            <p>1080p、78° 视角、电动平移、直径 2.4m 的麦克风拾音范围与全双工扬声器，布线比“摄像头 + 音箱 + 麦克风”简单。</p>
+            <p class="small"><b>注意：</b>机身/遥控器的接听键不等于“呼叫指定家人”；要由所选通话软件和映射脚本实测。老型号也应做 Windows 11 长稳测试。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag">省钱通话</span>
+            <h3>C930c 或 C920e</h3>
+            <div class="price">¥300–700</div>
+            <p>C930c 为 90° / 4 倍数字变焦；C920e 为 78°，两者均有约 1m 拾音的内置双麦。可先配电视扬声器，但必须验证客厅距离与回声；失败时另配音频设备并增加预算。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag green">独立看护</span>
+            <h3>TP-LINK TL-IPC44AW 全彩</h3>
+            <div class="price">约 ¥139–169</div>
+            <p>4MP、云台、夜视/全彩、移动检测、双向语音、最高 512GB 存储；该精确型号官方列出 ONVIF 与 RTSP。</p>
+            <p class="small">不要把同品牌 Pro、双摄或海外 Tapo 型号的协议能力相互套用。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag amber">App 优先备选</span>
+            <h3>小米智能摄像机 C700</h3>
+            <div class="price">约 ¥299</div>
+            <p>4K 8MP、本地 AI、物理遮蔽、Wi-Fi 6 与双向语音；适合米家 App 管理。</p>
+            <p class="small">官方未承诺通用 RTSP/ONVIF；“支持 NAS 转存”不等于开放实时流。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag green">实体入口</span>
+            <h3>PCsensor FS2019 脚踏 / 标准 USB HID 大按钮</h3>
+            <div class="price">约 ¥122–185</div>
+            <p>FS2019 本体是金属脚踏，不是桌面大手按键；如采用，要固定在桌面或地面并重新贴标。也可选择有板载存储的标准 HID 大按钮，映射不常用的 F13/F14。</p>
+            <p class="small">至少做 100 次按压、冷启动、重启、拔插和长按防连发测试。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag amber">电视回退</span>
+            <h3>BroadLink RM4 mini</h3>
+            <div class="price">约 ¥45–100</div>
+            <p>红外覆盖面广，也可接 Home Assistant；但需要视线，且“电源切换”不知道电视当前状态，优先学习离散开/关/输入指令。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag amber">条件性配件</span>
+            <h3>Pulse-Eight USB-CEC</h3>
+            <div class="price">到手约 ¥450–650</div>
+            <p>PC HDMI 通常不直接提供 CEC 控制；适配器可补充，但应先验证实际电视。官方规格以 4K60 4:2:0 8-bit SDR 为主，不承诺完整 HDR 链路。</p>
+          </article>
+        </div>
+        <div class="callout warn"><b>暂不推荐：</b>两套直接买 Logitech MeetUp 新品、把海外版 Tapo C225 当大陆默认、把米家 NAS 当 RTSP、把智能音箱作为唯一入口、假定 Mini PC 原生支持 CEC，或把红外电源 Toggle 当作可靠状态控制。</div>
+      </div>
+    </section>
+
+    <section id="budget">
+      <div class="wrap">
+        <h2>按当前研究快照重算预算</h2>
+        <div class="grid">
+          <article class="card span-4">
+            <span class="tag">省钱 Prototype</span>
+            <h3>N150 + C930c 路线</h3>
+            <div class="price">¥2,050–2,750</div>
+            <p>此区间假定使用摄像头内置双麦和电视扬声器；客厅距离或回声测试失败时，另配 USB 音频设备需加预算。适合先验证软件，不是最省心的老人端。</p>
+          </article>
+          <article class="card span-4 pick">
+            <span class="tag green">推荐 Prototype</span>
+            <h3>N150 + BCC950 路线</h3>
+            <div class="price">¥3,300–4,100</div>
+            <p>含独立 PTZ、USB 按钮、IR 和线材/支架；不含智能音箱与 USB-CEC。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag amber">增加 CEC</span>
+            <h3>推荐路线 + USB-CEC</h3>
+            <div class="price">¥3,800–4,700</div>
+            <p>只有实际电视的 CEC/输入切换测试通过后才加。现有电视遥控与 IR 仍作为恢复手段。</p>
+          </article>
+        </div>
+        <div class="grid" style="margin-top:18px">
+          <article class="card span-6 dark">
+            <h3>复制两套的硬件量级</h3>
+            <div class="price">¥6,600–8,200</div>
+            <p>按推荐 Prototype 复制，不含 CEC 和定制软件月费。</p>
+          </article>
+          <article class="card span-6 dark">
+            <h3>两套都加 USB-CEC</h3>
+            <div class="price">¥7,600–9,400</div>
+            <p>只有第一套 2–4 周稳定、第二台电视兼容性另行确认后才成立。</p>
+          </article>
+        </div>
+        <p class="small">价格区间由公开官方规格、品牌商城和公开电商/比价页面交叉得出；促销、二手、安装和退换成本会变化。最终采购应重新核价。</p>
+      </div>
+    </section>
+
+    <section id="voice-content">
+      <div class="wrap">
+        <h2>语音与内容推送：先做小，后做对</h2>
+        <div class="grid">
+          <article class="card span-6">
+            <span class="tag amber">Level 3</span>
+            <h3>智能音箱先负责音乐，不先承担救命入口</h3>
+            <p>小爱音箱 Play 增强版约 ¥117–149，Smart Speaker Pro 约 ¥274–299，可先验证老人中文点歌、音量控制与家庭网络表现。</p>
+            <ul class="checklist">
+              <li>小爱、AliGenie 和 DuerOS 的自定义技能接入模式不同，均不能直接套用</li>
+              <li>目前没有官方证据证明这些型号可作 Home Assistant 语音卫星或 Mini PC 通用麦克风</li>
+              <li>“给指定家人打视频”不是开箱即用能力</li>
+              <li>方言、环境噪音和云服务异常时，实体按钮必须可独立工作</li>
+            </ul>
+          </article>
+          <article class="card span-6">
+            <span class="tag red">Level 4</span>
+            <h3>内容投递用私有队列，不公开家庭文件</h3>
+            <p>大屏主页只显示已授权的照片、家庭录像和待播放卡片；每条内容要有目标节点、来源、到期日和撤回状态。</p>
+            <ul class="checklist">
+              <li>节点 A / B 可分别投递</li>
+              <li>电视端只拿短时授权链接</li>
+              <li>老人可跳过、暂停并退出到主页</li>
+              <li>公共介绍页不保存家人姓名、照片、账号或设备地址</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="wrap">
+        <h2>隐私不是一个总开关</h2>
+        <p class="sub">“能打视频”“能打开看护摄像头”和“能远程控制电脑”必须分别授权。任何一项都不能自动推导出另一项。</p>
+        <div class="grid">
+          <article class="card span-4">
+            <span class="tag">普通通话</span>
+            <h3>按联系人白名单</h3>
+            <p>只允许被邀请的家庭账号呼叫；电视端清楚显示来电人，能用实体方式拒绝或挂断。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag amber">看护 PTZ</span>
+            <h3>单独账号与可见状态</h3>
+            <p>仅少数照护者拥有；关闭厂商默认分享，启用强密码和双重验证，并明确哪些位置不进入视野。</p>
+          </article>
+          <article class="card span-4">
+            <span class="tag red">管理员维护</span>
+            <h3>加密私网与设备级身份</h3>
+            <p>只给维护者；不把远程桌面端口直接暴露到公网。保留日志、设备撤销和现场断开方法。</p>
+          </article>
+        </div>
+        <div class="callout red"><b>自动接听默认关闭。</b>如家庭成员经过明确同意后确有需要，只能对极小白名单启用，并提供 5–10 秒可取消倒计时、语音播报来电人、明显的摄像头状态和实体挂断。自动接听也绝不能顺带开放 PTZ。</div>
+      </div>
+    </section>
+
+    <section id="validation">
+      <div class="wrap">
+        <h2>不是“装上就完”：验收路线</h2>
+        <p class="sub">每个阶段都有退出条件。任何关键项不稳定，就留在当前阶段修复，不采购第二套。</p>
+        <div class="card">
+          <div class="step">
+            <div class="step-id">PHASE 0</div>
+            <div><h3>电视与网络勘察</h3><p>记录品牌、准确型号、HDMI 端口、CEC 品牌名、开机输入源、遥控器和路由器位置。</p></div>
+            <div class="gate">闸门：确定 CEC / IR 路线后才下单</div>
+          </div>
+          <div class="step">
+            <div class="step-id">PHASE 1</div>
+            <div><h3>桌面硬件 Prototype</h3><p>只买一套；完成自动开机、自动登录、全屏、远程维护和按钮映射。</p></div>
+            <div class="gate">20 次冷启动；8 小时通话/待机压力测试</div>
+          </div>
+          <div class="step">
+            <div class="step-id">PHASE 2</div>
+            <div><h3>两条通话路径</h3><p>微信自动化作为实验主路径，固定会议房作为回退候选；双方分别发起、拒接、挂断和重连。</p></div>
+            <div class="gate">每个方向 20 次；成功率 ≥95%</div>
+          </div>
+          <div class="step">
+            <div class="step-id">PHASE 3</div>
+            <div><h3>电视控制与故障恢复</h3><p>测试断电、断网、软件更新、USB 拔插、电视原输入源和红外误切换。</p></div>
+            <div class="gate">72 小时异地值守测试，可远程恢复</div>
+          </div>
+          <div class="step">
+            <div class="step-id">PHASE 4</div>
+            <div><h3>家庭节点 A 试运行</h3><p>观察老人是否仍需要找遥控器、选 HDMI、登录 App、输入会议号或处理弹窗。</p></div>
+            <div class="gate">连续稳定 2–4 周</div>
+          </div>
+          <div class="step">
+            <div class="step-id">PHASE 5</div>
+            <div><h3>语音 / TRTC 小 POC</h3><p>分别验证音箱唤醒、手机锁屏推送、联系人模型、多人体验和实际账单。</p></div>
+            <div class="gate">体验收益覆盖开发与持续月费</div>
+          </div>
+          <div class="step">
+            <div class="step-id">PHASE 6</div>
+            <div><h3>复制家庭节点 B</h3><p>使用通过验收的镜像、线材清单和操作卡；只修改节点身份与授权账号。</p></div>
+            <div class="gate">不引入未经验证的新型号</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="wrap">
+        <h2>核验来源</h2>
+        <p class="sub">优先列官方规格与官方开发文档；价格只作研究快照，购买当天需要重查。</p>
+        <ul class="source-list">
+          <li><a href="https://www.bee-link.com/products/beelink-eq14-n150">Beelink EQ14 N150 官方规格</a></li>
+          <li><a href="https://www.gmktec.com/products/nucbox-g3-plus-enhanced-performance-mini-pc-with-intel-n150-processor">GMKtec G3 Plus N150 官方规格</a></li>
+          <li><a href="https://www.logitech.com/zh-cn/products/video-conferencing/conference-cameras/bcc950-conferencecam.html">Logitech BCC950 官方规格</a></li>
+          <li><a href="https://www.logitech.com/zh-cn/products/webcams/c930c-webcam.html">Logitech C930c 官方规格</a></li>
+          <li><a href="https://www.logitech.com/zh-cn/products/webcams/c920e-business-webcam.html">Logitech C920e 官方规格</a></li>
+          <li><a href="https://www.logitech.com/zh-cn/products/video-conferencing/conference-cameras/meetup-conferencecam.960-001104.html">Logitech MeetUp 官方规格</a></li>
+          <li><a href="https://www.tp-link.com.cn/product_1934.html">TP-LINK TL-IPC44AW 官方规格</a></li>
+          <li><a href="https://www.mi.com/global/product/xiaomi-smart-camera-c700/">小米智能摄像机 C700 官方规格</a></li>
+          <li><a href="https://pcsensor.cn/product/pcsensor-usb-foot-switch-with-metal-pedal-for-custom-keyboard-and-mouse-household-appliances-and-factory-machinery-power-control-and-custom-keyboard-and-mouseetc/">PCsensor USB HID 开关产品页</a></li>
+          <li><a href="https://www.pulse-eight.com/p/104/usb-hdmi-cec-adapter">Pulse-Eight USB-CEC 官方规格</a></li>
+          <li><a href="https://www.ibroadlink.com/productinfo/762674.html">BroadLink RM4 mini 官方规格</a></li>
+          <li><a href="https://www.home-assistant.io/integrations/broadlink">Home Assistant BroadLink 集成</a></li>
+          <li><a href="https://www.home-assistant.io/integrations/hdmi_cec">Home Assistant HDMI-CEC 集成</a></li>
+          <li><a href="https://www.intel.com/content/www/us/en/support/articles/000005485/graphics.html">Intel：HDMI 端口与 CEC 说明</a></li>
+          <li><a href="https://pc.weixin.qq.com/">微信 Windows 官方页</a></li>
+          <li><a href="https://meeting.tencent.com/support/topic/1757/">腾讯会议：个人会议号说明</a></li>
+          <li><a href="https://cloud.tencent.com/document/product/647/49327">腾讯云 TUICallKit 官方概览</a></li>
+          <li><a href="https://cloud.tencent.com/document/product/647/104666">腾讯云群组通话官方文档</a></li>
+          <li><a href="https://buy.cloud.tencent.com/price/trtc/calculator">腾讯云 TRTC 官方价格计算器</a></li>
+          <li><a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe/">Jitsi IFrame API 官方文档</a></li>
+          <li><a href="https://www.microsip.org/help/this">MicroSIP 命令与自动接听说明</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>公开分享版 · V3 · 2026-08-27</strong><br>
+      本页不包含真实家庭成员姓名、账号、住址、设备地址或私有内容。方案尚未采购；准确电视型号、现场网络和 Prototype 结果仍是最终选型依据。
+    </div>
+  </footer>
+</body>
+</html>
