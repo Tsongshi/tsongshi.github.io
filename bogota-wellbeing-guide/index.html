@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bogotá Parque 93 / Chicó 身心生活指南</title>
+<meta name="description" content="以 Bogotá Parque de la 93 为公共参照点，整理社交舞、Pilates、按摩康复、福音派教会、社群与户外活动，附地址、距离、价格和官方联系方式。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f1ea">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101310">
+<meta property="og:title" content="Bogotá Parque 93 / Chicó 身心生活指南">
+<meta property="og:description" content="Movement, Recovery, Faith &amp; Community — 一份可筛选、带价格与联系方式的公开生活目录。">
+<meta property="og:type" content="website">
+<link rel="apple-touch-icon" href="/icons/site-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/site-192.png">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f3f1ea;
+    --paper: #fbfaf7;
+    --paper-strong: #ffffff;
+    --text: #171914;
+    --muted: #657065;
+    --soft: #818a80;
+    --line: #d7ddd5;
+    --accent: #3557d4;
+    --accent-soft: #e7ebfb;
+    --green: #2d6a53;
+    --green-soft: #e3eee8;
+    --amber: #9b641f;
+    --amber-soft: #f4e9d8;
+    --rose: #9a4e5e;
+    --rose-soft: #f4e3e7;
+    --purple: #6951a4;
+    --purple-soft: #ebe6f5;
+    --shadow: 0 18px 54px rgba(35, 42, 32, 0.09);
+    --page-pad: clamp(20px, 5vw, 72px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101310;
+      --paper: #171b17;
+      --paper-strong: #1c211c;
+      --text: #f0f2ec;
+      --muted: #a4ada2;
+      --soft: #7f887e;
+      --line: #30372f;
+      --accent: #93aaff;
+      --accent-soft: rgba(147, 170, 255, 0.13);
+      --green: #82c6a8;
+      --green-soft: rgba(90, 171, 133, 0.13);
+      --amber: #e2b36d;
+      --amber-soft: rgba(206, 151, 68, 0.13);
+      --rose: #e3a0ad;
+      --rose-soft: rgba(203, 102, 123, 0.13);
+      --purple: #c1aae9;
+      --purple-soft: rgba(155, 122, 211, 0.13);
+      --shadow: 0 22px 62px rgba(0, 0, 0, 0.26);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
+      "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 10% 3%, var(--accent-soft), transparent 28rem),
+      radial-gradient(circle at 92% 24%, var(--green-soft), transparent 30rem),
+      linear-gradient(90deg, transparent 49.94%, color-mix(in srgb, var(--line) 30%, transparent) 50%, transparent 50.06%);
+    background-size: auto, auto, 92px 100%;
+    opacity: 0.62;
+  }
+
+  a { color: inherit; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { font: inherit; }
+  [hidden] { display: none !important; }
+
+  .skip-link {
+    position: fixed;
+    z-index: 9999;
+    top: 8px;
+    left: 8px;
+    transform: translateY(-150%);
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--text);
+    color: var(--bg);
+  }
+  .skip-link:focus { transform: none; }
+
+  .page {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+    padding: clamp(42px, 7vw, 96px) var(--page-pad) 54px;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 760;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(270px, 0.65fr);
+    gap: clamp(34px, 7vw, 94px);
+    align-items: end;
+    margin-top: 32px;
+  }
+
+  h1, h2, .number {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Songti SC", "STSong", Georgia, serif;
+  }
+  h1 {
+    max-width: 12ch;
+    margin: 0;
+    font-size: clamp(3.25rem, 7.7vw, 6.8rem);
+    font-weight: 500;
+    line-height: 0.96;
+    letter-spacing: -0.065em;
+    text-wrap: balance;
+  }
+  h1 .place { color: var(--accent); }
+  .subtitle {
+    max-width: 48rem;
+    margin: 24px 0 0;
+    color: var(--muted);
+    font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+    line-height: 1.8;
+  }
+
+  .snapshot {
+    padding: 23px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--paper) 94%, transparent);
+    box-shadow: var(--shadow);
+  }
+  .snapshot-label {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 740;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .snapshot .number {
+    display: block;
+    margin-top: 10px;
+    font-size: 2.65rem;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+  .snapshot-copy {
+    margin: 11px 0 0;
+    color: var(--muted);
+    font-size: 0.76rem;
+  }
+
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    margin-top: clamp(42px, 7vw, 74px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--line);
+  }
+  .meta-item {
+    min-width: 0;
+    padding: 18px 20px;
+    background: var(--paper);
+  }
+  .meta-item span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 720;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  .meta-item strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.84rem;
+    font-weight: 680;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .notice {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 17px 18px;
+    border: 1px solid color-mix(in srgb, var(--amber) 35%, var(--line));
+    border-radius: 14px;
+    background: var(--amber-soft);
+    color: color-mix(in srgb, var(--text) 86%, var(--amber));
+    font-size: 0.74rem;
+  }
+  .notice strong { font-size: 0.92rem; }
+
+  .section-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.6fr);
+    gap: 28px;
+    align-items: end;
+    margin-top: clamp(72px, 10vw, 132px);
+    padding-bottom: 23px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-kicker {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 0.65rem;
+    font-weight: 760;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.045em;
+  }
+  .section-note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .filter-wrap {
+    position: sticky;
+    z-index: 20;
+    top: 10px;
+    margin: 22px 0 0;
+    padding: 8px;
+    border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--text) 8%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  .filters {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter-button {
+    flex: none;
+    min-height: 38px;
+    padding: 7px 13px;
+    border: 0;
+    border-radius: 11px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 680;
+    white-space: nowrap;
+  }
+  .filter-button:hover { color: var(--text); background: var(--paper); }
+  .filter-button[aria-pressed="true"] {
+    background: var(--text);
+    color: var(--bg);
+  }
+  .filter-button:focus-visible, .link-pill:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .directory-section { margin-top: 56px; }
+  .directory-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 17px;
+  }
+  .directory-head h3 {
+    margin: 0;
+    font-size: 1.04rem;
+    font-weight: 750;
+    letter-spacing: 0.02em;
+  }
+  .directory-head span {
+    color: var(--muted);
+    font-size: 0.67rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .place-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--paper) 94%, transparent);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .place-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 46%, var(--line));
+    box-shadow: var(--shadow);
+  }
+  .card-main { padding: 22px 22px 18px; }
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .category-tag, .distance-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    border-radius: 999px;
+    padding: 3px 8px;
+    font-size: 0.59rem;
+    font-weight: 730;
+    letter-spacing: 0.055em;
+  }
+  .category-tag { background: var(--accent-soft); color: var(--accent); }
+  .distance-tag { border: 1px solid var(--line); color: var(--muted); }
+  .place-card[data-category="pilates"] .category-tag { background: var(--green-soft); color: var(--green); }
+  .place-card[data-category="recovery"] .category-tag { background: var(--amber-soft); color: var(--amber); }
+  .place-card[data-category="faith"] .category-tag { background: var(--purple-soft); color: var(--purple); }
+  .place-card[data-category="community"] .category-tag { background: var(--rose-soft); color: var(--rose); }
+
+  .place-card h4 {
+    margin: 17px 0 0;
+    font-size: clamp(1.24rem, 2vw, 1.5rem);
+    font-weight: 720;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+  }
+  .editor-note {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 0.76rem;
+    line-height: 1.7;
+  }
+  .facts {
+    display: grid;
+    gap: 10px;
+    margin: 18px 0 0;
+  }
+  .fact {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    gap: 11px;
+    align-items: start;
+    padding-top: 10px;
+    border-top: 1px solid color-mix(in srgb, var(--line) 68%, transparent);
+  }
+  .fact dt {
+    color: var(--soft);
+    font-size: 0.64rem;
+    font-weight: 720;
+    letter-spacing: 0.08em;
+  }
+  .fact dd {
+    min-width: 0;
+    margin: 0;
+    font-size: 0.73rem;
+    line-height: 1.62;
+    overflow-wrap: anywhere;
+  }
+  .fact dd strong { font-weight: 720; }
+  .price-lines { display: grid; gap: 4px; }
+  .price-lines span { display: block; }
+  .price-lines em {
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-style: normal;
+  }
+
+  .card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: auto;
+    padding: 15px 22px 20px;
+    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--paper-strong) 58%, transparent);
+  }
+  .link-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 5px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.65rem;
+    font-weight: 660;
+    transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+  }
+  .link-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  details.verify {
+    padding: 0 22px 18px;
+    color: var(--muted);
+    font-size: 0.67rem;
+  }
+  details.verify summary {
+    width: max-content;
+    max-width: 100%;
+    cursor: pointer;
+    font-weight: 680;
+  }
+  details.verify p { margin: 8px 0 0; }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 23px;
+  }
+  .guide-card {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--paper);
+  }
+  .guide-card strong {
+    display: block;
+    font-size: 0.84rem;
+  }
+  .guide-card p {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+  .guide-card a { color: var(--accent); }
+
+  .closing {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.55fr);
+    gap: 32px;
+    margin-top: clamp(70px, 9vw, 118px);
+    padding: clamp(26px, 4vw, 40px);
+    border-radius: 24px;
+    background: var(--text);
+    color: var(--bg);
+  }
+  .closing h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+  .closing p {
+    margin: 13px 0 0;
+    color: color-mix(in srgb, var(--bg) 75%, transparent);
+    font-size: 0.78rem;
+  }
+  .closing-list {
+    display: grid;
+    gap: 10px;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .closing-list li {
+    padding-bottom: 10px;
+    border-bottom: 1px solid color-mix(in srgb, var(--bg) 18%, transparent);
+    font-size: 0.72rem;
+  }
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-top: 42px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.66rem;
+  }
+  .foot span:last-child { margin-left: auto; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .section-intro, .closing { grid-template-columns: 1fr; }
+    .snapshot { max-width: 420px; }
+    .meta-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .guide-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 680px) {
+    body::before { background-size: auto, auto, 64px 100%; }
+    .page { padding-top: 34px; }
+    h1 { font-size: clamp(2.75rem, 14.2vw, 4.6rem); }
+    .meta-strip { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .directory-section { margin-top: 42px; }
+    .section-intro { margin-top: 78px; }
+    .filter-wrap { margin-inline: calc(var(--page-pad) * -0.35); }
+    .card-main { padding: 20px 18px 16px; }
+    .card-links { padding: 14px 18px 18px; }
+    details.verify { padding-inline: 18px; }
+    .foot span:last-child { width: 100%; margin-left: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#directory">跳到地点目录</a>
+<main class="page">
+  <header>
+    <p class="eyebrow">Movement · Recovery · Faith · Community</p>
+    <div class="hero-grid">
+      <div>
+        <h1>Bogotá<br><span class="place">Parque 93</span><br>身心生活指南</h1>
+        <p class="subtitle">一份以 Parque de la 93 中心为公共参照点的生活目录：把社交舞、Pilates、按摩与康复、福音派教会、社群及户外恢复放进同一张可执行的地图。</p>
+      </div>
+      <aside class="snapshot" aria-label="页面快照">
+        <p class="snapshot-label">Public guide · Bogotá</p>
+        <strong class="number">20</strong>
+        <p class="snapshot-copy">个公开候选，按距离与用途整理。不是排名，也不代表商业合作。</p>
+      </aside>
+    </div>
+
+    <div class="meta-strip" aria-label="指南口径">
+      <div class="meta-item"><span>公共距离基准</span><strong>Parque de la 93 中心</strong></div>
+      <div class="meta-item"><span>资料核验</span><strong>2026-08-27</strong></div>
+      <div class="meta-item"><span>参考汇率</span><strong>COP 100,000 ≈ RMB 220</strong></div>
+      <div class="meta-item"><span>海拔</span><strong>约 2,640 m</strong></div>
+    </div>
+
+    <div class="notice">
+      <strong aria-hidden="true">※</strong>
+      <div>步行时间均为从公共地标出发的<strong>白天粗略估算</strong>，不是住址或办公室路线。课表、价格、英语服务和外客权限变化较快；出发或付款前，请用官方渠道再次确认。</div>
+    </div>
+  </header>
+
+  <section class="section-intro" id="directory">
+    <div>
+      <p class="section-kicker">Directory</p>
+      <h2>按你今天真正需要的东西来找。</h2>
+    </div>
+    <p class="section-note" id="result-summary" aria-live="polite">显示全部 20 个候选。每张卡只收录机构公开资料；“需确认”表示官网当前未给出足够信息。</p>
+  </section>
+
+  <div class="filter-wrap">
+    <nav class="filters" aria-label="按类别筛选">
+      <button class="filter-button" type="button" data-filter="all" aria-pressed="true">全部</button>
+      <button class="filter-button" type="button" data-filter="dance" aria-pressed="false">社交舞与语言</button>
+      <button class="filter-button" type="button" data-filter="pilates" aria-pressed="false">Pilates</button>
+      <button class="filter-button" type="button" data-filter="recovery" aria-pressed="false">按摩与康复</button>
+      <button class="filter-button" type="button" data-filter="faith" aria-pressed="false">教会</button>
+      <button class="filter-button" type="button" data-filter="community" aria-pressed="false">社群与户外</button>
+    </nav>
+  </div>
+
+  <section class="directory-section" data-section="dance" aria-labelledby="dance-title">
+    <div class="directory-head"><h3 id="dance-title">社交舞与语言社交</h3><span>04 places</span></div>
+    <div class="card-grid">
+      <article class="place-card" data-category="dance">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">Salsa · 团课</span><span class="distance-tag">步行约 2–6 分钟</span></div>
+          <h4>Son Rumbero · Parque 93</h4>
+          <p class="editor-note">最近、最低摩擦的社交舞试水点。课程由 Son Rumbero 组织，场地是 Galería Café Libro，两者不是同一主体。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Carrera 11A #93-42 · Galería Café Libro</dd></div>
+            <div class="fact"><dt>当前课表</dt><dd>周四 18:30–20:00 · Salsa pal Bailador · 多水平</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span><strong>COP 35,000/次</strong> <em>≈ RMB 77</em></span><span>Chapinero 基础月课 <strong>COP 80,000</strong> <em>≈ RMB 176</em></span><span>周六 3 门课程月计划 <strong>COP 140,000</strong> <em>≈ RMB 308</em></span></dd></div>
+            <div class="fact"><dt>联系</dt><dd>WhatsApp +57 302 258 2306</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://sonrumbero.com/planesyprecios/" target="_blank" rel="noopener noreferrer">官网与价格 ↗</a>
+          <a class="link-pill" href="https://wa.me/573022582306" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/sonrumbero/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera+11A+%2393-42+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+        <details class="verify"><summary>预订前确认</summary><p>月度表仍可能显示旧促销月份；以 WhatsApp 给出的当月场次、级别、场地与价格为准。私课官网提供预约，但未公开价。</p></details>
+      </article>
+
+      <article class="place-card" data-category="dance">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">Salsa · Bachata</span><span class="distance-tag">叫车 · 交通波动大</span></div>
+          <h4>Duane &amp; Aleja · Distrito Social</h4>
+          <p class="editor-note">固定周课、轮换舞伴和连续训练更适合建立舞圈；位置在 7 de Agosto，晚课不建议把“可达”理解成步行圈。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Carrera 29 #68-18 · 2楼 · 7 de Agosto</dd></div>
+            <div class="fact"><dt>团课</dt><dd>周一至周五晚间；含基础 Bachata、Salsa On1、Salsa caleña、音乐性与双人课</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span>1/4/8/12节：<strong>COP 30k/110k/180k/220k</strong></span><span><em>约 RMB 66/242/396/485</em></span><span>不限次 <strong>COP 280k</strong> <em>≈ RMB 617</em></span></dd></div>
+            <div class="fact"><dt>私课到家</dt><dd class="price-lines"><span>1/5/8/10节：<strong>COP 90k/400k/580k/700k</strong></span><span><em>约 RMB 198/881/1,278/1,542；官网称一人或情侣同价</em></span></dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.duaneyaleja.com.co/clasesregulares/" target="_blank" rel="noopener noreferrer">团课与价格 ↗</a>
+          <a class="link-pill" href="https://www.duaneyaleja.com.co/" target="_blank" rel="noopener noreferrer">联系表 ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera+29+%2368-18+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+        <details class="verify"><summary>计划有效期</summary><p>团课包通常须在4周内使用，官网当前显示首月85折；促销和社媒账号请从官网入口复核。</p></details>
+      </article>
+
+      <article class="place-card" data-category="dance">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">一对一参考价</span><span class="distance-tag">远北 · 周末选项</span></div>
+          <h4>Dance in Motion</h4>
+          <p class="editor-note">不是 Parque 93 近场选择，但官网公开私教价，适合作为附近舞蹈私课询价的预算锚点。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Carrera 19 #150-21 · Calle 134 #9-68</dd></div>
+            <div class="fact"><dt>团课</dt><dd class="price-lines"><span>8/12/16小时：<strong>COP 140k/180k/225k</strong></span><span><em>约 RMB 308/396/496</em></span></dd></div>
+            <div class="fact"><dt>私课</dt><dd class="price-lines"><span>一人4小时 <strong>COP 370k</strong> <em>≈ RMB 815</em></span><span>两人4小时 <strong>COP 480k</strong> <em>≈ RMB 1,057</em></span></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 320 233 2984 · WhatsApp</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.danceinmotion.co/pricing-plans/plans-pricing" target="_blank" rel="noopener noreferrer">官网价格 ↗</a>
+          <a class="link-pill" href="https://wa.me/573202332984" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Dance+in+Motion+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+        <details class="verify"><summary>价格口径</summary><p>官网不同价目入口同时出现套餐与单次私课价；购买前确认教师、校区、每次时长和有效期。</p></details>
+      </article>
+
+      <article class="place-card" data-category="dance">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">语言交换</span><span class="distance-tag">步行约 15–20 分钟</span></div>
+          <h4>Gringo Tuesdays · Bogotá</h4>
+          <p class="editor-note">适合单独前往的低门槛语言社交；前半段是交流，后半段转为派对，二者可以分开选择。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 85 #11-53 · Zona Rosa</dd></div>
+            <div class="fact"><dt>时间</dt><dd>每周二 16:00–20:00 语言交换；21:00后国际派对</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span>18:00后 <strong>COP 10,000</strong> <em>≈ RMB 22</em></span><span>20:00后 <strong>COP 20,000</strong> <em>≈ RMB 44</em></span><span><em>另有最低消费</em></span></dd></div>
+            <div class="fact"><dt>语言</dt><dd>官网列有西语、英语、法语、意大利语、德语、葡语等桌</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.gringotuesdays.co/en/bogota" target="_blank" rel="noopener noreferrer">官网 ↗</a>
+          <a class="link-pill" href="https://www.gringotuesdays.co/en/faqs" target="_blank" rel="noopener noreferrer">FAQ与价格 ↗</a>
+          <a class="link-pill" href="https://wa.me/573132364413" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+85+%2311-53+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="directory-section" data-section="pilates" aria-labelledby="pilates-title">
+    <div class="directory-head"><h3 id="pilates-title">Pilates 与身体维护</h3><span>04 places</span></div>
+    <div class="card-grid">
+      <article class="place-card" data-category="pilates">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">小班 · 评估衔接</span><span class="distance-tag">步行约 3–8 分钟</span></div>
+          <h4>Kroop Chicó</h4>
+          <p class="editor-note">75分钟、最多3人的小班，并提供独立物理治疗评估；适合重视动作控制与个别关注的人。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 94A #11A-32 · Oficina 304</dd></div>
+            <div class="fact"><dt>时间</dt><dd>官网显示开放区间 06:00–19:00；具体星期与可预约时段需确认</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span>首次 Pilates 体验：<strong>免费</strong> <em>资格需确认</em></span><span>物理治疗评估1小时 <strong>COP 130,000</strong> <em>≈ RMB 286</em></span><span>后续 Pilates：需询价</span></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 311 656 3786</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://krooprpg.com/pilates-bogota/chico/" target="_blank" rel="noopener noreferrer">官网 ↗</a>
+          <a class="link-pill" href="tel:+573116563786">电话 ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+94A+%2311A-32+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="pilates">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">FitFormer · 团课</span><span class="distance-tag">步行约 2–6 分钟</span></div>
+          <h4>Pilates ProWorks · Calle 93</h4>
+          <p class="editor-note">距离近、价格透明，但 FitFormer 更偏强度、塑形和节奏感，不等同于临床康复型 Reformer。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Carrera 11 #93A-38 · Local 201</dd></div>
+            <div class="fact"><dt>课表</dt><dd>静态官网未列固定营业时间，以预约系统当日场次为准</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span>首课 <strong>COP 50k</strong> <em>≈ RMB 110</em> · 单次 <strong>COP 70k</strong> <em>≈ RMB 154</em></span><span>月4/8/12次：<strong>COP 260k/480k/580k</strong></span><span><em>约 RMB 573/1,057/1,278</em></span><span>10/20次：<strong>COP 638k/1.068m</strong> <em>≈ RMB 1,405/2,352</em></span></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 312 791 8368 · 私人/半私人课需询价</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.pilatesproworks.com/colombia" target="_blank" rel="noopener noreferrer">官网与价格 ↗</a>
+          <a class="link-pill" href="tel:+573127918368">电话 ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera+11+%2393A-38+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="pilates">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">Reformer · Coffee</span><span class="distance-tag">步行约 25–35 分钟</span></div>
+          <h4>DUNA Studio &amp; Coffee</h4>
+          <p class="editor-note">把 Reformer、Yoga、Barre 与咖啡空间放在一起；适合希望运动结束后仍能停留、工作或自然聊天的人。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 106A #18B-34 · Chicó Norte</dd></div>
+            <div class="fact"><dt>时间</dt><dd>课程：工作日 06:00–10:00、17:30–19:30；周末 08:00–12:00。咖啡厅营业更长。</dd></div>
+            <div class="fact"><dt>价格</dt><dd>试课50分钟 <strong>COP 70,000</strong> <em>≈ RMB 154</em>；其他套餐在线动态显示，预订前确认。</dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 310 678 1677</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://dunastudioco.com/" target="_blank" rel="noopener noreferrer">官网 ↗</a>
+          <a class="link-pill" href="https://dunastudioco.com/precios" target="_blank" rel="noopener noreferrer">价格 ↗</a>
+          <a class="link-pill" href="tel:+573106781677">电话 ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+106A+%2318B-34+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="pilates">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">一对一 · 周六</span><span class="distance-tag">远距 · 周末选项</span></div>
+          <h4>pfs PILATES · Calle 127</h4>
+          <p class="editor-note">公开的一对一套餐价格较有竞争力；更适合集中在周六，而不是为普通团课频繁跨城往返。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 127 #60-69</dd></div>
+            <div class="fact"><dt>时间</dt><dd>周一至周五 06:00–20:00；周六 07:00–13:00</dd></div>
+            <div class="fact"><dt>团课</dt><dd class="price-lines"><span>首课 <strong>COP 35k</strong> <em>≈ RMB 77</em></span><span>月4/8/12/16次：<strong>COP 280k/405k/525k/650k</strong></span><span><em>约 RMB 617/892/1,156/1,432</em></span></dd></div>
+            <div class="fact"><dt>一对一</dt><dd class="price-lines"><span>4/8/10次：<strong>COP 425k/790k/955k</strong></span><span><em>约 RMB 936/1,740/2,104</em></span></dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://pfspilates.com/" target="_blank" rel="noopener noreferrer">官网与预约 ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+127+%2360-69+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+        <details class="verify"><summary>价格计算提示</summary><p>官网一项半私教套餐的“每节价格”与套餐总价存在内部不一致；本页仅采用官网总价，付款前应再次确认。</p></details>
+      </article>
+    </div>
+  </section>
+
+  <section class="directory-section" data-section="recovery" aria-labelledby="recovery-title">
+    <div class="directory-head"><h3 id="recovery-title">按摩、SPA 与正规康复</h3><span>04 places</span></div>
+    <div class="card-grid">
+      <article class="place-card" data-category="recovery">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">Thai · Spa</span><span class="distance-tag">步行约 25–35 分钟</span></div>
+          <h4>BAW Thai Spa · El Nogal</h4>
+          <p class="editor-note">适合主观放松、身体紧张感与完整 SPA 体验；不把商家的“排毒或清乳酸”宣传当作医学结论。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 79B #7-83</dd></div>
+            <div class="fact"><dt>时间</dt><dd>周二至周五 10:00–21:00；周六 10:00–20:00；周日 09:00–18:00；周一闭店</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span>传统Thai 60/90/120分钟：<strong>COP 250k/355k/440k</strong></span><span><em>约 RMB 551/782/969</em></span><span>运动按摩60/90/120分钟：<strong>COP 290k/380k/475k</strong></span><span><em>约 RMB 639/837/1,046</em></span><span>Royal Orquídea 90分钟 <strong>COP 399k</strong> <em>≈ RMB 879/人</em></span></dd></div>
+            <div class="fact"><dt>联系</dt><dd>预订 +57 324 345 7617 · 座机 +57 601 466 1972</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://bawthaispa.com/sede-nogal/" target="_blank" rel="noopener noreferrer">官网与价目 ↗</a>
+          <a class="link-pill" href="tel:+573243457617">预订电话 ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+79B+%237-83+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="recovery">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">运动恢复 · 预算</span><span class="distance-tag">远距 · 周末选项</span></div>
+          <h4>BP Recovery Center</h4>
+          <p class="editor-note">价格比核心商业区 SPA 低很多，适合运动前后放松；若为疼痛治疗，应先确认实际服务人员的专业注册资质。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>AK 70 #105-22 · La Floresta</dd></div>
+            <div class="fact"><dt>时间</dt><dd>工作日分早晚两段；周六 09:00–13:00</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span>赛前/赛后按摩 <strong>COP 105k/小时</strong> <em>≈ RMB 231</em></span><span>康复/治疗按摩 <strong>COP 130k/小时</strong> <em>≈ RMB 286</em></span></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 304 327 8210 · contactenos@bikepassiontc.com</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://recoverycenter.bikepassiontc.com/" target="_blank" rel="noopener noreferrer">官网 ↗</a>
+          <a class="link-pill" href="tel:+573043278210">电话 ↗</a>
+          <a class="link-pill" href="mailto:contactenos@bikepassiontc.com">Email ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=AK+70+%23105-22+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="recovery">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">运动医学 · 理疗</span><span class="distance-tag">约 30–40 分钟步行</span></div>
+          <h4>MET Centro Médico Deportivo</h4>
+          <p class="editor-note">持续疼痛、运动损伤、活动受限或需要回归运动计划时，优先选择的正规运动医学路径。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 106 #23-61 · Piso 8 · Edificio Jasban</dd></div>
+            <div class="fact"><dt>时间</dt><dd>物理治疗：周一至周五 06:00–20:00；周六 07:00–13:00</dd></div>
+            <div class="fact"><dt>价格</dt><dd>官网未公开；单次通常约1小时，预约时确认评估与治疗是否分开计费。</dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 300 489 4135 · administracion@centromedicomet.com</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://centromedicomet.com/servicios/fisioterapia-deportiva-bogota-chia/" target="_blank" rel="noopener noreferrer">官网 ↗</a>
+          <a class="link-pill" href="https://wa.me/573004894135" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+          <a class="link-pill" href="mailto:administracion@centromedicomet.com">Email ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+106+%2323-61+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="recovery">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">IPS · 康复评估</span><span class="distance-tag">叫车 · La Castellana</span></div>
+          <h4>CENRED Colombia IPS</h4>
+          <p class="editor-note">物理治疗、运动再适应、运动医学与骨科在同一机构内，适合需要正式评估和多专业衔接的情况。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Carrera 49 #93-40 · La Castellana</dd></div>
+            <div class="fact"><dt>流程</dt><dd>官网建议先由其物理治疗、运动医学或骨科评估；每节约50–55分钟</dd></div>
+            <div class="fact"><dt>价格</dt><dd>未公开；营业时段亦需预约时确认。</dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 601 756 8142 · WhatsApp +57 311 801 8997</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://cenred.com.co/fisioterapia-y-rehabilitacion/" target="_blank" rel="noopener noreferrer">官网 ↗</a>
+          <a class="link-pill" href="https://wa.me/573118018997" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera+49+%2393-40+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="directory-section" data-section="faith" aria-labelledby="faith-title">
+    <div class="directory-head"><h3 id="faith-title">教会与信仰社群</h3><span>04 places</span></div>
+    <div class="card-grid" id="faith-cards">
+      <article class="place-card" data-category="faith">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">福音派 · 西语</span><span class="distance-tag">步行约 15–20 分钟</span></div>
+          <h4>Casa Sobre la Roca · Bogotá Chicó</h4>
+          <p class="editor-note">核心步行圈里较完整的福音派选择：主日、周中聚会、男士及职场群体和小组入口都在同一堂点。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 102 #14-64；官网另一个页面出现 #14-20，首次前请确认入口</dd></div>
+            <div class="fact"><dt>聚会</dt><dd>主日 07:00 / 09:00 / 11:30；周三 18:30；另有 Hombres de Bien、Casa2、Executives &amp; Entrepreneurs 等群体</dd></div>
+            <div class="fact"><dt>价格</dt><dd><strong>免费</strong>；奉献及专项活动按自愿或活动说明</dd></div>
+            <div class="fact"><dt>联系</dt><dd>WhatsApp +57 320 275 0890 · +57 601 634 6100 · bogota@casaroca.org</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://casaroca.org/bogota/" target="_blank" rel="noopener noreferrer">当地堂点官网 ↗</a>
+          <a class="link-pill" href="https://wa.me/573202750890" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/casa_roca/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="https://www.youtube.com/c/casarocachannel" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Sobre+la+Roca+Bogota+Chico" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+        <details class="verify"><summary>教会选择提示</summary><p>“有主日”不等于“能建立关系”。如果目标是稳定社群，第一次参加后应直接询问适合新来者的 grupo pequeño，而不是只看主日规模。</p></details>
+      </article>
+
+      <article class="place-card" data-category="faith">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">ICCC · 西语</span><span class="distance-tag">步行约 25–30 分钟</span></div>
+          <h4>Iglesia del Chicó</h4>
+          <p class="editor-note">ICCC 体系内的本地堂点，官网公开自己的牧者、主日和祷告聚会；与 Casa Sobre la Roca 是两家不同教会。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Avenida 19 #102-90 · Barrio Chicó</dd></div>
+            <div class="fact"><dt>聚会</dt><dd>主日 09:00 / 11:00；周三 10:00 “La hora del clamor”</dd></div>
+            <div class="fact"><dt>价格</dt><dd><strong>免费</strong></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 311 443 5792 · +57 601 362 2854 · chico@iccc-colombia.org</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://iglesiadelchico.com/" target="_blank" rel="noopener noreferrer">官网 ↗</a>
+          <a class="link-pill" href="https://iccc-colombia.org/nuestras-sedes/" target="_blank" rel="noopener noreferrer">ICCC 堂点资料 ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/iglesiadelchico/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="https://www.youtube.com/@iglesiadelchico" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida+19+%23102-90+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="faith">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">福音派 · 大型敬拜</span><span class="distance-tag">步行约 25–30 分钟</span></div>
+          <h4>El Lugar de Su Presencia · El Nogal</h4>
+          <p class="editor-note">大型、现代敬拜取向，主日场次多，也提供连接小组入口；更适合喜欢高能量聚会的人。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Carrera 9 #79A-03 · El Nogal</dd></div>
+            <div class="fact"><dt>聚会</dt><dd>主日 07:30 / 09:30 / 11:30；官网建议提前30分钟到达</dd></div>
+            <div class="fact"><dt>价格</dt><dd><strong>免费</strong></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 601 746 0202 · informaciongeneral@supresencia.com</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://supresencia.com/nogal" target="_blank" rel="noopener noreferrer">堂点官网 ↗</a>
+          <a class="link-pill" href="https://supresencia.com/conectate" target="_blank" rel="noopener noreferrer">连接小组 ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/supresenciaiglesia/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="https://www.youtube.com/channel/UCgdpiakw3lGkW27tSwptAow" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera+9+%2379A-03+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="faith">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">英语 · 国际教会</span><span class="distance-tag">非舒适步行圈</span></div>
+          <h4>United Church of Bogotá</h4>
+          <p class="editor-note">全英语、多宗派福音派国际教会；有聚会后咖啡与 home groups，适合需要英语落地社群的人。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Carrera 4 #69-06</dd></div>
+            <div class="fact"><dt>聚会</dt><dd>主日 09:00 / 11:15；10:15 西语 Sunday school；11:15 可提供数量有限的西语同传设备</dd></div>
+            <div class="fact"><dt>价格</dt><dd><strong>免费</strong></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 311 286 2478 · +57 601 540 4442 · info@ucbogota.org</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.ucbogota.org/im-new" target="_blank" rel="noopener noreferrer">新来者说明 ↗</a>
+          <a class="link-pill" href="https://www.ucbogota.org/get-connected/home-groups" target="_blank" rel="noopener noreferrer">Home groups ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/unitedchurchbogota/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="mailto:info@ucbogota.org">Email ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera+4+%2369-06+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="directory-section" data-section="community" aria-labelledby="community-title">
+    <div class="directory-head"><h3 id="community-title">社群、户外与城市恢复</h3><span>04 places</span></div>
+    <div class="card-grid" id="community-cards">
+      <article class="place-card" data-category="community">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">西语 · 公开表达</span><span class="distance-tag">步行约 20–30 分钟</span></div>
+          <h4>Toastmasters · Bogotá Destino Excelencia</h4>
+          <p class="editor-note">结构化练习西语表达并反复见到固定成员；可以先作为免费访客旁听，不要求第一次就发言。</p>
+          <dl class="facts">
+            <div class="fact"><dt>地址</dt><dd>Calle 81 #11-08 + Zoom；实体与线上安排先联系确认</dd></div>
+            <div class="fact"><dt>时间</dt><dd>每周三 20:00（GMT-5）· 西语 · 支持线上参加</dd></div>
+            <div class="fact"><dt>价格</dt><dd class="price-lines"><span>访客：<strong>免费</strong></span><span>国际会费 <strong>USD 72/半年</strong> <em>≈ RMB 484</em></span><span>首次入会费 <strong>USD 25</strong> <em>≈ RMB 168</em>；另可能有本地会费</span></dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 313 852 3779</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.toastmasters.org/Find-a-Club/04406016-oradores-en-espanol-bogot" target="_blank" rel="noopener noreferrer">官方俱乐部页 ↗</a>
+          <a class="link-pill" href="https://www.toastmasters.org/footer/faq/Membership%20Dues" target="_blank" rel="noopener noreferrer">国际会费说明 ↗</a>
+          <a class="link-pill" href="https://toastmasterbogota.wordpress.com/" target="_blank" rel="noopener noreferrer">俱乐部网站 ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/toastmastersbogota/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="https://www.facebook.com/ToastMastersBogotaColombia/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+81+%2311-08+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+        <details class="verify"><summary>地址更正</summary><p>Toastmasters 官方页面当前显示 Calle 81 #11-08，不是早期资料中的 Calle 92。聚会地点可能变化，请先致电或通过俱乐部页确认。</p></details>
+      </article>
+
+      <article class="place-card" data-category="community">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">免费 · 城市运动</span><span class="distance-tag">步行约 3–10 分钟</span></div>
+          <h4>Bogotá Ciclovía · 北线</h4>
+          <p class="editor-note">最容易进入本地周日节奏的免费活动：步行、跑步、骑车或轮滑都可以，不必先加入俱乐部。</p>
+          <dl class="facts">
+            <div class="fact"><dt>近段</dt><dd>Carrera 15 · Calle 92 一带；施工期间的北线连接可能调整</dd></div>
+            <div class="fact"><dt>时间</dt><dd>每个周日及节假日 07:00–14:00</dd></div>
+            <div class="fact"><dt>价格</dt><dd><strong>免费</strong></dd></div>
+            <div class="fact"><dt>联系</dt><dd>IDRD +57 601 660 5400 · 每周先看官方 bulletin</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.idrd.gov.co/ciclovia" target="_blank" rel="noopener noreferrer">官方概览 ↗</a>
+          <a class="link-pill" href="https://www.idrd.gov.co/ciclovia/boletin-ciclovia" target="_blank" rel="noopener noreferrer">本周公告 ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/idrdbogota/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Carrera+15+y+Calle+92+Bogota" target="_blank" rel="noopener noreferrer">近段地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="community">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">预约徒步 · 高海拔</span><span class="distance-tag">入口需叫车</span></div>
+          <h4>Quebrada La Vieja</h4>
+          <p class="editor-note">城市东部山地恢复选项；路线进入更高海拔，第一次宜用官方开放路段并与同伴同行。</p>
+          <dl class="facts">
+            <div class="fact"><dt>入口</dt><dd>Calle 71 / Avenida Circunvalar 一带；不属于 Parque 93 舒适步行圈</dd></div>
+            <div class="fact"><dt>预约</dt><dd>仅通过 “Caminos de los Cerros Orientales” 官方 App / 网站；名额通常提前3天开放，QR入场</dd></div>
+            <div class="fact"><dt>价格</dt><dd><strong>免费</strong> · 必须预约</dd></div>
+            <div class="fact"><dt>强度</dt><dd>旅游概览列完整路线约8.9km、中高难度；当日开放长度和时段以 App 为准</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://visitbogota.co/es/rutas-turisticas/ruta-por-el-sendero-quebrada-la-vieja" target="_blank" rel="noopener noreferrer">路线概览 ↗</a>
+          <a class="link-pill" href="https://www.acueducto.com.co/wps/portal/EAB2/Home/general/sala-de-prensa/boletines/detalle/app_caminos_cerros_orientales" target="_blank" rel="noopener noreferrer">官方预约说明 ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/caminosbogota/" target="_blank" rel="noopener noreferrer">开放动态 ↗</a>
+          <a class="link-pill" href="https://www.google.com/maps/search/?api=1&amp;query=Quebrada+La+Vieja+Bogota" target="_blank" rel="noopener noreferrer">地图 ↗</a>
+        </div>
+      </article>
+
+      <article class="place-card" data-category="community">
+        <div class="card-main">
+          <div class="card-top"><span class="category-tag">志愿活动 · 本地连接</span><span class="distance-tag">集合点随活动变化</span></div>
+          <h4>TECHO Colombia · Bogotá</h4>
+          <p class="editor-note">通过社区项目建立更有内容的本地关系；适合熟悉城市和西语沟通后，再按月参加。</p>
+          <dl class="facts">
+            <div class="fact"><dt>办公室</dt><dd>Carrera 28 #45A-22；旧联系模块有不同门牌，来访前确认</dd></div>
+            <div class="fact"><dt>报名</dt><dd>通过全国志愿页面、活动平台或 Bogotá 官方 Linktree；每次集合点和条件不同</dd></div>
+            <div class="fact"><dt>价格</dt><dd>没有统一收费；交通、物资或活动自付要求以单个报名页为准</dd></div>
+            <div class="fact"><dt>联系</dt><dd>+57 601 702 9309 · info.colombia@techo.org</dd></div>
+          </dl>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://colombia.techo.org/involucrate/" target="_blank" rel="noopener noreferrer">志愿者入口 ↗</a>
+          <a class="link-pill" href="https://actividades.techo.org/colombia" target="_blank" rel="noopener noreferrer">当前活动 ↗</a>
+          <a class="link-pill" href="https://linktr.ee/techo_bog" target="_blank" rel="noopener noreferrer">Bogotá 入口 ↗</a>
+          <a class="link-pill" href="https://www.instagram.com/techo_bog/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a class="link-pill" href="mailto:info.colombia@techo.org">Email ↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-intro" aria-labelledby="public-notes-title">
+    <div>
+      <p class="section-kicker">Practical notes</p>
+      <h2 id="public-notes-title">先适应这座城，再增加强度。</h2>
+    </div>
+    <p class="section-note">这些是面向所有新到 Bogotá 读者的公共提示，不替代个体医疗建议或实时安全信息。</p>
+  </section>
+
+  <div class="guide-grid">
+    <article class="guide-card"><strong>高海拔前几天</strong><p>Bogotá 约2,640米。抵达后前48小时宜轻量活动、补水并避免重训与饮酒；急性适应最关键通常是最初3–5天。<a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC 指南 ↗</a></p></article>
+    <article class="guide-card"><strong>夜间与远距活动</strong><p>晚课和 rumba 区域优先使用授权叫车平台或 Taxi Seguro，核对车牌与司机并分享实时位置；车程不要按网页估算作保证。<a href="https://bogota.gov.co/mi-ciudad/seguridad/tenga-cuidado-con-estas-senales-cuando-coja-o-pida-taxi-en-bogota" target="_blank" rel="noopener noreferrer">Bogotá 官方提示 ↗</a></p></article>
+    <article class="guide-card"><strong>按摩不是诊断</strong><p>按摩可以用于主观放松和缓解紧张感；持续疼痛、肿胀、麻木、无力或活动受限，应转向正规物理治疗或医疗评估。</p></article>
+  </div>
+
+  <section class="closing">
+    <div>
+      <p class="section-kicker">A low-friction rhythm</p>
+      <h2>一个可参考的低负担组合。</h2>
+      <p>这只是公开示例，不是任何人的真实固定行程。重点是保留恢复空间，而不是把每天晚上都排满。</p>
+    </div>
+    <ol class="closing-list">
+      <li>每周 1 次社交舞团课</li>
+      <li>每周 1 次 Pilates 或基础力量</li>
+      <li>每周 1 次教会、小组或结构化社群</li>
+      <li>每 3–4 周 1 次按摩；症状则走正规康复</li>
+      <li>周日用 Ciclovía、公园或官方徒步恢复日照与节律</li>
+    </ol>
+  </section>
+
+  <footer class="foot">
+    <span>独立整理 · 非商业合作 · 不构成医疗或安全保证</span>
+    <span>价格与课表核验于 2026-08-27</span>
+  </footer>
+</main>
+
+<script>
+const categoryNames = {
+  all: "全部",
+  dance: "社交舞与语言",
+  pilates: "Pilates",
+  recovery: "按摩与康复",
+  faith: "教会",
+  community: "社群与户外"
+};
+
+const buttons = [...document.querySelectorAll(".filter-button")];
+const sections = [...document.querySelectorAll("[data-section]")];
+const total = document.querySelectorAll(".place-card").length;
+const summary = document.getElementById("result-summary");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const filter = button.dataset.filter;
+    buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    sections.forEach((section) => {
+      section.hidden = filter !== "all" && section.dataset.section !== filter;
+    });
+    summary.textContent = filter === "all"
+      ? `显示全部 ${total} 个候选。每张卡只收录机构公开资料；“需确认”表示官网当前未给出足够信息。`
+      : `正在显示：${categoryNames[filter]}。选择“全部”可恢复完整目录。`;
+  });
+});
+</script>
+<script src="/nav.js" defer></script>
+</body>
+</html>
