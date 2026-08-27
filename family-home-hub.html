@@ -1,101 +1,65 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>家庭大屏终端｜电视 + Mini PC + 一键视频 + 远程看护</title>
-<meta name="description" content="利用现有电视搭建老人友好的家庭大屏终端：一键视频通话、远程内容推送、PTZ 看护与远程维护。">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>家庭通信与看护中枢｜DIY Family Home Hub</title>
+<meta name="description" content="利用现有电视搭建可逐步升级的家庭通信、内容推送与远程看护系统。">
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#17191f;--muted:#666d7a;--line:#e7e9ef;--accent:#166534;--soft:#ecfdf3;--blue:#1d4ed8;--warn:#b45309;--shadow:0 12px 34px rgba(20,25,35,.08)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.68 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink)}a{color:var(--blue);text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:0 22px}.hero{padding:64px 0 38px;background:linear-gradient(135deg,#f0fdf4,#eff6ff)}.eyebrow{font-size:13px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(34px,5.5vw,66px);line-height:1.05;margin:.35em 0 .28em;letter-spacing:-.045em}.lead{font-size:20px;color:#414754;max-width:850px}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.chip{background:#fff;border:1px solid #dce3df;border-radius:999px;padding:8px 12px;font-size:14px}.nav{position:sticky;top:0;z-index:5;background:rgba(246,247,251,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav .wrap{display:flex;gap:18px;overflow:auto;padding-top:11px;padding-bottom:11px;white-space:nowrap;font-size:14px}.section{padding:48px 0}.section h2{font-size:30px;letter-spacing:-.02em;margin:0 0 10px}.sub{color:var(--muted);margin-top:0}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.span4{grid-column:span 4}.span6{grid-column:span 6}.span12{grid-column:span 12}.kpi{font-size:34px;font-weight:800;letter-spacing:-.03em}.small{font-size:13px;color:var(--muted)}.diagram{background:#111827;color:#f9fafb;border-radius:22px;padding:26px;overflow:auto}.diagram pre{margin:0;font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;min-width:700px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:center}.flow .step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;text-align:center;min-height:118px;display:flex;flex-direction:column;justify-content:center}.arrow{text-align:center;font-size:24px;color:#9ca3af}.tag{display:inline-block;border-radius:8px;background:#eef2ff;color:#3730a3;padding:3px 8px;font-size:12px;font-weight:700}.tag.green{background:var(--soft);color:var(--accent)}.tag.orange{background:#fff7ed;color:var(--warn)}table{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line)}th,td{text-align:left;padding:14px 13px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:13px;background:#f8fafc;color:#4b5563}tr:last-child td{border-bottom:0}.price{font-weight:800;white-space:nowrap}.pick{outline:2px solid #86efac;background:#f7fff9}.button-demo{display:flex;gap:14px;align-items:center;justify-content:center;min-height:190px;background:#14181f;border-radius:20px}.bigbtn{width:126px;height:126px;border-radius:50%;border:8px solid #d8f3df;background:#22c55e;color:#07250f;font-weight:900;box-shadow:0 8px 0 #15803d;font-size:18px}.callout{border-left:4px solid var(--accent);background:var(--soft);padding:16px 18px;border-radius:0 14px 14px 0}.warn{border-left-color:#f59e0b;background:#fffbeb}.calc{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.total{font-size:44px;font-weight:900;letter-spacing:-.04em}.check{display:flex;gap:10px;margin:9px 0}.check:before{content:"✓";color:var(--accent);font-weight:900}.no:before{content:"×";color:#b91c1c}.foot{padding:38px 0 60px;color:var(--muted);font-size:13px}.muted{color:var(--muted)}@media(max-width:820px){.span4,.span6{grid-column:span 12}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.calc{grid-template-columns:1fr}.hero{padding-top:46px}table{font-size:14px}.tablewrap{overflow:auto}.diagram pre{min-width:620px}}
-</style>
-</head>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#17191f;--muted:#687080;--line:#e5e7eb;--green:#166534;--soft:#ecfdf3;--blue:#1d4ed8;--amber:#b45309;--shadow:0 12px 34px rgba(20,25,35,.07)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.68 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:var(--blue);text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:0 22px}.hero{padding:62px 0 38px;background:linear-gradient(135deg,#effdf4,#eef5ff)}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--green)}h1{font-size:clamp(34px,5.3vw,64px);line-height:1.06;margin:.35em 0 .3em;letter-spacing:-.045em}.lead{max-width:900px;font-size:20px;color:#424957}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.chip{background:#fff;border:1px solid #dfe5e2;border-radius:999px;padding:8px 12px;font-size:14px}.nav{position:sticky;top:0;z-index:10;background:rgba(245,247,251,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav .wrap{display:flex;gap:18px;overflow:auto;padding-top:11px;padding-bottom:11px;white-space:nowrap;font-size:14px}.section{padding:46px 0}.section h2{font-size:30px;letter-spacing:-.02em;margin:0 0 8px}.sub{color:var(--muted);margin-top:0}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.span3{grid-column:span 3}.span4{grid-column:span 4}.span6{grid-column:span 6}.span12{grid-column:span 12}.tag{display:inline-block;border-radius:8px;background:#eef2ff;color:#3730a3;padding:3px 8px;font-size:12px;font-weight:800}.green{background:var(--soft);color:var(--green)}.orange{background:#fff7ed;color:var(--amber)}.kpi{font-size:33px;font-weight:900;letter-spacing:-.03em}.small{font-size:13px;color:var(--muted)}.pick{outline:2px solid #86efac;background:#f8fff9}.check{display:flex;gap:9px;margin:8px 0}.check:before{content:"✓";color:var(--green);font-weight:900}.diagram{background:#111827;color:#f9fafb;border-radius:22px;padding:24px;overflow:auto}.diagram pre{margin:0;font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;min-width:760px}table{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line)}th,td{text-align:left;padding:14px 13px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:13px;background:#f8fafc;color:#4b5563}tr:last-child td{border-bottom:0}.tablewrap{overflow:auto}.price{font-weight:850;white-space:nowrap}.callout{border-left:4px solid var(--green);background:var(--soft);padding:16px 18px;border-radius:0 14px 14px 0}.warn{border-left-color:#f59e0b;background:#fffbeb}.tier{position:relative}.tier .num{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.08em}.tier h3{margin:.25em 0}.arrowline{font-weight:900;color:#9ca3af}.persona{background:#111827;color:#fff;border-radius:18px;padding:20px}.persona b{font-size:20px}.voice{background:linear-gradient(145deg,#1f2937,#111827);color:white}.voice .say{background:#fff;color:#111827;border-radius:15px;padding:11px 14px;margin:9px 0}.foot{padding:36px 0 60px;color:var(--muted);font-size:13px}@media(max-width:850px){.span3,.span4,.span6{grid-column:span 12}.diagram pre{min-width:700px}.hero{padding-top:45px}table{font-size:14px}}
+</style></head>
 <body>
-<header class="hero"><div class="wrap">
-<div class="eyebrow">DIY Family Home Hub · V1</div>
-<h1>把家里的电视，变成<br>老人几乎不用操作的家庭大屏终端</h1>
-<p class="lead">目标不是再买一块“智能屏”，而是利用现有电视，做两套可远程维护的家庭节点：<b>一键视频通话、远程推送优质内容、独立 PTZ 看护、自动开屏/切 HDMI</b>。一套放父母家，一套放爷爷奶奶家。</p>
-<div class="chips"><span class="chip">现有电视复用</span><span class="chip">老人只按一个键</span><span class="chip">远程内容推送</span><span class="chip">独立 PTZ 看护</span><span class="chip">断电后自动恢复</span></div>
-</div></header>
-<nav class="nav"><div class="wrap"><a href="#decision">结论</a><a href="#architecture">架构</a><a href="#devices">设备</a><a href="#budget">预算</a><a href="#experience">老人体验</a><a href="#remote">远程控制</a><a href="#deploy">部署</a><a href="#risks">注意事项</a></div></nav>
+<header class="hero"><div class="wrap"><div class="eyebrow">DIY FAMILY HOME HUB · V2</div><h1>把两台家里的电视，升级成<br>一个家庭通信网络</h1><p class="lead">不是单独做“智能屏”，而是做一套可以从简单版本逐步升级的家庭系统：<b>老人一键/一句话发起视频、全家手机互联、远程推送内容、独立 PTZ 看护、电视自动唤醒、远程维护</b>。先跑一套，再复制第二套。</p><div class="chips"><span class="chip">父母家电视节点</span><span class="chip">爷爷奶奶家电视节点</span><span class="chip">家庭成员手机</span><span class="chip">智能音箱</span><span class="chip">实体大按钮</span><span class="chip">PTZ 看护</span></div></div></header>
+<nav class="nav"><div class="wrap"><a href="#roadmap">升级路线</a><a href="#network">家庭网络</a><a href="#voice">语音入口</a><a href="#devices">设备</a><a href="#budget">预算</a><a href="#experience">老人体验</a><a href="#deploy">部署</a></div></nav>
 <main>
-<section id="decision" class="section"><div class="wrap"><h2>先给结论</h2><p class="sub">推荐路线：别让一个设备承担所有任务。视频通话与家庭看护分开，可靠性更高。</p>
-<div class="grid">
-<div class="card span4 pick"><span class="tag green">推荐</span><h3>N100 / N150 Mini PC</h3><div class="kpi">¥800–1,200</div><p>16GB RAM + 512GB SSD 即可。负责大屏网页、视频通话、自动启动、远程维护和内容推送。</p><div class="check">性价比高，两套复制成本低</div><div class="check">Windows / Linux 自动化自由</div><div class="check no">不建议为了这个项目单独买 Mac mini</div></div>
-<div class="card span4"><span class="tag">通话</span><h3>会议摄像头</h3><div class="kpi">¥350–1,800+</div><p>省钱可用 C920/C930e + 独立扬声器麦克风；一体化优先看 Logitech BCC950。MeetUp 画面和拾音更强，但新品明显过度配置。</p></div>
-<div class="card span4"><span class="tag orange">独立运行</span><h3>PTZ 看护摄像头</h3><div class="kpi">¥200–500</div><p>放在客厅高处，用于远程转动查看、夜视、移动检测与双向语音。电视关机或 Mini PC 出问题时仍可工作。</p></div>
+<section id="roadmap" class="section"><div class="wrap"><h2>从简到繁：4 个版本</h2><p class="sub">每一级都能独立使用，不需要一开始把全部设备买齐。</p><div class="grid">
+<div class="card span3 tier"><div class="num">LEVEL 1</div><span class="tag">最低可用</span><h3>大屏一键视频</h3><p>电视 + Mini PC + 摄像头 + 一个实体按钮。</p><div class="check">按键呼叫 Simon</div><div class="check">电视自动切到视频</div><div class="check">远程维护主机</div><p class="price">约 ¥1,500–2,300 / 套</p></div>
+<div class="card span3 tier pick"><div class="num">LEVEL 2</div><span class="tag green">推荐起点</span><h3>视频 + 看护</h3><p>增加独立 PTZ 摄像头和更好的会议音视频设备。</p><div class="check">远程云台查看</div><div class="check">夜视 / 双向语音</div><div class="check">Mini PC 挂了也能看护</div><p class="price">约 ¥2,500–3,400 / 套</p></div>
+<div class="card span3 tier"><div class="num">LEVEL 3</div><span class="tag">家庭互联</span><h3>全家手机 + 语音</h3><p>加入智能音箱，并把家庭成员手机纳入统一通信入口。</p><div class="check">“给 Simon 打电话”</div><div class="check">“给梦雨打电话”</div><div class="check">手机 ↔ 两个电视节点</div><p class="price">约 ¥2,800–3,900 / 套</p></div>
+<div class="card span3 tier"><div class="num">LEVEL 4</div><span class="tag orange">完整版</span><h3>家庭内容中枢</h3><p>加入内容队列、照片屏保、家庭广播和高级自动化。</p><div class="check">远程推视频/照片</div><div class="check">家庭呼叫：谁先接谁接</div><div class="check">电视/音量/页面远程接管</div><p class="price">硬件增量很小，主要是软件配置</p></div>
 </div></div></section>
-<section id="architecture" class="section"><div class="wrap"><h2>系统架构</h2><p class="sub">一个“家庭节点”由大屏终端 + 独立看护摄像头组成；两个家庭节点完全复制。</p>
-<div class="diagram"><pre>                         Simon 手机 / Mac（异地）
-                         │  视频通话 / 内容推送 / 远程维护
+<section id="network" class="section"><div class="wrap"><h2>最终形态：家庭通信网络</h2><p class="sub">老人面对的是“人”，不是 App、账号和会议号。</p><div class="diagram"><pre>                           家庭通信层
+                              │
+       ┌──────────┬───────────┼───────────┬──────────┐
+       ▼          ▼           ▼           ▼          ▼
+   Simon 手机   爸爸手机    妈妈手机     梦雨手机   其他授权家人
+       │          │           │           │
+       └──────────┴──────┬────┴───────────┘
                          │
-             ┌───────────┴───────────┐
-             │                       │
-       父母家 Family Node      爷爷奶奶家 Family Node
-             │                       │
-       ┌─────▼─────┐           ┌─────▼─────┐
-       │ 现有电视   │           │ 现有电视   │
-       └─────▲─────┘           └─────▲─────┘
-             │ HDMI / CEC             │ HDMI / CEC
-       ┌─────┴─────┐           ┌─────┴─────┐
-       │ N100 Mini │           │ N100 Mini │
-       │ PC        │           │ PC        │
-       └──┬─────┬──┘           └──┬─────┬──┘
-          │USB  │实体键             │USB  │实体键
-          │     └── 🟢呼叫 Simon    │     └── 🟢呼叫 Simon
-          ▼                         ▼
-    会议摄像头+麦克风          会议摄像头+麦克风
+                ┌────────┴────────┐
+                ▼                 ▼
+          父母家电视节点       爷奶家电视节点
+          Mini PC + 相机       Mini PC + 相机
+          实体按钮 + 音箱      实体按钮 + 音箱
+                │                 │
+                ▼                 ▼
+          独立 PTZ 看护       独立 PTZ 看护
 
-       独立 Wi‑Fi PTZ 摄像头       独立 Wi‑Fi PTZ 摄像头
-       ↳ 远程转向 / 夜视 / 录像      ↳ 远程转向 / 夜视 / 录像</pre></div>
-</div></section>
-<section id="devices" class="section"><div class="wrap"><h2>设备选项</h2><p class="sub">价格是 2026-08 的采购预算区间，不是实时成交价；大陆电商/二手价波动很大，购买前再核一次。</p>
-<div class="tablewrap"><table><thead><tr><th>模块</th><th>选项</th><th>预算</th><th>适合谁</th><th>判断</th></tr></thead><tbody>
-<tr><td>Mini PC</td><td><b>N100 / N150，16GB + 512GB</b></td><td class="price">¥800–1,200</td><td>两套都用</td><td><span class="tag green">首选</span> 足够跑大屏、视频、远程桌面和家庭中控。</td></tr>
-<tr><td>通话摄像头</td><td>Logitech C920 / C930e</td><td class="price">¥300–600</td><td>预算优先</td><td>画质够用，但要另配麦克风/音箱。</td></tr>
-<tr><td>通话一体机</td><td><b>Logitech BCC950</b></td><td class="price">¥1,300–1,800 新品<br>二手可更低</td><td>老人端省心</td><td><span class="tag green">推荐</span> 1080p30、全双工扬声器麦克风、电动平移/俯仰、遥控器，一根 USB 接主机。</td></tr>
-<tr><td>高配通话</td><td>Logitech MeetUp</td><td class="price">约 ¥5,000+ 新品<br>二手另看</td><td>大客厅/追求画质</td><td>4K、120° 超广角、会议级音频；新品对家用明显偏贵。</td></tr>
-<tr><td>PTZ 看护</td><td><b>TP-Link Tapo C225</b></td><td class="price">约 ¥250–400</td><td>开放性优先</td><td><span class="tag green">优先研究</span> 2K QHD、云台、人形/移动跟踪、夜视；比纯封闭生态更适合后续整合。</td></tr>
-<tr><td>PTZ 看护</td><td>小米智能摄像机云台系列</td><td class="price">约 ¥200–400</td><td>追求简单 App</td><td>360° 云台、夜视、双向语音，家用成熟；但开放接入能力需按具体型号核实。</td></tr>
-<tr><td>实体按钮</td><td>USB Macro Key / 大号 HID 按钮</td><td class="price">¥50–150</td><td>两套都用</td><td>映射成“呼叫 Simon”。可再加一个红色“挂断”键，但老人端建议按键越少越好。</td></tr>
-<tr><td>电视控制</td><td>HDMI-CEC 方案</td><td class="price">¥0–250</td><td>电视支持 CEC 时</td><td>目标：按实体键后自动唤醒电视并切到 Mini PC HDMI。</td></tr>
-<tr><td>电视控制备选</td><td>智能红外遥控器 / IR Blaster</td><td class="price">¥50–150</td><td>CEC 不可靠时</td><td>模拟原电视遥控器：开机、切源、音量。</td></tr>
-<tr><td>备用输入</td><td>迷你无线键鼠</td><td class="price">¥80–150</td><td>维护备用</td><td>藏起来，仅故障排查时家人协助使用。</td></tr>
-</tbody></table></div>
-<div class="callout" style="margin-top:18px"><b>为什么不让 PTZ 看护摄像头兼做视频电话？</b> 看护摄像头应该独立 24/7 运行；会议摄像头面对沙发、负责“像见面一样通话”。这样 Mini PC 或电视坏掉时，看护仍然可用。</div>
-</div></section>
-<section id="budget" class="section"><div class="wrap"><h2>预算：一套与两套</h2><p class="sub">建议先做父母家 Prototype，稳定 2–4 周后原样复制到爷爷奶奶家。</p>
-<div class="grid">
-<div class="card span4"><span class="tag">省钱版</span><h3>够用先跑通</h3><p>N100 + C920/C930e + 简单会议麦克风/音箱 + PTZ + 实体键 + CEC/IR</p><div class="kpi">¥1,700–2,300</div><div class="small">单套</div><hr style="border:0;border-top:1px solid var(--line)"><b>两套约 ¥3,400–4,600</b></div>
-<div class="card span4 pick"><span class="tag green">最推荐</span><h3>老人省心版</h3><p>N100 + BCC950 + Tapo C225 + 大号实体键 + CEC/IR + 备用无线键鼠</p><div class="kpi">¥2,500–3,400</div><div class="small">单套</div><hr style="border:0;border-top:1px solid var(--line)"><b>两套约 ¥5,000–6,800</b></div>
-<div class="card span4"><span class="tag orange">高配</span><h3>会议室级</h3><p>N100 + MeetUp + PTZ + 实体键 + CEC/IR</p><div class="kpi">¥6,300–7,500+</div><div class="small">单套（按新品 MeetUp）</div><hr style="border:0;border-top:1px solid var(--line)"><b>不建议直接买两套新品</b></div>
-</div>
-<div class="callout warn" style="margin-top:18px"><b>我的采购建议：</b>不要先买两套。先买 1 台 N100、1 套通话设备、1 个 PTZ、1 个实体键，把“自动开电视 → 一键呼叫 → 远程恢复”跑稳定后，再复制第二套。真正难点不是性能，而是零操作体验。</div>
-</div></section>
-<section id="experience" class="section"><div class="wrap"><h2>老人端应该是什么体验</h2><p class="sub">如果还需要找遥控器、切 HDMI、登录账号，这个项目就还没做完。</p>
-<div class="flow"><div class="step"><b>① 按绿色大按钮</b><span class="muted">“给 Simon 打电话”</span></div><div class="arrow">→</div><div class="step"><b>② 电视自动亮</b><span class="muted">CEC / 红外自动切输入源</span></div><div class="arrow">→</div><div class="step"><b>③ 自动呼叫</b><span class="muted">全屏，不出现桌面</span></div></div>
-<div class="grid" style="margin-top:18px"><div class="card span6"><h3>实体键</h3><div class="button-demo"><button class="bigbtn" aria-label="给 Simon 打电话">给 Simon<br>打电话</button></div><p class="small">V1 最好只有一个按键。挂断可以先由 Simon 端操作，或再加一个红色小键。</p></div><div class="card span6"><h3>待机主页</h3><div style="background:#111827;color:white;border-radius:18px;padding:26px;min-height:190px;text-align:center"><div style="font-size:15px;opacity:.75">8月27日 · 星期四</div><div style="font-size:44px;font-weight:800;margin:5px">09:42</div><div style="font-size:18px">Simon 分享了 2 个视频</div><div style="margin-top:24px;background:#22c55e;color:#062d14;border-radius:12px;padding:10px;font-weight:800">按绿色按钮：给 Simon 打电话</div></div></div></div>
-</div></section>
-<section id="remote" class="section"><div class="wrap"><h2>你远程可以做什么</h2><div class="grid"><div class="card span6"><h3>内容推送</h3><div class="check">从手机/Mac 把 YouTube、Bilibili、家庭录像或自建内容清单推到指定家庭节点</div><div class="check">普通内容显示“大卡片”，老人按键播放</div><div class="check">家庭照片可作为屏保/相册自动轮播</div><div class="check">紧急远程协助时，可直接让大屏进入指定页面</div></div><div class="card span6"><h3>设备维护</h3><div class="check">Mini PC 开机自动登录并启动全屏界面</div><div class="check">断电恢复后自动开机（BIOS Restore on AC Power Loss）</div><div class="check">Tailscale / 远程桌面用于维护</div><div class="check">PTZ 摄像头不依赖 Mini PC，单独远程查看</div></div></div>
-<div class="callout" style="margin-top:18px"><b>远程“强制开电视”是可做但要实测的一环。</b> 优先测试电视自己的 HDMI-CEC（不同品牌叫法不同）；不稳定就加红外控制器作为兜底。不要在没测电视型号前假设 CEC 一定可靠。</div>
-</div></section>
-<section id="deploy" class="section"><div class="wrap"><h2>部署路线</h2><div class="tablewrap"><table><thead><tr><th>阶段</th><th>要做什么</th><th>通过标准</th></tr></thead><tbody>
-<tr><td><b>Phase 1 · 桌面验证</b></td><td>Mini PC 接电视；会议摄像头；PTZ；实体按钮；远程桌面。</td><td>Simon 不在现场也能远程重启和恢复。</td></tr>
-<tr><td><b>Phase 2 · 一键呼叫</b></td><td>把实体键映射到固定呼叫流程；隐藏 Windows/Linux 桌面。</td><td>老人从“什么都没开”到看到 Simon，只需要按 1 次。</td></tr>
-<tr><td><b>Phase 3 · 电视自动化</b></td><td>实测 HDMI-CEC；失败则上 IR Blaster。</td><td>不要求老人找电视遥控器、切 HDMI。</td></tr>
-<tr><td><b>Phase 4 · 内容推送</b></td><td>建立远程播放队列 / 家庭内容页。</td><td>Simon 能选择“父母家”或“爷爷奶奶家”并推送内容。</td></tr>
-<tr><td><b>Phase 5 · 复制第二套</b></td><td>把配置做成模板，改节点名和账号即可。</td><td>第二套基本不重新设计。</td></tr>
+权限分离：
+视频通话权限 ≠ 看护摄像头权限 ≠ 远程维护权限</pre></div>
+<div class="grid" style="margin-top:18px"><div class="card span4"><h3>电视节点 → 手机</h3><p>爷爷奶奶可以按实体键或说“联系 Simon”，系统直接呼叫你的手机；也可以呼叫梦雨、爸爸、妈妈。</p></div><div class="card span4"><h3>手机 → 电视节点</h3><p>你或家人可以直接呼叫“父母家客厅”或“爷爷奶奶家”，把电视作为固定家庭视频终端。</p></div><div class="card span4"><h3>家庭呼叫</h3><p>高级版可以把“联系孩子们”设成同时呼叫多个授权成员，谁先接谁接，适合高龄老人。</p></div></div></div></section>
+<section id="voice" class="section"><div class="wrap"><h2>智能音箱 = 语音入口</h2><p class="sub">实体按钮保留作最可靠的兜底；语音负责更自然的日常使用。</p><div class="grid"><div class="card span6 voice"><h3>老人只需要说自然语言</h3><div class="say">“给 Simon 打电话。”</div><div class="say">“给梦雨打电话。”</div><div class="say">“播放 Simon 发来的视频。”</div><div class="say">“播放音乐。”</div><div class="say">“声音大一点。”</div></div><div class="card span6"><h3>语音背后发生什么</h3><p><b>智能音箱 → 家庭中控 → Mini PC / 电视 / 通话系统</b></p><div class="check">触发电视开机与切 HDMI</div><div class="check">启动指定联系人的视频呼叫</div><div class="check">控制音乐、音量和内容播放</div><div class="check">未来可扩展家庭提醒、天气、留言</div><div class="callout warn" style="margin-top:15px"><b>不要取消实体按钮。</b> 老人口音、方言和环境噪音都可能导致语音识别失败；物理按键是必须保留的可靠入口。</div></div></div></div></section>
+<section id="devices" class="section"><div class="wrap"><h2>硬件选项</h2><p class="sub">下面是预算区间和定位，不是实时成交价；购买前仍需按当天电商/二手市场复核。</p><div class="tablewrap"><table><thead><tr><th>模块</th><th>推荐方向</th><th>预算</th><th>说明</th></tr></thead><tbody>
+<tr><td>主机</td><td><b>N100 / N150 Mini PC，16GB + 512GB</b></td><td class="price">¥800–1,200</td><td>首选。两套复制成本低；没必要为了这个项目单独上 Mac mini。</td></tr>
+<tr><td>省钱通话</td><td>Logitech C920 / C930e + 麦克风/音箱</td><td class="price">¥400–800</td><td>画面够用，组件分散但便宜。</td></tr>
+<tr><td>推荐通话</td><td><b>Logitech BCC950</b></td><td class="price">约 ¥1,300–1,800 新品</td><td>一体化相机 + 麦克风 + 扬声器 + 电动平移/俯仰，老人端布线简单。</td></tr>
+<tr><td>高配通话</td><td>Logitech MeetUp</td><td class="price">新品明显更贵</td><td>大客厅、超广角、会议级音频；更适合淘高性价比二手，不建议两套直接买新品。</td></tr>
+<tr><td>PTZ 看护</td><td>2K/4K 云台摄像头</td><td class="price">¥200–500</td><td>独立供电和联网。优先考虑可远程云台、夜视、双向语音、开放接入能力较好的型号。</td></tr>
+<tr><td>智能音箱</td><td>中文语音生态成熟的音箱</td><td class="price">¥200–500</td><td>优先老人识别效果与自动化可接入性。具体品牌要与最终控制方案一起定。</td></tr>
+<tr><td>实体按钮</td><td>大号 USB HID / Macro Key</td><td class="price">¥50–150</td><td>V1 只保留“联系 Simon”；高级版最多再加一个红色挂断键。</td></tr>
+<tr><td>电视控制</td><td>HDMI-CEC；不稳定则 IR Blaster</td><td class="price">¥0–150</td><td>目标是老人不碰遥控器：自动开机、切输入源、调音量。</td></tr>
+<tr><td>维护后门</td><td>无线迷你键鼠</td><td class="price">¥80–150</td><td>平时收起来，只在现场故障排查时使用。</td></tr>
 </tbody></table></div></div></section>
-<section id="risks" class="section"><div class="wrap"><h2>几个必须提前处理的问题</h2><div class="grid"><div class="card span4"><h3>电视 CEC 兼容性</h3><p>最大不确定项。买任何额外盒子前，先记下两台电视的品牌和型号，查 CEC 名称和输入切换能力。</p></div><div class="card span4"><h3>隐私</h3><p>看护摄像头最好放在公共区域，并给家人明确可见的“隐私/休眠”方式。不要为了自动化牺牲他们对摄像头的控制权。</p></div><div class="card span4"><h3>通话软件</h3><p>微信、腾讯会议、WebRTC、自建网页的“一键拨号”能力差异很大。V1 应先选能稳定被脚本/快捷键唤起的方案，再追求漂亮 UI。</p></div></div></div></section>
-<section class="section"><div class="wrap"><h2>推荐采购清单 · V1 Prototype</h2><div class="tablewrap"><table><thead><tr><th>买什么</th><th>数量</th><th>目标价</th><th>备注</th></tr></thead><tbody>
-<tr><td>N100/N150 Mini PC，16GB + 512GB</td><td>1</td><td class="price">≤ ¥1,000</td><td>品牌不用追高，优先双频 Wi‑Fi、稳定散热、可设置来电自启。</td></tr>
-<tr><td>Logitech BCC950</td><td>1</td><td class="price">≤ ¥1,500 新品 / 二手更低</td><td>如果价格明显超过预算，就换 C920/C930e + USB 会议麦克风。</td></tr>
-<tr><td>Tapo C225 或同级 2K PTZ</td><td>1</td><td class="price">≤ ¥350</td><td>购买前确认大陆版具体功能与开放接入情况。</td></tr>
-<tr><td>大号 USB HID / Macro Button</td><td>1</td><td class="price">≤ ¥100</td><td>物理标签直接写“给 Simon 打电话”。</td></tr>
-<tr><td>CEC / IR 控制</td><td>按电视测试</td><td class="price">¥0–150</td><td>先测电视自带 CEC，不行再买红外。</td></tr>
-<tr><td>无线迷你键鼠</td><td>1</td><td class="price">≤ ¥100</td><td>只作为维护后门。</td></tr>
-</tbody></table></div><p style="margin-top:18px"><b>Prototype 目标：</b>控制在约 <b>¥2,500–3,200</b>。跑稳定后再复制第二套。</p></div></section>
-<section class="section"><div class="wrap"><h2>资料依据</h2><p class="sub">这里列的是本方案涉及的官方能力页面，具体采购价仍以购买当天为准。</p><div class="card"><p><a href="https://www.logitech.com/zh-cn/products/video-conferencing/conference-cameras/bcc950-conferencecam.html" target="_blank" rel="noopener">Logitech BCC950 官方产品页</a> — 1080p30、全双工扬声器麦克风、电动平移/俯仰等。</p><p><a href="https://www.logitech.com/en-us/products/video-conferencing/conference-cameras/meetup-conferencecam.html" target="_blank" rel="noopener">Logitech MeetUp 官方产品页</a> — 4K、超广角会议摄像头。</p><p><a href="https://www.home-assistant.io/" target="_blank" rel="noopener">Home Assistant</a> — 家庭中控与自动化。</p><p><a href="https://tailscale.com/" target="_blank" rel="noopener">Tailscale</a> — 远程维护网络的一种选择。</p></div></div></section>
-</main>
-<footer class="foot"><div class="wrap">公开分享方案 · 版本 V1 · 2026-08-27<br>设计原则：老人最少操作、远程可恢复、监控与通话解耦、先验证一套再复制。</div></footer>
-<script src="/nav.js" defer></script>
+<section id="budget" class="section"><div class="wrap"><h2>预算怎么控制</h2><div class="grid"><div class="card span4"><span class="tag">低成本</span><h3>Level 1</h3><div class="kpi">¥1,500–2,300</div><p>先验证最重要的“一键开屏视频”。两套约 ¥3,000–4,600。</p></div><div class="card span4 pick"><span class="tag green">最推荐</span><h3>Level 2 + 语音预留</h3><div class="kpi">¥2,500–3,400</div><p>Mini PC + 较好通话设备 + PTZ + 按钮 + 电视控制。两套约 ¥5,000–6,800。</p></div><div class="card span4"><span class="tag orange">完整版</span><h3>Level 3 / 4</h3><div class="kpi">¥2,800–3,900+</div><p>再加智能音箱与家庭通信/内容推送软件层。硬件增量不大，价值主要来自系统整合。</p></div></div><div class="callout warn" style="margin-top:18px"><b>采购原则：</b>先只做父母家 Prototype。稳定 2–4 周后，再复制爷爷奶奶家。不要一次性买两套未经验证的会议设备和 CEC 配件。</div></div></section>
+<section id="experience" class="section"><div class="wrap"><h2>老人端：尽量只有两种操作</h2><div class="grid"><div class="card span6"><div class="persona"><b>方式 1：按一下</b><p>绿色实体键写着“给 Simon 打电话”。按下后：电视自动亮 → 切到 Mini PC → 自动呼叫 → 全屏视频。</p></div></div><div class="card span6"><div class="persona"><b>方式 2：说一句</b><p>“给 Simon 打电话。” 或 “播放 Simon 发来的视频。” 其他后台流程全部隐藏。</p></div></div></div><div class="callout" style="margin-top:18px"><b>核心验收标准：</b>如果老人还需要找电视遥控器、选择 HDMI、登录 App、输入会议号或处理更新弹窗，就说明系统还没有做完。</div></div></section>
+<section id="deploy" class="section"><div class="wrap"><h2>实施路线</h2><div class="tablewrap"><table><thead><tr><th>阶段</th><th>内容</th><th>验收标准</th></tr></thead><tbody>
+<tr><td><b>Phase 0</b></td><td>确认两台电视品牌/型号、HDMI-CEC 能力、Wi‑Fi 条件。</td><td>知道能否自动开机/切源，决定是否需要 IR。</td></tr>
+<tr><td><b>Phase 1</b></td><td>父母家桌面 Prototype：Mini PC + 通话相机 + 远程桌面。</td><td>异地可以维护；重启后自动恢复。</td></tr>
+<tr><td><b>Phase 2</b></td><td>实体按钮 + 电视自动化 + 独立 PTZ。</td><td>老人只按一次就能发起视频。</td></tr>
+<tr><td><b>Phase 3</b></td><td>加入智能音箱，把“联系人”映射为语音命令。</td><td>“给 Simon 打电话”可稳定触发。</td></tr>
+<tr><td><b>Phase 4</b></td><td>把爸妈、梦雨等家庭成员手机加入通信层。</td><td>手机 ↔ 两个电视节点可直接互联。</td></tr>
+<tr><td><b>Phase 5</b></td><td>内容推送、相册、家庭广播、家庭呼叫。</td><td>Simon 可选择目标家庭节点远程推送内容。</td></tr>
+<tr><td><b>Phase 6</b></td><td>复制爷爷奶奶家第二套。</td><td>第二套只改节点名和账号，不重新设计。</td></tr>
+</tbody></table></div></div></section>
+<section class="section"><div class="wrap"><h2>软件层的原则</h2><div class="grid"><div class="card span4"><h3>通话</h3><p>最终选型要以“一键/语音能否稳定发起指定联系人”为第一标准，而不是单看某个视频 App 是否流行。</p></div><div class="card span4"><h3>中控</h3><p>Home Assistant 可作为自动化中枢；Mini PC 负责大屏和本地控制；远程维护可通过安全的私网工具完成。</p></div><div class="card span4"><h3>权限</h3><p><b>能打视频 ≠ 能看 PTZ ≠ 能远程控制主机。</b> 家庭成员权限应分开授权，尤其看护摄像头。</p></div></div></div></section>
+</main><footer class="foot"><div class="wrap">公开分享方案 · V2 · 2026-08-27<br>设计原则：老人最少操作、先简单后复杂、远程可恢复、监控与通话解耦、权限分离、先验证一套再复制。<br><br>下一步需要：两台电视的品牌与具体型号；确认后才能把 HDMI-CEC/红外方案和最终采购型号锁死。</div></footer><script src="/nav.js" defer></script>
 </body></html>
