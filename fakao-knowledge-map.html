@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light" />
-<meta name="theme-color" content="#ebe2d4" />
+<meta name="theme-color" content="#d4cec2" />
 <link rel="stylesheet" href="/fresh-theme.css" />
 <title>法考主观题要学的一切 · 七科考点全景</title>
 <meta name="description" content="法考主观题知识图谱：7 科 887 个考点、973 条前置依赖、118 个专题的三维依赖图。" />
@@ -12,10 +12,10 @@
 <body>
 <style>
 :root{
-  --bg:#EBE2D4; --panel:#F3ECE0; --panel-2:#E3E3D9;
-  --ink:#2E3731; --ink-2:#535C54; --ink-3:#5F675F;
-  --rule:#D0C3B2; --rule-2:#BEAE9B;
-  --accent:#4B6554;
+  --bg:#D4CEC2; --panel:#DAD4C8; --panel-2:#C6C5BB;
+  --ink:#2C3531; --ink-2:#3F4C46; --ink-3:#46534D;
+  --rule:#B4B5AB; --rule-2:#69746C;
+  --accent:#365347;
 }
 *{box-sizing:border-box;}
 html,body{height:100%;}
@@ -422,7 +422,7 @@ const ctx = cv.getContext("2d", { alpha:false });
 const themeColor = (name, fallback) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 const canvasTheme = {
-  bg: themeColor("--bg", "#EBE2D4"),
+  bg: themeColor("--bg", "#D4CEC2"),
   edge: themeColor("--canvas-edge", "rgba(77,112,96,0.15)"),
   edgeSoft: themeColor("--canvas-edge-soft", "rgba(77,112,96,0.07)"),
   accent: themeColor("--canvas-accent", "rgba(46,125,103,0.58)"),

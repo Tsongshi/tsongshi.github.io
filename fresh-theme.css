@@ -1,4 +1,4 @@
-/* Tsongshi public layer · warm, low-glare visual system
+/* Tsongshi public layer · warm, low-luminance visual system
  *
  * This stylesheet is intentionally limited to the public pages that link it.
  * Legacy /private pages do not load it.
@@ -8,65 +8,66 @@
   color-scheme: light !important;
 
   /* Shared foundations */
-  --bg: #ebe2d4 !important;
-  --paper: #ebe2d4 !important;
-  --paper-strong: #f7f0e5 !important;
-  --card: #f7f0e5 !important;
-  --card-2: #e3e3d9 !important;
-  --card-hover: #faf3e8 !important;
-  --cream: #efe3d2 !important;
-  --white: #f7f0e5 !important;
-  --panel: #f3ece0 !important;
-  --panel-2: #e3e3d9 !important;
+  --bg: #d4cec2 !important;
+  --paper: #d4cec2 !important;
+  --paper-strong: #e3ddd2 !important;
+  --card: #ded8cc !important;
+  --card-2: #c6c5bb !important;
+  --card-hover: #e3ddd2 !important;
+  --cream: #dad4c8 !important;
+  --white: #e3ddd2 !important;
+  --panel: #dad4c8 !important;
+  --panel-2: #c6c5bb !important;
 
   /* Text and structure */
-  --ink: #2e3731 !important;
-  --ink-2: #535c54 !important;
-  --ink-3: #5f675f !important;
-  --text: #2e3731 !important;
-  --muted: #59635b !important;
-  --soft: #5f675f !important;
-  --line: #d0c3b2 !important;
-  --rule: #d0c3b2 !important;
-  --rule-2: #beae9b !important;
+  --ink: #2c3531 !important;
+  --ink-2: #3f4c46 !important;
+  --ink-3: #46534d !important;
+  --text: #2c3531 !important;
+  --muted: #46534d !important;
+  --soft: #4b5751 !important;
+  --line: #b4b5ab !important;
+  --rule: #b4b5ab !important;
+  --rule-2: #69746c !important;
+  --control: #69746c !important;
 
   /* Accents */
-  --accent: #4b6554 !important;
-  --accent-soft: #d8e0d5 !important;
-  --green: #486052 !important;
-  --green-soft: #dde4da !important;
-  --blue: #4a636c !important;
-  --blue-soft: #dee4e2 !important;
-  --navy: #354e44 !important;
-  --yellow: #efd3a0 !important;
-  --ochre: #d8ba7d !important;
-  --amber: #7b5527 !important;
-  --amber-soft: #eadcc8 !important;
-  --orange: #8f4e3e !important;
-  --coral: #8f4e3e !important;
-  --rose: #7c5360 !important;
-  --rose-soft: #e6d9dc !important;
-  --purple: #625775 !important;
-  --purple-soft: #e3dfe7 !important;
-  --sage: #b7c5b4 !important;
-  --good: #4b6554 !important;
-  --hard: #7b5527 !important;
-  --again: #925868 !important;
-  --coffee: #684936 !important;
-  --coffee-soft: #e2d2bd !important;
+  --accent: #365347 !important;
+  --accent-soft: #c1cac0 !important;
+  --green: #365347 !important;
+  --green-soft: #c1cac0 !important;
+  --blue: #3d5961 !important;
+  --blue-soft: #bdc8c5 !important;
+  --navy: #29473e !important;
+  --yellow: #c8ae72 !important;
+  --ochre: #c8ae72 !important;
+  --amber: #6b502d !important;
+  --amber-soft: #cfc5b7 !important;
+  --orange: #77483f !important;
+  --coral: #77483f !important;
+  --rose: #704b58 !important;
+  --rose-soft: #d0c4c8 !important;
+  --purple: #514b66 !important;
+  --purple-soft: #c8c2cd !important;
+  --sage: #b7c1b5 !important;
+  --good: #365347 !important;
+  --hard: #6b502d !important;
+  --again: #704b58 !important;
+  --coffee: #5c4638 !important;
+  --coffee-soft: #cfc5b7 !important;
 
   /* Depth and canvas colours */
-  --shadow: 0 18px 54px rgba(82, 58, 39, 0.11) !important;
-  --canvas-edge: rgba(79, 96, 82, 0.15);
-  --canvas-edge-soft: rgba(79, 96, 82, 0.07);
-  --canvas-accent: rgba(75, 101, 84, 0.58);
-  --canvas-hover: #3e5848;
-  --canvas-tip-bg: rgba(247, 240, 229, 0.96);
-  --canvas-tip-ink: #2e3731;
+  --shadow: 0 16px 44px rgba(55, 45, 35, 0.08) !important;
+  --canvas-edge: rgba(54, 83, 71, 0.17);
+  --canvas-edge-soft: rgba(54, 83, 71, 0.08);
+  --canvas-accent: rgba(54, 83, 71, 0.62);
+  --canvas-hover: #29473e;
+  --canvas-tip-bg: rgba(222, 216, 204, 0.97);
+  --canvas-tip-ink: #2c3531;
 }
 
 html {
-  background: #ebe2d4;
+  background: #d4cec2;
 }
 
 body {
@@ -74,17 +75,37 @@ body {
 }
 
 ::selection {
-  color: #29342e;
-  background: #d8c8af;
+  color: #26302c;
+  background: #bba98e;
+}
+
+/* Bright native controls become distracting islands on a dim paper surface. */
+:where(
+  input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+  textarea,
+  select
+) {
+  color: var(--ink) !important;
+  background-color: var(--card) !important;
+  border-color: var(--control) !important;
+}
+
+:where(input, textarea)::placeholder {
+  color: var(--ink-3) !important;
+  opacity: 1;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline-color: var(--accent) !important;
 }
 
 /* One calm, consistent way back across public tools. */
 #site-nav-back {
-  background: rgba(247, 240, 229, 0.93) !important;
-  color: #486052 !important;
-  border-color: rgba(75, 101, 84, 0.28) !important;
-  box-shadow: 0 5px 18px rgba(82, 58, 39, 0.13) !important;
-  opacity: 0.82 !important;
+  background: rgba(222, 216, 204, 0.94) !important;
+  color: #365347 !important;
+  border-color: rgba(54, 83, 71, 0.40) !important;
+  box-shadow: 0 5px 16px rgba(55, 45, 35, 0.10) !important;
+  opacity: 0.88 !important;
 }
 
 #site-nav-back:hover,
@@ -99,25 +120,25 @@ body {
 #hits,
 #mastery,
 #panel {
-  box-shadow: 0 14px 38px rgba(82, 58, 39, 0.10);
+  box-shadow: 0 12px 30px rgba(55, 45, 35, 0.08);
 }
 
 .lg:hover,
 .hit:hover {
-  background: rgba(75, 101, 84, 0.08) !important;
+  background: rgba(54, 83, 71, 0.09) !important;
 }
 
 #mastery {
-  border-color: rgba(75, 101, 84, 0.17) !important;
+  border-color: rgba(54, 83, 71, 0.28) !important;
 }
 
 #mastery .m-b,
 #mastery #mTog[aria-pressed="true"] {
-  border-color: rgba(75, 101, 84, 0.28) !important;
+  border-color: rgba(54, 83, 71, 0.48) !important;
 }
 
 #mastery .m-b:hover {
-  border-color: rgba(75, 101, 84, 0.54) !important;
+  border-color: rgba(54, 83, 71, 0.72) !important;
 }
 
 #q {
@@ -130,23 +151,21 @@ body {
 
 /* Law-exam Session: keep focus, remove the dark-room feel. */
 [data-ts-page="session"] body {
-  background-image:
-    radial-gradient(circle at 10% 0%, rgba(185, 141, 72, 0.08), transparent 30rem),
-    radial-gradient(circle at 94% 18%, rgba(75, 101, 84, 0.07), transparent 32rem);
+  background-image: none !important;
   background-attachment: fixed;
 }
 
 [data-ts-page="session"] #bar {
-  box-shadow: 0 8px 28px rgba(82, 58, 39, 0.07);
+  box-shadow: 0 7px 22px rgba(55, 45, 35, 0.06);
 }
 
 [data-ts-page="session"] .body,
 [data-ts-page="session"] textarea {
-  box-shadow: 0 10px 30px rgba(82, 58, 39, 0.06);
+  box-shadow: 0 8px 24px rgba(55, 45, 35, 0.05);
 }
 
 [data-ts-page="session"] .btn.primary {
-  color: #ffffff !important;
+  color: #e3ddd2 !important;
 }
 
 [data-ts-page="session"] .iconbtn {
@@ -155,41 +174,109 @@ body {
 
 /* Family hub: replace the remaining near-black showcase blocks. */
 [data-ts-page="family"] .hero {
-  background: linear-gradient(135deg, #eadfce, #e4e6dc) !important;
+  background: #dad4c8 !important;
 }
 
 [data-ts-page="family"] .nav {
-  background: rgba(235, 226, 212, 0.94) !important;
+  background: rgba(212, 206, 194, 0.96) !important;
 }
 
 [data-ts-page="family"] .diagram,
 [data-ts-page="family"] .persona,
 [data-ts-page="family"] .voice {
-  color: #40534a !important;
-  background: linear-gradient(145deg, #e1d9cc, #e9e3d8) !important;
-  border: 1px solid #cdbfae;
-  box-shadow: 0 14px 38px rgba(82, 58, 39, 0.08);
+  color: #3f4c46 !important;
+  background: #c6c5bb !important;
+  border: 1px solid #a3a79f;
+  box-shadow: 0 11px 28px rgba(55, 45, 35, 0.06);
 }
 
 [data-ts-page="family"] .voice .say {
-  color: #40534a !important;
-  background: #f7f0e5 !important;
-  border: 1px solid #d0c3b2;
+  color: #3f4c46 !important;
+  background: #ded8cc !important;
+  border: 1px solid #b4b5ab;
+}
+
+[data-ts-page="family"] :is(.verified, .chip, .card, .node, .table-wrap, .answer, .permission) {
+  background: var(--card) !important;
+}
+
+[data-ts-page="family"] .answer {
+  border-color: var(--control) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+[data-ts-page="family"] .callout {
+  color: var(--ink) !important;
+  background: var(--accent-soft) !important;
+}
+
+[data-ts-page="family"] .callout.warn {
+  background: var(--amber-soft) !important;
+}
+
+[data-ts-page="family"] .callout.red {
+  background: var(--rose-soft) !important;
 }
 
 [data-ts-page="family"] table,
 [data-ts-page="family"] th {
-  background: #f7f0e5 !important;
+  background: #ded8cc !important;
 }
 
 [data-ts-page="family"] .pick {
-  background: #f1e9dd !important;
-  outline-color: #a3b29f !important;
+  background: #dad4c8 !important;
+  outline-color: #69746c !important;
 }
 
 /* The language tools retain their own personalities inside the same palette. */
 [data-ts-page="alphabet"] body {
-  background: #ebe2d4 !important;
+  background: #d4cec2 !important;
+}
+
+[data-ts-page="alphabet"] :is(.controls, .card, .lesson-card) {
+  background: var(--card) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 10px 26px rgba(55, 45, 35, 0.07) !important;
+}
+
+[data-ts-page="alphabet"] :is(.guide, .stress-rule) {
+  color: var(--amber) !important;
+  background: var(--amber-soft) !important;
+  border-color: #a59888 !important;
+}
+
+[data-ts-page="alphabet"] kbd {
+  background: var(--card) !important;
+  border-color: var(--control) !important;
+}
+
+[data-ts-page="alphabet"] .phonics {
+  color: var(--ink) !important;
+  background: var(--card-2) !important;
+}
+
+[data-ts-page="alphabet"] :is(.phonics-kicker, .phonics h2 em) {
+  color: var(--amber) !important;
+}
+
+[data-ts-page="alphabet"] .phonics-intro {
+  color: var(--ink-2) !important;
+}
+
+[data-ts-page="alphabet"] :is(.sound-button, .syllable-button, .rule-button, .word-button) {
+  color: var(--ink) !important;
+  background: var(--paper-strong) !important;
+  border-color: var(--line) !important;
+}
+
+[data-ts-page="alphabet"] .phonics-say.active {
+  color: var(--paper-strong) !important;
+  background: var(--orange) !important;
+  border-color: var(--orange) !important;
+}
+
+[data-ts-page="alphabet"] .phonics-say.active :is(.sound-example, .rule-detail, .play-hint) {
+  color: var(--paper-strong) !important;
 }
 
 [data-ts-page="paso"] body,
@@ -197,9 +284,95 @@ body {
   background-color: var(--paper) !important;
 }
 
+[data-ts-page="paso"] :is(.composer, .practice-card, .complete-card, .history-drawer) {
+  background: var(--card) !important;
+  box-shadow: 0 12px 28px rgba(55, 45, 35, 0.08) !important;
+}
+
+[data-ts-page="paso"] :is(.composer textarea, .composer input, .composer select, .settings-panel select, .segmented button, .record-button, .history-list button) {
+  color: var(--ink) !important;
+  background: var(--paper-strong) !important;
+  border-color: var(--control) !important;
+}
+
+[data-ts-page="paso"] :is(.segmented .selected, .record-button.recording) {
+  color: var(--paper-strong) !important;
+  background: var(--accent) !important;
+}
+
+[data-ts-page="puente"] :is(.hero-copy, .study-card, .lab-stage, .plan-principles) {
+  color: var(--ink) !important;
+  background: var(--panel) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 12px 28px rgba(55, 45, 35, 0.08) !important;
+}
+
+[data-ts-page="puente"] .hero-copy::before,
+[data-ts-page="puente"] .hero-copy::after {
+  border-color: var(--line) !important;
+}
+
+[data-ts-page="puente"] :is(
+  .hero-copy > p:not(.eyebrow),
+  .study-card-meta,
+  .reveal-word,
+  .word-back small,
+  .word-session-complete > p,
+  .practice-instruction,
+  .plan-principles p
+) {
+  color: var(--ink-2) !important;
+  border-color: var(--line) !important;
+}
+
+[data-ts-page="puente"] :is(.study-card .button.quiet, .hero-actions .quiet) {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+[data-ts-page="puente"] :is(
+  .hero-copy .eyebrow,
+  .hero-copy h1 em,
+  .word-back strong,
+  .lab-stage-head .eyebrow,
+  .plan-principles strong
+) {
+  color: var(--amber) !important;
+}
+
+[data-ts-page="puente"] :is(.word-tools input, .composer-card input, .composer-card textarea, .voice-panel select, .pair-grid article button, .question-card > div button, .induction-card > div p, .memory-pairs button) {
+  color: var(--ink) !important;
+  background: var(--paper-strong) !important;
+  border-color: var(--control) !important;
+}
+
+[data-ts-page="home"] body::before,
+[data-ts-page="bogota"] body::before {
+  background: none !important;
+  opacity: 0 !important;
+}
+
+[data-ts-page="home"] .spanish-panel {
+  background: var(--panel) !important;
+}
+
 [data-ts-page="bogota"] .filter-button,
 [data-ts-page="bogota"] .link-pill {
   min-height: 40px;
+}
+
+[data-ts-page="bogota"] .closing {
+  color: var(--ink) !important;
+  background: var(--panel) !important;
+  border: 1px solid var(--line);
+}
+
+[data-ts-page="bogota"] .closing p {
+  color: var(--ink-2) !important;
+}
+
+[data-ts-page="bogota"] .closing-list li {
+  border-color: var(--line) !important;
 }
 
 @media (max-width: 820px) {
@@ -214,5 +387,20 @@ body {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --ink: #202925 !important;
+    --ink-2: #303d37 !important;
+    --ink-3: #39463f !important;
+    --text: #202925 !important;
+    --muted: #39463f !important;
+    --soft: #3f4b45 !important;
+    --line: #858e86 !important;
+    --rule: #858e86 !important;
+    --rule-2: #59655d !important;
+    --control: #59655d !important;
   }
 }
