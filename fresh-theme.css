@@ -1,4 +1,4 @@
-/* Tsongshi public layer · fresh, low-glare visual system
+/* Tsongshi public layer · warm, low-glare visual system
  *
  * This stylesheet is intentionally limited to the public pages that link it.
  * Legacy /private pages do not load it.
@@ -8,63 +8,65 @@
   color-scheme: light !important;
 
   /* Shared foundations */
-  --bg: #f1f7f2 !important;
-  --paper: #f1f7f2 !important;
-  --paper-strong: #fffdf8 !important;
-  --card: #fffdf8 !important;
-  --card-2: #eaf4ed !important;
-  --card-hover: #ffffff !important;
-  --cream: #fffaf0 !important;
-  --white: #fffdf8 !important;
-  --panel: #fbfdf9 !important;
-  --panel-2: #eaf4ed !important;
+  --bg: #ebe2d4 !important;
+  --paper: #ebe2d4 !important;
+  --paper-strong: #f7f0e5 !important;
+  --card: #f7f0e5 !important;
+  --card-2: #e3e3d9 !important;
+  --card-hover: #faf3e8 !important;
+  --cream: #efe3d2 !important;
+  --white: #f7f0e5 !important;
+  --panel: #f3ece0 !important;
+  --panel-2: #e3e3d9 !important;
 
   /* Text and structure */
-  --ink: #24372f !important;
-  --ink-2: #4f6459 !important;
-  --ink-3: #60736a !important;
-  --text: #24372f !important;
-  --muted: #566a60 !important;
-  --soft: #6b7d73 !important;
-  --line: #d5e3d9 !important;
-  --rule: #d5e3d9 !important;
-  --rule-2: #bfd3c6 !important;
+  --ink: #2e3731 !important;
+  --ink-2: #535c54 !important;
+  --ink-3: #5f675f !important;
+  --text: #2e3731 !important;
+  --muted: #59635b !important;
+  --soft: #5f675f !important;
+  --line: #d0c3b2 !important;
+  --rule: #d0c3b2 !important;
+  --rule-2: #beae9b !important;
 
   /* Accents */
-  --accent: #2e7d67 !important;
-  --accent-soft: #dceee5 !important;
-  --green: #2f705d !important;
-  --green-soft: #e0efe7 !important;
-  --blue: #3b7088 !important;
-  --blue-soft: #dfedf1 !important;
-  --navy: #2f5f56 !important;
-  --yellow: #d6ad4d !important;
-  --ochre: #d2a64a !important;
-  --amber: #8a5a18 !important;
-  --amber-soft: #f5ead6 !important;
-  --orange: #a64f43 !important;
-  --coral: #a64f43 !important;
-  --rose: #965266 !important;
-  --rose-soft: #f3e3e8 !important;
-  --purple: #64558f !important;
-  --purple-soft: #ece8f5 !important;
-  --sage: #bdd8c7 !important;
-  --good: #357b61 !important;
-  --hard: #a97120 !important;
-  --again: #b75f73 !important;
+  --accent: #4b6554 !important;
+  --accent-soft: #d8e0d5 !important;
+  --green: #486052 !important;
+  --green-soft: #dde4da !important;
+  --blue: #4a636c !important;
+  --blue-soft: #dee4e2 !important;
+  --navy: #354e44 !important;
+  --yellow: #efd3a0 !important;
+  --ochre: #d8ba7d !important;
+  --amber: #7b5527 !important;
+  --amber-soft: #eadcc8 !important;
+  --orange: #8f4e3e !important;
+  --coral: #8f4e3e !important;
+  --rose: #7c5360 !important;
+  --rose-soft: #e6d9dc !important;
+  --purple: #625775 !important;
+  --purple-soft: #e3dfe7 !important;
+  --sage: #b7c5b4 !important;
+  --good: #4b6554 !important;
+  --hard: #7b5527 !important;
+  --again: #925868 !important;
+  --coffee: #684936 !important;
+  --coffee-soft: #e2d2bd !important;
 
   /* Depth and canvas colours */
-  --shadow: 0 18px 54px rgba(44, 78, 62, 0.10) !important;
-  --canvas-edge: rgba(77, 112, 96, 0.15);
-  --canvas-edge-soft: rgba(77, 112, 96, 0.07);
-  --canvas-accent: rgba(46, 125, 103, 0.58);
-  --canvas-hover: #1f4f42;
-  --canvas-tip-bg: rgba(255, 253, 248, 0.95);
-  --canvas-tip-ink: #24372f;
+  --shadow: 0 18px 54px rgba(82, 58, 39, 0.11) !important;
+  --canvas-edge: rgba(79, 96, 82, 0.15);
+  --canvas-edge-soft: rgba(79, 96, 82, 0.07);
+  --canvas-accent: rgba(75, 101, 84, 0.58);
+  --canvas-hover: #3e5848;
+  --canvas-tip-bg: rgba(247, 240, 229, 0.96);
+  --canvas-tip-ink: #2e3731;
 }
 
 html {
-  background: #f1f7f2;
+  background: #ebe2d4;
 }
 
 body {
@@ -72,16 +74,16 @@ body {
 }
 
 ::selection {
-  color: #1c352b;
-  background: #cde7d9;
+  color: #29342e;
+  background: #d8c8af;
 }
 
 /* One calm, consistent way back across public tools. */
 #site-nav-back {
-  background: rgba(250, 253, 249, 0.90) !important;
-  color: #285f50 !important;
-  border-color: rgba(46, 125, 103, 0.24) !important;
-  box-shadow: 0 5px 18px rgba(38, 78, 61, 0.12) !important;
+  background: rgba(247, 240, 229, 0.93) !important;
+  color: #486052 !important;
+  border-color: rgba(75, 101, 84, 0.28) !important;
+  box-shadow: 0 5px 18px rgba(82, 58, 39, 0.13) !important;
   opacity: 0.82 !important;
 }
 
@@ -97,25 +99,25 @@ body {
 #hits,
 #mastery,
 #panel {
-  box-shadow: 0 14px 38px rgba(44, 78, 62, 0.10);
+  box-shadow: 0 14px 38px rgba(82, 58, 39, 0.10);
 }
 
 .lg:hover,
 .hit:hover {
-  background: rgba(46, 125, 103, 0.08) !important;
+  background: rgba(75, 101, 84, 0.08) !important;
 }
 
 #mastery {
-  border-color: rgba(46, 125, 103, 0.15) !important;
+  border-color: rgba(75, 101, 84, 0.17) !important;
 }
 
 #mastery .m-b,
 #mastery #mTog[aria-pressed="true"] {
-  border-color: rgba(46, 125, 103, 0.24) !important;
+  border-color: rgba(75, 101, 84, 0.28) !important;
 }
 
 #mastery .m-b:hover {
-  border-color: rgba(46, 125, 103, 0.52) !important;
+  border-color: rgba(75, 101, 84, 0.54) !important;
 }
 
 #q {
@@ -129,18 +131,18 @@ body {
 /* Law-exam Session: keep focus, remove the dark-room feel. */
 [data-ts-page="session"] body {
   background-image:
-    radial-gradient(circle at 8% 2%, rgba(46, 125, 103, 0.10), transparent 28rem),
-    radial-gradient(circle at 94% 18%, rgba(63, 120, 148, 0.08), transparent 30rem);
+    radial-gradient(circle at 10% 0%, rgba(185, 141, 72, 0.08), transparent 30rem),
+    radial-gradient(circle at 94% 18%, rgba(75, 101, 84, 0.07), transparent 32rem);
   background-attachment: fixed;
 }
 
 [data-ts-page="session"] #bar {
-  box-shadow: 0 8px 28px rgba(44, 78, 62, 0.07);
+  box-shadow: 0 8px 28px rgba(82, 58, 39, 0.07);
 }
 
 [data-ts-page="session"] .body,
 [data-ts-page="session"] textarea {
-  box-shadow: 0 10px 30px rgba(44, 78, 62, 0.06);
+  box-shadow: 0 10px 30px rgba(82, 58, 39, 0.06);
 }
 
 [data-ts-page="session"] .btn.primary {
@@ -153,44 +155,41 @@ body {
 
 /* Family hub: replace the remaining near-black showcase blocks. */
 [data-ts-page="family"] .hero {
-  background: linear-gradient(135deg, #e5f3e9, #e7f1f5) !important;
+  background: linear-gradient(135deg, #eadfce, #e4e6dc) !important;
 }
 
 [data-ts-page="family"] .nav {
-  background: rgba(241, 247, 242, 0.92) !important;
+  background: rgba(235, 226, 212, 0.94) !important;
 }
 
 [data-ts-page="family"] .diagram,
 [data-ts-page="family"] .persona,
 [data-ts-page="family"] .voice {
-  color: #28473c !important;
-  background: linear-gradient(145deg, #e4f0e8, #edf5f1) !important;
-  border: 1px solid #c8ddd0;
-  box-shadow: 0 14px 38px rgba(44, 78, 62, 0.08);
+  color: #40534a !important;
+  background: linear-gradient(145deg, #e1d9cc, #e9e3d8) !important;
+  border: 1px solid #cdbfae;
+  box-shadow: 0 14px 38px rgba(82, 58, 39, 0.08);
 }
 
 [data-ts-page="family"] .voice .say {
-  color: #28473c !important;
-  background: #fffdf8 !important;
-  border: 1px solid #d5e3d9;
+  color: #40534a !important;
+  background: #f7f0e5 !important;
+  border: 1px solid #d0c3b2;
 }
 
 [data-ts-page="family"] table,
 [data-ts-page="family"] th {
-  background: #fffdf8 !important;
+  background: #f7f0e5 !important;
 }
 
 [data-ts-page="family"] .pick {
-  background: #f3fbf5 !important;
-  outline-color: #91c4a4 !important;
+  background: #f1e9dd !important;
+  outline-color: #a3b29f !important;
 }
 
 /* The language tools retain their own personalities inside the same palette. */
 [data-ts-page="alphabet"] body {
-  background:
-    radial-gradient(circle at 8% 5%, rgba(214, 173, 77, 0.18), transparent 24rem),
-    radial-gradient(circle at 92% 20%, rgba(63, 120, 148, 0.12), transparent 25rem),
-    var(--paper) !important;
+  background: #ebe2d4 !important;
 }
 
 [data-ts-page="paso"] body,

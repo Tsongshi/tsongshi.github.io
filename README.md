@@ -19,8 +19,8 @@ Simon 的个人站，静态 HTML，GitHub Pages 托管。上线地址 https://ts
 
 ## 公开主题与返回导航（fresh-theme.css + nav.js）
 
-公开页面统一加载 `/fresh-theme.css`：雾薄荷底色、暖白表面、深绿灰正文，以及
-鼠尾草绿 / 柔和天蓝点缀。该样式只用于公开层；Legacy `private/` 与
+公开页面统一加载 `/fresh-theme.css`：低亮度亚麻米褐底色、柔和暖白表面、咖啡叶深绿正文，
+搭配克制的咖啡果陶土红和焦糖色点缀。该样式只用于公开层；Legacy `private/` 与
 `private-src/` 不加载它。
 
 各页左上角的悬浮「← 首页 / ← 工作台」按钮由 `/nav.js` 统一注入。

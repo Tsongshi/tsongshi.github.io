@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light" />
-<meta name="theme-color" content="#f1f7f2" />
+<meta name="theme-color" content="#ebe2d4" />
 <link rel="stylesheet" href="/fresh-theme.css" />
 <title>一个孩子要学的一切 · 中文版知识图谱</title>
 <meta name="description" content="Marble Skill Taxonomy 中文版：1,590 个小学知识点、3,221 条前置依赖关系的三维知识图谱。" />
@@ -12,10 +12,10 @@
 <body>
 <style>
 :root{
-  --bg:#F1F7F2; --panel:#FBFDF9; --panel-2:#EAF4ED;
-  --ink:#24372F; --ink-2:#4F6459; --ink-3:#60736A;
-  --rule:#D5E3D9; --rule-2:#BFD3C6;
-  --accent:#2E7D67;
+  --bg:#EBE2D4; --panel:#F3ECE0; --panel-2:#E3E3D9;
+  --ink:#2E3731; --ink-2:#535C54; --ink-3:#5F675F;
+  --rule:#D0C3B2; --rule-2:#BEAE9B;
+  --accent:#4B6554;
 }
 *{box-sizing:border-box;}
 html,body{height:100%;}
@@ -254,7 +254,7 @@ const ctx = cv.getContext("2d", { alpha:false });
 const themeColor = (name, fallback) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 const canvasTheme = {
-  bg: themeColor("--bg", "#F1F7F2"),
+  bg: themeColor("--bg", "#EBE2D4"),
   edge: themeColor("--canvas-edge", "rgba(77,112,96,0.15)"),
   edgeSoft: themeColor("--canvas-edge-soft", "rgba(77,112,96,0.07)"),
   accent: themeColor("--canvas-accent", "rgba(46,125,103,0.58)"),
