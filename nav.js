@@ -18,6 +18,8 @@
 
   var path = location.pathname;
   var inPrivate = path.indexOf("/private/") !== -1;
+  var pageLanguage = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+  var useEnglish = pageLanguage.indexOf("en") === 0;
 
   // 两个首页不加导航
   var isPublicHome = !inPrivate && /(^\/$)|(\/index\.html$)/.test(path);
@@ -25,7 +27,7 @@
   if (isPublicHome || isPrivateHome) return;
 
   var target = inPrivate ? "/private/" : "/";
-  var label = inPrivate ? "工作台" : "首页";
+  var label = useEnglish ? (inPrivate ? "Workbench" : "Home") : (inPrivate ? "工作台" : "首页");
 
   function mount() {
     if (document.getElementById("site-nav-back")) return;
@@ -34,7 +36,7 @@
     a.id = "site-nav-back";
     a.href = target;
     a.textContent = "← " + label;
-    a.setAttribute("aria-label", "返回" + label);
+    a.setAttribute("aria-label", useEnglish ? "Back to " + label : "返回" + label);
 
     a.style.cssText = [
       "position:fixed",
