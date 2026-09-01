@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en" data-ts-page="method-04">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Attention Practice System — Language Learning Lab</title>
+  <meta name="description" content="A clear-English, evidence-aware adaptation of the 1000 Hours learning system: focus, practise, inspect, repair, retrieve, and transfer.">
+  <meta name="theme-color" content="#d4cec2">
+  <link rel="canonical" href="https://tsongshi.cn/language-lab/attention-practice/">
+  <link rel="icon" type="image/png" href="/icons/site-192.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tsongshi.cn/language-lab/attention-practice/">
+  <meta property="og:title" content="The Attention Practice System">
+  <meta property="og:description" content="Do not collect empty hours. Build a loop that turns attention into observable skill.">
+  <meta property="og:image" content="https://tsongshi.cn/language-lab/attention-practice/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Attention Practice System: focus, perform, inspect, repair, retrieve, and transfer.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/fresh-theme.css?v=20260901-method04">
+  <style>
+    :root {
+      --paper: #d4cec2;
+      --paper-2: #e4ded3;
+      --card: #ded8cc;
+      --ink: #26322d;
+      --muted: #53605a;
+      --line: #a8aaa1;
+      --green: #315247;
+      --green-2: #203f36;
+      --coral: #7b4f58;
+      --ochre: #b18a43;
+      --cream: #f4efe5;
+      --good: #376753;
+      --warn: #8a6431;
+      --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper) !important; color: var(--ink); font-family: var(--sans); line-height: 1.67; }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
+    .shell { width: min(1340px, 100%); margin: 0 auto; padding: 0 clamp(18px, 5vw, 72px) 84px; }
+    .masthead { display: flex; min-height: 78px; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+    .brand { color: var(--green); font-size: .72rem; font-weight: 850; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+    .masthead nav { display: flex; gap: 20px; }
+    .masthead nav a { color: var(--muted); font-size: .69rem; font-weight: 720; text-decoration: none; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: clamp(46px, 8vw, 120px); min-height: 740px; padding: clamp(80px, 11vw, 148px) 0 104px; align-items: center; }
+    .eyebrow { margin: 0 0 16px; color: var(--green); font-size: .66rem; font-weight: 850; letter-spacing: .17em; text-transform: uppercase; }
+    h1, h2, h3, blockquote { font-family: var(--serif); }
+    h1 { max-width: 9.4em; margin: 0; font-size: clamp(4rem, 8vw, 8rem); font-weight: 500; line-height: .86; letter-spacing: -.075em; }
+    h1 em { color: var(--green); font-style: normal; }
+    .hero-lead { max-width: 49rem; margin: 34px 0 0; color: var(--muted); font-size: clamp(1rem, 1.55vw, 1.25rem); }
+    .hero-action { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .button { display: inline-flex; min-height: 48px; padding: 11px 17px; align-items: center; justify-content: center; border: 1px solid var(--green); border-radius: 999px; background: var(--green); color: var(--cream); font-size: .72rem; font-weight: 780; text-decoration: none; cursor: pointer; }
+    .button.secondary { background: transparent; color: var(--green); }
+    .button.small { min-height: 40px; padding: 8px 13px; font-size: .67rem; }
+    .hero-meter { position: relative; display: grid; aspect-ratio: 1; place-items: center; border: 1px solid var(--green); border-radius: 50%; }
+    .hero-meter::before, .hero-meter::after { position: absolute; content: ""; border: 1px solid var(--line); border-radius: 50%; }
+    .hero-meter::before { inset: 13%; }
+    .hero-meter::after { inset: 28%; background: var(--card); }
+    .meter-copy { z-index: 1; width: 52%; text-align: center; }
+    .meter-copy strong { display: block; color: var(--green); font-family: var(--serif); font-size: clamp(3.6rem, 7vw, 6.5rem); font-weight: 500; line-height: .8; letter-spacing: -.07em; }
+    .meter-copy span { display: block; margin-top: 20px; color: var(--muted); font-size: .64rem; font-weight: 760; letter-spacing: .08em; text-transform: uppercase; }
+    .scope-note { margin: 0 0 90px; padding: 18px 22px; border-left: 4px solid var(--ochre); background: rgba(228, 222, 211, .58); color: var(--muted); font-size: .76rem; }
+    .scope-note strong { color: var(--ink); }
+    .section { padding: clamp(78px, 10vw, 140px) 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: minmax(0, .95fr) minmax(280px, .55fr); gap: clamp(35px, 8vw, 110px); align-items: end; margin-bottom: 46px; }
+    h2 { max-width: 13em; margin: 0; font-size: clamp(2.7rem, 5.8vw, 5.4rem); font-weight: 500; line-height: .95; letter-spacing: -.06em; }
+    .section-head > p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .plain { color: var(--green); font-weight: 780; }
+
+    .origin-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 14px; }
+    .origin-quote { display: flex; min-height: 520px; padding: clamp(28px, 4vw, 52px); flex-direction: column; justify-content: space-between; border-radius: 26px; background: var(--green-2); color: var(--cream); }
+    .origin-quote blockquote { margin: 0; font-size: clamp(2.3rem, 4.7vw, 4.5rem); font-weight: 500; line-height: 1; letter-spacing: -.045em; }
+    .origin-quote p { margin: 30px 0 0; color: rgba(244, 239, 229, .72); font-size: .72rem; }
+    .origin-list { display: grid; gap: 12px; }
+    .origin-item { display: grid; grid-template-columns: 56px 1fr; gap: 20px; min-height: 118px; padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); }
+    .origin-item > span { color: var(--green); font-family: var(--serif); font-size: 1.45rem; }
+    .origin-item h3 { margin: 0; font-size: 1.3rem; font-weight: 600; }
+    .origin-item p { margin: 6px 0 0; color: var(--muted); font-size: .74rem; }
+
+    .evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .evidence-card { min-height: 360px; padding: 30px; border-radius: 22px; background: var(--card); }
+    .evidence-card.keep { border: 1px solid var(--good); }
+    .evidence-card.reframe { border: 1px solid var(--warn); }
+    .evidence-card.leave { border: 1px solid var(--coral); }
+    .evidence-label { display: inline-flex; padding: 5px 9px; border: 1px solid currentColor; border-radius: 999px; color: var(--green); font-size: .61rem; font-weight: 830; letter-spacing: .1em; text-transform: uppercase; }
+    .reframe .evidence-label { color: var(--warn); }
+    .leave .evidence-label { color: var(--coral); }
+    .evidence-card h3 { margin: 24px 0 0; font-size: 1.75rem; line-height: 1.05; }
+    .evidence-card ul { margin: 22px 0 0; padding-left: 1.1em; color: var(--muted); font-size: .75rem; }
+    .evidence-card li + li { margin-top: 11px; }
+    .truth-line { margin: 18px 0 0; padding-top: 17px; border-top: 1px solid var(--line); color: var(--ink); font-size: .7rem; font-weight: 690; }
+
+    .loop-wrap { padding: clamp(28px, 5vw, 60px); border-radius: 28px; background: var(--green-2); color: var(--cream); }
+    .loop { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+    .loop-step { position: relative; min-height: 210px; padding: 20px 16px; border: 1px solid rgba(244,239,229,.32); border-radius: 16px; }
+    .loop-step::after { position: absolute; right: -10px; top: 50%; z-index: 2; width: 18px; height: 18px; content: "→"; color: var(--ochre); font-weight: 900; }
+    .loop-step:last-child::after { content: "↺"; }
+    .loop-step span { color: var(--ochre); font-size: .62rem; font-weight: 850; letter-spacing: .11em; }
+    .loop-step h3 { margin: 34px 0 0; font-size: 1.35rem; }
+    .loop-step p { margin: 9px 0 0; color: rgba(244,239,229,.72); font-size: .68rem; }
+    .loop-note { max-width: 62rem; margin: 34px 0 0; color: rgba(244,239,229,.74); font-size: .77rem; }
+
+    .meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .meta-card { min-height: 300px; padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: var(--card); }
+    .meta-card .number { color: var(--green); font-family: var(--serif); font-size: 2.5rem; }
+    .meta-card h3 { margin: 38px 0 0; font-size: 1.65rem; }
+    .meta-card p { margin: 10px 0 0; color: var(--muted); font-size: .76rem; }
+    .meta-card strong { color: var(--ink); }
+
+    .fit-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 14px; }
+    .fit-profile { padding: 36px; border-radius: 24px; background: var(--coral); color: var(--cream); }
+    .fit-profile h3 { margin: 0; font-size: 2.1rem; }
+    .fit-profile p { color: rgba(244,239,229,.78); }
+    .fit-profile ul { margin: 30px 0 0; padding: 0; list-style: none; }
+    .fit-profile li { padding: 15px 0; border-top: 1px solid rgba(244,239,229,.3); font-size: .75rem; }
+    .fit-rules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .fit-rule { padding: 26px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); }
+    .fit-rule h3 { margin: 0; font-size: 1.25rem; }
+    .fit-rule p { margin: 8px 0 0; color: var(--muted); font-size: .72rem; }
+
+    .timer-panel { display: grid; grid-template-columns: .8fr 1.2fr; gap: 14px; margin-top: 14px; }
+    .timer-face { display: grid; min-height: 330px; padding: 30px; place-items: center; border-radius: 24px; background: var(--green-2); color: var(--cream); text-align: center; }
+    .timer-face output { display: block; font-family: var(--serif); font-size: clamp(4rem, 8vw, 7rem); line-height: 1; letter-spacing: -.06em; }
+    .timer-face p { max-width: 28em; color: rgba(244,239,229,.68); font-size: .7rem; }
+    .timer-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .timer-controls button { min-height: 40px; padding: 8px 13px; border: 1px solid rgba(244,239,229,.6); border-radius: 999px; background: transparent; color: var(--cream); cursor: pointer; }
+    .timer-controls button.active { background: var(--ochre); color: var(--green-2); }
+    .ledger { padding: 32px; border: 1px solid var(--line); border-radius: 24px; background: var(--card); }
+    .ledger h3 { margin: 0; font-size: 1.6rem; }
+    .ledger-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: 17px 0; border-bottom: 1px solid var(--line); }
+    .ledger-row span { color: var(--muted); font-size: .73rem; }
+    .ledger-row strong { font-family: var(--serif); font-size: 1.1rem; }
+    .ledger-note { margin-top: 22px; color: var(--muted); font-size: .72rem; }
+
+    .session { border: 1px solid var(--green); border-radius: 28px; overflow: hidden; background: var(--paper-2); }
+    .session-top { display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: clamp(28px, 5vw, 56px); background: var(--green-2); color: var(--cream); }
+    .session-top h2 { max-width: 12em; }
+    .session-top p { max-width: 50rem; color: rgba(244,239,229,.72); }
+    .session-badge { align-self: start; padding: 7px 10px; border: 1px solid var(--ochre); border-radius: 999px; color: var(--ochre); font-size: .63rem; font-weight: 820; letter-spacing: .08em; }
+    .session-progress { height: 7px; background: #bdb8ae; }
+    .session-progress span { display: block; width: 0; height: 100%; background: var(--ochre); transition: width 180ms ease; }
+    .session-body { display: grid; gap: 12px; padding: clamp(18px, 4vw, 44px); }
+    .round { padding: clamp(24px, 4vw, 38px); border: 1px solid var(--line); border-radius: 20px; background: var(--card); }
+    .round-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+    .round-id { color: var(--green); font-size: .63rem; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+    .round-time { color: var(--muted); font-size: .66rem; }
+    .round h3 { margin: 14px 0 0; font-size: clamp(1.6rem, 3vw, 2.25rem); }
+    .round > p { max-width: 58rem; color: var(--muted); font-size: .77rem; }
+    .text-card { max-width: 880px; margin-top: 22px; padding: 26px; border-left: 4px solid var(--ochre); background: var(--cream); font-family: var(--serif); font-size: clamp(1.08rem, 2vw, 1.35rem); line-height: 1.75; }
+    .text-card.hidden-text { filter: blur(9px); user-select: none; }
+    .round-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .checklist { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 880px; margin-top: 22px; }
+    .check { display: flex; min-height: 56px; padding: 12px; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-2); color: var(--muted); font-size: .72rem; cursor: pointer; }
+    .check input { width: 18px; height: 18px; accent-color: var(--green); }
+    .phrase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 920px; margin-top: 22px; }
+    .phrase { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-2); }
+    .phrase strong { display: block; font-family: var(--serif); font-size: 1.08rem; }
+    .phrase span { display: block; margin-top: 7px; color: var(--muted); font-size: .68rem; }
+    details.help { max-width: 880px; margin-top: 18px; padding: 14px 16px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: .72rem; }
+    details.help summary { color: var(--green); font-weight: 760; cursor: pointer; }
+    .complete-note { display: none; padding: 22px; border: 1px solid var(--good); border-radius: 16px; background: rgba(55,103,83,.1); color: var(--green); font-weight: 760; }
+    .complete-note.show { display: block; }
+
+    .sources { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .source { display: grid; grid-template-columns: 150px 1fr auto; gap: 24px; padding: 22px 0; align-items: baseline; border-bottom: 1px solid var(--line); }
+    .source-type { color: var(--green); font-size: .61rem; font-weight: 840; letter-spacing: .09em; text-transform: uppercase; }
+    .source p { margin: 0; color: var(--muted); font-size: .73rem; }
+    .source a { color: var(--green); font-size: .68rem; font-weight: 780; text-decoration: none; }
+    .license { margin-top: 34px; padding: 20px; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); font-size: .69rem; }
+    footer { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: .68rem; }
+    footer a { color: var(--green); font-weight: 780; text-decoration: none; }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; min-height: 0; }
+      .hero-meter { width: min(480px, 88vw); }
+      .loop { grid-template-columns: repeat(3, 1fr); }
+      .origin-grid, .fit-grid, .timer-panel { grid-template-columns: 1fr; }
+      .evidence-grid { grid-template-columns: 1fr; }
+      .evidence-card { min-height: 0; }
+    }
+    @media (max-width: 700px) {
+      .masthead nav { display: none; }
+      .hero { padding-top: 74px; }
+      .section-head { grid-template-columns: 1fr; }
+      .loop { grid-template-columns: repeat(2, 1fr); }
+      .meta-grid, .fit-rules, .checklist, .phrase-grid { grid-template-columns: 1fr; }
+      .session-top { grid-template-columns: 1fr; }
+      .source { grid-template-columns: 1fr; gap: 8px; }
+    }
+    @media (max-width: 460px) {
+      h1 { font-size: 3.9rem; }
+      .loop { grid-template-columns: 1fr; }
+      .loop-step { min-height: 150px; }
+      .loop-step::after { right: 50%; top: auto; bottom: -18px; content: "↓"; }
+      .loop-step:last-child::after { content: "↺"; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <a class="brand" href="/language-lab/">Language Learning Lab · Method 04</a>
+      <nav aria-label="Page sections">
+        <a href="#method">Method</a>
+        <a href="#fit">Your version</a>
+        <a href="#session">Session 01</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">A 1000 Hours adaptation</p>
+          <h1 id="page-title">Do not collect <em>empty hours.</em></h1>
+          <p class="hero-lead">Time matters, but time alone does not create skill. A useful hour has a clear target, focused performance, honest feedback, a small repair, and another test.</p>
+          <div class="hero-action">
+            <a class="button" href="#method">Understand the system</a>
+            <a class="button secondary" href="#session">Play Session 01</a>
+          </div>
+        </div>
+        <div class="hero-meter" aria-label="One thousand hours is a direction, not a guarantee">
+          <div class="meter-copy"><strong>1K</strong><span>a direction<br>not a guarantee</span></div>
+        </div>
+      </section>
+
+      <p class="scope-note"><strong>What this page is:</strong> a selective, evidence-aware rewrite of the learning and metacognitive ideas behind <a href="https://1000h.org/" rel="external">1000h.org</a>. It is not a translation of the product page, not an advertisement, and not a promise that a fixed number of hours will produce mastery.</p>
+
+      <section class="section" id="method" aria-labelledby="origin-title">
+        <div class="section-head">
+          <div><p class="eyebrow">The useful core</p><h2 id="origin-title">Attention must become action.</h2></div>
+          <p>The original manual repeatedly separates <span class="plain">knowing</span> from <span class="plain">doing</span>. A teacher, book, or AI can help you understand. Only your own performance can build your skill.</p>
+        </div>
+        <div class="origin-grid">
+          <article class="origin-quote">
+            <blockquote>“Fill time with your attention.”</blockquote>
+            <p>Adapted from the central idea of the original Chinese manual. The useful unit is not a clock hour. It is an attention block with visible work inside it.</p>
+          </article>
+          <div class="origin-list">
+            <article class="origin-item"><span>01</span><div><h3>Use language you truly need</h3><p>Practise ideas you want to explain in real life. Personal relevance makes gaps easier to see and transfer easier to test.</p></div></article>
+            <article class="origin-item"><span>02</span><div><h3>Break the task, then rebuild it</h3><p>Slow down, notice one difficult part, practise that part, connect it to the next part, and finally perform the whole message.</p></div></article>
+            <article class="origin-item"><span>03</span><div><h3>Record evidence, not feelings</h3><p>Keep an early attempt, a later attempt, the difficulty you found, the repair you tried, and the next check. “I studied” is not enough.</p></div></article>
+            <article class="origin-item"><span>04</span><div><h3>Learn like your own coach</h3><p>Before practice, define what good work looks like. During practice, compare performance with that standard. After practice, choose the next experiment.</p></div></article>
+            <article class="origin-item"><span>05</span><div><h3>Let AI reduce friction</h3><p>AI can simplify a text, model an expression, create examples, and help you compare versions. It should not replace your recall, judgment, or final voice.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="boundary-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Evidence boundary</p><h2 id="boundary-title">Keep the mechanism. Remove the magic.</h2></div>
+          <p>A strong learning philosophy can contain useful practice advice and unsupported claims at the same time. Good judgment means separating them.</p>
+        </div>
+        <div class="evidence-grid">
+          <article class="evidence-card keep">
+            <span class="evidence-label">Keep</span>
+            <h3>Useful and practical</h3>
+            <ul>
+              <li>Focused, task-specific practice matters.</li>
+              <li>Retrieval is more revealing than rereading.</li>
+              <li>Feedback and self-correction guide the next drill.</li>
+              <li>Practice should connect to real performance.</li>
+              <li>Reflection can improve future strategy.</li>
+            </ul>
+            <p class="truth-line">Use these as design rules.</p>
+          </article>
+          <article class="evidence-card reframe">
+            <span class="evidence-label">Reframe</span>
+            <h3>Direction, not law</h3>
+            <ul>
+              <li>Dense practice can help a weak skill, but spacing also supports long-term memory.</li>
+              <li>Memorised language can build useful chunks, but flexible use requires retrieval and transfer.</li>
+              <li>AI can give fast support, but quality still depends on context and human judgment.</li>
+              <li>Attention is essential, but sleep, prior knowledge, feedback, and task design also matter.</li>
+            </ul>
+            <p class="truth-line">Treat these as hypotheses to test.</p>
+          </article>
+          <article class="evidence-card leave">
+            <span class="evidence-label">Leave behind</span>
+            <h3>Claims stronger than evidence</h3>
+            <ul>
+              <li>Exactly 1,000 hours guarantees mastery.</li>
+              <li>Less than three hours a day is worthless.</li>
+              <li>Practice explains every difference in performance.</li>
+              <li>Language learning alone prevents a specific disease.</li>
+              <li>One method is best for every person and every skill.</li>
+            </ul>
+            <p class="truth-line">A motivating sentence is not a scientific result.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="loop-title">
+        <div class="section-head">
+          <div><p class="eyebrow">The practice engine</p><h2 id="loop-title">Six moves turn time into skill.</h2></div>
+          <p>Use this loop for a sentence, a meeting answer, a technical explanation, or a longer presentation. The size changes. The logic stays the same.</p>
+        </div>
+        <div class="loop-wrap">
+          <div class="loop" role="list" aria-label="Attention practice loop">
+            <article class="loop-step" role="listitem"><span>01</span><h3>Focus</h3><p>Name one performance and one acceptance rule.</p></article>
+            <article class="loop-step" role="listitem"><span>02</span><h3>Perform</h3><p>Try before you feel fully ready. Create evidence.</p></article>
+            <article class="loop-step" role="listitem"><span>03</span><h3>Inspect</h3><p>Find the exact gap: sound, word, meaning, structure, or judgment.</p></article>
+            <article class="loop-step" role="listitem"><span>04</span><h3>Repair</h3><p>Practise the smallest part that can change the result.</p></article>
+            <article class="loop-step" role="listitem"><span>05</span><h3>Retrieve</h3><p>Hide the model. Rebuild the idea from memory.</p></article>
+            <article class="loop-step" role="listitem"><span>06</span><h3>Transfer</h3><p>Use the pattern in a new sentence or situation.</p></article>
+          </div>
+          <p class="loop-note"><strong>Metacognition</strong> means noticing and managing your own learning. In this loop, it is not abstract “thinking about thinking.” It is the moment when you identify a gap, choose a repair, and check whether the repair worked.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="meta-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Four coaching questions</p><h2 id="meta-title">Make your thinking visible.</h2></div>
+          <p>Ask these questions before, during, and after a learning block. Short answers are enough. Honest answers are more useful than impressive ones.</p>
+        </div>
+        <div class="meta-grid">
+          <article class="meta-card"><span class="number">01</span><h3>What must I be able to do?</h3><p>Define a performance, not a topic. <strong>Weak:</strong> study risk language. <strong>Better:</strong> explain one risk without presenting an assumption as a fact.</p></article>
+          <article class="meta-card"><span class="number">02</span><h3>What blocked the attempt?</h3><p>Choose the main gap: <strong>sound, words, meaning, sentence, structure, or judgment</strong>. Do not repair six things at once.</p></article>
+          <article class="meta-card"><span class="number">03</span><h3>What is the smallest useful drill?</h3><p>Repeat one phrase, compare two versions, rebuild one sentence, or explain one idea to an imagined colleague. Small is useful when it targets the real gap.</p></article>
+          <article class="meta-card"><span class="number">04</span><h3>What evidence would change my plan?</h3><p>Decide how you will know. A cleaner recording, a correct recall tomorrow, or a successful new example is stronger evidence than “it feels familiar.”</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="fit" aria-labelledby="fit-title">
+        <div class="section-head">
+          <div><p class="eyebrow">A realistic professional version</p><h2 id="fit-title">Built for useful English and uneven days.</h2></div>
+          <p>This version is designed for an upper-intermediate bilingual professional who uses English for tax, finance, AI, and cross-border work. It is restart-friendly and does not publish private learning records.</p>
+        </div>
+        <div class="fit-grid">
+          <article class="fit-profile">
+            <h3>Your useful target</h3>
+            <p>Not “English as a perfect first language.” The target is faster, clearer professional judgment in English.</p>
+            <ul>
+              <li>Read a source and identify its real claim.</li>
+              <li>Explain facts, inference, uncertainty, and next checks.</li>
+              <li>Speak in short, reviewable units during meetings.</li>
+              <li>Use AI for support without giving away the thinking.</li>
+            </ul>
+          </article>
+          <div class="fit-rules">
+            <article class="fit-rule"><h3>25 minutes is a full unit</h3><p>A focused block can be complete. You do not need three hours before the work counts.</p></article>
+            <article class="fit-rule"><h3>12 minutes is a restart</h3><p>On a difficult day, reopen the loop: one attempt, one gap, one repair, one re-test.</p></article>
+            <article class="fit-rule"><h3>English first; Chinese as a bridge</h3><p>Stay in clear English while meaning is stable. Use brief Chinese help only when a concept blocks the task.</p></article>
+            <article class="fit-rule"><h3>Output follows real work</h3><p>Build a 60-second briefing, an email paragraph, a meeting answer, or a clear note—not a random textbook dialogue.</p></article>
+            <article class="fit-rule"><h3>One main gap per block</h3><p>Attention becomes easier to direct when the repair target is small and named.</p></article>
+            <article class="fit-rule"><h3>Track proof, not streaks</h3><p>A streak can motivate, but a saved before/after example tells you what changed.</p></article>
+          </div>
+        </div>
+
+        <div class="timer-panel" aria-label="Private local attention timer">
+          <div class="timer-face">
+            <div>
+              <output id="timer" aria-live="polite">25:00</output>
+              <p id="timerLabel">One focused practice block</p>
+              <div class="timer-controls">
+                <button type="button" data-minutes="25" class="active">25-minute block</button>
+                <button type="button" data-minutes="12">12-minute restart</button>
+                <button type="button" id="timerToggle">Start</button>
+                <button type="button" id="timerReset">Reset</button>
+              </div>
+            </div>
+          </div>
+          <article class="ledger">
+            <h3>A better hour ledger</h3>
+            <div class="ledger-row"><span>Attention minutes</span><strong>How long?</strong></div>
+            <div class="ledger-row"><span>Target performance</span><strong>Do what?</strong></div>
+            <div class="ledger-row"><span>Main gap</span><strong>Blocked where?</strong></div>
+            <div class="ledger-row"><span>Repair and re-test</span><strong>What changed?</strong></div>
+            <div class="ledger-row"><span>Transfer</span><strong>Works elsewhere?</strong></div>
+            <p class="ledger-note">A thousand hours can be a long-term direction. These five lines make the next 25 minutes useful.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="session" aria-labelledby="session-title">
+        <div class="session">
+          <div class="session-top">
+            <div>
+              <p class="eyebrow" style="color:#d4ad62">Session 01 · professional English</p>
+              <h2 id="session-title">State the evidence without overclaiming.</h2>
+              <p>A 25-minute paper-and-voice round. The sample is fictional and public-safe. Your progress stays only in this browser.</p>
+            </div>
+            <span class="session-badge">25 min · B2</span>
+          </div>
+          <div class="session-progress" aria-label="Session progress"><span id="sessionProgress"></span></div>
+          <div class="session-body">
+            <article class="round">
+              <div class="round-head"><span class="round-id">Round 01 · Perform</span><span class="round-time">3 minutes</span></div>
+              <h3>Listen once for the main idea.</h3>
+              <p>Do not read yet. Play the model. On paper, write only three keywords that you catch.</p>
+              <div class="round-actions"><button class="button small" type="button" data-speak="sample">▶ Play clear English</button><label class="check"><input type="checkbox" data-progress> I wrote three keywords</label></div>
+            </article>
+
+            <article class="round">
+              <div class="round-head"><span class="round-id">Round 02 · Inspect</span><span class="round-time">5 minutes</span></div>
+              <h3>Read and locate one real gap.</h3>
+              <p>Read the model. Circle one phrase that you understood only after seeing the text.</p>
+              <div class="text-card" id="sampleText">When I review a business issue, I separate what I know from what I infer. A document may suggest a risk, but it may not prove that the risk has occurred. I state the evidence, explain the uncertainty, and name the next check. This makes my English clearer and my judgment easier to review.</div>
+              <div class="phrase-grid">
+                <div class="phrase"><strong>what I infer</strong><span>what I conclude from the facts, but do not directly observe</span></div>
+                <div class="phrase"><strong>suggest a risk</strong><span>give a reason to investigate; not prove the final conclusion</span></div>
+                <div class="phrase"><strong>name the next check</strong><span>say what evidence or action should come next</span></div>
+              </div>
+              <details class="help"><summary>中文理解桥（卡住时再打开）</summary><p>核心意思：分析业务事项时，把已知事实和推断分开。文件可能提示风险，但不一定证明风险已经发生。表达时要说明证据、不确定性和下一项核查。</p></details>
+              <label class="check" style="margin-top:18px"><input type="checkbox" data-progress> I marked one sound, word, meaning, sentence, or judgment gap</label>
+            </article>
+
+            <article class="round">
+              <div class="round-head"><span class="round-id">Round 03 · Repair</span><span class="round-time">6 minutes</span></div>
+              <h3>Practise the smallest useful part.</h3>
+              <p>Choose one phrase above. Listen, say it slowly three times, then use it in one new sentence. Do not polish the whole paragraph.</p>
+              <div class="round-actions">
+                <button class="button small secondary" type="button" data-speak="infer">Play “what I infer”</button>
+                <button class="button small secondary" type="button" data-speak="suggest">Play “suggest a risk”</button>
+                <button class="button small secondary" type="button" data-speak="check">Play “name the next check”</button>
+              </div>
+              <label class="check" style="margin-top:18px"><input type="checkbox" data-progress> I made one new sentence aloud</label>
+            </article>
+
+            <article class="round">
+              <div class="round-head"><span class="round-id">Round 04 · Retrieve</span><span class="round-time">5 minutes</span></div>
+              <h3>Hide the model. Rebuild the message.</h3>
+              <p>Hide the text, then explain the idea in your own English. Keep the meaning; you do not need the exact words.</p>
+              <div class="round-actions"><button class="button small" type="button" id="hideText">Hide model</button><button class="button small secondary" type="button" data-speak="sample">Play again after recall</button></div>
+              <label class="check" style="margin-top:18px"><input type="checkbox" data-progress> I recalled the message before replaying it</label>
+            </article>
+
+            <article class="round">
+              <div class="round-head"><span class="round-id">Round 05 · Transfer</span><span class="round-time">4 minutes</span></div>
+              <h3>Move the pattern to a new case.</h3>
+              <p>Say four short lines about any public-safe example. Use this frame:</p>
+              <div class="text-card">What I know is …<br>What I infer is …<br>The uncertainty is …<br>The next check is …</div>
+              <label class="check" style="margin-top:18px"><input type="checkbox" data-progress> I used all four lines in a new example</label>
+            </article>
+
+            <article class="round">
+              <div class="round-head"><span class="round-id">Round 06 · Reflect</span><span class="round-time">2 minutes</span></div>
+              <h3>Close with one decision.</h3>
+              <p>Which gap deserves the next block? Choose one. A specific gap is already a useful result.</p>
+              <div class="checklist">
+                <label class="check"><input type="radio" name="gap" value="sound"> Sound</label>
+                <label class="check"><input type="radio" name="gap" value="words"> Words or phrase</label>
+                <label class="check"><input type="radio" name="gap" value="sentence"> Sentence structure</label>
+                <label class="check"><input type="radio" name="gap" value="judgment"> Judgment or evidence boundary</label>
+              </div>
+              <label class="check" style="margin-top:18px"><input type="checkbox" data-progress> I chose the next gap, or decided this pattern is ready to use</label>
+            </article>
+
+            <p class="complete-note" id="completeNote">Session complete. You did more than read: you performed, found a gap, repaired it, retrieved the idea, and transferred the pattern.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Sources and boundaries</p><h2 id="sources-title">Ideas have origins. Claims need levels.</h2></div>
+          <p>The original manual supplied the philosophy and many practice moves. Research sources were used to test the stronger claims and improve the learning design.</p>
+        </div>
+        <div class="sources">
+          <article class="source"><span class="source-type">Original manual</span><p>Li Xiaolai / Zuodao, <em>1000 Hours</em>: attention, self-training, speaking your own ideas, segmented practice, recording, self-correction, and review.</p><a href="https://1000h.org/intro.html" rel="external">Read Chinese source ↗</a></article>
+          <article class="source"><span class="source-type">Open source</span><p>Source repository for the manual and Enjoy project. The repository is released under GNU GPL v3.</p><a href="https://github.com/ZuodaoTech/everyone-can-use-english" rel="external">Open repository ↗</a></article>
+          <article class="source"><span class="source-type">Practice limits</span><p>Macnamara, Hambrick & Oswald (2014): deliberate practice is important, but practice time does not explain all performance differences.</p><a href="https://doi.org/10.1177/0956797614535810" rel="external">DOI ↗</a></article>
+          <article class="source"><span class="source-type">Retrieval</span><p>Karpicke & Roediger (2008): repeated retrieval can support long-term learning more effectively than repeated study alone.</p><a href="https://doi.org/10.1126/science.1152408" rel="external">DOI ↗</a></article>
+          <article class="source"><span class="source-type">Spacing</span><p>Cepeda et al. (2006): distributed practice supports retention; the best gap depends partly on how long the learner needs to remember.</p><a href="https://doi.org/10.1037/0033-2909.132.3.354" rel="external">DOI ↗</a></article>
+          <article class="source"><span class="source-type">Metacognition</span><p>Panadero (2017): self-regulated learning connects planning, performance, monitoring, motivation, and reflection.</p><a href="https://doi.org/10.3389/fpsyg.2017.00422" rel="external">DOI ↗</a></article>
+        </div>
+        <p class="license">This is an independent educational adaptation, not an official translation and not affiliated with 1000h.org or Enjoy. Original ideas are credited above. The adapted page is distributed under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>; its editable source is available in the <a href="https://github.com/Tsongshi/tsongshi.github.io/tree/main/language-lab/attention-practice">public site repository</a>. Product features, prices, and user testimonials were intentionally excluded.</p>
+      </section>
+    </main>
+
+    <footer><span>Language Learning Lab · Method 04 · local-only session state</span><a href="/language-lab/">Back to the Lab →</a></footer>
+  </div>
+
+  <script>
+    (() => {
+      const sample = document.getElementById('sampleText').textContent.trim();
+      const speech = {
+        sample,
+        infer: 'what I infer',
+        suggest: 'suggest a risk',
+        check: 'name the next check'
+      };
+
+      document.querySelectorAll('[data-speak]').forEach((button) => {
+        button.addEventListener('click', () => {
+          if (!('speechSynthesis' in window)) {
+            button.textContent = 'Audio is not available in this browser';
+            return;
+          }
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(speech[button.dataset.speak]);
+          utterance.lang = 'en-US';
+          utterance.rate = button.dataset.speak === 'sample' ? 0.88 : 0.76;
+          window.speechSynthesis.speak(utterance);
+        });
+      });
+
+      const hideButton = document.getElementById('hideText');
+      hideButton.addEventListener('click', () => {
+        const hidden = document.getElementById('sampleText').classList.toggle('hidden-text');
+        hideButton.textContent = hidden ? 'Show model' : 'Hide model';
+      });
+
+      const progressChecks = [...document.querySelectorAll('[data-progress]')];
+      const progressBar = document.getElementById('sessionProgress');
+      const completeNote = document.getElementById('completeNote');
+      const storageKey = 'tsongshi.method04.session01.v1';
+      const updateProgress = () => {
+        const done = progressChecks.filter((item) => item.checked).length;
+        progressBar.style.width = `${(done / progressChecks.length) * 100}%`;
+        completeNote.classList.toggle('show', done === progressChecks.length);
+        try { localStorage.setItem(storageKey, JSON.stringify(progressChecks.map((item) => item.checked))); } catch (_) {}
+      };
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        progressChecks.forEach((item, index) => { item.checked = Boolean(saved[index]); });
+      } catch (_) {}
+      progressChecks.forEach((item) => item.addEventListener('change', updateProgress));
+      updateProgress();
+
+      const timer = document.getElementById('timer');
+      const timerLabel = document.getElementById('timerLabel');
+      const timerToggle = document.getElementById('timerToggle');
+      const timerReset = document.getElementById('timerReset');
+      const presetButtons = [...document.querySelectorAll('[data-minutes]')];
+      let selectedMinutes = 25;
+      let secondsLeft = selectedMinutes * 60;
+      let timerId = null;
+      const renderTimer = () => {
+        const minutes = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
+        const seconds = (secondsLeft % 60).toString().padStart(2, '0');
+        timer.value = `${minutes}:${seconds}`;
+      };
+      const stopTimer = () => {
+        window.clearInterval(timerId);
+        timerId = null;
+        timerToggle.textContent = secondsLeft === 0 ? 'Finished' : 'Start';
+      };
+      const resetTimer = () => {
+        stopTimer();
+        secondsLeft = selectedMinutes * 60;
+        timerToggle.disabled = false;
+        timerLabel.textContent = selectedMinutes === 25 ? 'One focused practice block' : 'A small return still counts';
+        renderTimer();
+      };
+      presetButtons.forEach((button) => button.addEventListener('click', () => {
+        selectedMinutes = Number(button.dataset.minutes);
+        presetButtons.forEach((item) => item.classList.toggle('active', item === button));
+        resetTimer();
+      }));
+      timerToggle.addEventListener('click', () => {
+        if (timerId) { stopTimer(); return; }
+        if (secondsLeft <= 0) { resetTimer(); }
+        timerToggle.textContent = 'Pause';
+        timerId = window.setInterval(() => {
+          secondsLeft -= 1;
+          renderTimer();
+          if (secondsLeft <= 0) {
+            stopTimer();
+            timerToggle.disabled = true;
+            timerLabel.textContent = 'Block complete. Record the gap and next check.';
+          }
+        }, 1000);
+      });
+      timerReset.addEventListener('click', resetTimer);
+      renderTimer();
+    })();
+  </script>
+  <script src="/nav.js" defer></script>
+</body>
+</html>

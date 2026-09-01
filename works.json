@@ -116,6 +116,24 @@
     "description": "用可理解英文把 self-talk、manifestation 和写关键词改写为可执行的 if–then plan，再通过丰子恺 10–5–5–2 的可见重复、提取与变体练习，磨出一个 Bogotá 咖啡馆西语场景。"
   },
   {
+    "title": "The Attention Practice System · 注意力练习系统",
+    "path": "language-lab/attention-practice/",
+    "category": "学习",
+    "series": "english",
+    "seriesOrder": 1,
+    "seriesStage": "Method 04 · 首个 Session",
+    "languageLab": {
+      "kind": "method",
+      "id": "method-04",
+      "order": 4,
+      "title": "The Attention Practice System",
+      "stage": "Focus, inspect, repair, and transfer",
+      "sessionCount": 1
+    },
+    "date": "2026-09-01",
+    "description": "提炼 1000h.org 中注意力、自我训练、自我纠正与验收标准等方法，剔除“固定时数必然精通”等绝对化主张，改写为适合 B2 专业英语的可理解英文，并配套一局 25 分钟的证据边界表达练习。"
+  },
+  {
     "title": "Bogotá · 身心生活指南",
     "path": "bogota-wellbeing-guide/",
     "category": "生活",

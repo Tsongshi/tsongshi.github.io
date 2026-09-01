@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">The Attention Practice System</title>
+  <desc id="desc">Do not collect empty hours. Focus, perform, inspect, repair, retrieve, and transfer.</desc>
+  <rect width="1200" height="630" fill="#d4cec2"/>
+  <path d="M0 0h16v630H0z" fill="#315247"/>
+  <text x="74" y="86" fill="#315247" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">LANGUAGE LEARNING LAB · METHOD 04</text>
+  <text x="72" y="206" fill="#26322d" font-family="Georgia, serif" font-size="78">Do not collect</text>
+  <text x="72" y="292" fill="#315247" font-family="Georgia, serif" font-size="82">empty hours.</text>
+  <text x="76" y="360" fill="#53605a" font-family="Arial, sans-serif" font-size="24">Turn attention into observable skill.</text>
+  <g transform="translate(74 432)">
+    <rect width="126" height="46" rx="23" fill="#315247"/>
+    <text x="63" y="29" fill="#f4efe5" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">FOCUS</text>
+    <text x="145" y="29" fill="#b18a43" font-family="Arial, sans-serif" font-size="23">→</text>
+    <rect x="178" width="126" height="46" rx="23" fill="none" stroke="#315247" stroke-width="2"/>
+    <text x="241" y="29" fill="#315247" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">PERFORM</text>
+    <text x="323" y="29" fill="#b18a43" font-family="Arial, sans-serif" font-size="23">→</text>
+    <rect x="356" width="126" height="46" rx="23" fill="none" stroke="#315247" stroke-width="2"/>
+    <text x="419" y="29" fill="#315247" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700">INSPECT</text>
+  </g>
+  <g transform="translate(880 306)">
+    <circle r="196" fill="none" stroke="#315247" stroke-width="3"/>
+    <circle r="143" fill="none" stroke="#a8aaa1" stroke-width="2"/>
+    <circle r="88" fill="#ded8cc" stroke="#a8aaa1" stroke-width="2"/>
+    <text x="0" y="12" fill="#315247" text-anchor="middle" font-family="Georgia, serif" font-size="80">1K</text>
+    <text x="0" y="55" fill="#53605a" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">DIRECTION, NOT GUARANTEE</text>
+  </g>
+  <text x="76" y="574" fill="#53605a" font-family="Arial, sans-serif" font-size="17">Evidence-aware · B2 clear English · one 25-minute practice session</text>
+</svg>
