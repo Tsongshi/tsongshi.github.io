@@ -98,6 +98,24 @@
     "description": "从哥伦比亚一位学习者的 1000 小时记录出发，区分个案、视频解读和研究证据；再用清晰英文引导完成西语的听、看、回忆与迁移练习。"
   },
   {
+    "title": "Visible Repetition · 丰子恺 22 遍与语言岛",
+    "path": "language-lab/feng-zikai-22/",
+    "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 5,
+    "seriesStage": "Method 03 · 可见重复",
+    "languageLab": {
+      "kind": "method",
+      "id": "method-03",
+      "order": 3,
+      "title": "Visible Repetition",
+      "stage": "Goal, spacing, recall, and use",
+      "sessionCount": 1
+    },
+    "date": "2026-09-01",
+    "description": "用可理解英文把 self-talk、manifestation 和写关键词改写为可执行的 if–then plan，再通过丰子恺 10–5–5–2 的可见重复、提取与变体练习，磨出一个 Bogotá 咖啡馆西语场景。"
+  },
+  {
     "title": "Bogotá · 身心生活指南",
     "path": "bogota-wellbeing-guide/",
     "category": "生活",

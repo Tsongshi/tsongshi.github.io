@@ -1,0 +1,7 @@
+Session 01 fixed practice audio
+
+Text:
+Buenos días. Quisiera un café con leche, por favor. Para tomar aquí, gracias. No, eso es todo.
+
+Generated locally on 2026-09-01 with the macOS Paulina es_MX system voice.
+This recording contains no personal data and is included only as a stable pronunciation model for the public exercise.
