@@ -113,6 +113,13 @@ body {
   opacity: 1 !important;
 }
 
+/* These language-lab pages provide their own in-flow route home. The shared
+   fixed pill would cover learning controls on small screens. */
+[data-ts-page="language-lab"] #site-nav-back,
+[data-ts-page="method-02"] #site-nav-back {
+  display: none !important;
+}
+
 /* The two full-screen graph tools. */
 #legend,
 #lvl,

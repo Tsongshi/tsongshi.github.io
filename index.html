@@ -258,6 +258,27 @@
     line-height: 1.7;
   }
 
+  .collection-link {
+    display: inline-flex;
+    min-height: 38px;
+    margin-top: 14px;
+    padding: 8px 12px;
+    align-items: center;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 0.66rem;
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .collection-link:hover,
+  .collection-link:focus-visible {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
   .collection-count {
     color: var(--accent);
     font-family: "Iowan Old Style", "Songti SC", "STSong", Georgia, serif;
@@ -277,6 +298,24 @@
 
   .series-item + .series-item {
     border-top: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+  }
+
+  .series-item--tool-start {
+    position: relative;
+    margin-top: 30px;
+    border-top: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line)) !important;
+  }
+
+  .series-item--tool-start::before {
+    content: "Supporting tools";
+    position: absolute;
+    top: -23px;
+    left: 40px;
+    color: var(--muted);
+    font-size: 0.56rem;
+    font-weight: 760;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
   }
 
   .series-link {
@@ -771,15 +810,17 @@ const createWorkCard = (work, index, latestDate) => {
   return item;
 };
 
-const createSeriesItem = (work, latestDate) => {
+const createSeriesItem = (work, latestDate, isFirstTool = false) => {
   const item = document.createElement("li");
-  item.className = "series-item";
+  item.className = `series-item${isFirstTool ? " series-item--tool-start" : ""}`;
 
   const link = document.createElement("a");
   link.className = "series-link";
   link.href = String(work.path ?? "#");
-  link.setAttribute("aria-label", `打开西班牙语系列作品：${String(work.title ?? "未命名作品")}`);
-  link.append(text("span", "series-number", String(work.seriesOrder ?? "").padStart(2, "0")));
+  link.setAttribute("aria-label", `打开语言学习台项目：${String(work.title ?? "未命名作品")}`);
+  const labKind = work.languageLab?.kind === "method" ? "M" : work.languageLab?.kind === "tool" ? "T" : "";
+  const labOrder = work.languageLab?.order ?? work.seriesOrder ?? "";
+  link.append(text("span", "series-number", `${labKind}${String(labOrder).padStart(2, "0")}`));
 
   const main = document.createElement("div");
   main.className = "series-main";
@@ -805,7 +846,11 @@ const renderWorks = (list) => {
   const latestDate = String(sorted[0]?.date ?? "");
   const spanishWorks = sorted
     .filter((work) => work.series === "spanish")
-    .sort((a, b) => Number(a.seriesOrder ?? 99) - Number(b.seriesOrder ?? 99));
+    .sort((a, b) => {
+      const kindA = a.languageLab?.kind === "method" ? 0 : a.languageLab?.kind === "tool" ? 1 : 2;
+      const kindB = b.languageLab?.kind === "method" ? 0 : b.languageLab?.kind === "tool" ? 1 : 2;
+      return kindA - kindB || Number(a.languageLab?.order ?? a.seriesOrder ?? 99) - Number(b.languageLab?.order ?? b.seriesOrder ?? 99);
+    });
   const otherWorks = sorted.filter((work) => work.series !== "spanish");
   const sectionCount = Number(spanishWorks.length > 0) + Number(otherWorks.length > 0);
 
@@ -826,16 +871,25 @@ const renderWorks = (list) => {
     head.className = "collection-head";
     const copy = document.createElement("div");
     copy.className = "collection-copy";
-    copy.append(text("p", "collection-label", "Spanish series"));
-    const heading = text("h3", "collection-title", "西班牙语系列");
+    copy.append(text("p", "collection-label", "Language Learning Lab"));
+    const heading = text("h3", "collection-title", "语言学习台");
     heading.id = "spanish-series-title";
     copy.append(heading);
-    copy.append(text("p", "collection-description", "从字母与发音出发，经过 14 天词汇启动，再进入逐句听读、跟读与重组。"));
-    head.append(copy, text("span", "collection-count", String(spanishWorks.length).padStart(2, "0")));
+    copy.append(text("p", "collection-description", "每个方法都有可理解英文的深度介绍和可以反复玩的练习 Session；字母点读与逐句训练器作为辅助工具继续保留。"));
+    const labLink = text("a", "collection-link", "进入完整学习台 →");
+    labLink.href = "language-lab/";
+    copy.append(labLink);
+    const methodCount = spanishWorks.filter((work) => work.languageLab?.kind === "method").length;
+    head.append(copy, text("span", "collection-count", String(methodCount).padStart(2, "0")));
 
     const seriesList = document.createElement("ol");
     seriesList.className = "series-list";
-    spanishWorks.forEach((work) => seriesList.append(createSeriesItem(work, latestDate)));
+    let toolStarted = false;
+    spanishWorks.forEach((work) => {
+      const isTool = work.languageLab?.kind === "tool";
+      seriesList.append(createSeriesItem(work, latestDate, isTool && !toolStarted));
+      if (isTool) toolStarted = true;
+    });
     section.append(head, seriesList);
     fragments.push(section);
   }

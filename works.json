@@ -34,6 +34,13 @@
     "series": "spanish",
     "seriesOrder": 1,
     "seriesStage": "发音基础",
+    "languageLab": {
+      "kind": "tool",
+      "id": "alphabet-reader",
+      "order": 1,
+      "title": "Spanish Sound Board",
+      "stage": "Pronunciation tool"
+    },
     "date": "2026-08-12",
     "description": "点击字母即可听拉美真人发音。音频预加载并在内存中解码，支持逐字母点读、连续播放和三档语速。"
   },
@@ -44,6 +51,13 @@
     "series": "spanish",
     "seriesOrder": 3,
     "seriesStage": "逐句练习",
+    "languageLab": {
+      "kind": "tool",
+      "id": "paso-a-paso",
+      "order": 2,
+      "title": "Paso a Paso",
+      "stage": "Sentence tool"
+    },
     "date": "2026-08-23",
     "description": "把西语或其他语言句子拆成小块，逐段听读、跟读、录音，再从头重组；历史与录音只保留在当前设备。"
   },
@@ -54,8 +68,34 @@
     "series": "spanish",
     "seriesOrder": 2,
     "seriesStage": "14 天启动",
+    "languageLab": {
+      "kind": "method",
+      "id": "method-01",
+      "order": 1,
+      "title": "Puente 300",
+      "stage": "Start small, use early",
+      "sessionCount": 5
+    },
     "date": "2026-08-23",
     "description": "用清晰英文图解“少量起步、尽早使用、从真实缺口继续学”的方法，再进入 300 个实用西语词与短语、基础语法、阅读、口语和四类技能小游戏；进度保存在当前浏览器。"
+  },
+  {
+    "title": "The First 1,000 Hours · 输入与复述实验",
+    "path": "language-lab/colombia-1000-hours/",
+    "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 4,
+    "seriesStage": "Method 02 · 首个 Session",
+    "languageLab": {
+      "kind": "method",
+      "id": "method-02",
+      "order": 2,
+      "title": "The First 1,000 Hours",
+      "stage": "Input, recall, and reuse",
+      "sessionCount": 1
+    },
+    "date": "2026-09-01",
+    "description": "从哥伦比亚一位学习者的 1000 小时记录出发，区分个案、视频解读和研究证据；再用清晰英文引导完成西语的听、看、回忆与迁移练习。"
   },
   {
     "title": "Bogotá · 身心生活指南",

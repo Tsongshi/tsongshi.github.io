@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" data-ts-page="language-lab">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Learning Lab — Tsongshi</title>
+  <meta name="description" content="A growing shelf of deeply explained language-learning methods and replayable multisensory sessions for English-guided Spanish learning.">
+  <meta name="theme-color" content="#d4cec2">
+  <link rel="canonical" href="https://tsongshi.cn/language-lab/">
+  <link rel="icon" type="image/png" href="/icons/site-192.png">
+  <link rel="stylesheet" href="/fresh-theme.css?v=20260901-method02">
+  <style>
+    :root {
+      --lab-bg: #d4cec2;
+      --lab-paper: #e3ddd2;
+      --lab-card: #ded8cc;
+      --lab-card-2: #c6c5bb;
+      --lab-ink: #26322d;
+      --lab-muted: #46534d;
+      --lab-line: #a7aaa1;
+      --lab-green: #365347;
+      --lab-green-dark: #29473e;
+      --lab-coral: #704b58;
+      --lab-ochre: #b89651;
+      --lab-white: #f3eee4;
+      --lab-serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      --lab-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--lab-bg); scroll-behavior: smooth; }
+    body { margin: 0; background: var(--lab-bg) !important; color: var(--lab-ink); font-family: var(--lab-sans); line-height: 1.65; }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--lab-green); outline-offset: 4px; }
+    .page { width: min(1320px, 100%); margin: 0 auto; padding: 0 clamp(22px, 5vw, 72px) 72px; }
+    .masthead { display: flex; min-height: 78px; align-items: center; justify-content: space-between; gap: 30px; border-bottom: 1px solid var(--lab-line); }
+    .wordmark { color: var(--lab-green); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; }
+    .masthead p { margin: 0; color: var(--lab-muted); font-size: 0.68rem; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr); gap: clamp(50px, 9vw, 130px); padding: clamp(78px, 11vw, 150px) 0 clamp(84px, 11vw, 145px); align-items: end; }
+    .eyebrow { margin: 0 0 16px; color: var(--lab-green); font-size: 0.66rem; font-weight: 850; letter-spacing: 0.17em; text-transform: uppercase; }
+    h1, h2, h3 { font-family: var(--lab-serif); }
+    h1 { max-width: 9em; margin: 0; font-size: clamp(3.8rem, 7.7vw, 7.3rem); font-weight: 500; line-height: 0.88; letter-spacing: -0.075em; }
+    h1 em { color: var(--lab-green); font-style: normal; }
+    .hero-copy > p:last-child { max-width: 52rem; margin: 32px 0 0; color: var(--lab-muted); font-size: clamp(1rem, 1.5vw, 1.2rem); }
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .hero-stats div { min-height: 150px; padding: 20px; border: 1px solid var(--lab-line); border-radius: 16px; background: var(--lab-card); }
+    .hero-stats strong { display: block; color: var(--lab-green); font-family: var(--lab-serif); font-size: 3.4rem; font-weight: 500; line-height: 1; }
+    .hero-stats span { display: block; margin-top: 38px; color: var(--lab-muted); font-size: 0.63rem; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; }
+    .lab-note { grid-column: 1 / -1; min-height: 0 !important; padding: 14px 16px !important; border-color: var(--lab-green) !important; color: var(--lab-muted); font-size: 0.68rem; }
+    .lab-note strong { display: inline; color: var(--lab-ink); font-family: inherit; font-size: inherit; font-weight: 760; }
+
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; padding-bottom: 24px; border-bottom: 1px solid var(--lab-line); }
+    h2 { margin: 0; font-size: clamp(2.3rem, 4.5vw, 4.1rem); font-weight: 500; line-height: 1; letter-spacing: -0.055em; }
+    .section-head > p { max-width: 420px; margin: 0; color: var(--lab-muted); font-size: 0.76rem; }
+    .methods-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 24px; }
+    .method-card { position: relative; display: flex; min-height: 510px; padding: clamp(28px, 4vw, 48px); flex-direction: column; overflow: hidden; border: 1px solid var(--lab-green); border-radius: 24px; background: var(--lab-paper); text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease; }
+    .method-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(55, 45, 35, 0.11); }
+    .method-card--new { background: var(--lab-green-dark); color: var(--lab-white); }
+    .method-id { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+    .method-card--new .method-id { color: #d8bb7b; }
+    .new-pill { padding: 4px 8px; border: 1px solid currentColor; border-radius: 999px; }
+    .method-art { display: grid; width: 156px; height: 156px; margin-top: 44px; place-items: center; border-radius: 50% 50% 12px 50%; background: var(--lab-green); color: var(--lab-white); }
+    .method-card--new .method-art { background: #d8bb7b; color: var(--lab-green-dark); }
+    .method-art strong { font-family: var(--lab-serif); font-size: 3rem; font-weight: 500; line-height: 0.85; }
+    .method-art small { font-size: 0.58rem; font-weight: 760; letter-spacing: 0.08em; text-transform: uppercase; }
+    .method-card h3 { max-width: 11em; margin: 34px 0 0; font-size: clamp(2rem, 3.4vw, 3.3rem); font-weight: 500; line-height: 0.98; letter-spacing: -0.055em; }
+    .method-card > p { max-width: 570px; margin: 16px 0 0; color: var(--lab-muted); font-size: 0.78rem; }
+    .method-card--new > p { color: rgba(243, 238, 228, 0.73); }
+    .method-footer { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-top: auto; padding-top: 28px; border-top: 1px solid var(--lab-line); }
+    .method-card--new .method-footer { border-color: rgba(243, 238, 228, 0.32); }
+    .method-footer span { color: var(--lab-muted); font-size: 0.65rem; }
+    .method-card--new .method-footer span { color: rgba(243, 238, 228, 0.67); }
+    .method-footer strong { display: inline-flex; min-height: 44px; padding: 10px 15px; align-items: center; border: 1px solid var(--lab-green); border-radius: 999px; color: var(--lab-green); font-size: 0.7rem; }
+    .method-card--new .method-footer strong { border-color: var(--lab-white); color: var(--lab-white); }
+
+    .tools { padding: clamp(100px, 13vw, 180px) 0; }
+    .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 24px; }
+    .tool-card { display: grid; grid-template-columns: 74px 1fr auto; min-height: 170px; padding: 24px; align-items: center; gap: 20px; border: 1px solid var(--lab-line); border-radius: 18px; background: var(--lab-card); text-decoration: none; }
+    .tool-card:hover { border-color: var(--lab-green); background: var(--lab-paper); }
+    .tool-icon { display: grid; width: 64px; height: 64px; place-items: center; border: 1px solid var(--lab-green); border-radius: 50%; color: var(--lab-green); font-family: var(--lab-serif); font-size: 1.15rem; }
+    .tool-card h3 { margin: 0; font-size: 1.35rem; font-weight: 600; }
+    .tool-card p { margin: 6px 0 0; color: var(--lab-muted); font-size: 0.7rem; }
+    .tool-card > span:last-child { color: var(--lab-green); font-size: 1.2rem; }
+
+    .growth { display: grid; grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr); gap: clamp(50px, 9vw, 120px); padding: clamp(54px, 8vw, 94px); border: 1px solid var(--lab-line); border-radius: 24px; background: var(--lab-card); }
+    .growth p { color: var(--lab-muted); }
+    .growth ol { display: grid; margin: 0; padding: 0; list-style: none; counter-reset: grow; }
+    .growth li { display: grid; grid-template-columns: 42px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--lab-line); counter-increment: grow; }
+    .growth li::before { content: "0" counter(grow); color: var(--lab-green); font-size: 0.67rem; font-weight: 850; letter-spacing: 0.09em; }
+    .growth li strong { display: block; font-family: var(--lab-serif); font-size: 1.2rem; font-weight: 600; }
+    .growth li span { display: block; margin-top: 5px; color: var(--lab-muted); font-size: 0.7rem; }
+    footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 70px; padding-top: 24px; border-top: 1px solid var(--lab-line); color: var(--lab-muted); font-size: 0.68rem; }
+    footer a { color: var(--lab-green); font-weight: 750; text-decoration: none; }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-stats { max-width: 520px; }
+      .methods-grid, .tools-grid { grid-template-columns: 1fr; }
+      .method-card { min-height: 470px; }
+      .growth { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .page { padding-inline: 18px; }
+      .masthead p { display: none; }
+      .hero { padding-top: 64px; }
+      h1 { font-size: clamp(3.7rem, 18vw, 5.3rem); }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .method-card { min-height: 520px; padding: 26px 20px; }
+      .tool-card { grid-template-columns: 60px 1fr; }
+      .tool-card > span:last-child { display: none; }
+      .tool-icon { width: 54px; height: 54px; }
+      .growth { padding: 40px 20px; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <a class="wordmark" href="/">Tsongshi · Public Works</a>
+      <p>Clear English guide · Spanish practice · local progress</p>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Language Learning Lab</p>
+          <h1 id="page-title">A shelf of methods you can <em>play.</em></h1>
+          <p>Each method has two parts: a deep, visual explanation and small sessions you can replay. Read with paper, listen on iPad, speak aloud, and turn an idea into action.</p>
+        </div>
+        <div class="hero-stats" aria-label="Current lab contents">
+          <div><strong>02</strong><span>learning methods</span></div>
+          <div><strong>02</strong><span>supporting tools</span></div>
+          <div class="lab-note"><strong>Guide:</strong> clear English · <strong>Practice:</strong> Spanish for Bogotá life and work</div>
+        </div>
+      </section>
+
+      <section aria-labelledby="methods-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Methods</p><h2 id="methods-title">Understand it. Then try it.</h2></div>
+          <p>A method is not a slogan. Open a card to see its source, mechanism, limits, and the sessions built from it.</p>
+        </div>
+        <div class="methods-grid">
+          <a class="method-card" href="/puente-300/">
+            <div class="method-id"><span>Method 01</span><span>5 practice modes</span></div>
+            <div class="method-art"><strong>300</strong><small>starter items</small></div>
+            <h3>Puente 300</h3>
+            <p>Learn a small base, use Spanish early, notice the real gap, and let that gap choose what you learn next.</p>
+            <div class="method-footer"><span>14-day path · words · grammar · reading · games</span><strong>Open Method 01 →</strong></div>
+          </a>
+          <a class="method-card method-card--new" href="/language-lab/colombia-1000-hours/">
+            <div class="method-id"><span>Method 02</span><span class="new-pill">New · 1 session</span></div>
+            <div class="method-art"><strong>1K</strong><small>tracked hours</small></div>
+            <h3>The First 1,000 Hours</h3>
+            <p>Study one Colombia learner's input-heavy portfolio, then practise the loop: listen, see, recall, and reuse.</p>
+            <div class="method-footer"><span>Case + research + three-pass Bogotá session</span><strong>Play Session 01 →</strong></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="tools" aria-labelledby="tools-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Supporting tools</p><h2 id="tools-title">Open only when useful.</h2></div>
+          <p>These are small instruments, not complete methods. Use them when a session shows you a sound or sentence gap.</p>
+        </div>
+        <div class="tools-grid">
+          <a class="tool-card" href="/spanish-alphabet-reader/"><span class="tool-icon">Aa</span><div><h3>Spanish Sound Board</h3><p>Tap letters and common patterns. Hear Latin American pronunciation at three speeds.</p></div><span>↗</span></a>
+          <a class="tool-card" href="/paso-a-paso-spanish/"><span class="tool-icon">▶</span><div><h3>Paso a Paso</h3><p>Break any sentence into parts, listen, speak, record locally, and rebuild it.</p></div><span>↗</span></a>
+        </div>
+      </section>
+
+      <section class="growth" aria-labelledby="growth-title">
+        <div><p class="eyebrow">How the shelf grows</p><h2 id="growth-title">One video can become many rounds.</h2><p>When a learning pattern stays useful, we do not need a new theory. We can add another session with a new story, skill, or support level.</p></div>
+        <ol>
+          <li><div><strong>Watch and trace</strong><span>Find the original case or source behind the video.</span></div></li>
+          <li><div><strong>Separate evidence</strong><span>Keep personal reports, explanations, research, and design choices apart.</span></div></li>
+          <li><div><strong>Build one playable loop</strong><span>Make the idea small enough to do today with sound, sight, writing, and speech.</span></div></li>
+          <li><div><strong>Replay or add a Session</strong><span>Keep the method card; grow the library underneath it.</span></div></li>
+        </ol>
+      </section>
+    </main>
+
+    <footer><span>Language Learning Lab · started 2026</span><a href="/">Back to all public works →</a></footer>
+  </div>
+  <script src="/nav.js" defer></script>
+</body>
+</html>
