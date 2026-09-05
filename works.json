@@ -1,5 +1,22 @@
 [
   {
+    "title": "DIY OID 点读手册与 A4 Sessions",
+    "path": "tiptoi-a4-sessions/",
+    "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 6,
+    "seriesStage": "纸质点读系统",
+    "languageLab": {
+      "kind": "tool",
+      "id": "tiptoi-a4",
+      "order": 3,
+      "title": "A4 Point-Reading Sessions",
+      "stage": "Printable offline tool"
+    },
+    "date": "2026-09-05",
+    "description": "把网页练习、固定音频、稳定 OID 和 GME 重组为可打印的纸质 Sessions；含完整中文说明书和 105 页西语 A4 练习，私人 GME 不公开。"
+  },
+  {
     "title": "A Conflict of Visions · 两种人性观如何塑造政治争论",
     "path": "conflict-of-visions/",
     "category": "阅读",

@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="一套经过首轮实体参数验证的 DIY OID 点读工作流：从音频分段、稳定编码、GME 制作，到 A4 打印、装笔与排错。">
+  <meta property="og:title" content="DIY OID 点读手册与 A4 Sessions">
+  <meta property="og:description" content="从本地音频、稳定辅码和 GME，到 A4 打印、装笔、实体测试与排错的完整工作流。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tsongshi.cn/tiptoi-a4-sessions/">
+  <link rel="canonical" href="https://tsongshi.cn/tiptoi-a4-sessions/">
+  <link rel="icon" type="image/png" href="/icons/site-192.png">
+  <title>DIY OID 点读手册与 A4 Sessions</title>
+  <style>
+    :root {
+      --ink: #17233b;
+      --muted: #5c6880;
+      --paper: #fbfaf6;
+      --card: #ffffff;
+      --line: #dce1ea;
+      --brand: #5b3fd8;
+      --brand-dark: #37258f;
+      --brand-soft: #eeeaff;
+      --green: #087a56;
+      --green-soft: #e6f7f0;
+      --amber: #9a5b00;
+      --amber-soft: #fff3d6;
+      --red: #a33a3a;
+      --red-soft: #fff0ee;
+      --blue: #0c5b9d;
+      --blue-soft: #eaf4ff;
+      --shadow: 0 12px 34px rgba(26, 35, 62, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: 17px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--brand-dark); text-underline-offset: 0.18em; }
+    a:hover { color: var(--brand); }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    code {
+      padding: 0.12em 0.34em;
+      border-radius: 5px;
+      background: #f1f2f6;
+      font-size: 0.91em;
+    }
+    pre {
+      overflow-x: auto;
+      margin: 0;
+      padding: 18px;
+      border: 1px solid #d9d4f4;
+      border-radius: 12px;
+      color: #29204d;
+      background: #f8f6ff;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+    pre code { padding: 0; background: transparent; }
+    h1, h2, h3 { margin-top: 0; line-height: 1.22; letter-spacing: -0.02em; }
+    h1 { margin-bottom: 20px; font-size: clamp(2.3rem, 7vw, 5.6rem); max-width: 12ch; }
+    h2 { margin-bottom: 18px; font-size: clamp(1.75rem, 3.6vw, 2.65rem); }
+    h3 { margin-bottom: 10px; font-size: 1.23rem; }
+    p { margin: 0 0 1em; }
+    ul, ol { margin: 0.5em 0 1.1em; padding-left: 1.35em; }
+    li + li { margin-top: 0.35em; }
+    strong { color: #101a30; }
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--brand-dark);
+    }
+    .skip-link:focus { top: 16px; }
+    .wrap { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 84px 0 74px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 82% 25%, rgba(255,255,255,.2) 0 8%, transparent 8.2%),
+        radial-gradient(circle at 88% 65%, rgba(255,255,255,.12) 0 14%, transparent 14.2%),
+        linear-gradient(135deg, #302078 0%, #6041e8 56%, #8057f6 100%);
+    }
+    .hero::after {
+      content: "OID";
+      position: absolute;
+      right: -0.08em;
+      bottom: -0.35em;
+      color: rgba(255,255,255,.06);
+      font-size: min(34vw, 29rem);
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.1);
+    }
+    .lead { max-width: 760px; margin-bottom: 26px; font-size: clamp(1.06rem, 2.1vw, 1.36rem); color: #f1eeff; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: .83rem;
+      font-weight: 700;
+    }
+    .hero .pill { color: #fff; background: rgba(20,12,61,.38); }
+
+    .notice {
+      position: relative;
+      z-index: 2;
+      margin: -31px auto 0;
+      padding: 20px 22px;
+      border: 1px solid #dbd4ff;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .notice strong { color: var(--brand-dark); }
+
+    .toc-wrap {
+      position: sticky;
+      z-index: 30;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251,250,246,.94);
+      backdrop-filter: blur(12px);
+    }
+    .toc {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: thin;
+    }
+    .toc a {
+      flex: 0 0 auto;
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: #39445b;
+      font-size: .86rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+    .toc a:hover { color: var(--brand-dark); background: var(--brand-soft); }
+
+    main { padding: 32px 0 90px; }
+    section { scroll-margin-top: 74px; padding: 66px 0; border-bottom: 1px solid var(--line); }
+    section:last-child { border-bottom: 0; }
+    .section-kicker {
+      margin: 0 0 7px;
+      color: var(--brand);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .section-intro { max-width: 790px; margin-bottom: 28px; color: var(--muted); font-size: 1.06rem; }
+    .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; }
+    .card {
+      grid-column: span 4;
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 4px 16px rgba(32,42,65,.035);
+    }
+    .card.wide { grid-column: span 6; }
+    .card.full { grid-column: 1 / -1; }
+    .card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+    .step-no {
+      display: inline-grid;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 13px;
+      place-items: center;
+      border-radius: 9px;
+      color: #fff;
+      background: var(--brand);
+      font-size: .9rem;
+      font-weight: 800;
+    }
+    .status {
+      display: inline-block;
+      margin: 0 5px 6px 0;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 750;
+    }
+    .status.ok { color: var(--green); background: var(--green-soft); }
+    .status.test { color: var(--amber); background: var(--amber-soft); }
+    .status.rule { color: var(--blue); background: var(--blue-soft); }
+    .callout {
+      margin: 22px 0;
+      padding: 18px 20px;
+      border-left: 5px solid var(--brand);
+      border-radius: 8px 14px 14px 8px;
+      background: var(--brand-soft);
+    }
+    .callout.warning { border-left-color: #d58a00; background: var(--amber-soft); }
+    .callout.danger { border-left-color: var(--red); background: var(--red-soft); }
+    .callout.success { border-left-color: var(--green); background: var(--green-soft); }
+    .callout p:last-child { margin-bottom: 0; }
+
+    .boundary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .boundary > article {
+      padding: 23px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .boundary .official { border-top: 5px solid #2271b3; }
+    .boundary .diy { border-top: 5px solid var(--brand); }
+    .mini-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 19px 0;
+    }
+    .mini-flow span {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      font-size: .9rem;
+      font-weight: 650;
+    }
+    .mini-flow b { color: var(--brand); }
+
+    .table-scroll { overflow-x: auto; margin: 22px 0; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .94rem; }
+    th, td { padding: 13px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #27334c; background: #f3f4f7; font-size: .83rem; letter-spacing: .02em; }
+    tr:last-child td { border-bottom: 0; }
+    .yes { color: var(--green); font-weight: 800; }
+    .no { color: var(--red); font-weight: 800; }
+    .care { color: var(--amber); font-weight: 800; }
+
+    .decision {
+      padding: 26px;
+      border-radius: 22px;
+      color: #fff;
+      background: #19223a;
+      box-shadow: var(--shadow);
+    }
+    .decision h3 { color: #fff; font-size: 1.5rem; }
+    .decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .decision-grid article { padding: 16px; border: 1px solid rgba(255,255,255,.17); border-radius: 13px; background: rgba(255,255,255,.07); }
+    .decision-grid b { display: block; margin-bottom: 6px; color: #cfc5ff; }
+    .decision-grid p { margin: 0; color: #eef0f6; font-size: .92rem; }
+
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li { position: relative; padding-left: 29px; }
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: .06em;
+      color: var(--green);
+      font-weight: 900;
+    }
+    .number-list { counter-reset: item; list-style: none; padding-left: 0; }
+    .number-list li { position: relative; min-height: 38px; padding-left: 48px; }
+    .number-list li::before {
+      counter-increment: item;
+      content: counter(item);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--brand);
+      font-size: .85rem;
+      font-weight: 800;
+    }
+    details { border-top: 1px solid var(--line); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { padding: 17px 6px; cursor: pointer; color: #1f2c47; font-weight: 750; }
+    details > div { padding: 0 6px 17px; color: var(--muted); }
+
+    .downloads {
+      padding: 32px;
+      border-radius: 24px;
+      color: #fff;
+      background: linear-gradient(135deg, #38228f, #6b49e8);
+    }
+    .downloads h2, .downloads h3 { color: #fff; }
+    .downloads p { color: #ece8ff; }
+    .download-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 24px; }
+    .download-card {
+      display: block;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 15px;
+      color: #fff;
+      background: rgba(255,255,255,.1);
+      text-decoration: none;
+    }
+    .download-card:hover { color: #fff; background: rgba(255,255,255,.18); }
+    .download-card strong { display: block; margin-bottom: 5px; color: #fff; font-size: 1.08rem; }
+    .download-card small { color: #e7e3fa; }
+    .private-box { margin-top: 15px; padding: 17px 19px; border: 1px solid rgba(255,255,255,.24); border-radius: 13px; background: rgba(12,8,48,.25); }
+    .sources li { margin-bottom: 8px; word-break: break-word; }
+    footer { padding: 28px 0 44px; color: var(--muted); font-size: .88rem; }
+    .top-link { display: inline-block; margin-top: 20px; }
+
+    @media (max-width: 840px) {
+      .hero { padding: 64px 0 58px; }
+      .card, .card.wide { grid-column: span 6; }
+      .decision-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      .wrap { width: min(100% - 24px, 1160px); }
+      .hero { padding: 52px 0 50px; }
+      h1 { font-size: 2.45rem; }
+      main { padding-top: 18px; }
+      section { padding: 48px 0; }
+      .card, .card.wide { grid-column: 1 / -1; padding: 20px; }
+      .boundary, .download-grid { grid-template-columns: 1fr; }
+      .notice { padding: 17px; }
+      .downloads { padding: 23px 19px; }
+      th, td { min-width: 128px; padding: 11px; }
+      .toc a { display: inline-flex; min-height: 44px; align-items: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      body { color: #000; background: #fff; font-size: 10pt; }
+      .hero { padding: 18mm 0 14mm; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hero::after, .toc-wrap, .top-link, .skip-link { display: none !important; }
+      .notice { margin: 8mm 0 0; box-shadow: none; }
+      main { padding: 0; }
+      section { padding: 10mm 0; break-inside: auto; }
+      .card, .boundary > article, .decision, .downloads, .callout, details { break-inside: avoid; box-shadow: none; }
+      .decision, .downloads { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a { color: #000; text-decoration: none; }
+      .sources a::after { content: " (" attr(href) ")"; font-size: 8pt; color: #444; }
+      details > div { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到正文</a>
+
+  <header class="hero" id="top">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">首轮实体参数验证 · Mac-first · Offline-first</div>
+      <h1>DIY OID 点读手册与 A4 Sessions</h1>
+      <p class="lead">把自己的学习内容做成可打印、可点读、可长期增量维护的纸质 Session。这里从笔、音频和辅码的关系讲起，一直讲到装笔、打印、实体测试与故障回滚。</p>
+      <div class="hero-meta" aria-label="文档状态">
+        <span class="pill">版本 v1.1.1</span>
+        <span class="pill">更新：2026-09-05</span>
+        <span class="pill">适配重点：tiptoi 00110</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap notice" role="note">
+    <strong>先说边界：</strong>这是基于 <strong>tttool</strong> 的非官方社区工作流，不是 Ravensburger 官方制作方案，也不代表厂商兼容性承诺。软件检查通过不等于纸面一定可读；最终判定以“目标打印机 + 目标纸张 + 目标笔”的实体测试为准。tiptoi® 为 Ravensburger 的商标。
+  </div>
+
+  <nav class="toc-wrap" aria-label="页内目录">
+    <div class="wrap toc">
+      <a href="#quick">先做什么</a>
+      <a href="#principle">组件与原理</a>
+      <a href="#boundaries">连接边界</a>
+      <a href="#install">Mac 装笔</a>
+      <a href="#print">打印与实测</a>
+      <a href="#workflow">完整流程</a>
+      <a href="#identity">编码策略</a>
+      <a href="#audio">音频与分段</a>
+      <a href="#sessions">日常使用</a>
+      <a href="#troubleshooting">排错</a>
+      <a href="#qa">版本与 QA</a>
+      <a href="#privacy">版权隐私</a>
+      <a href="#codex">Codex 提示</a>
+      <a href="#faq">FAQ</a>
+      <a href="#downloads">下载</a>
+      <a href="#sources">资料来源</a>
+    </div>
+  </nav>
+
+  <main id="content" class="wrap">
+    <section id="quick">
+      <p class="section-kicker">Start here</p>
+      <h2>第一次使用：只做这 6 步</h2>
+      <p class="section-intro">先用一张小型诊断页闭环，不要一上来打印整本。目标是确认“笔里有包、纸上码可读、码与声音对应”三件事。</p>
+      <div class="grid">
+        <article class="card wide"><span class="step-no">1</span><h3>准备文件</h3><p>确认本地已有同一版本的 A4 PDF、GME、稳定编码表和音频源映射。不要只拿一份 PDF。</p></article>
+        <article class="card wide"><span class="step-no">2</span><h3>把 GME 放进笔</h3><p>用<strong>笔身的数据口</strong>接 Mac，把 GME 复制到笔的根目录，然后安全推出。不是复制到底座，也不是通过蓝牙。</p></article>
+        <article class="card wide"><span class="step-no">3</span><h3>打印诊断页</h3><p>使用“实际大小 / 100%”，关闭“适合页面”和省墨。先打印包含已知可用控制码、START 和几个普通码的一页。</p></article>
+        <article class="card wide"><span class="step-no">4</span><h3>激活一次，再点控制码</h3><p>若尚未切到这套内容，先点 3×3、22 mm 的 START；随后点已知可用的 <em>listo</em> 控制码。笔已经处于同一 Product 时，重复点 START 可能不重播，不能单独用它判断打印成败。</p></article>
+        <article class="card wide"><span class="step-no">5</span><h3>逐项打勾</h3><p>在纸上标记“响 / 不响 / 声音不对”，记录打印机、纸张、缩放和质量设置。一个类型重复出现，不等于多个独立样本。</p></article>
+        <article class="card wide"><span class="step-no">6</span><h3>通过后再批量</h3><p>小页通过后再打印完整 Sessions。发现问题，先回滚到上一个已通过版本，不要同时改音频、编码和排版。</p></article>
+      </div>
+
+      <div class="decision" aria-labelledby="decision-title">
+        <h3 id="decision-title">30 秒决策树</h3>
+        <div class="decision-grid">
+          <article><b>整张都不响</b><p>先看笔是否识别普通官方内容 → GME 是否在笔根目录 → 是否存在同 Product ID 的另一包 → 安全推出后重启再测。</p></article>
+          <article><b>大多数响，少数不响</b><p>GME 已基本加载。查该码是否被缩放、污损、切边或映射错；换同音频的新 OID 做 A/B 复测。</p></article>
+          <article><b>响了，但声音不对</b><p>停止继续打印。对照稳定编码表、YAML 与 source map；这通常是映射/版本问题，不是纸张问题。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="principle">
+      <p class="section-kicker">01 · Mental model</p>
+      <h2>四个组件，缺一不可</h2>
+      <p class="section-intro">点读不是“PDF 里嵌了声音”。纸、码、包和笔在使用时是四个分离的对象。</p>
+      <div class="grid">
+        <article class="card"><h3>① 纸面内容</h3><p>文字、图片、题目与学习步骤。它决定人看到什么，但不直接储存声音。</p></article>
+        <article class="card"><h3>② OID 辅码</h3><p>打印在纸上的微点阵。笔的光学传感器读出编号，再去包内寻找对应脚本。</p></article>
+        <article class="card"><h3>③ GME 音频包</h3><p>放在笔内存根目录的文件，包含 Product ID、OID 脚本和音频。它决定“这个码播放什么”。</p></article>
+        <article class="card"><h3>④ 兼容点读笔</h3><p>负责识别 OID、读取 GME 并播放音频。兼容性必须以实际型号与成品纸测试。</p></article>
+      </div>
+      <div class="mini-flow" aria-label="点读处理流程">
+        <span>笔尖读取纸上 OID</span><b>→</b><span>识别 Product / Script Code</span><b>→</b><span>在 GME 中查脚本</span><b>→</b><span>播放对应音频</span>
+      </div>
+      <div class="callout success"><p><strong>判断是否已加载成功：</strong>只要同一自制包中的多个普通脚本码能稳定播放，就说明笔已经能够读取该 GME。START 的单独异常不应推翻这个事实。</p></div>
+    </section>
+
+    <section id="boundaries">
+      <p class="section-kicker">02 · Connection boundaries</p>
+      <h2>00110：笔、底座、USB、Wi‑Fi 各自做什么</h2>
+      <p class="section-intro">这里最容易混淆的是“底座能联网”与“本地文件能经 Wi‑Fi 传入”。它们不是同一件事。</p>
+      <div class="callout"><p><strong>00110 的范围：</strong>这是第四代笔。Ravensburger 官方称它兼容全部官方 tiptoi 产品，<strong>CREATE 系列除外</strong>；DIY GME 不属于这项官方兼容承诺。本项目只能确认：这支 00110 在首轮测试中让 42 个打印位置里的 35 个实际出声，最终整册仍待重新打印验证。</p></div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>通道 / 部件</th><th>适合做什么</th><th>不应假定能做什么</th><th>本手册结论</th></tr></thead>
+          <tbody>
+            <tr><td><strong>笔身 USB 数据口</strong></td><td>让 Mac 把笔识别为外接存储；复制官方或 DIY 的 GME；充电（视线材/电源而定）。</td><td>不是所有 USB 线都传数据；只有充电功能的线不能完成复制。</td><td><span class="yes">本地 GME 的正确入口</span></td></tr>
+            <tr><td><strong>充电底座的接口</strong></td><td>给底座供电、给笔充电，并配合官方 Wi‑Fi 下载流程。</td><td>不要把它当成 Mac 上的通用 U 盘接口；不要通过它拖入 DIY GME。</td><td><span class="care">官方生态用途</span></td></tr>
+            <tr><td><strong>底座 Wi‑Fi</strong></td><td>按官方设置流程连接家庭网络，为官方书籍获取音频。</td><td>不是通用文件服务器；本工作流不使用它上传本地音频或 DIY GME。</td><td><span class="care">官方音频下载</span></td></tr>
+            <tr><td><strong>蓝牙</strong></td><td>本手册没有把它作为传文件方案。</td><td>不要把 AirDrop、蓝牙文件传输或无线音箱连接等同于向笔写入 GME。</td><td><span class="no">不用于本地上传</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="boundary">
+        <article class="official">
+          <span class="status rule">官方路径</span>
+          <h3>官方书籍音频</h3>
+          <ul>
+            <li>从 Ravensburger 官方音频页面 / tiptoi Manager 获取。</li>
+            <li>可经笔身 USB 复制；配套充电底座则可按官方流程联网下载。</li>
+            <li>官方页面、说明书和底座指示灯定义优先于本手册摘要。</li>
+            <li>适用于有官方产品编号与官方音频包的书籍。</li>
+          </ul>
+        </article>
+        <article class="diy">
+          <span class="status test">DIY 路径</span>
+          <h3>自己的固定音频</h3>
+          <ul>
+            <li>将已取得权利的文本/录音/TTS 做成 tttool 项目。</li>
+            <li>生成 OID 页面和 GME，并保留稳定映射与源文件。</li>
+            <li>用数据线直接连接笔身，把 GME 放在笔根目录。</li>
+            <li>离线点读；不依赖底座 Wi‑Fi，也不经蓝牙上传。</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="callout warning">
+        <p><strong>底座联网的简单识别：</strong>按官方说明完成配网后，绿灯表示当前有活动 Wi‑Fi 连接，红灯表示无法连接互联网。不同阶段/固件的灯光行为以<a href="https://www.ravensburger.de/de-DE/entdecken/tiptoi/tiptoi-ladestation">官方底座设置页</a>和<a href="https://service.ravensburger.de/tiptoi%C2%AE/Produkte_FAQs/tiptoi%C2%AE_Ladestation">底座 FAQ</a>为准。绿灯不等于某次官方音频必然下载成功，更不证明底座能接收自制文件。</p>
+      </div>
+
+      <h3>底座第一次连接家庭 Wi‑Fi</h3>
+      <ol class="number-list">
+        <li>给底座接上随附电源，把<strong>已开机的第四代笔</strong>放入底座；快速连按 WLAN 按钮两次，按钮应呈橙色并进入设置状态。</li>
+        <li>在手机、平板或电脑的 Wi‑Fi 列表中选择名称以 <code>tiptoi_</code> 开头的临时网络。系统提示“没有互联网”时仍选择保持连接。</li>
+        <li>打开浏览器，在地址栏输入 <code>http://192.168.1.1/</code>，选择家庭 Wi‑Fi，输入密码并保存。路由器必须提供 <strong>2.4 GHz</strong> 网络。</li>
+        <li>WLAN 按钮常亮绿色表示连接成功；红色表示未连上。需要重设时，可再次快速按两次进入设置；长按约 10 秒会清除底座保存的网络资料。</li>
+        <li>下载官方书籍音频时，先用笔点该官方产品的注册标志，等待提示完整播放，再把笔放回底座。绿色环分段显示进度；完整闭合后下载完成。</li>
+      </ol>
+      <div class="callout"><p><strong>仍然不用于本地上传：</strong>上面这套 Wi‑Fi 流程只把底座接入 Ravensburger 的官方下载服务。自己的 MP3 或 DIY GME 仍须先在电脑上构建，再经笔身 USB 数据口复制。</p></div>
+    </section>
+
+    <section id="install">
+      <p class="section-kicker">03 · Install on macOS</p>
+      <h2>在 Mac 上把 GME 复制到笔根目录</h2>
+      <p class="section-intro">以下步骤同时适用于从官方页面取得的 GME 和自己构建的 GME；来源不同，文件落点相同。</p>
+      <ol class="number-list">
+        <li><strong>先给笔充足电。</strong>构建完成后，确认待复制文件扩展名为 <code>.gme</code>，并记录版本与校验值。</li>
+        <li><strong>把随笔附带的连接线插在笔身接口。</strong>另一端接 Mac；USB‑C Mac 可加可靠转接头。若 Finder 没出现新磁盘，先换 Mac 接口或转接头；改用其他线材属于非官方排障。</li>
+        <li><strong>在 Finder 打开笔的磁盘。</strong>看到的是笔的存储根目录。不要进入新建子文件夹，也不要改动不认识的系统文件。</li>
+        <li><strong>检查 Product ID 冲突。</strong>同一个 Product ID 只保留一个 GME。更新同一套西语包时，移走旧版后再复制新版；不要让两个同 PID 包并存。</li>
+        <li><strong>把 GME 拖到根目录。</strong>等待复制真正完成。不要把 PDF、源音频或 YAML 一起塞入笔里；它们应保存在电脑的项目归档中。</li>
+        <li><strong>在 Finder 安全推出。</strong>等磁盘消失后再拔线。随后重启笔，先用诊断页验证 START、已知控制码和两个普通码。</li>
+      </ol>
+      <div class="callout danger">
+        <p><strong>若 macOS 提示“无法读取磁盘 / 是否初始化”：不要格式化。</strong>取消操作，换线、接口或另一台电脑排查。格式化可能破坏笔内官方内容和文件系统。</p>
+      </div>
+      <div class="callout"><p><strong>“根目录”是什么：</strong>打开笔这个外接磁盘后首先看到的那一层，不是桌面、下载文件夹，也不是你另外创建的 <code>audio</code> 或 <code>books</code> 子目录。</p></div>
+    </section>
+
+    <section id="print">
+      <p class="section-kicker">04 · Print specification</p>
+      <h2>打印参数：先守住“不缩放”</h2>
+      <p class="section-intro">OID 是机器读取的图案。肉眼看起来“几乎一样”的缩放、重采样、压缩或墨点糊连，都可能改变识别结果。</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>项目</th><th>正式建议</th><th>原因 / 验证方式</th></tr></thead>
+          <tbody>
+            <tr><td>纸张</td><td>A4 白色哑光纸；先用普通 80–100 g/m² 测试</td><td>避免高反光覆膜、纹理太深或底色过暗；最终以实体读码为准。</td></tr>
+            <tr><td>缩放</td><td><strong>实际大小 / 100%</strong></td><td>关闭“适合页面”“缩放到纸张”和应用层二次缩放。</td></tr>
+            <tr><td>OID 源图与打印质量</td><td>OID 源图按 1200 DPI 生成；打印机选择最高可用质量</td><td>关闭草稿、省墨、照片平滑、锐化和压缩。打印机标称 DPI 不等于 OID 源图 DPI，可靠性仍以成品纸为准。</td></tr>
+            <tr><td>普通 OID 图案</td><td><code>--pixel-size 2</code>，物理区域 15–18 mm</td><td>这里的 2 表示每个微点由 2×2 个栅格像素组成，不是整张码只有 2×2 个点；不要在排版软件里拉伸图案。</td></tr>
+            <tr><td>关键 START</td><td><code>--pixel-size 3</code>，物理区域 22 mm，并留足白边</td><td>关键入口使用更稳健的版式，且每本保留一个已知可用控制码。</td></tr>
+            <tr><td>摆放</td><td>不贴裁切边；与文字、边框、图片保持净空</td><td>避免订书钉、折痕、笔迹、胶带和深色背景覆盖微点阵。</td></tr>
+            <tr><td>批量前门槛</td><td>先打 1 页诊断页并逐码打勾</td><td>只要换打印机、纸张、驱动、导出方式或 PDF 版本，就重新小测。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>本次实体纸张测试结果</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>测试项</th><th>纸面结果</th><th>能得出的结论</th><th>不能过度推断</th></tr></thead>
+          <tbody>
+            <tr><td>42 个打印位置</td><td><span class="yes">35 响</span> / <span class="no">7 不响</span></td><td>笔能识别自制 GME，主流程已经打通。</td><td>软件通过不代表每一个码都必然可读。</td></tr>
+            <tr><td><code>--pixel-size 1</code></td><td><span class="no">失败</span></td><td>每个微点为 1×1 栅格像素；本打印链路中不再用于正式页。</td><td>不外推为所有打印机/纸张的普遍结论。</td></tr>
+            <tr><td><code>--pixel-size 2 / 3</code></td><td><span class="yes">均成功</span></td><td>分别表示每个微点使用 2×2 / 3×3 栅格像素；两种在本次链路可用，关键入口优先 3。</td><td>不能因此任意缩小物理尺寸。</td></tr>
+            <tr><td>10、15、22 mm</td><td><span class="yes">三种尺寸均出现成功样本</span></td><td>尺寸本身不是本次少数失败的唯一解释。</td><td>10 mm 不是正式版默认值；仍优先留出可操作面积。</td></tr>
+            <tr><td>4 个重复 START 位置</td><td><span class="no">均未响</span></td><td>它们是同一个 Product OID；tttool 社区已有记录：自制包激活后，再点同一 Product OID 可能不执行任何动作。正式页仍用 3×3、22 mm 提高入口容错。</td><td><strong>不是四个独立失败样本</strong>，也不能据此判定打印或整包故障。正确复测要先点另一官方产品的启动码切出 P930，再点本册 START，并以随后 <em>listo</em> 是否能响确认是否切回。</td></tr>
+            <tr><td>Full 1 / Full 2</td><td><span class="no">未响</span></td><td>保留旧映射，给同一音频追加新 OID 做 A/B 测试。</td><td>周围相近尺寸码能响，因此不能只归因于“码太小”。</td></tr>
+            <tr><td>最小对立、Bogotá 句子、生存短语、会议内容</td><td><span class="yes">测试项正常</span></td><td>分段音频与普通脚本码的映射可行。</td><td>仍需对最终整本的每一页抽检。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><p><strong>本次记录条件：</strong>测试日期 2026-09-04，笔型号 00110，PDF 按 A4 100% / Actual Size 使用。打印机型号、纸张克重、打印应用和驱动质量档位未记录；因此这是一组首轮参数证据，不是对其他打印链路的普遍保证。</p></div>
+      <div class="callout warning"><p><strong>判定规则：</strong>打勾＝当时那一次点读有声音；打叉或空白＝当时没有声音。它记录的是一次真实测试，不自动说明根因。根因要靠对照码、替换码和相同打印条件复测。</p></div>
+    </section>
+
+    <section id="workflow">
+      <p class="section-kicker">05 · Build pipeline</p>
+      <h2>从学习材料到可点读 A4 的完整流程</h2>
+      <p class="section-intro">把流程做成可重复的发布管线。每一版都能追溯“纸上的码 → 脚本 → 音频 → 原始来源”。</p>
+      <div class="grid">
+        <article class="card"><span class="step-no">1</span><h3>定 Session 目标</h3><p>每页只服务一个明确动作，例如辨音、跟读、回忆、场景表达或自测。先写“学完能做什么”。</p></article>
+        <article class="card"><span class="step-no">2</span><h3>锁定来源</h3><p>为每段文本记录来源、权利状态、语言版本与校对状态。事实或考试材料还要记录页码/条款。</p></article>
+        <article class="card"><span class="step-no">3</span><h3>拆分音频</h3><p>按最小可重复单位切片：词、短语、句子、小段、全文。避免一个码播放过长且无法定位。</p></article>
+        <article class="card"><span class="step-no">4</span><h3>规范音频</h3><p>统一音量、声道和采样参数。当前已验证链路使用 Ogg Vorbis、22.05 kHz、单声道；保留无损或高质量源母版。</p></article>
+        <article class="card"><span class="step-no">5</span><h3>登记稳定编码</h3><p>确定 Product ID，在 registry 中为每个内容分配永久名字和 OID。只追加，不重排、不复用。</p></article>
+        <article class="card"><span class="step-no">6</span><h3>写 tttool YAML</h3><p>把产品、脚本、音频和播放顺序写入项目文件；生成/更新稳定 <code>scriptcodes</code> 与 source map。</p></article>
+        <article class="card"><span class="step-no">7</span><h3>生成 OID 与 GME</h3><p>按最终 DPI 和 code-dim 直接生成图案，随后构建 GME。不要先做小图再在排版软件里放大。</p></article>
+        <article class="card"><span class="step-no">8</span><h3>软件 QA</h3><p>运行 tttool 检查；验证 GME 可读、脚本数量、音频解码、重复编码、缺失文件、校验值和 ZIP 完整性。</p></article>
+        <article class="card"><span class="step-no">9</span><h3>A4 排版</h3><p>放入 <code>--pixel-size 2</code> 普通码、<code>--pixel-size 3</code> START、可见编号和复习步骤。保留净空，并导出为固定尺寸 PDF。</p></article>
+        <article class="card"><span class="step-no">10</span><h3>视觉 QA</h3><p>逐页渲染检查：无遮挡、无越界、无空页、文字可读、OID 未被裁切或重采样，页码和版本一致。</p></article>
+        <article class="card"><span class="step-no">11</span><h3>实体 QA</h3><p>100% 打印诊断页，点 START、控制码和新增码；记录响/不响/错音。通过后才打印全套。</p></article>
+        <article class="card"><span class="step-no">12</span><h3>发布与归档</h3><p>网页可公开说明书与有权公开的 PDF；个人 GME 留本地。归档版本、校验值、构建记录和回滚包。</p></article>
+      </div>
+      <div class="callout"><p><strong>最重要的 QA 边界：</strong><code>lint 通过</code>、<code>GME 可解析</code>和<code>PDF 看起来正常</code>都是必要条件；只有实体笔在实体纸上读出正确声音，才算最终通过。</p></div>
+    </section>
+
+    <section id="identity">
+      <p class="section-kicker">06 · Stable identity</p>
+      <h2>Product ID 与 OID：采用 append-only</h2>
+      <p class="section-intro">纸会长期存在。只要旧编码被重新分配，旧纸就可能在新 GME 下播放错误声音。因此“稳定身份”比文件名漂亮更重要。</p>
+      <div class="grid">
+        <article class="card wide"><h3>Product ID 是一本“产品”的身份</h3><p>tttool 建议 DIY 项目在 900–950 中选值，但这不是全球保留区。一套持续更新的西语库选用 930；其他主题必须先用 <code>tttool info</code> 扫描本地和笔内 GME 后再分配。文件名不能证明实际 PID。</p></article>
+        <article class="card wide"><h3>OID / Script Code 是一个动作的永久身份</h3><p>例如 <code>es_vocab_v001_word</code> 一旦映射到某个数字，就长期保持。内容废弃时标记 retired，也不把数字给新内容。Product ID / START 是特殊码，不复用为普通播放脚本。</p></article>
+        <article class="card wide"><h3>同一 Product ID 只留一个 GME</h3><p>笔根目录若并存两个同 PID 包，读取结果可能不确定。升级时先备份并移走旧包，再复制兼容旧码的新包。</p></article>
+        <article class="card wide"><h3>新版必须兼容旧纸</h3><p>新版 GME 应包含所有历史有效脚本码。若某个纸面码物理表现不好，保留其映射，同时为同音频<strong>追加</strong>一个 replacement OID。</p></article>
+      </div>
+      <h3>建议最小登记表</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>字段</th><th>示例</th><th>规则</th></tr></thead>
+          <tbody>
+            <tr><td>product_id</td><td><code>930</code></td><td>整套西语库固定；新主题分配前先做全盘冲突检查。</td></tr>
+            <tr><td>symbolic_name</td><td><code>es_reading_r01_s03</code></td><td>人可读、永久、不随页面位置改变。</td></tr>
+            <tr><td>script_code</td><td><code>11023</code></td><td>只追加；绝不重新编号或复用 retired code。</td></tr>
+            <tr><td>audio_source</td><td><code>reading/r01/s03.ogg</code></td><td>指向版本化音频与原始文本来源。</td></tr>
+            <tr><td>first_release</td><td><code>v1.0</code></td><td>说明哪一版纸开始使用。</td></tr>
+            <tr><td>status</td><td><code>active / replacement / retired</code></td><td>retired 仍保留占位，不让号码重生。</td></tr>
+            <tr><td>physical_test</td><td><code>pass · printer A · 100%</code></td><td>区分软件验证与实体验证。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warning"><p><strong>如果丢失稳定编码表：</strong>先从旧 YAML、<code>.codes.yaml</code>、旧 PDF 和旧 GME 恢复映射，再继续新增。不要让工具自动重排后直接发布。</p></div>
+    </section>
+
+    <section id="audio">
+      <p class="section-kicker">07 · Audio design</p>
+      <h2>音频要能“点、跟、遮、想、验”</h2>
+      <p class="section-intro">好的点读页不是把网页上的长音频搬到纸上，而是把学习动作切成可控制的小循环。</p>
+      <div class="grid">
+        <article class="card"><h3>最小片段</h3><p>一个词、音节、数字、法律要件或容易错的短语。适合重复辨音与校正。</p></article>
+        <article class="card"><h3>组合片段</h3><p>词组或完整句。用于连读、语调和从知识点到表达的过渡。</p></article>
+        <article class="card"><h3>全文片段</h3><p>一段对话或场景。适合先整体听，再回到小片段，最后复述。</p></article>
+        <article class="card"><h3>提示与答案</h3><p>先放问题/任务，答案音频与提示音频分开；让学习者先输出，再点读自检。</p></article>
+        <article class="card"><h3>节奏与留白</h3><p>速度清楚自然；练习型音频可在提示后留出回答时间。不要把所有指令塞进每段音频。</p></article>
+        <article class="card"><h3>版本化源映射</h3><p>每个 OID 记录原文、译文、音频路径、声音/生成方式、许可、日期和校对状态。</p></article>
+      </div>
+      <div class="callout success"><p><strong>推荐学习循环：</strong>看懂 → 点听 → 跟读 → 遮住答案说出/写出 → 点答案自检 → 换一个场景迁移。一个 Session 结束时，必须有一次“不看答案的提取”。</p></div>
+      <h3>音频发布前检查</h3>
+      <ul class="checklist">
+        <li>每段开头不被截断，结尾没有明显爆音或长静音。</li>
+        <li>同一 Session 音量和说话人风格基本一致。</li>
+        <li>文本、实际发音、页面标签与 source map 四者一致。</li>
+        <li>专名、数字、重音和容易混淆的音已人工抽听。</li>
+        <li>原始母版与投放版分开保存；GME 使用的是确定版本。</li>
+        <li>第三方录音、书籍材料与 TTS 输出的使用权已经确认。</li>
+      </ul>
+    </section>
+
+    <section id="sessions">
+      <p class="section-kicker">08 · Daily practice</p>
+      <h2>怎么使用 A4 Sessions</h2>
+      <p class="section-intro">每页是一段可以独立完成的学习回路，不追求一次点完所有码。建议在纸上直接留下日期、勾叉与一句反思。</p>
+      <div class="grid">
+        <article class="card"><h3>1. 启动（30 秒）</h3><p>首次使用或从别的产品切回时点封面 START；普通学习页点 <em>listo</em> 控制码确认包与纸匹配。再读出今天的任务，例如“能听辨 5 组音并说出例词”。</p></article>
+        <article class="card"><h3>2. 输入（2–4 分钟）</h3><p>逐个点最小片段；看文字听两次，再看口型/重音提示跟读。困难项画圈。</p></article>
+        <article class="card"><h3>3. 组合（2–4 分钟）</h3><p>点短语、句子或小段，把刚才的元素放回真实语流。</p></article>
+        <article class="card"><h3>4. 提取（2–5 分钟）</h3><p>遮住答案，只看中文、图片或问题，先说/写，再点音频核对。此步最重要。</p></article>
+        <article class="card"><h3>5. 迁移（1–3 分钟）</h3><p>替换人物、地点、数字或事实，造一个与自己有关的新句/新案例。</p></article>
+        <article class="card"><h3>6. 收尾（30 秒）</h3><p>只记录一个下次重点：发音、词义、规则还是提取速度。无需抄一整页笔记。</p></article>
+      </div>
+
+      <h3>新增 Session 的安全流程</h3>
+      <ol class="number-list">
+        <li>复制 Session 模板，写清目标、来源和版本；不要直接编辑已发布 PDF。</li>
+        <li>从稳定 registry 的最后一个号码之后追加 OID；不移动旧编号。</li>
+        <li>新增音频与 source map；抽听发音、数字、专名和开头结尾。</li>
+        <li>构建一个<strong>包含旧码 + 新码</strong>的新 GME；不要做只含新增页、却使用同 PID 的第二个 GME。</li>
+        <li>软件检查、逐页渲染、打印新增诊断页、实体点读。</li>
+        <li>通过后更新版本号、校验值、变更日志和回滚包，再打印正式页。</li>
+      </ol>
+      <div class="callout warning"><p><strong>手写内容的限制：</strong>笔只能播放构建 GME 时已经固定映射的音频。后来随手写下的新句子不会自动获得声音；要点读它，必须先新增固定音频、分配新 OID、重建兼容旧码的 GME，并重新打印对应码。</p></div>
+    </section>
+
+    <section id="troubleshooting">
+      <p class="section-kicker">09 · Troubleshooting</p>
+      <h2>排错树：一次只改变一个变量</h2>
+      <p class="section-intro">先判断是“设备/包层”“纸码层”还是“映射层”。同时改线材、GME 和排版，会让原因无法定位。</p>
+      <div class="grid">
+        <article class="card wide">
+          <h3>A. Mac 看不到笔</h3>
+          <ol>
+            <li>确认线插在<strong>笔身</strong>，不是底座。</li>
+            <li>换数据线、Mac 接口或转接头；充电成功不证明能传数据。</li>
+            <li>给笔充电并重启，再连接。</li>
+            <li>若系统提示初始化/格式化，取消，不要破坏原盘。</li>
+          </ol>
+        </article>
+        <article class="card wide">
+          <h3>B. 自制页全部不响</h3>
+          <ol>
+            <li>先确认官方内容仍能播放，排除电量/笔本身问题。</li>
+            <li>确认 GME 在笔根目录、复制完整并已安全推出。</li>
+            <li>确认根目录没有两个同 Product ID 的 GME。</li>
+            <li>用同包的已知可用控制码测试；必要时回滚上版 GME。</li>
+          </ol>
+        </article>
+        <article class="card wide">
+          <h3>C. 只有少数码不响</h3>
+          <ol>
+            <li>既然多数码响，先不要反复重装 GME。</li>
+            <li>查打印缩放、污渍、折痕、裁切、背景和点阵糊连。</li>
+            <li>在同页放已知控制码，换一台打印机/纸张做对照。</li>
+            <li>保留原 OID，为同一音频追加 replacement OID，做 A/B 测试。</li>
+          </ol>
+        </article>
+        <article class="card wide">
+          <h3>D. 能响但内容错</h3>
+          <ol>
+            <li>立即停止继续打印，这不是“多点几次”能解决的问题。</li>
+            <li>对照页面可见编号、OID registry、YAML 与 source map。</li>
+            <li>检查是否误装旧版 GME，或同 PID 包同时存在。</li>
+            <li>恢复到校验值已知且实体通过的版本，再修映射。</li>
+          </ol>
+        </article>
+        <article class="card wide">
+          <h3>E. START 不响，但普通码响</h3>
+          <ol>
+            <li>这说明 GME 很可能已经加载；tttool 自制包激活后，同一 Product OID 可能成为无动作码。</li>
+            <li>先点一本官方产品的启动码切换出去，再点本册 3×3、22 mm START；随后点 <em>listo</em> 控制码验证是否已经切回。</li>
+            <li>不要把同一个 START 在四处无声当成四个独立打印故障。</li>
+            <li>保留已知可用普通控制码；判断 START 是否成功，要看它是否完成产品切换，不只听它自己是否重播。</li>
+          </ol>
+        </article>
+        <article class="card wide">
+          <h3>F. 官方书籍没有声音</h3>
+          <ol>
+            <li>按书籍产品编号重新取得对应官方音频。</li>
+            <li>使用官方音频页 / Manager 或底座官方流程。</li>
+            <li>查官方说明与排错页；不要用 DIY YAML 猜官方映射。</li>
+            <li>仍失败时联系官方支持，并提供笔型号与产品信息。</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="qa">
+      <p class="section-kicker">10 · Release discipline</p>
+      <h2>版本、回滚与 QA 清单</h2>
+      <p class="section-intro">把每次发布当成一个不可拆分的 release：PDF、GME、registry、source map 和校验清单必须指向同一版本。</p>
+      <div class="boundary">
+        <article>
+          <h3>发布包建议包含</h3>
+          <ul class="checklist">
+            <li>A4 Sessions PDF（可见版本号）</li>
+            <li>唯一的当前 GME（文件名含版本或稳定名称）</li>
+            <li>项目 YAML 与稳定 codes registry</li>
+            <li>audio source map 与来源/许可记录</li>
+            <li>构建日志、tttool 版本、脚本数量</li>
+            <li>SHA‑256 校验清单与 ZIP 完整性结果</li>
+            <li>实体测试记录与仍待测试项目</li>
+          </ul>
+        </article>
+        <article>
+          <h3>发布门槛</h3>
+          <ul class="checklist">
+            <li>无重复 Product ID 冲突</li>
+            <li>历史 OID 未被重排或复用</li>
+            <li>所有引用音频存在且可解码</li>
+            <li>PDF 每页已渲染检查</li>
+            <li>下载链接与文件名一致</li>
+            <li>诊断页在目标纸面通过</li>
+            <li>私人文件与公开站点已分离</li>
+          </ul>
+        </article>
+      </div>
+      <h3>推荐版本规则</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>变化</th><th>示例</th><th>要求</th></tr></thead>
+          <tbody>
+            <tr><td>修错字/排版，不动音频映射</td><td>v1.0 → v1.0.1</td><td>重做 PDF QA；OID 与 GME 可保持，但发布记录要写明。</td></tr>
+            <tr><td>追加 Session / OID / 音频</td><td>v1.0 → v1.1</td><td>更新兼容旧码的 GME、registry、source map，并实体测新增码。</td></tr>
+            <tr><td>不兼容的产品重构</td><td>v1.x → v2.0</td><td>原则上分配新 Product ID；旧纸、旧 GME 与迁移说明长期归档。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout danger"><p><strong>回滚不是删除：</strong>保留上一个实体通过版本的完整副本。若新版异常，从笔根目录移走新版 GME，复制上版，再用上版诊断页确认。不要覆盖本地唯一副本。</p></div>
+    </section>
+
+    <section id="privacy">
+      <p class="section-kicker">11 · Rights &amp; privacy</p>
+      <h2>版权和隐私：纸、声音、网页分层处理</h2>
+      <div class="grid">
+        <article class="card wide"><h3>可以公开的</h3><p>自己的方法说明、自己创作且愿意公开的学习页、明确允许再发布的文本/录音，以及符合许可条款并保留所需署名的材料。</p></article>
+        <article class="card wide"><h3>默认只留本地的</h3><p>个人录音、学习进度、错题、购买教材内容、内部材料、未经确认权利的音频，以及包含个人经历或敏感事实的 Session。</p></article>
+        <article class="card wide"><h3>第三方与 TTS</h3><p>第三方材料“能下载/能播放”不等于可以重新打包发布。逐项核对许可、署名、衍生作品与商业使用条件；TTS 也要核对供应商条款。</p></article>
+        <article class="card wide"><h3>公开前清扫</h3><p>删除本机路径、设备标识、网络接入信息、账户、构建缓存与私人 source map。公开下载物单独做隐私和许可检查。</p></article>
+      </div>
+      <div class="callout warning"><p><strong>本项目的发布边界：</strong>网页说明书与有权公开的西语 A4 学习页可以公开；包含个人固定音频和完整映射的西语 GME 是<strong>个人本地包，不提供公开下载</strong>。其他科目的教材型内容默认也保持私有，除非逐项证明可公开。</p></div>
+    </section>
+
+    <section id="codex">
+      <p class="section-kicker">12 · Work with Codex</p>
+      <h2>让 Codex 帮忙时，给它明确的边界</h2>
+      <p class="section-intro">Codex 可以整理材料、生成版式、维护映射和运行检查；实体打印与点读结果仍需由人记录。下面的提示可以直接改主题后使用。</p>
+      <div class="grid">
+        <article class="card full">
+          <h3>新增一个 Session</h3>
+          <pre><code>请基于现有 OID registry 新增一个 A4 点读 Session。只追加编码，不修改或复用历史 script code；保持当前 Product ID 与旧纸兼容。先列出材料来源和版权边界，再生成分段音频映射、A4 PDF、更新后的单一 GME、source map、校验清单和实体测试页。软件通过与实体通过分开报告。</code></pre>
+        </article>
+        <article class="card full">
+          <h3>把一组网页练习变成纸面 Sessions</h3>
+          <pre><code>盘点这些网页中已有的固定文本与固定音频，把它们按“看懂→点听→跟读→遮住提取→点读自检→迁移”重组为 A4 Sessions。保留来源指针，不把浏览器临时语音误当成可离线固定点读的音频。普通码按已验证的打印参数，START 用 3×3、22 mm；逐页渲染检查，并输出缺口列表。</code></pre>
+        </article>
+        <article class="card full">
+          <h3>诊断一张不稳定的打印页</h3>
+          <pre><code>请只诊断，不先重建整包。我会提供纸面勾叉结果、打印设置、PDF 版本和笔内 GME 文件名。请区分：设备/装包问题、同 PID 冲突、OID 打印问题、脚本映射问题。保留旧 OID，为疑似坏码追加 replacement 做 A/B 页；不要把同一个重复码算作多个独立样本。</code></pre>
+        </article>
+      </div>
+      <div class="callout"><p><strong>给 Codex 的四样证据：</strong>当前 PDF、当前 GME 的版本/校验值、稳定 registry、实体纸上的勾叉扫描。缺少其中任何一项，都要明确说“未验证”，不要猜。</p></div>
+    </section>
+
+    <section id="faq">
+      <p class="section-kicker">13 · FAQ</p>
+      <h2>常见问题</h2>
+      <details open><summary>GME 里的音频是在使用时联网播放吗？</summary><div>不是。GME 已复制到笔后，点读是本地离线播放。底座 Wi‑Fi 主要服务官方音频下载，不是每次点读的网络播放器。</div></details>
+      <details><summary>本地 GME 应插笔上的口，还是底座上的口？</summary><div>插笔身的数据口并连接 Mac。底座接口用于底座供电/充电及官方无线下载流程，不作为本手册的本地文件复制入口。</div></details>
+      <details><summary>能不能通过蓝牙把本地音频传进笔？</summary><div>本工作流不支持，也不依赖蓝牙传文件。使用支持数据传输的 USB 线，把构建好的 GME 复制到笔根目录。</div></details>
+      <details><summary>底座 Wi‑Fi 能上传我自己的 MP3 吗？</summary><div>不要这样假定。官方底座流程面向官方产品音频；DIY 内容要先构建为 GME，再通过笔身 USB 复制。</div></details>
+      <details><summary>可以直接把 MP3 拖进笔里，然后点纸播放吗？</summary><div>不可以。纸上的 OID 要通过脚本映射到音频；要用 tttool 等流程把 Product ID、OID 脚本和音频构建成 GME。</div></details>
+      <details><summary>为什么四个 START 都不响，其他码却响？</summary><div>四个位置印的是同一个 Product OID，不是四个不同码；而 tttool 社区已记录，自制包处于激活状态后，同一 Product OID 可能成为无动作码。普通脚本码大量能响，已经证明 GME 主流程可用。正确复测是先用官方产品启动码切换出去，再点本册 START，然后点 <em>listo</em>，看是否成功切回。</div></details>
+      <details><summary><code>--pixel-size 2</code> 既然成功，为什么 START 用 3？</summary><div>这里的 2 / 3 是每个微点占用的栅格像素边长。START 是入口和诊断关键点，值得用更保守的 3；普通内容兼顾页面密度，可使用已验证的 2。</div></details>
+      <details><summary>能把两份相同 Product ID 的 GME 一起放在笔里吗？</summary><div>不要。一个 Product ID 在笔中只保留一份当前 GME。新版应把旧脚本与新增脚本合并，而不是并存两个同 PID 包。</div></details>
+      <details><summary>新增内容后，旧纸会失效吗？</summary><div>只要 Product ID 不变、旧 script code 映射不变且新版 GME 继续包含旧脚本，旧纸就应继续工作。这正是 append-only registry 的意义。</div></details>
+      <details><summary>网页里的浏览器朗读能直接变成离线点读吗？</summary><div>不能自动等同。浏览器临时合成语音必须先变成权利清晰的固定音频文件，再经过分段、映射、GME 构建和实体测试。</div></details>
+      <details><summary>为什么 GME 不放在公开下载区？</summary><div>个人包可能包含个人音频、完整映射或权利边界尚未逐项确认的素材。公开网页与私人运行包分离，更安全也更容易长期维护。</div></details>
+    </section>
+
+    <section id="downloads">
+      <div class="downloads">
+        <p class="section-kicker" style="color:#d7ceff">Downloads</p>
+        <h2>打印与离线保存</h2>
+        <p>网页适合随时查阅；PDF 适合离线保存和打印。当前公开文档对应私人运行包 v1.1.1。打印 Sessions 时仍须选择“实际大小 / 100%”。</p>
+        <div class="download-grid">
+          <a class="download-card" href="downloads/tiptoi-diy-manual-zh-v1.pdf" download>
+            <strong>打开 / 下载：中文完整说明书 PDF</strong>
+            <small>15 页 · 272 KB · 软件与逐页渲染已验证</small>
+          </a>
+          <a class="download-card" href="downloads/spanish-a4-sessions-v1.pdf" download>
+            <strong>打开 / 下载：西语 A4 Sessions</strong>
+            <small>105 页 · 1.9 MB · 软件与逐页渲染已验证；最终纸面点读待 Simon 实测</small>
+          </a>
+        </div>
+        <div class="private-box">
+          <h3>西语 GME：个人本地包</h3>
+          <p>不在公开网站提供下载。A4 Sessions PDF 可以单独查看和打印，但<strong>只有与同版本的私人 GME 配套时才会点读发声</strong>。请从自己的本地项目归档取得经过校验的当前版本，并按本页“Mac 装笔”步骤复制。不要从陌生来源下载同 Product ID 的替代包。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <p class="section-kicker">Primary sources</p>
+      <h2>官方与主项目资料</h2>
+      <p class="section-intro">设备操作以 Ravensburger 官方说明为准；DIY 文件格式与命令以 tttool 主项目文档为准。以下为本页使用的外部资料范围。</p>
+      <div class="boundary sources">
+        <article>
+          <h3>Ravensburger 官方</h3>
+          <ul>
+            <li><a href="https://www.ravensburger.de/de-DE/produkte/tiptoi/tiptoi-stift-und-starter-sets/der-stift-00110">tiptoi 笔 00110 产品页</a></li>
+            <li><a href="https://product-files.ravensburger.cloud/manuals/690021.pdf">00110 官方说明书 PDF</a></li>
+            <li><a href="https://service.ravensburger.de/tiptoi%C2%AE/tiptoi%C2%AE_Audiodateien">tiptoi 官方音频文件页</a></li>
+            <li><a href="https://service.ravensburger.de/tiptoi%C2%AE/Produkte_FAQs/Hilfestellungen_tiptoi%C2%AE">tiptoi 官方排错帮助</a></li>
+            <li><a href="https://www.ravensburger.de/de-DE/entdecken/tiptoi/tiptoi-ladestation">充电底座设置</a></li>
+            <li><a href="https://service.ravensburger.de/tiptoi%C2%AE/Produkte_FAQs/tiptoi%C2%AE_Ladestation">充电底座 FAQ</a></li>
+          </ul>
+        </article>
+        <article>
+          <h3>tttool 主项目</h3>
+          <ul>
+            <li><a href="https://github.com/entropia/tip-toi-reveng">tip-toi-reveng / tttool GitHub</a></li>
+            <li><a href="https://github.com/entropia/tip-toi-reveng/releases">tttool Releases</a></li>
+            <li><a href="https://github.com/entropia/tip-toi-reveng/issues/302">tttool Issue #302：激活后 Product OID 行为</a></li>
+            <li><a href="https://tttool.readthedocs.io/de/stable/yaml-referenz.html">tttool YAML 参考</a></li>
+            <li><a href="https://tttool.readthedocs.io/de/latest/tttool-referenz.html">tttool 命令参考</a></li>
+          </ul>
+        </article>
+      </div>
+      <a class="top-link" href="#top">返回顶部 ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>DIY OID 点读手册与 A4 Sessions · v1.1.1</strong><br>非官方社区工作流。硬件、固件、打印机和纸张组合可能产生不同结果；请保留诊断页和回滚包。</p>
+    </div>
+  </footer>
+  <script src="/nav.js" defer></script>
+</body>
+</html>
