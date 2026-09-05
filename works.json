@@ -158,6 +158,24 @@
     "description": "提炼 1000h.org 中注意力、自我训练、自我纠正与验收标准等方法，剔除“固定时数必然精通”等绝对化主张，改写为适合 B2 专业英语的可理解英文，并配套一局 25 分钟的证据边界表达练习。"
   },
   {
+    "title": "The Audible Output Loop · 可听见的输出循环",
+    "path": "language-lab/audible-output/",
+    "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 7,
+    "seriesStage": "Method 05 · 可听见输出",
+    "languageLab": {
+      "kind": "method",
+      "id": "method-05",
+      "order": 5,
+      "title": "The Audible Output Loop",
+      "stage": "Listen, echo, retrieve, and transfer",
+      "sessionCount": 1
+    },
+    "date": "2026-09-05",
+    "description": "从 YouTube 的大声朗读主张出发，保留有证据支持的选择性口头输出、跟读、比较与提取，舍弃喊叫和神经机制捷径；再用清晰英文引导完成一局西语听、标、回声、影子跟读、清晰投射、复述与迁移练习，并连接同内容的 Tiptoi A4 纸版。"
+  },
+  {
     "title": "Bogotá · 身心生活指南",
     "path": "bogota-wellbeing-guide/",
     "category": "生活",
