@@ -1,5 +1,12 @@
 [
   {
+    "title": "圣保罗出行手册",
+    "path": "ibira-run/",
+    "category": "数字生活",
+    "date": "2026-11-14",
+    "description": "公园跑步、附近餐厅和常用信息。需独立口令。"
+  },
+  {
     "title": "DIY OID 点读手册与 A4 Sessions",
     "path": "tiptoi-a4-sessions/",
     "category": "学习",
@@ -181,5 +188,25 @@
     "category": "生活",
     "date": "2026-08-27",
     "description": "以 Parque 93 / Chicó 为中心，整理社交舞、Pilates、按摩康复、福音派教会、社群与户外活动，附距离、联系方式及当地货币与人民币价格参考。"
+  },
+  {
+    "title": "西语 A0 · 入门课程",
+    "path": "https://tsongshi.cn/spanish-a0/",
+    "description": "入门课程与练习；需课程口令。",
+    "category": "学习",
+    "series": "spanish",
+    "seriesOrder": 0,
+    "date": "2026-11-18",
+    "seriesStage": "课程 · 需解锁"
+  },
+  {
+    "title": "葡语 A0 · 入门课程",
+    "path": "https://tsongshi.cn/portuguese-a0/",
+    "description": "用英语理解葡语，配合卡片、发音与书写练习；需课程口令。",
+    "category": "学习",
+    "series": "portuguese",
+    "seriesOrder": 0,
+    "date": "2026-11-18",
+    "seriesStage": "课程 · 需解锁"
   }
 ]

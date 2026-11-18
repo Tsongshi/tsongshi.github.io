@@ -719,6 +719,7 @@
   <div class="page">
     <main class="layout">
       <header class="intro">
+        <a id="pin-ibira" href="/ibira-run/" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;margin-bottom:18px;background:#244e3e;color:#fff;border-radius:12px;text-decoration:none;font-weight:650"><span>置顶 · 圣保罗出行手册</span><span aria-hidden="true">↗</span></a>
         <p class="eyebrow">Personal work index · 2026</p>
         <h1>Tsongshi<span class="dot">.</span></h1>
         <p class="tagline"><span>把好奇心，</span><span>做成可以打开的东西。</span></p>
@@ -844,15 +845,9 @@ const createSeriesItem = (work, latestDate, isFirstTool = false) => {
 const renderWorks = (list) => {
   const sorted = [...list].sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const latestDate = String(sorted[0]?.date ?? "");
-  const spanishWorks = sorted
-    .filter((work) => work.series === "spanish")
-    .sort((a, b) => {
-      const kindA = a.languageLab?.kind === "method" ? 0 : a.languageLab?.kind === "tool" ? 1 : 2;
-      const kindB = b.languageLab?.kind === "method" ? 0 : b.languageLab?.kind === "tool" ? 1 : 2;
-      return kindA - kindB || Number(a.languageLab?.order ?? a.seriesOrder ?? 99) - Number(b.languageLab?.order ?? b.seriesOrder ?? 99);
-    });
-  const otherWorks = sorted.filter((work) => work.series !== "spanish");
-  const sectionCount = Number(spanishWorks.length > 0) + Number(otherWorks.length > 0);
+  const languageGroups = [{"id": "spanish", "title": "西班牙语", "path": "language-lab/spanish/", "description": "入门课程、学习方法、听说练习与纸质点读。"}, {"id": "portuguese", "title": "葡萄牙语", "path": "language-lab/portuguese/", "description": "从 A0 开始，用英语理解葡语并练习听说读写。"}, {"id": "english", "title": "英语", "path": "language-lab/english/", "description": "专业英语、注意力训练与表达练习。"}];
+  const otherWorks = sorted.filter((work) => !languageGroups.some(group => group.id === work.series));
+  const sectionCount = 1 + Number(otherWorks.length > 0);
 
   document.getElementById("work-count").textContent = String(sorted.length).padStart(2, "0");
   document.getElementById("category-count").textContent = `${sectionCount} 个板块 · 持续更新`;
@@ -862,37 +857,32 @@ const renderWorks = (list) => {
 
   const fragments = [];
 
-  if (spanishWorks.length) {
-    const section = document.createElement("section");
-    section.className = "spanish-panel";
-    section.setAttribute("aria-labelledby", "spanish-series-title");
-
-    const head = document.createElement("div");
-    head.className = "collection-head";
-    const copy = document.createElement("div");
-    copy.className = "collection-copy";
-    copy.append(text("p", "collection-label", "Language Learning Lab"));
-    const heading = text("h3", "collection-title", "语言学习台");
-    heading.id = "spanish-series-title";
-    copy.append(heading);
-    copy.append(text("p", "collection-description", "每个方法都有可理解英文的深度介绍和可以反复玩的练习 Session；字母点读与逐句训练器作为辅助工具继续保留。"));
-    const labLink = text("a", "collection-link", "进入完整学习台 →");
-    labLink.href = "language-lab/";
-    copy.append(labLink);
-    const methodCount = spanishWorks.filter((work) => work.languageLab?.kind === "method").length;
-    head.append(copy, text("span", "collection-count", String(methodCount).padStart(2, "0")));
-
-    const seriesList = document.createElement("ol");
-    seriesList.className = "series-list";
-    let toolStarted = false;
-    spanishWorks.forEach((work) => {
-      const isTool = work.languageLab?.kind === "tool";
-      seriesList.append(createSeriesItem(work, latestDate, isTool && !toolStarted));
-      if (isTool) toolStarted = true;
-    });
-    section.append(head, seriesList);
-    fragments.push(section);
-  }
+  const section = document.createElement("section");
+  section.className = "spanish-panel";
+  section.setAttribute("aria-labelledby", "language-series-title");
+  const head = document.createElement("div");
+  head.className = "collection-head";
+  const copy = document.createElement("div");
+  copy.className = "collection-copy";
+  copy.append(text("p", "collection-label", "Language Learning Lab"));
+  const heading = text("h3", "collection-title", "语言学习台");
+  heading.id = "language-series-title";
+  copy.append(heading, text("p", "collection-description", "按语种进入，课程、方法和练习都收在各自的子网页中。"));
+  head.append(copy, text("span", "collection-count", "03"));
+  const grid = document.createElement("ul");
+  grid.className = "works-grid";
+  languageGroups.forEach((group) => {
+    const li = document.createElement("li");
+    li.className = "work-item";
+    const link = document.createElement("a");
+    link.className = "work-card";
+    link.href = group.path;
+    const count = sorted.filter(work => work.series === group.id).length;
+    link.append(text("span", "work-category", `${count} 个子网页`), text("h4", "work-title", group.title), text("p", "work-description", group.description), text("span", "work-open", "进入学习 →"));
+    li.append(link); grid.append(li);
+  });
+  section.append(head, grid);
+  fragments.push(section);
 
   if (otherWorks.length) {
     const section = document.createElement("section");
